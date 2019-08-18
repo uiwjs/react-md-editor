@@ -35,3 +35,18 @@ npm i @uiw/react-md-editor
 
 - `value: string`: The Markdown value.
 - `commands?: ICommand[]`: An array of `ICommand`, which, each one, contain a `commands` property. If no commands are specified, the default will be used. Commands are explained in more details below.
+- `height?: number=200`: The height of the editor.
+- `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.
+
+### Development
+
+```bash
+npm run watch # Listen compile .tsx files.
+npm run build # compile .tsx files.
+
+npm run doc
+```
+
+## License
+
+Licensed under the MIT License.

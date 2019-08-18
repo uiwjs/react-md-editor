@@ -13,7 +13,7 @@ const md = new MarkdownIt({
     }
     if (lang && Prism.languages[lang]) {
       try {
-        return Prism.highlight(str, Prism.languages.markdown, lang);
+        return Prism.highlight(str, Prism.languages[lang], lang);
       } catch (_) { }
     }
     return '';
@@ -28,6 +28,7 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps> {
   public divElm = React.createRef<HTMLDivElement>();
   public renderHTML(mdStr?: string) {
     const htmlStr = md.render(mdStr || '');
+    console.log('~~~::');
     this.divElm.current!.innerHTML = htmlStr;
   }
   render() {

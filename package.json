@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "insert-text-at-cursor": "^0.3.0",
     "markdown-it": "^9.1.0",
     "prismjs": "^1.17.1"
   }

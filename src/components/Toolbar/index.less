@@ -2,6 +2,10 @@
 
 .@{md-editor} {
   &-toolbar {
+    border-bottom: 1px solid #dfdfe0;
+    background-color: #fbfbfb;
+    padding: 4px 2px 4px 5px;
+    border-radius: 3px 3px 0 0;
     ul, li {
       margin: 0;
       padding: 0;
@@ -11,18 +15,33 @@
       display: inline-block;
       button {
         border: none;
-        height: 22px;
+        height: 20px;
         background: none;
         color: #242729;
         padding: 4px;
+        border-radius: 2px;
         text-transform: none;
+        font-weight: normal;
         overflow: visible;
         outline: none;
+        cursor: pointer;
+        transition: all .3s;
+        &:hover {
+          color: #06c;
+          background-color: #e8e8e8;
+        }
+        &:active {
+          color: #6a57ff;
+          background-color: #dadada;
+        }
       }
     }
-    border-bottom: 1px solid #dfdfe0;
-    background-color: #fbfbfb;
-    padding: 4px 2px 4px 5px;
-    border-radius: 3px 3px 0 0;
+    &-divider {
+      height: 14px;
+      width: 1px;
+      margin: -3px 3px 0 3px !important;
+      vertical-align: middle;
+      background-color: #ddd;
+    }
   }
 }

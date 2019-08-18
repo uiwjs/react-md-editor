@@ -18,6 +18,8 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   public preElm = React.createRef<HTMLPreElement>();
   public text = React.createRef<HTMLTextAreaElement>();
   public static defaultProps: ITextAreaProps = {
+    autoFocus: true,
+    spellCheck: false,
     height: 200,
   }
   public static state: ITextAreaState;
@@ -36,10 +38,6 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   }
   public async componentDidMount() {
     this.highlight();
-    window && window.addEventListener('mousewheel', (e) => {
-      const scrollTop = (e.target as HTMLTextAreaElement).scrollTop;
-      this.preElm.current!.scrollTop = scrollTop;
-    });
   }
   public UNSAFE_componentWillReceiveProps(nextProps: ITextAreaProps) {
     if (nextProps.value !== this.props.value) {
@@ -65,14 +63,13 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
       <div className={classnames(`${prefixCls}-text`, className)}>
         <pre
           ref={this.preElm}
-          style={{ fontFamily: 'sans-serif' }}
-          className={`${prefixCls}-text-pre`} />
+          className={`${prefixCls}-text-pre`}
+        />
         <textarea
-          autoFocus
-          spellCheck={false}
           {...otherProps}
+          ref={this.text}
           onScroll={this.handleScroll.bind(this)}
-          style={{ ...style, height, fontFamily: 'sans-serif' }}
+          style={{ ...style, height }}
           className={`${prefixCls}-text-input`}
           value={this.state.value}
           onChange={this.handleChange.bind(this)}

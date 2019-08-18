@@ -1,7 +1,10 @@
 .wmde-markdown {
   font-size: 14px;
-  &:first-child {
+  > :first-child {
     margin-top: 0 !important;
+  }
+  > :last-child {
+    margin-bottom: 0 !important;
   }
   code[class*="language-"], pre[class*="language-"] {
     color: black;
@@ -74,6 +77,39 @@
     padding-left: 2em;
   }
   ul {
+    margin-bottom: 16px;
+    margin-top: 0;
+  }
+  blockquote {
+    margin: 0;
+    border-left: .25em solid #dfe2e5;
+    color: #6a737d;
+    padding: 0 1em;
+    > :last-child {
+      margin-bottom: 0;
+    }
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  table {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 14px;
+    tr {
+      background-color: #fff;
+      border-top: 1px solid #c6cbd1;
+    }
+    td, th {
+      border: 1px solid #dfe2e5;
+      padding: 3px 12px;
+    }
+  }
+  blockquote, details, dl, ol, p, pre, table, ul {
     margin-bottom: 16px;
     margin-top: 0;
   }
