@@ -5,6 +5,7 @@ import { italic } from './italic';
 import { link } from './link';
 import { unorderedListCommand, orderedListCommand, checkedListCommand } from './list';
 import { quote } from './quote';
+import { hr } from './hr';
 import { divider } from './divider';
 import { preview } from './preview';
 import { fullscreen } from './fullscreen';
@@ -14,7 +15,7 @@ import { ICommand, CommandOrchestrator, TextState, TextApi, TextRange } from '..
 import insertText from '../utils/InsertTextAtPosition';
 
 const getCommands: () => ICommand[] = () => [
-  bold, italic, strikethrough, divider, link, quote, code, image, divider,
+  bold, italic, strikethrough, hr, divider, link, quote, code, image, divider,
   unorderedListCommand, orderedListCommand, checkedListCommand, divider, preview, fullscreen,
 ];
 
