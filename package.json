@@ -1,0 +1,60 @@
+{
+  "name": "@uiw/react-md-editor",
+  "version": "1.0.0",
+  "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
+  "author": "",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "watch": "npm run watch:types & npm run watch:ts -- --env-name esm:dev --env-name cjs",
+    "build": "npm run build:ts & npm run build:types & npm run build:css & npm run build:types -- --outDir lib/cjs",
+    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
+    "build:css": "compile-less -d src -o lib/esm",
+    "build:ts": "tsbb build --target react",
+    "watch:types": "npm run build:types -- --watch",
+    "watch:ts": "tsbb watch --target react",
+    "test": "tsbb test --env=jsdom",
+    "coverage": "tsbb test --env=jsdom --coverage",
+    "doc": "npm run doc:build",
+    "doc:dev": "NODE_ENV=development parcel website/index.html --out-dir doc --no-cache",
+    "doc:build": "NODE_ENV=production parcel build website/index.html --out-dir doc --public-url ./ --no-cache --no-source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/tsbb/tree/master/example/basic"
+  },
+  "files": [
+    "typings",
+    "lib"
+  ],
+  "keywords": [],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.7.0",
+    "react-dom": ">=16.7.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/markdown-it": "0.0.8",
+    "@types/prismjs": "^1.16.0",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-test-renderer": "^16.8.1",
+    "babel-plugin-transform-remove-imports": "^1.0.8",
+    "babel-plugin-transform-rename-import": "^2.3.0",
+    "compile-less-cli": "^1.1.5",
+    "less": "^3.9.0",
+    "parcel-bundler": "^1.12.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
+    "tsbb": "1.1.3"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "markdown-it": "^9.1.0",
+    "prismjs": "^1.17.1"
+  }
+}

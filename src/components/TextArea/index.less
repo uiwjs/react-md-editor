@@ -1,0 +1,93 @@
+@md-editor:~"w-md-editor";
+
+.@{md-editor} {
+  &-text {
+    position: relative;
+    &-pre, &-input {
+      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+      line-height: 18px;
+      word-spacing: 0px !important;
+      font-size: 14px !important;
+      padding: 16px !important;
+      box-sizing: border-box;
+
+      overflow-x: hidden;
+      word-wrap: break-word;
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+    &-input {
+      background-color: transparent;
+      display: block;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: transparent;
+      width: 100%;
+      border: 0;
+      margin: 0;
+      overflow-y: scroll;
+      // padding-right: 0 !important;
+      border-radius: 3px;
+      resize: none;
+      outline: none;
+      position: relative;
+      z-index: 2;
+      word-break: break-all;
+    }
+    &-pre {
+      margin: 0;
+      position: absolute;
+      white-space: pre-wrap;
+      padding-bottom: 34px !important;
+      z-index: 0;
+      overflow: hidden;
+      color: red;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
+
+.@{md-editor}-text-pre {
+  color: #494949;
+  .punctuation {
+    color: #000692;
+  }
+  .title, .bold {
+    color: #000;
+  }
+  .keyword {
+    color: #000;
+  }
+  .italic {
+    font-style: italic;
+  }
+  .url {
+    color: #032f62;
+    .content {
+      color: #0366d6;
+      text-decoration: underline;
+    }
+  }
+  .list {
+    color: #5486B8;
+  }
+  .hr {
+    color: #999;
+  }
+  .blockquote {
+    color: #a6a6a6;
+  }
+  .code {
+    color: #6a737d;
+  }
+  .table {
+    .punctuation {
+      color: #c3c3c3;
+    }
+    .table-header {
+      color: #000;
+    }
+  }
+}

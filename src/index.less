@@ -1,0 +1,30 @@
+@md-editor:~"w-md-editor";
+
+.@{md-editor} {
+  color: #24292e;
+  text-align: left;
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2);
+  border-radius: 3px;
+  position: relative;
+  background-color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  &-content {
+    position: relative;
+    border-radius: 0 0 3px 0;
+    overflow: hidden;
+  }
+  &-input {
+    width: 50%;
+  }
+  &-preview {
+    width: 50%;
+    box-sizing: border-box;
+    box-shadow: inset 1px 0 0 0 #dfdfe0;
+    position: absolute;
+    padding: 10px 20px;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
