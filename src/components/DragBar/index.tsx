@@ -11,7 +11,7 @@ export interface IDragBarProps extends IProps {
 
 export default class DragBar extends Component<IDragBarProps> {
   public drag?: { height: number, dragY: number };
-  handleMouseMove = (event: MouseEvent) => {
+  private handleMouseMove = (event: MouseEvent) => {
     if (this.drag) {
       const newHeight = this.drag.height + event.clientY - this.drag.dragY;
       if (newHeight >= this.props.minHeight && newHeight <= this.props.maxHeight) {
@@ -19,16 +19,20 @@ export default class DragBar extends Component<IDragBarProps> {
       }
     }
   }
-  handleMouseUp = () => {
+  private handleMouseUp = () => {
     this.drag = undefined;
   }
-  handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  private handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     this.drag = {
       height: this.props.height,
       dragY: event.clientY
     };
   }
-  componentDidMount() {
+  public componentWillUnmount() {
+    document.removeEventListener('mousemove', this.handleMouseMove);
+    document.removeEventListener('mouseup', this.handleMouseUp);
+  }
+  public componentDidMount() {
     document.addEventListener('mousemove', this.handleMouseMove);
     document.addEventListener('mouseup', this.handleMouseUp);
   }

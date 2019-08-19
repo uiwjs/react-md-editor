@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { Options } from 'markdown-it';
 import { IProps, ICommand, CommandOrchestrator } from './Type';
 import TextArea, { ITextAreaProps} from './components/TextArea';
 import Toolbar from './components/Toolbar';
@@ -7,6 +8,7 @@ import DragBar from './components/DragBar';
 import MarkdownPreview from './components/Markdown';
 import { getCommands, TextAreaCommandOrchestrator } from './commands';
 import './index.less';
+import './markdowncolor.less';
 import './markdown.less';
 
 export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
@@ -35,11 +37,13 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
   /**
    * Show markdown preview.
    */
-  visiablePreview?: boolean;
+  preview?: boolean;
+  fullscreen?: boolean;
   /**
    * Maximum drag height. `visiableDragbar=true`
    */
   maxHeight?: number;
+  mitOptions?: Options;
   /**
    * Minimum drag height. `visiableDragbar=true`
    */
@@ -52,7 +56,8 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
 
 export interface IMDEditorState {
   height: React.CSSProperties['height'];
-  visiablePreview?: boolean;
+  preview?: boolean;
+  fullscreen?: boolean;
 }
 
 export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState> {
@@ -66,14 +71,16 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
     minHeight: 100,
     maxHeight: 1200,
     visiableDragbar: true,
-    visiablePreview: true,
+    preview: true,
+    fullscreen: false,
     commands: getCommands(),
   }
   public constructor(props: IMDEditorProps) {
     super(props);
     this.state = {
       height: props.height,
-      visiablePreview: !props.visiablePreview,
+      preview: props.preview,
+      fullscreen: props.fullscreen,
     };
   }
   public componentDidMount() {
@@ -81,8 +88,11 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
     this.commandOrchestrator = new TextAreaCommandOrchestrator(this.textarea.current!.text.current as HTMLTextAreaElement);
   }
   public UNSAFE_componentWillReceiveProps(nextProps: IMDEditorProps) {
-    if (nextProps.visiablePreview !== this.props.visiablePreview) {
-      this.setState({ visiablePreview: nextProps.visiablePreview });
+    if (nextProps.preview !== this.props.preview) {
+      this.setState({ preview: nextProps.preview });
+    }
+    if (nextProps.fullscreen !== this.props.fullscreen) {
+      this.setState({ fullscreen: nextProps.fullscreen });
     }
   }
   private handleChange(mdStr?: string) {
@@ -91,25 +101,39 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
     onChange && onChange(mdStr || '');
   }
   public handleCommand = (command: ICommand) => {
+    if (command.keyCommand === 'preview') {
+      this.setState({ preview: !this.state.preview });
+    }
+    if (command.keyCommand === 'fullscreen') {
+      this.setState({ fullscreen: !this.state.fullscreen });
+      document.body.style.overflow = this.state.fullscreen ? 'initial' : 'hidden';
+    }
     this.commandOrchestrator.executeCommand(command);
   }
   public render() {
-    const { prefixCls, className, value, commands, height, visiableDragbar, visiablePreview, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
+    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
     const cls = classnames(className, prefixCls, {
-      [`${prefixCls}-show-only-input`]: this.state.visiablePreview,
+      [`${prefixCls}-show-only-input`]: !this.state.preview,
+      [`${prefixCls}-fullscreen`]: this.state.fullscreen,
     });
     return (
-      <div className={cls} {...other}>
+      <div className={cls} style={{ height: this.state.fullscreen ? '100%' : this.state.height }} {...other}>
         <Toolbar
+          active={{
+            fullscreen: this.state.fullscreen,
+            preview: this.state.preview,
+          }}
           prefixCls={prefixCls} commands={commands}
           onCommand={this.handleCommand}
         />
-        <div className={`${prefixCls}-content`}>
+        <div
+          className={`${prefixCls}-content`}
+          style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : (this.state.height as number) - 29 }}
+        >
           <TextArea
             ref={this.textarea}
             className={`${prefixCls}-input`}
             prefixCls={prefixCls}
-            height={this.state.height}
             value={value}
             autoFocus={autoFocus}
             onChange={this.handleChange.bind(this)}
@@ -118,7 +142,7 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
             ref={this.preview}
             className={`${prefixCls}-preview`}
           />
-          {visiableDragbar && (
+          {visiableDragbar && !this.state.fullscreen && (
             <DragBar
               prefixCls={prefixCls}
               height={this.state.height as number}

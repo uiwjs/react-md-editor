@@ -7,7 +7,6 @@ import './index.less';
 
 export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'shouldComponentUpdate'>, IProps {
   onChange?: (value?: string) => void;
-  height?: React.CSSProperties['height'];
 }
 
 export interface ITextAreaState {
@@ -20,7 +19,6 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   public static defaultProps: ITextAreaProps = {
     autoFocus: true,
     spellCheck: false,
-    height: 200,
   }
   public static state: ITextAreaState;
   public constructor(props: ITextAreaProps) {
@@ -45,7 +43,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     }
   }
   public shouldComponentUpdate(nextProps: ITextAreaProps, nextState: ITextAreaState) {
-    return nextState.value !== this.state.value || nextProps.height !== this.props.height;
+    return nextState.value !== this.state.value;
   }
   private handleScroll(e: React.UIEvent<HTMLTextAreaElement>) {
     const scrollTop = (e.target as HTMLTextAreaElement).scrollTop;
@@ -58,18 +56,18 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     pre!.innerHTML = html;
   }
   render() {
-    const { prefixCls, className, onChange, style, height, ...otherProps } = this.props;
+    const { prefixCls, className, onChange, style, ...otherProps } = this.props;
     return (
       <div className={classnames(`${prefixCls}-text`, className)}>
         <pre
           ref={this.preElm}
-          className={`${prefixCls}-text-pre`}
+          className={classnames(`${prefixCls}-text-pre`, 'wmde-markdown-color')}
         />
         <textarea
           {...otherProps}
           ref={this.text}
           onScroll={this.handleScroll.bind(this)}
-          style={{ ...style, height }}
+          style={{ ...style }}
           className={`${prefixCls}-text-input`}
           value={this.state.value}
           onChange={this.handleChange.bind(this)}

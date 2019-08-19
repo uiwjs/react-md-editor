@@ -22,6 +22,7 @@
       -webkit-text-fill-color: transparent;
       -webkit-text-stroke: transparent;
       width: 100%;
+      height: 100%;
       border: 0;
       margin: 0;
       overflow-y: scroll;
@@ -35,6 +36,7 @@
       word-break: break-all;
     }
     &-pre {
+      height: 100%;
       margin: 0;
       position: absolute;
       white-space: pre-wrap;
@@ -90,5 +92,8 @@
     .table-header {
       color: #000;
     }
+  }
+  .token.string {
+    color: #ff5722;
   }
 }

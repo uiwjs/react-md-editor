@@ -67,9 +67,11 @@ export default function App() {
 - `onChange?: (value: string)`: Event handler for the `onChange` event.
 - `commands?: ICommand[]`: An array of `ICommand`, which, each one, contain a `commands` property. If no commands are specified, the default will be used. Commands are explained in more details below.
 - `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.
+- `mitOptions?: MarkdownIt.Options`: This is reset [markdown-it](https://github.com/markdown-it/markdown-it) settings.
 - `height?: number=200`: The height of the editor.
 - `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
-- `visiablePreview?: boolean=true`: Show markdown preview.
+- `fullscreen?: boolean=false`: Show markdown preview.
+- `preview?: boolean=true`: Show markdown preview.
 - `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.
 - `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.
 

@@ -1,4 +1,3 @@
-// import insertTextAtCursor from 'insert-text-at-cursor';
 import { bold } from './bold';
 import { code } from './code';
 import { italic } from './italic';

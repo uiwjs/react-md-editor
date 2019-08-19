@@ -12,6 +12,16 @@ const mdStr = `# Markdown Editor for React
 ##### 小标题
 ###### 小标题
 
+<style>
+body {
+  padding: 100px;
+}
+</style>
+
+<p align="center">
+  A markdown editor with preview, implemented with React.js and TypeScript.
+</p>
+
 *斜体文本*    _斜体文本_  
 **粗体文本**    __粗体文本__  
 ***粗斜体文本***    ___粗斜体文本___  
@@ -24,85 +34,23 @@ $(document).ready(function () {
 
 
 \`\`\`javascript
-import React, { Component } from 'react';
-import Prism from 'prismjs';
-import classnames from 'classnames';
-import 'prismjs/components/prism-markdown.min.js';
-import { IProps } from '../../Type';
-import './index.less';
+import MEDitor from '@uiw/react-md-editor';
 
-export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'shouldComponentUpdate'>, IProps {
-  onChange?: (value: string) => void;
-  height?: React.CSSProperties['height'];
-}
+import * as React from "react";
+import ReactDOM from "react-dom";
+import MEDitor from '@uiw/react-md-editor';
 
-export interface ITextAreaState {
-  value: ITextAreaProps['value'];
-}
-
-export default class TextArea extends Component<ITextAreaProps, ITextAreaState> {
-  public preElm = React.createRef<HTMLPreElement>();
-  public text = React.createRef<HTMLTextAreaElement>();
-  public static defaultProps: ITextAreaProps = {
-    height: 200,
-  }
-  public static state: ITextAreaState;
-  public constructor(props: ITextAreaProps) {
-    super(props);
-    this.state = {
-      value: props.value,
-    };
-  }
-  private handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const { onChange } = this.props;
-    this.setState({ value: e.target.value }, () => {
-      this.highlight();
-    });
-    onChange && onChange(e.target.value);
-  }
-  public async componentDidMount() {
-    this.highlight();
-    window && window.addEventListener('mousewheel', (e) => {
-      const scrollTop = (e.target as HTMLTextAreaElement).scrollTop;
-      this.preElm.current!.scrollTop = scrollTop;
-    })
-  }
-  public UNSAFE_componentWillReceiveProps(nextProps: ITextAreaProps) {
-    if (nextProps.value !== this.props.value) {
-      this.highlight();
-    }
-  }
-  public shouldComponentUpdate(nextProps: ITextAreaProps, nextState: ITextAreaState) {
-    return nextState.value !== this.state.value;
-  }
-  private handleScroll(e: React.UIEvent<HTMLTextAreaElement>) {
-    const scrollTop = (e.target as HTMLTextAreaElement).scrollTop;
-    this.preElm.current!.scrollTop = scrollTop;
-  }
-  public async highlight() {
-    const { value } = this.state;
-    const pre = this.preElm.current;
-    const html = Prism.highlight(value as string, Prism.languages.markdown, 'markdown');
-    pre!.innerHTML = html;
-  }
-  render() {
-    const { prefixCls, className, onChange, autoFocus, style, height, ...otherProps } = this.props;
-    return (
-      <div className={classnames(\`\${prefixCls}-text\`, className)}>
-        <pre ref={this.preElm} className={\`\${prefixCls}-text-pre\`} />
-        <textarea
-          spellCheck={false}
-          {...otherProps}
-          autoFocus={autoFocus}
-          onScroll={this.handleScroll.bind(this)}
-          style={{ ...style, height, fontFamily: 'sans-serif' }}
-          className={\`\${prefixCls}-text-input\`}
-          value={this.state.value}
-          onChange={this.handleChange.bind(this)}
-        />
-      </div>
-    );
-  }
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!**");
+  const [selectedTab, setSelectedTab] = React.useState("write");
+  return (
+    <div className="container">
+      <MEDitor
+        value={value}
+        onChange={setValue}
+      />
+    </div>
+  );
 }
 \`\`\`
 
@@ -145,34 +93,29 @@ def g(x):
 export default function App() {
   const [state, setVisiable] = React.useState({
     visiableDragbar: true,
-    visiablePreview: true,
+    preview: true,
   });
+  const upDataVisiable = (keyName, e) => {
+    setVisiable({ ...state, [keyName]: e.target.checked });
+  }
   return (
     <div className="warpper">
       <MDEditor
         value={mdStr}
-        height={200}
+        height={400}
         visiableDragbar={state.visiableDragbar}
-        visiablePreview={state.visiablePreview}
+        preview={state.preview}
         onChange={(e) => {
           console.log('3')
         }}
       />
       <div className="doc-tools">
         <label>
-          <input
-            type="checkbox"
-            checked={state.visiableDragbar}
-            onChange={(e) => setVisiable({ ...state, visiableDragbar: e.target.checked })}
-          />
+          <input type="checkbox" checked={state.visiableDragbar} onChange={upDataVisiable.bind(this, 'visiableDragbar')} />
           是否显示拖拽工具
         </label>
         <label>
-          <input
-            type="checkbox"
-            checked={state.visiablePreview}
-            onChange={(e) => setVisiable({ ...state, visiablePreview: e.target.checked })}
-          />
+          <input type="checkbox" checked={state.preview} onChange={upDataVisiable.bind(this, 'preview')} />
           是否显示预览界面
         </label>
       </div>

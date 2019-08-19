@@ -8,13 +8,13 @@
   "typings": "lib/cjs/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
-    "watch": "npm run watch:types & npm run watch:ts -- --env-name esm:dev --env-name cjs",
-    "build": "npm run build:ts & npm run build:types & npm run build:css & npm run build:types -- --outDir lib/cjs",
+    "watch": "npm run watch:types & npm run watch:ts",
+    "build": "npm run build:ts && npm run build:css && npm run build:types -- --outDir lib/cjs && npm run build:types -- --outDir lib/esm",
     "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
     "build:css": "compile-less -d src -o lib/esm",
     "build:ts": "tsbb build --target react",
-    "watch:types": "npm run build:types -- --watch",
-    "watch:ts": "tsbb watch --target react",
+    "watch:types": "npm run build:types -- --watch --outDir lib/cjs & npm run build:types -- --watch --outDir lib/esm",
+    "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
     "deploy": "gh-pages -d doc",
@@ -57,7 +57,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "insert-text-at-cursor": "^0.3.0",
     "markdown-it": "^9.1.0",
     "prismjs": "^1.17.1"
   }
