@@ -45,7 +45,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     }
   }
   public shouldComponentUpdate(nextProps: ITextAreaProps, nextState: ITextAreaState) {
-    return nextState.value !== this.state.value;
+    return nextState.value !== this.state.value || nextProps.height !== this.props.height;
   }
   private handleScroll(e: React.UIEvent<HTMLTextAreaElement>) {
     const scrollTop = (e.target as HTMLTextAreaElement).scrollTop;

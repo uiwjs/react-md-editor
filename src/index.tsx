@@ -2,7 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import { IProps, ICommand, CommandOrchestrator } from './Type';
 import TextArea, { ITextAreaProps} from './components/TextArea';
-import Toolbar from './components/Toolbar'
+import Toolbar from './components/Toolbar';
+import DragBar from './components/DragBar';
 import MarkdownPreview from './components/Markdown';
 import { getCommands, TextAreaCommandOrchestrator } from './commands';
 import './index.less';
@@ -27,15 +28,25 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
   commands?: ICommand[];
 }
 
-export default class MDEditor extends React.PureComponent<IMDEditorProps, {}> {
+export interface IMDEditorState {
+  height: React.CSSProperties['height'];
+}
+
+export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState> {
+  public static displayName = 'MDEditor';
   public preview = React.createRef<MarkdownPreview>();
   public textarea = React.createRef<TextArea>();
   public commandOrchestrator!: CommandOrchestrator;
-  public static displayName = 'MDEditor';
   public static defaultProps: IMDEditorProps = {
     value: '',
     prefixCls: 'w-md-editor',
     commands: getCommands(),
+  }
+  public constructor(props: IMDEditorProps) {
+    super(props);
+    this.state = {
+      height: props.height,
+    };
   }
   public componentDidMount() {
     this.handleChange(this.props.value);
@@ -52,13 +63,16 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, {}> {
     const cls = classnames(className, prefixCls, { });
     return (
       <div className={cls} {...other}>
-        <Toolbar prefixCls={prefixCls} commands={commands} onCommand={this.handleCommand} />
+        <Toolbar
+          prefixCls={prefixCls} commands={commands}
+          onCommand={this.handleCommand}
+        />
         <div className={`${prefixCls}-content`}>
           <TextArea
             ref={this.textarea}
             className={`${prefixCls}-input`}
             prefixCls={prefixCls}
-            height={height}
+            height={this.state.height}
             value={value}
             autoFocus={autoFocus}
             onChange={this.handleChange.bind(this)}
@@ -66,6 +80,13 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, {}> {
           <MarkdownPreview
             ref={this.preview}
             className={`${prefixCls}-preview`}
+          />
+          <DragBar
+            prefixCls={prefixCls}
+            height={this.state.height as number}
+            onChange={(height) => {
+              this.setState({ height });
+            }}
           />
         </div>
       </div>

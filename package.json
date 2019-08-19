@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-md-editor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "author": "",
   "main": "lib/cjs/index.js",
@@ -17,6 +17,7 @@
     "watch:ts": "tsbb watch --target react",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
+    "deploy": "gh-pages -d doc",
     "doc": "npm run doc:build",
     "doc:dev": "NODE_ENV=development parcel website/index.html --out-dir doc --no-cache",
     "doc:build": "NODE_ENV=production parcel build website/index.html --out-dir doc --public-url ./ --no-cache --no-source-maps"
@@ -27,7 +28,8 @@
   },
   "files": [
     "typings",
-    "lib"
+    "lib",
+    "src"
   ],
   "keywords": [],
   "license": "MIT",
@@ -45,6 +47,7 @@
     "babel-plugin-transform-remove-imports": "^1.0.8",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "compile-less-cli": "^1.1.5",
+    "gh-pages": "^2.1.1",
     "less": "^3.9.0",
     "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",

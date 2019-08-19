@@ -1,5 +1,8 @@
-Markdown Editor for React
----
+<p align="center">
+  <a href="https://github.com/uiwjs/react-md-editor">
+    <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
+  </a>
+</p>
 
 <!--dividing-->
 
@@ -19,6 +22,10 @@ Markdown Editor for React
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
     <img src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
   </a>
+</p>
+
+<p align="center">
+  <b>Markdown Editor for React</b>
 </p>
 
 <p align="center">

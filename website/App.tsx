@@ -145,7 +145,7 @@ export default class App extends React.PureComponent {
   render () {
     return (
       <div className="warpper">
-        <MDEditor value={mdStr} height={300} />
+        <MDEditor value={mdStr} height={200} />
       </div>
     )
   }
