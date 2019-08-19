@@ -69,6 +69,7 @@ export default function App() {
 - `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `height?: number=200`: The height of the editor.
 - `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
+- `visiablePreview?: boolean=true`: Show markdown preview.
 - `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.
 - `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.
 
