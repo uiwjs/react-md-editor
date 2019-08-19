@@ -26,4 +26,14 @@
     right: 0;
     bottom: 0;
   }
+  &-input, &-preview {
+    transition: width .3s;
+  }
+  &-show-only-input &-input {
+    width: 100%;
+  }
+  &-show-only-input &-preview {
+    width: 0%;
+    padding: 0;
+  }
 }

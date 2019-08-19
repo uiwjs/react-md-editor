@@ -33,6 +33,10 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
    */
   visiableDragbar?: boolean;
   /**
+   * Show markdown preview.
+   */
+  visiablePreview?: boolean;
+  /**
    * Maximum drag height. `visiableDragbar=true`
    */
   maxHeight?: number;
@@ -48,6 +52,7 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
 
 export interface IMDEditorState {
   height: React.CSSProperties['height'];
+  visiablePreview?: boolean;
 }
 
 export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState> {
@@ -61,29 +66,38 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
     minHeight: 100,
     maxHeight: 1200,
     visiableDragbar: true,
+    visiablePreview: true,
     commands: getCommands(),
   }
   public constructor(props: IMDEditorProps) {
     super(props);
     this.state = {
       height: props.height,
+      visiablePreview: !props.visiablePreview,
     };
   }
   public componentDidMount() {
     this.handleChange(this.props.value);
     this.commandOrchestrator = new TextAreaCommandOrchestrator(this.textarea.current!.text.current as HTMLTextAreaElement);
   }
+  public UNSAFE_componentWillReceiveProps(nextProps: IMDEditorProps) {
+    if (nextProps.visiablePreview !== this.props.visiablePreview) {
+      this.setState({ visiablePreview: nextProps.visiablePreview });
+    }
+  }
   private handleChange(mdStr?: string) {
     const { onChange } = this.props;
     this.preview.current!.renderHTML(mdStr);
     onChange && onChange(mdStr || '');
   }
-  handleCommand = (command: ICommand) => {
+  public handleCommand = (command: ICommand) => {
     this.commandOrchestrator.executeCommand(command);
   }
   public render() {
-    const { prefixCls, className, value, commands, height, visiableDragbar, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
-    const cls = classnames(className, prefixCls, { });
+    const { prefixCls, className, value, commands, height, visiableDragbar, visiablePreview, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
+    const cls = classnames(className, prefixCls, {
+      [`${prefixCls}-show-only-input`]: this.state.visiablePreview,
+    });
     return (
       <div className={cls} {...other}>
         <Toolbar

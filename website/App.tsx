@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import MDEditor from '../';
 import './App.less';
 
@@ -141,24 +141,41 @@ def g(x):
   [yahoo]: http://www.yahoo.com/
 `;
 
-export default class App extends React.PureComponent {
-  render() {
-    return (
-      <div className="warpper">
-        <MDEditor
-          value={mdStr}
-          height={200}
-          onChange={(value) => {
-            console.log('value:', value);
-          }}
-        />
-        <div className="doc-tools">
-          <label>
-            <input type="checkbox" />
-            是否显示拖拽工具
-          </label>
-        </div>
+
+export default function App() {
+  const [state, setVisiable] = React.useState({
+    visiableDragbar: true,
+    visiablePreview: true,
+  });
+  return (
+    <div className="warpper">
+      <MDEditor
+        value={mdStr}
+        height={200}
+        visiableDragbar={state.visiableDragbar}
+        visiablePreview={state.visiablePreview}
+        onChange={(e) => {
+          console.log('3')
+        }}
+      />
+      <div className="doc-tools">
+        <label>
+          <input
+            type="checkbox"
+            checked={state.visiableDragbar}
+            onChange={(e) => setVisiable({ ...state, visiableDragbar: e.target.checked })}
+          />
+          是否显示拖拽工具
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={state.visiablePreview}
+            onChange={(e) => setVisiable({ ...state, visiablePreview: e.target.checked })}
+          />
+          是否显示预览界面
+        </label>
       </div>
-    )
-  }
+    </div>
+  )
 }
