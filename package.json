@@ -58,6 +58,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "markdown-it": "^9.1.0",
-    "prismjs": "^1.17.1"
+    "prismjs": "^1.17.1",
+    "react-markdown": "^4.1.0"
   }
 }

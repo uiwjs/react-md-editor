@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Options } from 'markdown-it';
+import { ReactMarkdownProps } from 'react-markdown';
 import { IProps, ICommand, CommandOrchestrator } from './Type';
 import TextArea, { ITextAreaProps} from './components/TextArea';
 import Toolbar from './components/Toolbar';
@@ -43,7 +43,7 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
    * Maximum drag height. `visiableDragbar=true`
    */
   maxHeight?: number;
-  mitOptions?: Options;
+  previewOptions?: ReactMarkdownProps;
   /**
    * Minimum drag height. `visiableDragbar=true`
    */
@@ -111,7 +111,7 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
     this.commandOrchestrator.executeCommand(command);
   }
   public render() {
-    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
+    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
     const cls = classnames(className, prefixCls, {
       [`${prefixCls}-show-only-input`]: !this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
@@ -139,6 +139,7 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
             onChange={this.handleChange.bind(this)}
           />
           <MarkdownPreview
+            {...previewOptions}
             ref={this.preview}
             className={`${prefixCls}-preview`}
           />
