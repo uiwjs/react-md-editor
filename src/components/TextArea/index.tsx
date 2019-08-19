@@ -6,7 +6,7 @@ import { IProps } from '../../Type';
 import './index.less';
 
 export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'shouldComponentUpdate'>, IProps {
-  onChange?: (value: string) => void;
+  onChange?: (value?: string) => void;
   height?: React.CSSProperties['height'];
 }
 

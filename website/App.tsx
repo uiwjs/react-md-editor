@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import MDEditor from '../';
 import './App.less';
 
@@ -142,10 +142,22 @@ def g(x):
 `;
 
 export default class App extends React.PureComponent {
-  render () {
+  render() {
     return (
       <div className="warpper">
-        <MDEditor value={mdStr} height={200} />
+        <MDEditor
+          value={mdStr}
+          height={200}
+          onChange={(value) => {
+            console.log('value:', value);
+          }}
+        />
+        <div className="doc-tools">
+          <label>
+            <input type="checkbox" />
+            是否显示拖拽工具
+          </label>
+        </div>
       </div>
     )
   }

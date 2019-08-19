@@ -4,6 +4,8 @@ import './index.less';
 
 export interface IDragBarProps extends IProps {
   height: number;
+  maxHeight: number;
+  minHeight: number;
   onChange: (value: number) => void;
 }
 
@@ -12,7 +14,7 @@ export default class DragBar extends Component<IDragBarProps> {
   handleMouseMove = (event: MouseEvent) => {
     if (this.drag) {
       const newHeight = this.drag.height + event.clientY - this.drag.dragY;
-      if (newHeight >= 0) {
+      if (newHeight >= this.props.minHeight && newHeight <= this.props.maxHeight) {
         this.props.onChange(this.drag.height + (event.clientY - this.drag.dragY));
       }
     }
