@@ -3,7 +3,7 @@ import Prism from 'prismjs';
 import classnames from 'classnames';
 import 'prismjs/components/prism-markdown.min.js';
 import { IProps } from '../../Type';
-import hotkeys from './utils';
+import hotkeys from './hotkeys';
 import './index.less';
 
 export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'shouldComponentUpdate'>, IProps {
