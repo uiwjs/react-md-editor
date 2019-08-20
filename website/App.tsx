@@ -5,11 +5,9 @@ import './App.less';
 const mdStr = `# Markdown Editor for React
 ## 大标题
 
-<style type="text/css">
-body {
-  padding: 100px;
-}
-</style>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
+</p>
 
 <script>
 alert('ss')
@@ -22,6 +20,14 @@ alert('ss')
 ##### 小标题
 ###### 小标题
 
+<p align="center">
+  <style>
+  body {
+  padding: 100px;
+  }
+  </style>
+  A markdown editor with <b>preview</b>, implemented with React.js and TypeScript.  
+</p>
 
 ### Props
 
@@ -46,16 +52,6 @@ npm run build # compile.tsx files.
 npm run doc
 \`\`\`
 
-<style>
-body {
-  padding: 100px;
-}
-</style>
-
-<p align="center">
-  A markdown editor with preview, implemented with React.js and TypeScript.
-</p>
-
 *斜体文本*    _斜体文本_  
 **粗体文本**    __粗体文本__  
 ***粗斜体文本***    ___粗斜体文本___  
@@ -68,8 +64,6 @@ $(document).ready(function () {
 
 
 \`\`\`javascript
-import MEDitor from '@uiw/react-md-editor';
-
 import * as React from "react";
 import ReactDOM from "react-dom";
 import MEDitor from '@uiw/react-md-editor';
