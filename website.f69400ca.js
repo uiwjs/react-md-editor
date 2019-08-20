@@ -31020,7 +31020,121 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"GithubCorner.less":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"GithubCorner.tsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var tslib_1 = require("tslib");
+
+var React = tslib_1.__importStar(require("react"));
+
+require("./GithubCorner.less");
+
+function GithubCorner(props) {
+  if (!props.url) {
+    return null;
+  }
+
+  return React.createElement("a", {
+    href: props.url,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "github"
+  }, React.createElement("svg", {
+    viewBox: "0 0 250 250"
+  }, React.createElement("path", {
+    d: "M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"
+  }), React.createElement("path", {
+    d: "M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2",
+    fill: "currentColor",
+    style: {
+      transformOrigin: '130px 106px'
+    },
+    className: "octo-arm"
+  }), React.createElement("path", {
+    d: "M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z",
+    fill: "currentColor",
+    className: "octo-body"
+  })));
+}
+
+exports.default = GithubCorner;
+},{"tslib":"../node_modules/tslib/tslib.es6.js","react":"../node_modules/react/index.js","./GithubCorner.less":"GithubCorner.less"}],"../node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33115,74 +33229,1046 @@ Prism.languages.js = Prism.languages.javascript;
 
 },{}],"../node_modules/prismjs/components/prism-markdown.min.js":[function(require,module,exports) {
 !function(d){function n(n,e){return n=n.replace(/<inner>/g,"(?:\\\\.|[^\\\\\\n\r]|(?:\r?\n|\r)(?!\r?\n|\r))"),e&&(n=n+"|"+n.replace(/_/g,"\\*")),RegExp("((?:^|[^\\\\])(?:\\\\{2})*)(?:"+n+")")}var e="(?:\\\\.|``.+?``|`[^`\r\\n]+`|[^\\\\|\r\\n`])+",t="\\|?__(?:\\|__)+\\|?(?:(?:\r?\n|\r)|$)".replace(/__/g,e),a="\\|?[ \t]*:?-{3,}:?[ \t]*(?:\\|[ \t]*:?-{3,}:?[ \t]*)+\\|?(?:\r?\n|\r)";d.languages.markdown=d.languages.extend("markup",{}),d.languages.insertBefore("markdown","prolog",{blockquote:{pattern:/^>(?:[\t ]*>)*/m,alias:"punctuation"},table:{pattern:RegExp("^"+t+a+"(?:"+t+")*","m"),inside:{"table-data-rows":{pattern:RegExp("^("+t+a+")(?:"+t+")*$"),lookbehind:!0,inside:{"table-data":{pattern:RegExp(e),inside:d.languages.markdown},punctuation:/\|/}},"table-line":{pattern:RegExp("^("+t+")"+a+"$"),lookbehind:!0,inside:{punctuation:/\||:?-{3,}:?/}},"table-header-row":{pattern:RegExp("^"+t+"$"),inside:{"table-header":{pattern:RegExp(e),alias:"important",inside:d.languages.markdown},punctuation:/\|/}}}},code:[{pattern:/(^[ \t]*(?:\r?\n|\r))(?: {4}|\t).+(?:(?:\r?\n|\r)(?: {4}|\t).+)*/m,lookbehind:!0,alias:"keyword"},{pattern:/``.+?``|`[^`\r\n]+`/,alias:"keyword"},{pattern:/^```[\s\S]*?^```$/m,greedy:!0,inside:{"code-block":{pattern:/^(```.*(?:\r?\n|\r))[\s\S]+?(?=(?:\r?\n|\r)^```$)/m,lookbehind:!0},"code-language":{pattern:/^(```).+/,lookbehind:!0},punctuation:/```/}}],title:[{pattern:/\S.*(?:\r?\n|\r)(?:==+|--+)(?=[ \t]*$)/m,alias:"important",inside:{punctuation:/==+$|--+$/}},{pattern:/(^\s*)#+.+/m,lookbehind:!0,alias:"important",inside:{punctuation:/^#+|#+$/}}],hr:{pattern:/(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,lookbehind:!0,alias:"punctuation"},list:{pattern:/(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,lookbehind:!0,alias:"punctuation"},"url-reference":{pattern:/!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,inside:{variable:{pattern:/^(!?\[)[^\]]+/,lookbehind:!0},string:/(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,punctuation:/^[\[\]!:]|[<>]/},alias:"url"},bold:{pattern:n("__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__",!0),lookbehind:!0,greedy:!0,inside:{content:{pattern:/(^..)[\s\S]+(?=..$)/,lookbehind:!0,inside:{}},punctuation:/\*\*|__/}},italic:{pattern:n("_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_",!0),lookbehind:!0,greedy:!0,inside:{content:{pattern:/(^.)[\s\S]+(?=.$)/,lookbehind:!0,inside:{}},punctuation:/[*_]/}},strike:{pattern:n("(~~?)(?:(?!~)<inner>)+?\\2",!1),lookbehind:!0,greedy:!0,inside:{content:{pattern:/(^~~?)[\s\S]+(?=\1$)/,lookbehind:!0,inside:{}},punctuation:/~~?/}},url:{pattern:n('!?\\[(?:(?!\\])<inner>)+\\](?:\\([^\\s)]+(?:[\t ]+"(?:\\\\.|[^"\\\\])*")?\\)| ?\\[(?:(?!\\])<inner>)+\\])',!1),lookbehind:!0,greedy:!0,inside:{variable:{pattern:/(\[)[^\]]+(?=\]$)/,lookbehind:!0},content:{pattern:/(^!?\[)[^\]]+(?=\])/,lookbehind:!0,inside:{}},string:{pattern:/"(?:\\.|[^"\\])*"(?=\)$)/}}}}),["url","bold","italic","strike"].forEach(function(e){["url","bold","italic","strike"].forEach(function(n){e!==n&&(d.languages.markdown[e].inside.content.inside[n]=d.languages.markdown[n])})}),d.hooks.add("after-tokenize",function(n){"markdown"!==n.language&&"md"!==n.language||!function n(e){if(e&&"string"!=typeof e)for(var t=0,a=e.length;t<a;t++){var i=e[t];if("code"===i.type){var r=i.content[1],o=i.content[3];if(r&&o&&"code-language"===r.type&&"code-block"===o.type&&"string"==typeof r.content){var l="language-"+r.content.trim().split(/\s+/)[0].toLowerCase();o.alias?"string"==typeof o.alias?o.alias=[o.alias,l]:o.alias.push(l):o.alias=[l]}}else n(i.content)}}(n.tokens)}),d.hooks.add("wrap",function(n){if("code-block"===n.type){for(var e="",t=0,a=n.classes.length;t<a;t++){var i=n.classes[t],r=/language-(.+)/.exec(i);if(r){e=r[1];break}}var o=d.languages[e];if(o){var l=n.content.replace(/&lt;/g,"<").replace(/&amp;/g,"&");n.content=d.highlight(l,o,e)}else if(e&&"none"!==e&&d.plugins.autoloader){var s="md-"+(new Date).valueOf()+"-"+Math.floor(1e16*Math.random());n.attributes.id=s,d.plugins.autoloader.loadLanguages(e,function(){var n=document.getElementById(s);n&&(n.innerHTML=d.highlight(n.textContent,d.languages[e],e))})}}}),d.languages.md=d.languages.markdown}(Prism);
-},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+},{}],"../lib/esm/utils/InsertTextAtPosition.js":[function(require,module,exports) {
+"use strict";
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+/**
+ * The MIT License
+ * Copyright (c) 2018 Dmitriy Kubyshkin
+ * Copied from https://github.com/grassator/insert-text-at-cursor
+ */
+var browserSupportsTextareaTextNodes;
+/**
+ * @param {HTMLElement} input
+ * @return {boolean}
+ */
+
+function canManipulateViaTextNodes(input) {
+  if (input.nodeName !== "TEXTAREA") {
+    return false;
   }
 
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
+  if (typeof browserSupportsTextareaTextNodes === "undefined") {
+    var textarea = document.createElement('textarea');
+    textarea.value = '1';
+    browserSupportsTextareaTextNodes = !!textarea.firstChild;
   }
 
-  return '/';
+  return browserSupportsTextareaTextNodes;
 }
+/**
+ * @param {HTMLTextAreaElement|HTMLInputElement} input
+ * @param {string} text
+ * @returns {void}
+ */
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+var _default = function _default(input, text) {
+  // Most of the used APIs only work with the field selected
+  input.focus(); // IE 8-10
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
+  if (document.selection) {
+    var ieRange = document.selection.createRange();
+    ieRange.text = text; // Move cursor after the inserted text
 
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
+    ieRange.collapse(false
+    /* to the end */
+    );
+    ieRange.select();
     return;
+  } // Webkit + Edge
+
+
+  var isSuccess = document.execCommand('insertText', false, text);
+
+  if (!isSuccess) {
+    var start = input.selectionStart;
+    var end = input.selectionEnd; // Firefox (non-standard method)
+
+    if (typeof input.setRangeText === "function") {
+      input.setRangeText(text);
+    } else {
+      // To make a change we just need a Range, not a Selection
+      var range = document.createRange();
+      var textNode = document.createTextNode(text);
+
+      if (canManipulateViaTextNodes(input)) {
+        var node = input.firstChild; // If textarea is empty, just insert the text
+
+        if (!node) {
+          input.appendChild(textNode);
+        } else {
+          // Otherwise we need to find a nodes for start and end
+          var offset = 0;
+          var startNode = null;
+          var endNode = null;
+
+          while (node && (startNode === null || endNode === null)) {
+            var nodeLength = node.nodeValue.length; // if start of the selection falls into current node
+
+            if (start >= offset && start <= offset + nodeLength) {
+              range.setStart(startNode = node, start - offset);
+            } // if end of the selection falls into current node
+
+
+            if (end >= offset && end <= offset + nodeLength) {
+              range.setEnd(endNode = node, end - offset);
+            }
+
+            offset += nodeLength;
+            node = node.nextSibling;
+          } // If there is some text selected, remove it as we should replace it
+
+
+          if (start !== end) {
+            range.deleteContents();
+          }
+        }
+      } // If the node is a textarea and the range doesn't span outside the element
+      //
+      // Get the commonAncestorContainer of the selected range and test its type
+      // If the node is of type `#text` it means that we're still working with text nodes within our textarea element
+      // otherwise, if it's of type `#document` for example it means our selection spans outside the textarea.
+
+
+      if (canManipulateViaTextNodes(input) && range.commonAncestorContainer.nodeName === '#text') {
+        // Finally insert a new node. The browser will automatically split start and end nodes into two if necessary
+        range.insertNode(textNode);
+      } else {
+        // If the node is not a textarea or the range spans outside a textarea the only way is to replace the whole value
+        var value = input.value;
+        input.value = value.slice(0, start) + text + value.slice(end);
+      }
+    } // Correct the cursor position to be at the end of the insertion
+
+
+    input.setSelectionRange(start + text.length, start + text.length); // Notify any possible listeners of the change
+
+    var e = document.createEvent("UIEvent");
+    e.initEvent("input", true, false);
+    input.dispatchEvent(e);
+  }
+};
+
+exports.default = _default;
+},{}],"../lib/esm/utils/getSurroundingWord.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getSurroundingWord;
+
+function getSurroundingWord(text, position) {
+  if (!text) throw Error("Argument 'text' should be truthy");
+
+  var isWordDelimiter = function isWordDelimiter(c) {
+    return c === " " || c.charCodeAt(0) === 10;
+  }; // leftIndex is initialized to 0 because if selection is 0, it won't even enter the iteration
+
+
+  var start = 0; // rightIndex is initialized to text.length because if selection is equal to text.length it won't even enter the interation
+
+  var end = text.length; // iterate to the left
+
+  for (var i = position; i - 1 > -1; i--) {
+    if (isWordDelimiter(text[i - 1])) {
+      start = i;
+      break;
+    }
+  } // iterate to the right
+
+
+  for (var _i = position; _i < text.length; _i++) {
+    if (isWordDelimiter(text[_i])) {
+      end = _i;
+      break;
+    }
   }
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
+  return {
+    start: start,
+    end: end
+  };
+}
+},{}],"../lib/esm/utils/markdownUtils.js":[function(require,module,exports) {
+"use strict";
 
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.selectWord = selectWord;
+exports.getBreaksNeededForEmptyLineBefore = getBreaksNeededForEmptyLineBefore;
+exports.getBreaksNeededForEmptyLineAfter = getBreaksNeededForEmptyLineAfter;
+
+var _getSurroundingWord = _interopRequireDefault(require("./getSurroundingWord"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function selectWord(_ref) {
+  var text = _ref.text,
+      selection = _ref.selection;
+
+  if (text && text.length && selection.start === selection.end) {
+    // the user is pointing to a word
+    return (0, _getSurroundingWord.default)(text, selection.start);
+  }
+
+  return selection;
+}
+/**
+ *  Gets the number of line-breaks that would have to be inserted before the given 'startPosition'
+ *  to make sure there's an empty line between 'startPosition' and the previous text
+ */
+
+
+function getBreaksNeededForEmptyLineBefore() {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var startPosition = arguments.length > 1 ? arguments[1] : undefined;
+  if (startPosition === 0) return 0; // rules:
+  // - If we're in the first line, no breaks are needed
+  // - Otherwise there must be 2 breaks before the previous character. Depending on how many breaks exist already, we
+  //      may need to insert 0, 1 or 2 breaks
+
+  var neededBreaks = 2;
+  var isInFirstLine = true;
+
+  for (var i = startPosition - 1; i >= 0 && neededBreaks >= 0; i--) {
+    switch (text.charCodeAt(i)) {
+      case 32:
+        // blank space
+        continue;
+
+      case 10:
+        // line break
+        neededBreaks--;
+        isInFirstLine = false;
+        break;
+
+      default:
+        return neededBreaks;
+    }
+  }
+
+  return isInFirstLine ? 0 : neededBreaks;
+}
+/**
+ *  Gets the number of line-breaks that would have to be inserted after the given 'startPosition'
+ *  to make sure there's an empty line between 'startPosition' and the next text
+ */
+
+
+function getBreaksNeededForEmptyLineAfter() {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var startPosition = arguments.length > 1 ? arguments[1] : undefined;
+  if (startPosition === text.length - 1) return 0; // rules:
+  // - If we're in the first line, no breaks are needed
+  // - Otherwise there must be 2 breaks before the previous character. Depending on how many breaks exist already, we
+  //      may need to insert 0, 1 or 2 breaks
+
+  var neededBreaks = 2;
+  var isInLastLine = true;
+
+  for (var i = startPosition; i < text.length && neededBreaks >= 0; i++) {
+    switch (text.charCodeAt(i)) {
+      case 32:
+        continue;
+
+      case 10:
+        {
+          neededBreaks--;
+          isInLastLine = false;
+          break;
+        }
+
+      default:
+        return neededBreaks;
+    }
+  }
+
+  return isInLastLine ? 0 : neededBreaks;
+}
+},{"./getSurroundingWord":"../lib/esm/utils/getSurroundingWord.js"}],"../lib/esm/commands/bold.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.bold = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var bold = {
+  name: 'bold',
+  keyCommand: 'bold',
+  buttonProps: {
+    'aria-label': 'Add bold text'
+  },
+  icon: React.createElement("svg", {
+    role: "img",
+    width: "12",
+    height: "12",
+    viewBox: "0 0 384 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M304.793 243.891c33.639-18.537 53.657-54.16 53.657-95.693 0-48.236-26.25-87.626-68.626-104.179C265.138 34.01 240.849 32 209.661 32H24c-8.837 0-16 7.163-16 16v33.049c0 8.837 7.163 16 16 16h33.113v318.53H24c-8.837 0-16 7.163-16 16V464c0 8.837 7.163 16 16 16h195.69c24.203 0 44.834-1.289 66.866-7.584C337.52 457.193 376 410.647 376 350.014c0-52.168-26.573-91.684-71.207-106.123zM142.217 100.809h67.444c16.294 0 27.536 2.019 37.525 6.717 15.828 8.479 24.906 26.502 24.906 49.446 0 35.029-20.32 56.79-53.029 56.79h-76.846V100.809zm112.642 305.475c-10.14 4.056-22.677 4.907-31.409 4.907h-81.233V281.943h84.367c39.645 0 63.057 25.38 63.057 63.057.001 28.425-13.66 52.483-34.782 61.284z"
+  })),
+  execute: function execute(state, api) {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    var newSelectionRange = (0, _markdownUtils.selectWord)({
+      text: state.text,
+      selection: state.selection
+    });
+    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the bold mark up
+
+    var state2 = api.replaceSelection("**".concat(state1.selectedText, "**")); // Adjust the selection to not contain the **
+
+    api.setSelectionRange({
+      start: state2.selection.end - 2 - state1.selectedText.length,
+      end: state2.selection.end - 2
+    });
+  }
+};
+exports.bold = bold;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/code.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.code = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var code = {
+  name: 'code',
+  keyCommand: 'code',
+  buttonProps: {
+    'aria-label': 'Insert code'
+  },
+  icon: React.createElement("svg", {
+    width: "12",
+    height: "12",
+    role: "img",
+    viewBox: "0 0 640 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
+  })),
+  execute: function execute(tate, api) {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    var newSelectionRange = (0, _markdownUtils.selectWord)({
+      text: tate.text,
+      selection: tate.selection
+    });
+    var state1 = api.setSelectionRange(newSelectionRange); // when there's no breaking line
+
+    if (state1.selectedText.indexOf("\n") === -1) {
+      api.replaceSelection("`".concat(state1.selectedText, "`")); // Adjust the selection to not contain the **
+
+      var _selectionStart = state1.selection.start + 1;
+
+      var _selectionEnd = _selectionStart + state1.selectedText.length;
+
+      api.setSelectionRange({
+        start: _selectionStart,
+        end: _selectionEnd
+      });
+      return;
     }
 
-    cssTimeout = null;
-  }, 50);
+    var breaksBeforeCount = (0, _markdownUtils.getBreaksNeededForEmptyLineBefore)(state1.text, state1.selection.start);
+    var breaksBefore = Array(breaksBeforeCount + 1).join("\n");
+    var breaksAfterCount = (0, _markdownUtils.getBreaksNeededForEmptyLineAfter)(state1.text, state1.selection.end);
+    var breaksAfter = Array(breaksAfterCount + 1).join("\n");
+    api.replaceSelection("".concat(breaksBefore, "```\n").concat(state1.selectedText, "\n```").concat(breaksAfter));
+    var selectionStart = state1.selection.start + breaksBeforeCount + 4;
+    var selectionEnd = selectionStart + state1.selectedText.length;
+    api.setSelectionRange({
+      start: selectionStart,
+      end: selectionEnd
+    });
+  }
+};
+exports.code = code;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/italic.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.italic = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var italic = {
+  name: 'italic',
+  keyCommand: 'italic',
+  buttonProps: {
+    'aria-label': 'Add italic text'
+  },
+  icon: React.createElement("svg", {
+    "data-name": "italic",
+    width: "12",
+    height: "12",
+    role: "img",
+    viewBox: "0 0 320 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M204.758 416h-33.849l62.092-320h40.725a16 16 0 0 0 15.704-12.937l6.242-32C297.599 41.184 290.034 32 279.968 32H120.235a16 16 0 0 0-15.704 12.937l-6.242 32C96.362 86.816 103.927 96 113.993 96h33.846l-62.09 320H46.278a16 16 0 0 0-15.704 12.935l-6.245 32C22.402 470.815 29.967 480 40.034 480h158.479a16 16 0 0 0 15.704-12.935l6.245-32c1.927-9.88-5.638-19.065-15.704-19.065z"
+  })),
+  execute: function execute(state, api) {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    var newSelectionRange = (0, _markdownUtils.selectWord)({
+      text: state.text,
+      selection: state.selection
+    });
+    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the italic mark up
+
+    var state2 = api.replaceSelection("*".concat(state1.selectedText, "*")); // Adjust the selection to not contain the *
+
+    api.setSelectionRange({
+      start: state2.selection.end - 1 - state1.selectedText.length,
+      end: state2.selection.end - 1
+    });
+  }
+};
+exports.italic = italic;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/link.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.link = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var link = {
+  name: 'link',
+  keyCommand: 'link',
+  buttonProps: {
+    'aria-label': 'Add a link'
+  },
+  icon: React.createElement("svg", {
+    "data-name": "italic",
+    width: "12",
+    height: "12",
+    role: "img",
+    viewBox: "0 0 512 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"
+  })),
+  execute: function execute(state, api) {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    var newSelectionRange = (0, _markdownUtils.selectWord)({
+      text: state.text,
+      selection: state.selection
+    });
+    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the bold mark up
+
+    var state2 = api.replaceSelection("[".concat(state1.selectedText, "](url)")); // Adjust the selection to not contain the **
+
+    api.setSelectionRange({
+      start: state2.selection.end - 6 - state1.selectedText.length,
+      end: state2.selection.end - 6
+    });
+  }
+};
+exports.link = link;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/list.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.insertBeforeEachLine = insertBeforeEachLine;
+exports.checkedListCommand = exports.orderedListCommand = exports.unorderedListCommand = exports.makeList = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+/**
+ * Inserts insertionString before each line
+ */
+function insertBeforeEachLine(selectedText, insertBefore) {
+  var lines = selectedText.split(/\n/);
+  var insertionLength = 0;
+  var modifiedText = lines.map(function (item, index) {
+    if (typeof insertBefore === "string") {
+      insertionLength += insertBefore.length;
+      return insertBefore + item;
+    } else if (typeof insertBefore === "function") {
+      var insertionResult = insertBefore(item, index);
+      insertionLength += insertionResult.length;
+      return insertBefore(item, index) + item;
+    }
+
+    throw Error("insertion is expected to be either a string or a function");
+  }).join("\n");
+  return {
+    modifiedText: modifiedText,
+    insertionLength: insertionLength
+  };
 }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../lib/esm/components/TextArea/index.less":[function(require,module,exports) {
+var makeList = function makeList(state, api, insertBefore) {
+  // Adjust the selection to encompass the whole word if the caret is inside one
+  var newSelectionRange = (0, _markdownUtils.selectWord)({
+    text: state.text,
+    selection: state.selection
+  });
+  var state1 = api.setSelectionRange(newSelectionRange);
+  var breaksBeforeCount = (0, _markdownUtils.getBreaksNeededForEmptyLineBefore)(state1.text, state1.selection.start);
+  var breaksBefore = Array(breaksBeforeCount + 1).join("\n");
+  var breaksAfterCount = (0, _markdownUtils.getBreaksNeededForEmptyLineAfter)(state1.text, state1.selection.end);
+  var breaksAfter = Array(breaksAfterCount + 1).join("\n");
+  var modifiedText = insertBeforeEachLine(state1.selectedText, insertBefore);
+  api.replaceSelection("".concat(breaksBefore).concat(modifiedText.modifiedText).concat(breaksAfter)); // Specifically when the text has only one line, we can exclude the "- ", for example, from the selection
+
+  var oneLinerOffset = state1.selectedText.indexOf("\n") === -1 ? modifiedText.insertionLength : 0;
+  var selectionStart = state1.selection.start + breaksBeforeCount + oneLinerOffset;
+  var selectionEnd = selectionStart + modifiedText.modifiedText.length - oneLinerOffset; // Adjust the selection to not contain the **
+
+  api.setSelectionRange({
+    start: selectionStart,
+    end: selectionEnd
+  });
+};
+
+exports.makeList = makeList;
+var unorderedListCommand = {
+  name: 'unordered-list',
+  keyCommand: 'list',
+  buttonProps: {
+    'aria-label': 'Add unordered list'
+  },
+  icon: React.createElement("svg", {
+    "data-name": "unordered-list",
+    width: "12",
+    height: "12",
+    viewBox: "0 0 512 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M96 96c0 26.51-21.49 48-48 48S0 122.51 0 96s21.49-48 48-48 48 21.49 48 48zM48 208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm0 160c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm96-236h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+  })),
+  execute: function execute(state, api) {
+    makeList(state, api, "- ");
+  }
+};
+exports.unorderedListCommand = unorderedListCommand;
+var orderedListCommand = {
+  name: 'ordered-list',
+  keyCommand: 'list',
+  buttonProps: {
+    'aria-label': 'Add ordered list'
+  },
+  icon: React.createElement("svg", {
+    "data-name": "ordered-list",
+    width: "12",
+    height: "12",
+    role: "img",
+    viewBox: "0 0 512 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M3.263 139.527c0-7.477 3.917-11.572 11.573-11.572h15.131V88.078c0-5.163.534-10.503.534-10.503h-.356s-1.779 2.67-2.848 3.738c-4.451 4.273-10.504 4.451-15.666-1.068l-5.518-6.231c-5.342-5.341-4.984-11.216.534-16.379l21.72-19.938C32.815 33.602 36.732 32 42.785 32H54.89c7.656 0 11.749 3.916 11.749 11.572v84.384h15.488c7.655 0 11.572 4.094 11.572 11.572v8.901c0 7.477-3.917 11.572-11.572 11.572H14.836c-7.656 0-11.573-4.095-11.573-11.572v-8.902zM2.211 304.591c0-47.278 50.955-56.383 50.955-69.165 0-7.18-5.954-8.755-9.28-8.755-3.153 0-6.479 1.051-9.455 3.852-5.079 4.903-10.507 7.004-16.111 2.451l-8.579-6.829c-5.779-4.553-7.18-9.805-2.803-15.409C13.592 201.981 26.025 192 47.387 192c19.437 0 44.476 10.506 44.476 39.573 0 38.347-46.753 46.402-48.679 56.909h39.049c7.529 0 11.557 4.027 11.557 11.382v8.755c0 7.354-4.028 11.382-11.557 11.382h-67.94c-7.005 0-12.083-4.028-12.083-11.382v-4.028zM5.654 454.61l5.603-9.28c3.853-6.654 9.105-7.004 15.584-3.152 4.903 2.101 9.63 3.152 14.359 3.152 10.155 0 14.358-3.502 14.358-8.23 0-6.654-5.604-9.106-15.934-9.106h-4.728c-5.954 0-9.28-2.101-12.258-7.88l-1.05-1.926c-2.451-4.728-1.226-9.806 2.801-14.884l5.604-7.004c6.829-8.405 12.257-13.483 12.257-13.483v-.35s-4.203 1.051-12.608 1.051H16.685c-7.53 0-11.383-4.028-11.383-11.382v-8.755c0-7.53 3.853-11.382 11.383-11.382h58.484c7.529 0 11.382 4.027 11.382 11.382v3.327c0 5.778-1.401 9.806-5.079 14.183l-17.509 20.137c19.611 5.078 28.716 20.487 28.716 34.845 0 21.363-14.358 44.126-48.503 44.126-16.636 0-28.192-4.728-35.896-9.455-5.779-4.202-6.304-9.805-2.626-15.934zM144 132h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+  })),
+  execute: function execute(state, api) {
+    makeList(state, api, function (item, index) {
+      return "".concat(index + 1, ". ");
+    });
+  }
+};
+exports.orderedListCommand = orderedListCommand;
+var checkedListCommand = {
+  name: 'checked-list',
+  keyCommand: 'list',
+  buttonProps: {
+    'aria-label': 'Add checked list'
+  },
+  icon: React.createElement("svg", {
+    "data-name": "checked-list",
+    width: "12",
+    height: "12",
+    role: "img",
+    viewBox: "0 0 512 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M208 132h288c8.8 0 16-7.2 16-16V76c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zm0 160h288c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zm0 160h288c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zM64 368c-26.5 0-48.6 21.5-48.6 48s22.1 48 48.6 48 48-21.5 48-48-21.5-48-48-48zm92.5-299l-72.2 72.2-15.6 15.6c-4.7 4.7-12.9 4.7-17.6 0L3.5 109.4c-4.7-4.7-4.7-12.3 0-17l15.7-15.7c4.7-4.7 12.3-4.7 17 0l22.7 22.1 63.7-63.3c4.7-4.7 12.3-4.7 17 0l17 16.5c4.6 4.7 4.6 12.3-.1 17zm0 159.6l-72.2 72.2-15.7 15.7c-4.7 4.7-12.9 4.7-17.6 0L3.5 269c-4.7-4.7-4.7-12.3 0-17l15.7-15.7c4.7-4.7 12.3-4.7 17 0l22.7 22.1 63.7-63.7c4.7-4.7 12.3-4.7 17 0l17 17c4.6 4.6 4.6 12.2-.1 16.9z"
+  })),
+  execute: function execute(state, api) {
+    makeList(state, api, function (item, index) {
+      return "- [ ] ";
+    });
+  }
+};
+exports.checkedListCommand = checkedListCommand;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/quote.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.quote = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+// import selectWord from '../utils/selectWord';
+var quote = {
+  name: 'quote',
+  keyCommand: 'quote',
+  buttonProps: {
+    'aria-label': 'Insert a quote'
+  },
+  icon: React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 512 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M512 80v128c0 137.018-63.772 236.324-193.827 271.172-15.225 4.08-30.173-7.437-30.173-23.199v-33.895c0-10.057 6.228-19.133 15.687-22.55C369.684 375.688 408 330.054 408 256h-72c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h128c26.51 0 48 21.49 48 48zM176 32H48C21.49 32 0 53.49 0 80v128c0 26.51 21.49 48 48 48h72c0 74.054-38.316 119.688-104.313 143.528C6.228 402.945 0 412.021 0 422.078v33.895c0 15.762 14.948 27.279 30.173 23.199C160.228 444.324 224 345.018 224 208V80c0-26.51-21.49-48-48-48z"
+  })),
+  execute: function execute(state, api) {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    var newSelectionRange = (0, _markdownUtils.selectWord)({
+      text: state.text,
+      selection: state.selection
+    });
+    var state1 = api.setSelectionRange(newSelectionRange);
+    var breaksBeforeCount = (0, _markdownUtils.getBreaksNeededForEmptyLineBefore)(state1.text, state1.selection.start);
+    var breaksBefore = Array(breaksBeforeCount + 1).join("\n");
+    var breaksAfterCount = (0, _markdownUtils.getBreaksNeededForEmptyLineAfter)(state1.text, state1.selection.end);
+    var breaksAfter = Array(breaksAfterCount + 1).join("\n"); // Replaces the current selection with the quote mark up
+
+    api.replaceSelection("".concat(breaksBefore, "> ").concat(state1.selectedText).concat(breaksAfter));
+    var selectionStart = state1.selection.start + breaksBeforeCount + 2;
+    var selectionEnd = selectionStart + state1.selectedText.length;
+    api.setSelectionRange({
+      start: selectionStart,
+      end: selectionEnd
+    });
+  }
+};
+exports.quote = quote;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/hr.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hr = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var hr = {
+  name: 'hr',
+  keyCommand: 'hr',
+  buttonProps: {
+    'aria-label': 'HR code'
+  },
+  icon: React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 175 175"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M0,129 L175,129 L175,154 L0,154 L0,129 Z M3,9 L28.2158203,9 L28.2158203,47.9824219 L55.7695313,47.9824219 L55.7695313,9 L81.0966797,9 L81.0966797,107.185547 L55.7695313,107.185547 L55.7695313,68.0214844 L28.2158203,68.0214844 L28.2158203,107.185547 L3,107.185547 L3,9 Z M93.1855469,100.603516 L93.1855469,19 L135.211914,19 C143.004922,19 148.960917,19.6679621 153.080078,21.0039063 C157.199239,22.3398504 160.520495,24.8168764 163.043945,28.4350586 C165.567395,32.0532407 166.829102,36.459935 166.829102,41.6552734 C166.829102,46.1826398 165.864267,50.0883625 163.93457,53.3725586 C162.004873,56.6567547 159.351579,59.3193257 155.974609,61.3603516 C153.822255,62.6591862 150.872089,63.7353473 147.124023,64.5888672 C150.129898,65.5908253 152.319329,66.5927684 153.692383,67.5947266 C154.620122,68.2626987 155.965323,69.6913953 157.728027,71.8808594 C159.490731,74.0703234 160.668942,75.7587831 161.262695,76.9462891 L173,100.603516 L144.953125,100.603516 L131.482422,75.6660156 C129.775382,72.4374839 128.253913,70.3408251 126.917969,69.3759766 C125.0996,68.1142515 123.040051,67.4833984 120.739258,67.4833984 L118.512695,67.4833984 L118.512695,100.603516 L93.1855469,100.603516 Z M118.512695,52.0644531 L129.144531,52.0644531 C130.294928,52.0644531 132.521468,51.6933631 135.824219,50.9511719 C137.494149,50.6171858 138.857905,49.7636787 139.915527,48.390625 C140.97315,47.0175713 141.501953,45.4404386 141.501953,43.6591797 C141.501953,41.0244009 140.667001,39.0019602 138.99707,37.5917969 C137.32714,36.1816336 134.191429,35.4765625 129.589844,35.4765625 L117.512695,35.4765625 L118.512695,52.0644531 Z",
+    transform: "translate(0 9)"
+  })),
+  execute: function execute(state, api) {
+    api.replaceSelection("".concat(state.selectedText, "\n\n----------\n\n"));
+  }
+};
+exports.hr = hr;
+},{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/divider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.divider = void 0;
+var divider = {
+  keyCommand: 'divider'
+};
+exports.divider = divider;
+},{}],"../lib/esm/commands/preview.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.preview = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var preview = {
+  name: 'preview',
+  keyCommand: 'preview',
+  buttonProps: {
+    'aria-label': 'Preview code'
+  },
+  icon: React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 1280 1024"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M1097.723164 406.374815A723.296055 723.296055 0 0 1 1277.908224 630.647709a715.628605 715.628605 0 0 1-1277.908224 0 723.296055 723.296055 0 0 1 180.18506-224.272894l-89.453576-140.569904a68.36809 68.36809 0 0 1 29.391889-98.398934 84.341943 84.341943 0 0 1 108.622199 25.558165l80.508218 127.790822a713.072789 713.072789 0 0 1 249.831058-76.674493V79.869264a79.869264 79.869264 0 0 1 159.738528 0v162.933299A711.794881 711.794881 0 0 1 968.654434 320.754964l79.869264-127.790822a84.341943 84.341943 0 0 1 109.261153-26.197119 68.36809 68.36809 0 0 1 29.391889 99.037888zM638.954112 394.234687a235.774067 235.774067 0 1 0 239.607792 235.774067A237.69093 237.69093 0 0 0 638.954112 394.234687z m0 392.956779a157.182712 157.182712 0 1 1 159.738528-157.182712 158.46062 158.46062 0 0 1-159.738528 157.821666z m0 0"
+  })),
+  execute: function execute() {}
+};
+exports.preview = preview;
+},{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/fullscreen.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fullscreen = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var fullscreen = {
+  name: 'fullscreen',
+  keyCommand: 'fullscreen',
+  buttonProps: {
+    'aria-label': 'fullscreen'
+  },
+  icon: React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 1024 1024"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M17.576714 2.21842C13.082991 2.21842 8.589268 3.98178 5.176314 7.394734c-3.412954 3.412954-5.062549 7.906677-5.062549 12.343517l0.113765 364.048439c0 2.21842 1.422064 4.493723 3.640484 5.403844C6.143317 390.214421 8.589268 389.645595 10.238862 387.996l122.980113-122.525053 164.959449 164.276858C301.363848 432.876347 305.743806 434.753472 310.578825 434.753472c4.835018 0 9.214976-1.99089 12.4004-5.062549l112.05866-111.6036c3.185424-3.185424 5.176314-7.565382 5.176314-12.514165 0-4.835018-1.99089-9.328741-5.176314-12.457283L270.192201 129.237196l119.567159-119.112099C391.408955 8.475503 391.97778 5.97267 391.067659 3.75425 390.100655 1.535829 387.882235 0.113765 385.663815 0.113765L17.576714 2.21842 17.576714 2.21842 17.576714 2.21842zM17.576714 2.21842"
+  }), React.createElement("path", {
+    fill: "currentColor",
+    d: "M17.690479 1024c-4.493723 0-8.930563-1.649594-12.514165-5.176314C1.76336 1015.410732 0 1010.917009 0 1006.309521l0.113765-367.120098c0-2.21842 1.422064-4.493723 3.640484-5.403844 2.21842-0.910121 4.721253-0.341295 6.370848 1.308299l122.980113 122.525053 164.959449-164.390623c3.185424-3.185424 7.565382-5.062549 12.343517-5.062549 4.835018 0 9.214976 1.99089 12.343517 5.062549l112.05866 111.6036c3.185424 3.185424 5.176314 7.565382 5.176314 12.457283 0 4.835018-1.99089 9.328741-5.176314 12.514165L270.192201 894.023331l119.737807 119.225864c1.649594 1.649594 2.21842 4.152428 1.308299 6.370848C390.214421 1021.838462 388.109766 1023.260527 385.77758 1023.260527L17.690479 1024 17.690479 1024 17.690479 1024zM17.690479 1024"
+  }), React.createElement("path", {
+    fill: "currentColor",
+    d: "M1006.707699 2.21842c4.493723 0 8.930563 1.76336 12.343517 5.176314 3.412954 3.412954 5.062549 7.906677 5.062549 12.343517l-0.113765 364.048439c0 2.21842-1.422064 4.493723-3.640484 5.403844-2.21842 0.910121-4.721253 0.341295-6.370848-1.308299l-122.980113-122.525053-164.959449 164.276858c-3.185424 3.185424-7.565382 5.062549-12.343517 5.062549s-9.214976-1.99089-12.343517-5.062549l-112.05866-111.6036c-3.185424-3.185424-5.176314-7.565382-5.176314-12.514165 0-4.835018 1.99089-9.328741 5.176314-12.457283l164.959449-164.276858-119.794689-118.770803c-1.649594-1.649594-2.21842-4.095545-1.308299-6.370848 0.967004-2.21842 3.185424-3.640484 5.403844-3.640484L1006.707699 2.21842 1006.707699 2.21842 1006.707699 2.21842zM1006.707699 2.21842"
+  }), React.createElement("path", {
+    fill: "currentColor",
+    d: "M1006.423286 1024c4.493723 0 8.930563-1.649594 12.514165-5.176314 3.412954-3.412954 5.176314-7.906677 5.176314-12.514165l-0.113765-367.120098c0-2.332185-1.422064-4.493723-3.640484-5.403844-2.21842-0.910121-4.721253-0.341295-6.370848 1.308299l-122.980113 122.525053-164.959449-164.390623c-3.185424-3.185424-7.565382-5.062549-12.343517-5.062549s-9.214976 1.99089-12.343517 5.062549l-112.05866 111.6036c-3.185424 3.185424-5.176314 7.565382-5.176314 12.457283 0 4.835018 1.99089 9.328741 5.176314 12.514165l164.959449 164.276858-119.965337 119.225864c-1.649594 1.649594-2.21842 4.152428-1.308299 6.370848 0.967004 2.21842 3.071659 3.640484 5.403844 3.640484L1006.423286 1024 1006.423286 1024 1006.423286 1024zM1006.423286 1024"
+  })),
+  execute: function execute() {}
+};
+exports.fullscreen = fullscreen;
+},{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/image.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.image = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var image = {
+  name: 'image',
+  keyCommand: 'image',
+  buttonProps: {
+    'aria-label': 'Add image'
+  },
+  icon: React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 20 20"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M15 9c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4-7H1c-.55 0-1 .45-1 1v14c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 13l-6-5-2 2-4-5-4 8V4h16v11z"
+  })),
+  execute: function execute(state, api) {
+    // Select everything
+    var newSelectionRange = (0, _markdownUtils.selectWord)({
+      text: state.text,
+      selection: state.selection
+    });
+    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the image
+
+    var imageTemplate = state1.selectedText || "https://example.com/your-image.png";
+    api.replaceSelection("![](".concat(imageTemplate, ")")); // Adjust the selection to not contain the **
+
+    api.setSelectionRange({
+      start: 4 + state1.selection.start,
+      end: 4 + state1.selection.start + imageTemplate.length
+    });
+  }
+};
+exports.image = image;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/strikeThrough.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.strikethrough = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+var _markdownUtils = require("../utils/markdownUtils");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var strikethrough = {
+  name: 'strikethrough',
+  keyCommand: 'strikethrough',
+  buttonProps: {
+    'aria-label': 'Add strikethrough text'
+  },
+  icon: React.createElement("svg", {
+    "data-name": "strikethrough",
+    width: "12",
+    height: "12",
+    role: "img",
+    viewBox: "0 0 512 512"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M496 288H16c-8.837 0-16-7.163-16-16v-32c0-8.837 7.163-16 16-16h480c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16zm-214.666 16c27.258 12.937 46.524 28.683 46.524 56.243 0 33.108-28.977 53.676-75.621 53.676-32.325 0-76.874-12.08-76.874-44.271V368c0-8.837-7.164-16-16-16H113.75c-8.836 0-16 7.163-16 16v19.204c0 66.845 77.717 101.82 154.487 101.82 88.578 0 162.013-45.438 162.013-134.424 0-19.815-3.618-36.417-10.143-50.6H281.334zm-30.952-96c-32.422-13.505-56.836-28.946-56.836-59.683 0-33.92 30.901-47.406 64.962-47.406 42.647 0 64.962 16.593 64.962 32.985V136c0 8.837 7.164 16 16 16h45.613c8.836 0 16-7.163 16-16v-30.318c0-52.438-71.725-79.875-142.575-79.875-85.203 0-150.726 40.972-150.726 125.646 0 22.71 4.665 41.176 12.777 56.547h129.823z"
+  })),
+  execute: function execute(state, api) {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    var newSelectionRange = (0, _markdownUtils.selectWord)({
+      text: state.text,
+      selection: state.selection
+    });
+    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the strikethrough mark up
+
+    var state2 = api.replaceSelection("~~".concat(state1.selectedText, "~~")); // Adjust the selection to not contain the ~~
+
+    api.setSelectionRange({
+      start: state2.selection.end - 2 - state1.selectedText.length,
+      end: state2.selection.end - 2
+    });
+  }
+};
+exports.strikethrough = strikethrough;
+},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getStateFromTextArea = getStateFromTextArea;
+exports.TextAreaTextApi = exports.TextAreaCommandOrchestrator = exports.getCommands = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/createClass"));
+
+var _bold = require("./bold");
+
+var _code = require("./code");
+
+var _italic = require("./italic");
+
+var _link = require("./link");
+
+var _list = require("./list");
+
+var _quote = require("./quote");
+
+var _hr = require("./hr");
+
+var _divider = require("./divider");
+
+var _preview = require("./preview");
+
+var _fullscreen = require("./fullscreen");
+
+var _image = require("./image");
+
+var _strikeThrough = require("./strikeThrough");
+
+var _InsertTextAtPosition = _interopRequireDefault(require("../utils/InsertTextAtPosition"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getCommands = function getCommands() {
+  return [_bold.bold, _italic.italic, _strikeThrough.strikethrough, _hr.hr, _divider.divider, _link.link, _quote.quote, _code.code, _image.image, _divider.divider, _list.unorderedListCommand, _list.orderedListCommand, _list.checkedListCommand, _divider.divider, _preview.preview, _fullscreen.fullscreen];
+};
+
+exports.getCommands = getCommands;
+
+function getStateFromTextArea(textArea) {
+  return {
+    selection: {
+      start: textArea.selectionStart,
+      end: textArea.selectionEnd
+    },
+    text: textArea.value,
+    selectedText: textArea.value.slice(textArea.selectionStart, textArea.selectionEnd)
+  };
+}
+
+var TextAreaTextApi =
+/*#__PURE__*/
+function () {
+  function TextAreaTextApi(textArea) {
+    (0, _classCallCheck2.default)(this, TextAreaTextApi);
+    this.textArea = void 0;
+    this.textArea = textArea;
+  }
+
+  (0, _createClass2.default)(TextAreaTextApi, [{
+    key: "replaceSelection",
+    value: function replaceSelection(text) {
+      (0, _InsertTextAtPosition.default)(this.textArea, text);
+      return getStateFromTextArea(this.textArea);
+    }
+  }, {
+    key: "setSelectionRange",
+    value: function setSelectionRange(selection) {
+      this.textArea.focus();
+      this.textArea.selectionStart = selection.start;
+      this.textArea.selectionEnd = selection.end;
+      return getStateFromTextArea(this.textArea);
+    }
+  }]);
+  return TextAreaTextApi;
+}();
+
+exports.TextAreaTextApi = TextAreaTextApi;
+
+var TextAreaCommandOrchestrator =
+/*#__PURE__*/
+function () {
+  function TextAreaCommandOrchestrator(textArea) {
+    (0, _classCallCheck2.default)(this, TextAreaCommandOrchestrator);
+    this.textArea = void 0;
+    this.textApi = void 0;
+    this.textArea = textArea;
+    this.textApi = new TextAreaTextApi(textArea);
+  }
+
+  (0, _createClass2.default)(TextAreaCommandOrchestrator, [{
+    key: "executeCommand",
+    value: function executeCommand(command) {
+      command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi);
+    }
+  }]);
+  return TextAreaCommandOrchestrator;
+}();
+
+exports.TextAreaCommandOrchestrator = TextAreaCommandOrchestrator;
+},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","./bold":"../lib/esm/commands/bold.js","./code":"../lib/esm/commands/code.js","./italic":"../lib/esm/commands/italic.js","./link":"../lib/esm/commands/link.js","./list":"../lib/esm/commands/list.js","./quote":"../lib/esm/commands/quote.js","./hr":"../lib/esm/commands/hr.js","./divider":"../lib/esm/commands/divider.js","./preview":"../lib/esm/commands/preview.js","./fullscreen":"../lib/esm/commands/fullscreen.js","./image":"../lib/esm/commands/image.js","./strikeThrough":"../lib/esm/commands/strikeThrough.js","../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js"}],"../lib/esm/components/TextArea/utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _InsertTextAtPosition = _interopRequireDefault(require("../../utils/InsertTextAtPosition"));
+
+var _commands = require("../../commands");
+
+var _list = require("../../commands/list");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * - `13` - `Enter`
+ * - `9` - `Tab`
+ */
+function stopPropagation(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+var _default = function _default(e) {
+  var target = e.target;
+  var starVal = target.value.substr(0, target.selectionStart);
+  var valArr = starVal.split('\n');
+  var currentLineStr = valArr[valArr.length - 1];
+  var textArea = new _commands.TextAreaTextApi(target);
+  /**
+   * `9` - `Tab`
+   */
+
+  if (e.keyCode === 9) {
+    stopPropagation(e);
+    var val = '  ';
+
+    if (target.selectionStart !== target.selectionEnd) {
+      var _star = target.value.substring(0, target.selectionStart).split('\n');
+
+      var _end = target.value.substring(0, target.selectionEnd).split('\n');
+
+      var modifiedTextLine = [];
+
+      _end.forEach(function (item, idx) {
+        if (item !== _star[idx]) {
+          modifiedTextLine.push(item);
+        }
+      });
+
+      var modifiedText = modifiedTextLine.join('\n');
+      var oldSelectText = target.value.substring(target.selectionStart, target.selectionEnd);
+      var newStarNum = target.value.substring(0, target.selectionStart).length;
+      textArea.setSelectionRange({
+        start: target.value.indexOf(modifiedText),
+        end: target.selectionEnd
+      });
+      var modifiedTextObj = (0, _list.insertBeforeEachLine)(modifiedText, '  ');
+      textArea.replaceSelection(modifiedTextObj.modifiedText);
+      textArea.setSelectionRange({
+        start: newStarNum + 2,
+        end: newStarNum + oldSelectText.length + modifiedTextLine.length * 2
+      });
+    } else {
+      return (0, _InsertTextAtPosition.default)(target, val);
+    }
+  } else if (e.keyCode === 13 && /^-\s/.test(currentLineStr)) {
+    /**
+     * `13` - `Enter`
+     */
+    stopPropagation(e);
+    return (0, _InsertTextAtPosition.default)(target, "\n- ");
+  }
+};
+
+exports.default = _default;
+},{"../../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js","../../commands":"../lib/esm/commands/index.js","../../commands/list":"../lib/esm/commands/list.js"}],"../lib/esm/components/TextArea/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -33222,6 +34308,8 @@ var _prismjs = _interopRequireDefault(require("prismjs"));
 var _classnames = _interopRequireDefault(require("classnames"));
 
 require("prismjs/components/prism-markdown.min.js");
+
+var _utils = _interopRequireDefault(require("./utils"));
 
 require("./index.less");
 
@@ -33351,6 +34439,7 @@ function (_Component) {
       }), _react.default.createElement("textarea", (0, _extends2.default)({}, otherProps, {
         ref: this.text,
         onScroll: this.handleScroll.bind(this),
+        onKeyDown: _utils.default.bind(this),
         style: (0, _objectSpread2.default)({}, style),
         className: "".concat(prefixCls, "-text-input"),
         value: this.state.value,
@@ -33367,7 +34456,7 @@ TextArea.defaultProps = {
   spellCheck: false
 };
 TextArea.state = void 0;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectSpread":"../node_modules/@babel/runtime/helpers/esm/objectSpread.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/esm/asyncToGenerator":"../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","prismjs":"../node_modules/prismjs/prism.js","classnames":"../node_modules/classnames/index.js","prismjs/components/prism-markdown.min.js":"../node_modules/prismjs/components/prism-markdown.min.js","./index.less":"../lib/esm/components/TextArea/index.less"}],"../lib/esm/components/Toolbar/index.less":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectSpread":"../node_modules/@babel/runtime/helpers/esm/objectSpread.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/esm/asyncToGenerator":"../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","prismjs":"../node_modules/prismjs/prism.js","classnames":"../node_modules/classnames/index.js","prismjs/components/prism-markdown.min.js":"../node_modules/prismjs/components/prism-markdown.min.js","./utils":"../lib/esm/components/TextArea/utils.js","./index.less":"../lib/esm/components/TextArea/index.less"}],"../lib/esm/components/Toolbar/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -43200,7 +44289,6 @@ exports.default = allowNode;
 
 function allowNode(node, index, parent) {
   var nodeany = node;
-  console.log('nodeany:', nodeany);
 
   if (nodeany.type === 'html') {
     // filter style
@@ -43292,967 +44380,7 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = MarkdownPreview;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./Code":"../lib/esm/components/Markdown/Code.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/utils/getSurroundingWord.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = getSurroundingWord;
-
-function getSurroundingWord(text, position) {
-  if (!text) throw Error("Argument 'text' should be truthy");
-
-  var isWordDelimiter = function isWordDelimiter(c) {
-    return c === " " || c.charCodeAt(0) === 10;
-  }; // leftIndex is initialized to 0 because if selection is 0, it won't even enter the iteration
-
-
-  var start = 0; // rightIndex is initialized to text.length because if selection is equal to text.length it won't even enter the interation
-
-  var end = text.length; // iterate to the left
-
-  for (var i = position; i - 1 > -1; i--) {
-    if (isWordDelimiter(text[i - 1])) {
-      start = i;
-      break;
-    }
-  } // iterate to the right
-
-
-  for (var _i = position; _i < text.length; _i++) {
-    if (isWordDelimiter(text[_i])) {
-      end = _i;
-      break;
-    }
-  }
-
-  return {
-    start: start,
-    end: end
-  };
-}
-},{}],"../lib/esm/utils/markdownUtils.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.selectWord = selectWord;
-exports.getBreaksNeededForEmptyLineBefore = getBreaksNeededForEmptyLineBefore;
-exports.getBreaksNeededForEmptyLineAfter = getBreaksNeededForEmptyLineAfter;
-
-var _getSurroundingWord = _interopRequireDefault(require("./getSurroundingWord"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function selectWord(_ref) {
-  var text = _ref.text,
-      selection = _ref.selection;
-
-  if (text && text.length && selection.start === selection.end) {
-    // the user is pointing to a word
-    return (0, _getSurroundingWord.default)(text, selection.start);
-  }
-
-  return selection;
-}
-/**
- *  Gets the number of line-breaks that would have to be inserted before the given 'startPosition'
- *  to make sure there's an empty line between 'startPosition' and the previous text
- */
-
-
-function getBreaksNeededForEmptyLineBefore() {
-  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
-  var startPosition = arguments.length > 1 ? arguments[1] : undefined;
-  if (startPosition === 0) return 0; // rules:
-  // - If we're in the first line, no breaks are needed
-  // - Otherwise there must be 2 breaks before the previous character. Depending on how many breaks exist already, we
-  //      may need to insert 0, 1 or 2 breaks
-
-  var neededBreaks = 2;
-  var isInFirstLine = true;
-
-  for (var i = startPosition - 1; i >= 0 && neededBreaks >= 0; i--) {
-    switch (text.charCodeAt(i)) {
-      case 32:
-        // blank space
-        continue;
-
-      case 10:
-        // line break
-        neededBreaks--;
-        isInFirstLine = false;
-        break;
-
-      default:
-        return neededBreaks;
-    }
-  }
-
-  return isInFirstLine ? 0 : neededBreaks;
-}
-/**
- *  Gets the number of line-breaks that would have to be inserted after the given 'startPosition'
- *  to make sure there's an empty line between 'startPosition' and the next text
- */
-
-
-function getBreaksNeededForEmptyLineAfter() {
-  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
-  var startPosition = arguments.length > 1 ? arguments[1] : undefined;
-  if (startPosition === text.length - 1) return 0; // rules:
-  // - If we're in the first line, no breaks are needed
-  // - Otherwise there must be 2 breaks before the previous character. Depending on how many breaks exist already, we
-  //      may need to insert 0, 1 or 2 breaks
-
-  var neededBreaks = 2;
-  var isInLastLine = true;
-
-  for (var i = startPosition; i < text.length && neededBreaks >= 0; i++) {
-    switch (text.charCodeAt(i)) {
-      case 32:
-        continue;
-
-      case 10:
-        {
-          neededBreaks--;
-          isInLastLine = false;
-          break;
-        }
-
-      default:
-        return neededBreaks;
-    }
-  }
-
-  return isInLastLine ? 0 : neededBreaks;
-}
-},{"./getSurroundingWord":"../lib/esm/utils/getSurroundingWord.js"}],"../lib/esm/commands/bold.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.bold = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var bold = {
-  name: 'bold',
-  keyCommand: 'bold',
-  buttonProps: {
-    'aria-label': 'Add bold text'
-  },
-  icon: React.createElement("svg", {
-    role: "img",
-    width: "12",
-    height: "12",
-    viewBox: "0 0 384 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M304.793 243.891c33.639-18.537 53.657-54.16 53.657-95.693 0-48.236-26.25-87.626-68.626-104.179C265.138 34.01 240.849 32 209.661 32H24c-8.837 0-16 7.163-16 16v33.049c0 8.837 7.163 16 16 16h33.113v318.53H24c-8.837 0-16 7.163-16 16V464c0 8.837 7.163 16 16 16h195.69c24.203 0 44.834-1.289 66.866-7.584C337.52 457.193 376 410.647 376 350.014c0-52.168-26.573-91.684-71.207-106.123zM142.217 100.809h67.444c16.294 0 27.536 2.019 37.525 6.717 15.828 8.479 24.906 26.502 24.906 49.446 0 35.029-20.32 56.79-53.029 56.79h-76.846V100.809zm112.642 305.475c-10.14 4.056-22.677 4.907-31.409 4.907h-81.233V281.943h84.367c39.645 0 63.057 25.38 63.057 63.057.001 28.425-13.66 52.483-34.782 61.284z"
-  })),
-  execute: function execute(state, api) {
-    // Adjust the selection to encompass the whole word if the caret is inside one
-    var newSelectionRange = (0, _markdownUtils.selectWord)({
-      text: state.text,
-      selection: state.selection
-    });
-    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the bold mark up
-
-    var state2 = api.replaceSelection("**".concat(state1.selectedText, "**")); // Adjust the selection to not contain the **
-
-    api.setSelectionRange({
-      start: state2.selection.end - 2 - state1.selectedText.length,
-      end: state2.selection.end - 2
-    });
-  }
-};
-exports.bold = bold;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/code.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.code = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var code = {
-  name: 'code',
-  keyCommand: 'code',
-  buttonProps: {
-    'aria-label': 'Insert code'
-  },
-  icon: React.createElement("svg", {
-    width: "12",
-    height: "12",
-    role: "img",
-    viewBox: "0 0 640 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
-  })),
-  execute: function execute(tate, api) {
-    // Adjust the selection to encompass the whole word if the caret is inside one
-    var newSelectionRange = (0, _markdownUtils.selectWord)({
-      text: tate.text,
-      selection: tate.selection
-    });
-    var state1 = api.setSelectionRange(newSelectionRange); // when there's no breaking line
-
-    if (state1.selectedText.indexOf("\n") === -1) {
-      api.replaceSelection("`".concat(state1.selectedText, "`")); // Adjust the selection to not contain the **
-
-      var _selectionStart = state1.selection.start + 1;
-
-      var _selectionEnd = _selectionStart + state1.selectedText.length;
-
-      api.setSelectionRange({
-        start: _selectionStart,
-        end: _selectionEnd
-      });
-      return;
-    }
-
-    var breaksBeforeCount = (0, _markdownUtils.getBreaksNeededForEmptyLineBefore)(state1.text, state1.selection.start);
-    var breaksBefore = Array(breaksBeforeCount + 1).join("\n");
-    var breaksAfterCount = (0, _markdownUtils.getBreaksNeededForEmptyLineAfter)(state1.text, state1.selection.end);
-    var breaksAfter = Array(breaksAfterCount + 1).join("\n");
-    api.replaceSelection("".concat(breaksBefore, "```\n").concat(state1.selectedText, "\n```").concat(breaksAfter));
-    var selectionStart = state1.selection.start + breaksBeforeCount + 4;
-    var selectionEnd = selectionStart + state1.selectedText.length;
-    api.setSelectionRange({
-      start: selectionStart,
-      end: selectionEnd
-    });
-  }
-};
-exports.code = code;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/italic.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.italic = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var italic = {
-  name: 'italic',
-  keyCommand: 'italic',
-  buttonProps: {
-    'aria-label': 'Add italic text'
-  },
-  icon: React.createElement("svg", {
-    "data-name": "italic",
-    width: "12",
-    height: "12",
-    role: "img",
-    viewBox: "0 0 320 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M204.758 416h-33.849l62.092-320h40.725a16 16 0 0 0 15.704-12.937l6.242-32C297.599 41.184 290.034 32 279.968 32H120.235a16 16 0 0 0-15.704 12.937l-6.242 32C96.362 86.816 103.927 96 113.993 96h33.846l-62.09 320H46.278a16 16 0 0 0-15.704 12.935l-6.245 32C22.402 470.815 29.967 480 40.034 480h158.479a16 16 0 0 0 15.704-12.935l6.245-32c1.927-9.88-5.638-19.065-15.704-19.065z"
-  })),
-  execute: function execute(state, api) {
-    // Adjust the selection to encompass the whole word if the caret is inside one
-    var newSelectionRange = (0, _markdownUtils.selectWord)({
-      text: state.text,
-      selection: state.selection
-    });
-    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the italic mark up
-
-    var state2 = api.replaceSelection("*".concat(state1.selectedText, "*")); // Adjust the selection to not contain the *
-
-    api.setSelectionRange({
-      start: state2.selection.end - 1 - state1.selectedText.length,
-      end: state2.selection.end - 1
-    });
-  }
-};
-exports.italic = italic;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/link.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.link = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var link = {
-  name: 'link',
-  keyCommand: 'link',
-  buttonProps: {
-    'aria-label': 'Add a link'
-  },
-  icon: React.createElement("svg", {
-    "data-name": "italic",
-    width: "12",
-    height: "12",
-    role: "img",
-    viewBox: "0 0 512 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"
-  })),
-  execute: function execute(state, api) {
-    // Adjust the selection to encompass the whole word if the caret is inside one
-    var newSelectionRange = (0, _markdownUtils.selectWord)({
-      text: state.text,
-      selection: state.selection
-    });
-    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the bold mark up
-
-    var state2 = api.replaceSelection("[".concat(state1.selectedText, "](url)")); // Adjust the selection to not contain the **
-
-    api.setSelectionRange({
-      start: state2.selection.end - 6 - state1.selectedText.length,
-      end: state2.selection.end - 6
-    });
-  }
-};
-exports.link = link;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/list.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.insertBeforeEachLine = insertBeforeEachLine;
-exports.checkedListCommand = exports.orderedListCommand = exports.unorderedListCommand = exports.makeList = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-/**
- * Inserts insertionString before each line
- */
-function insertBeforeEachLine(selectedText, insertBefore) {
-  var lines = selectedText.split(/\n/);
-  var insertionLength = 0;
-  var modifiedText = lines.map(function (item, index) {
-    if (typeof insertBefore === "string") {
-      insertionLength += insertBefore.length;
-      return insertBefore + item;
-    } else if (typeof insertBefore === "function") {
-      var insertionResult = insertBefore(item, index);
-      insertionLength += insertionResult.length;
-      return insertBefore(item, index) + item;
-    }
-
-    throw Error("insertion is expected to be either a string or a function");
-  }).join("\n");
-  return {
-    modifiedText: modifiedText,
-    insertionLength: insertionLength
-  };
-}
-
-var makeList = function makeList(state0, api, insertBefore) {
-  // Adjust the selection to encompass the whole word if the caret is inside one
-  var newSelectionRange = (0, _markdownUtils.selectWord)({
-    text: state0.text,
-    selection: state0.selection
-  });
-  var state1 = api.setSelectionRange(newSelectionRange);
-  var breaksBeforeCount = (0, _markdownUtils.getBreaksNeededForEmptyLineBefore)(state1.text, state1.selection.start);
-  var breaksBefore = Array(breaksBeforeCount + 1).join("\n");
-  var breaksAfterCount = (0, _markdownUtils.getBreaksNeededForEmptyLineAfter)(state1.text, state1.selection.end);
-  var breaksAfter = Array(breaksAfterCount + 1).join("\n");
-  var modifiedText = insertBeforeEachLine(state1.selectedText, insertBefore);
-  api.replaceSelection("".concat(breaksBefore).concat(modifiedText.modifiedText).concat(breaksAfter)); // Specifically when the text has only one line, we can exclude the "- ", for example, from the selection
-
-  var oneLinerOffset = state1.selectedText.indexOf("\n") === -1 ? modifiedText.insertionLength : 0;
-  var selectionStart = state1.selection.start + breaksBeforeCount + oneLinerOffset;
-  var selectionEnd = selectionStart + modifiedText.modifiedText.length - oneLinerOffset; // Adjust the selection to not contain the **
-
-  api.setSelectionRange({
-    start: selectionStart,
-    end: selectionEnd
-  });
-};
-
-exports.makeList = makeList;
-var unorderedListCommand = {
-  name: 'unordered-list',
-  keyCommand: 'list',
-  buttonProps: {
-    'aria-label': 'Add unordered list'
-  },
-  icon: React.createElement("svg", {
-    "data-name": "unordered-list",
-    width: "12",
-    height: "12",
-    viewBox: "0 0 512 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M96 96c0 26.51-21.49 48-48 48S0 122.51 0 96s21.49-48 48-48 48 21.49 48 48zM48 208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm0 160c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm96-236h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-  })),
-  execute: function execute(state, api) {
-    makeList(state, api, "- ");
-  }
-};
-exports.unorderedListCommand = unorderedListCommand;
-var orderedListCommand = {
-  name: 'ordered-list',
-  keyCommand: 'list',
-  buttonProps: {
-    'aria-label': 'Add ordered list'
-  },
-  icon: React.createElement("svg", {
-    "data-name": "ordered-list",
-    width: "12",
-    height: "12",
-    role: "img",
-    viewBox: "0 0 512 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M3.263 139.527c0-7.477 3.917-11.572 11.573-11.572h15.131V88.078c0-5.163.534-10.503.534-10.503h-.356s-1.779 2.67-2.848 3.738c-4.451 4.273-10.504 4.451-15.666-1.068l-5.518-6.231c-5.342-5.341-4.984-11.216.534-16.379l21.72-19.938C32.815 33.602 36.732 32 42.785 32H54.89c7.656 0 11.749 3.916 11.749 11.572v84.384h15.488c7.655 0 11.572 4.094 11.572 11.572v8.901c0 7.477-3.917 11.572-11.572 11.572H14.836c-7.656 0-11.573-4.095-11.573-11.572v-8.902zM2.211 304.591c0-47.278 50.955-56.383 50.955-69.165 0-7.18-5.954-8.755-9.28-8.755-3.153 0-6.479 1.051-9.455 3.852-5.079 4.903-10.507 7.004-16.111 2.451l-8.579-6.829c-5.779-4.553-7.18-9.805-2.803-15.409C13.592 201.981 26.025 192 47.387 192c19.437 0 44.476 10.506 44.476 39.573 0 38.347-46.753 46.402-48.679 56.909h39.049c7.529 0 11.557 4.027 11.557 11.382v8.755c0 7.354-4.028 11.382-11.557 11.382h-67.94c-7.005 0-12.083-4.028-12.083-11.382v-4.028zM5.654 454.61l5.603-9.28c3.853-6.654 9.105-7.004 15.584-3.152 4.903 2.101 9.63 3.152 14.359 3.152 10.155 0 14.358-3.502 14.358-8.23 0-6.654-5.604-9.106-15.934-9.106h-4.728c-5.954 0-9.28-2.101-12.258-7.88l-1.05-1.926c-2.451-4.728-1.226-9.806 2.801-14.884l5.604-7.004c6.829-8.405 12.257-13.483 12.257-13.483v-.35s-4.203 1.051-12.608 1.051H16.685c-7.53 0-11.383-4.028-11.383-11.382v-8.755c0-7.53 3.853-11.382 11.383-11.382h58.484c7.529 0 11.382 4.027 11.382 11.382v3.327c0 5.778-1.401 9.806-5.079 14.183l-17.509 20.137c19.611 5.078 28.716 20.487 28.716 34.845 0 21.363-14.358 44.126-48.503 44.126-16.636 0-28.192-4.728-35.896-9.455-5.779-4.202-6.304-9.805-2.626-15.934zM144 132h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-  })),
-  execute: function execute(state, api) {
-    makeList(state, api, function (item, index) {
-      return "".concat(index + 1, ". ");
-    });
-  }
-};
-exports.orderedListCommand = orderedListCommand;
-var checkedListCommand = {
-  name: 'checked-list',
-  keyCommand: 'list',
-  buttonProps: {
-    'aria-label': 'Add checked list'
-  },
-  icon: React.createElement("svg", {
-    "data-name": "checked-list",
-    width: "12",
-    height: "12",
-    role: "img",
-    viewBox: "0 0 512 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M208 132h288c8.8 0 16-7.2 16-16V76c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zm0 160h288c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zm0 160h288c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zM64 368c-26.5 0-48.6 21.5-48.6 48s22.1 48 48.6 48 48-21.5 48-48-21.5-48-48-48zm92.5-299l-72.2 72.2-15.6 15.6c-4.7 4.7-12.9 4.7-17.6 0L3.5 109.4c-4.7-4.7-4.7-12.3 0-17l15.7-15.7c4.7-4.7 12.3-4.7 17 0l22.7 22.1 63.7-63.3c4.7-4.7 12.3-4.7 17 0l17 16.5c4.6 4.7 4.6 12.3-.1 17zm0 159.6l-72.2 72.2-15.7 15.7c-4.7 4.7-12.9 4.7-17.6 0L3.5 269c-4.7-4.7-4.7-12.3 0-17l15.7-15.7c4.7-4.7 12.3-4.7 17 0l22.7 22.1 63.7-63.7c4.7-4.7 12.3-4.7 17 0l17 17c4.6 4.6 4.6 12.2-.1 16.9z"
-  })),
-  execute: function execute(state, api) {
-    makeList(state, api, function (item, index) {
-      return "- [ ] ";
-    });
-  }
-};
-exports.checkedListCommand = checkedListCommand;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/quote.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.quote = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-// import selectWord from '../utils/selectWord';
-var quote = {
-  name: 'quote',
-  keyCommand: 'quote',
-  buttonProps: {
-    'aria-label': 'Insert a quote'
-  },
-  icon: React.createElement("svg", {
-    width: "12",
-    height: "12",
-    viewBox: "0 0 512 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M512 80v128c0 137.018-63.772 236.324-193.827 271.172-15.225 4.08-30.173-7.437-30.173-23.199v-33.895c0-10.057 6.228-19.133 15.687-22.55C369.684 375.688 408 330.054 408 256h-72c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h128c26.51 0 48 21.49 48 48zM176 32H48C21.49 32 0 53.49 0 80v128c0 26.51 21.49 48 48 48h72c0 74.054-38.316 119.688-104.313 143.528C6.228 402.945 0 412.021 0 422.078v33.895c0 15.762 14.948 27.279 30.173 23.199C160.228 444.324 224 345.018 224 208V80c0-26.51-21.49-48-48-48z"
-  })),
-  execute: function execute(state, api) {
-    // Adjust the selection to encompass the whole word if the caret is inside one
-    var newSelectionRange = (0, _markdownUtils.selectWord)({
-      text: state.text,
-      selection: state.selection
-    });
-    var state1 = api.setSelectionRange(newSelectionRange);
-    var breaksBeforeCount = (0, _markdownUtils.getBreaksNeededForEmptyLineBefore)(state1.text, state1.selection.start);
-    var breaksBefore = Array(breaksBeforeCount + 1).join("\n");
-    var breaksAfterCount = (0, _markdownUtils.getBreaksNeededForEmptyLineAfter)(state1.text, state1.selection.end);
-    var breaksAfter = Array(breaksAfterCount + 1).join("\n"); // Replaces the current selection with the quote mark up
-
-    api.replaceSelection("".concat(breaksBefore, "> ").concat(state1.selectedText).concat(breaksAfter));
-    var selectionStart = state1.selection.start + breaksBeforeCount + 2;
-    var selectionEnd = selectionStart + state1.selectedText.length;
-    api.setSelectionRange({
-      start: selectionStart,
-      end: selectionEnd
-    });
-  }
-};
-exports.quote = quote;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/hr.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.hr = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var hr = {
-  name: 'hr',
-  keyCommand: 'hr',
-  buttonProps: {
-    'aria-label': 'HR code'
-  },
-  icon: React.createElement("svg", {
-    width: "12",
-    height: "12",
-    viewBox: "0 0 175 175"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M0,129 L175,129 L175,154 L0,154 L0,129 Z M3,9 L28.2158203,9 L28.2158203,47.9824219 L55.7695313,47.9824219 L55.7695313,9 L81.0966797,9 L81.0966797,107.185547 L55.7695313,107.185547 L55.7695313,68.0214844 L28.2158203,68.0214844 L28.2158203,107.185547 L3,107.185547 L3,9 Z M93.1855469,100.603516 L93.1855469,19 L135.211914,19 C143.004922,19 148.960917,19.6679621 153.080078,21.0039063 C157.199239,22.3398504 160.520495,24.8168764 163.043945,28.4350586 C165.567395,32.0532407 166.829102,36.459935 166.829102,41.6552734 C166.829102,46.1826398 165.864267,50.0883625 163.93457,53.3725586 C162.004873,56.6567547 159.351579,59.3193257 155.974609,61.3603516 C153.822255,62.6591862 150.872089,63.7353473 147.124023,64.5888672 C150.129898,65.5908253 152.319329,66.5927684 153.692383,67.5947266 C154.620122,68.2626987 155.965323,69.6913953 157.728027,71.8808594 C159.490731,74.0703234 160.668942,75.7587831 161.262695,76.9462891 L173,100.603516 L144.953125,100.603516 L131.482422,75.6660156 C129.775382,72.4374839 128.253913,70.3408251 126.917969,69.3759766 C125.0996,68.1142515 123.040051,67.4833984 120.739258,67.4833984 L118.512695,67.4833984 L118.512695,100.603516 L93.1855469,100.603516 Z M118.512695,52.0644531 L129.144531,52.0644531 C130.294928,52.0644531 132.521468,51.6933631 135.824219,50.9511719 C137.494149,50.6171858 138.857905,49.7636787 139.915527,48.390625 C140.97315,47.0175713 141.501953,45.4404386 141.501953,43.6591797 C141.501953,41.0244009 140.667001,39.0019602 138.99707,37.5917969 C137.32714,36.1816336 134.191429,35.4765625 129.589844,35.4765625 L117.512695,35.4765625 L118.512695,52.0644531 Z",
-    transform: "translate(0 9)"
-  })),
-  execute: function execute(state, api) {
-    api.replaceSelection("".concat(state.selectedText, "\n\n----------\n\n"));
-  }
-};
-exports.hr = hr;
-},{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/divider.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.divider = void 0;
-var divider = {
-  keyCommand: 'divider'
-};
-exports.divider = divider;
-},{}],"../lib/esm/commands/preview.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.preview = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var preview = {
-  name: 'preview',
-  keyCommand: 'preview',
-  buttonProps: {
-    'aria-label': 'Preview code'
-  },
-  icon: React.createElement("svg", {
-    width: "12",
-    height: "12",
-    viewBox: "0 0 1280 1024"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M1097.723164 406.374815A723.296055 723.296055 0 0 1 1277.908224 630.647709a715.628605 715.628605 0 0 1-1277.908224 0 723.296055 723.296055 0 0 1 180.18506-224.272894l-89.453576-140.569904a68.36809 68.36809 0 0 1 29.391889-98.398934 84.341943 84.341943 0 0 1 108.622199 25.558165l80.508218 127.790822a713.072789 713.072789 0 0 1 249.831058-76.674493V79.869264a79.869264 79.869264 0 0 1 159.738528 0v162.933299A711.794881 711.794881 0 0 1 968.654434 320.754964l79.869264-127.790822a84.341943 84.341943 0 0 1 109.261153-26.197119 68.36809 68.36809 0 0 1 29.391889 99.037888zM638.954112 394.234687a235.774067 235.774067 0 1 0 239.607792 235.774067A237.69093 237.69093 0 0 0 638.954112 394.234687z m0 392.956779a157.182712 157.182712 0 1 1 159.738528-157.182712 158.46062 158.46062 0 0 1-159.738528 157.821666z m0 0"
-  })),
-  execute: function execute() {}
-};
-exports.preview = preview;
-},{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/fullscreen.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fullscreen = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var fullscreen = {
-  name: 'fullscreen',
-  keyCommand: 'fullscreen',
-  buttonProps: {
-    'aria-label': 'fullscreen'
-  },
-  icon: React.createElement("svg", {
-    width: "12",
-    height: "12",
-    viewBox: "0 0 1024 1024"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M17.576714 2.21842C13.082991 2.21842 8.589268 3.98178 5.176314 7.394734c-3.412954 3.412954-5.062549 7.906677-5.062549 12.343517l0.113765 364.048439c0 2.21842 1.422064 4.493723 3.640484 5.403844C6.143317 390.214421 8.589268 389.645595 10.238862 387.996l122.980113-122.525053 164.959449 164.276858C301.363848 432.876347 305.743806 434.753472 310.578825 434.753472c4.835018 0 9.214976-1.99089 12.4004-5.062549l112.05866-111.6036c3.185424-3.185424 5.176314-7.565382 5.176314-12.514165 0-4.835018-1.99089-9.328741-5.176314-12.457283L270.192201 129.237196l119.567159-119.112099C391.408955 8.475503 391.97778 5.97267 391.067659 3.75425 390.100655 1.535829 387.882235 0.113765 385.663815 0.113765L17.576714 2.21842 17.576714 2.21842 17.576714 2.21842zM17.576714 2.21842"
-  }), React.createElement("path", {
-    fill: "currentColor",
-    d: "M17.690479 1024c-4.493723 0-8.930563-1.649594-12.514165-5.176314C1.76336 1015.410732 0 1010.917009 0 1006.309521l0.113765-367.120098c0-2.21842 1.422064-4.493723 3.640484-5.403844 2.21842-0.910121 4.721253-0.341295 6.370848 1.308299l122.980113 122.525053 164.959449-164.390623c3.185424-3.185424 7.565382-5.062549 12.343517-5.062549 4.835018 0 9.214976 1.99089 12.343517 5.062549l112.05866 111.6036c3.185424 3.185424 5.176314 7.565382 5.176314 12.457283 0 4.835018-1.99089 9.328741-5.176314 12.514165L270.192201 894.023331l119.737807 119.225864c1.649594 1.649594 2.21842 4.152428 1.308299 6.370848C390.214421 1021.838462 388.109766 1023.260527 385.77758 1023.260527L17.690479 1024 17.690479 1024 17.690479 1024zM17.690479 1024"
-  }), React.createElement("path", {
-    fill: "currentColor",
-    d: "M1006.707699 2.21842c4.493723 0 8.930563 1.76336 12.343517 5.176314 3.412954 3.412954 5.062549 7.906677 5.062549 12.343517l-0.113765 364.048439c0 2.21842-1.422064 4.493723-3.640484 5.403844-2.21842 0.910121-4.721253 0.341295-6.370848-1.308299l-122.980113-122.525053-164.959449 164.276858c-3.185424 3.185424-7.565382 5.062549-12.343517 5.062549s-9.214976-1.99089-12.343517-5.062549l-112.05866-111.6036c-3.185424-3.185424-5.176314-7.565382-5.176314-12.514165 0-4.835018 1.99089-9.328741 5.176314-12.457283l164.959449-164.276858-119.794689-118.770803c-1.649594-1.649594-2.21842-4.095545-1.308299-6.370848 0.967004-2.21842 3.185424-3.640484 5.403844-3.640484L1006.707699 2.21842 1006.707699 2.21842 1006.707699 2.21842zM1006.707699 2.21842"
-  }), React.createElement("path", {
-    fill: "currentColor",
-    d: "M1006.423286 1024c4.493723 0 8.930563-1.649594 12.514165-5.176314 3.412954-3.412954 5.176314-7.906677 5.176314-12.514165l-0.113765-367.120098c0-2.332185-1.422064-4.493723-3.640484-5.403844-2.21842-0.910121-4.721253-0.341295-6.370848 1.308299l-122.980113 122.525053-164.959449-164.390623c-3.185424-3.185424-7.565382-5.062549-12.343517-5.062549s-9.214976 1.99089-12.343517 5.062549l-112.05866 111.6036c-3.185424 3.185424-5.176314 7.565382-5.176314 12.457283 0 4.835018 1.99089 9.328741 5.176314 12.514165l164.959449 164.276858-119.965337 119.225864c-1.649594 1.649594-2.21842 4.152428-1.308299 6.370848 0.967004 2.21842 3.071659 3.640484 5.403844 3.640484L1006.423286 1024 1006.423286 1024 1006.423286 1024zM1006.423286 1024"
-  })),
-  execute: function execute() {}
-};
-exports.fullscreen = fullscreen;
-},{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/image.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.image = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var image = {
-  name: 'image',
-  keyCommand: 'image',
-  buttonProps: {
-    'aria-label': 'Add image'
-  },
-  icon: React.createElement("svg", {
-    width: "12",
-    height: "12",
-    viewBox: "0 0 20 20"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M15 9c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4-7H1c-.55 0-1 .45-1 1v14c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 13l-6-5-2 2-4-5-4 8V4h16v11z"
-  })),
-  execute: function execute(state, api) {
-    // Select everything
-    var newSelectionRange = (0, _markdownUtils.selectWord)({
-      text: state.text,
-      selection: state.selection
-    });
-    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the image
-
-    var imageTemplate = state1.selectedText || "https://example.com/your-image.png";
-    api.replaceSelection("![](".concat(imageTemplate, ")")); // Adjust the selection to not contain the **
-
-    api.setSelectionRange({
-      start: 4 + state1.selection.start,
-      end: 4 + state1.selection.start + imageTemplate.length
-    });
-  }
-};
-exports.image = image;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/commands/strikeThrough.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.strikethrough = void 0;
-
-var React = _interopRequireWildcard(require("react"));
-
-var _markdownUtils = require("../utils/markdownUtils");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var strikethrough = {
-  name: 'strikethrough',
-  keyCommand: 'strikethrough',
-  buttonProps: {
-    'aria-label': 'Add strikethrough text'
-  },
-  icon: React.createElement("svg", {
-    "data-name": "strikethrough",
-    width: "12",
-    height: "12",
-    role: "img",
-    viewBox: "0 0 512 512"
-  }, React.createElement("path", {
-    fill: "currentColor",
-    d: "M496 288H16c-8.837 0-16-7.163-16-16v-32c0-8.837 7.163-16 16-16h480c8.837 0 16 7.163 16 16v32c0 8.837-7.163 16-16 16zm-214.666 16c27.258 12.937 46.524 28.683 46.524 56.243 0 33.108-28.977 53.676-75.621 53.676-32.325 0-76.874-12.08-76.874-44.271V368c0-8.837-7.164-16-16-16H113.75c-8.836 0-16 7.163-16 16v19.204c0 66.845 77.717 101.82 154.487 101.82 88.578 0 162.013-45.438 162.013-134.424 0-19.815-3.618-36.417-10.143-50.6H281.334zm-30.952-96c-32.422-13.505-56.836-28.946-56.836-59.683 0-33.92 30.901-47.406 64.962-47.406 42.647 0 64.962 16.593 64.962 32.985V136c0 8.837 7.164 16 16 16h45.613c8.836 0 16-7.163 16-16v-30.318c0-52.438-71.725-79.875-142.575-79.875-85.203 0-150.726 40.972-150.726 125.646 0 22.71 4.665 41.176 12.777 56.547h129.823z"
-  })),
-  execute: function execute(state, api) {
-    // Adjust the selection to encompass the whole word if the caret is inside one
-    var newSelectionRange = (0, _markdownUtils.selectWord)({
-      text: state.text,
-      selection: state.selection
-    });
-    var state1 = api.setSelectionRange(newSelectionRange); // Replaces the current selection with the strikethrough mark up
-
-    var state2 = api.replaceSelection("~~".concat(state1.selectedText, "~~")); // Adjust the selection to not contain the ~~
-
-    api.setSelectionRange({
-      start: state2.selection.end - 2 - state1.selectedText.length,
-      end: state2.selection.end - 2
-    });
-  }
-};
-exports.strikethrough = strikethrough;
-},{"react":"../node_modules/react/index.js","../utils/markdownUtils":"../lib/esm/utils/markdownUtils.js"}],"../lib/esm/utils/InsertTextAtPosition.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-/**
- * The MIT License
- * Copyright (c) 2018 Dmitriy Kubyshkin
- * Copied from https://github.com/grassator/insert-text-at-cursor
- */
-var browserSupportsTextareaTextNodes;
-/**
- * @param {HTMLElement} input
- * @return {boolean}
- */
-
-function canManipulateViaTextNodes(input) {
-  if (input.nodeName !== "TEXTAREA") {
-    return false;
-  }
-
-  if (typeof browserSupportsTextareaTextNodes === "undefined") {
-    var textarea = document.createElement('textarea');
-    textarea.value = '1';
-    browserSupportsTextareaTextNodes = !!textarea.firstChild;
-  }
-
-  return browserSupportsTextareaTextNodes;
-}
-/**
- * @param {HTMLTextAreaElement|HTMLInputElement} input
- * @param {string} text
- * @returns {void}
- */
-
-
-var _default = function _default(input, text) {
-  // Most of the used APIs only work with the field selected
-  input.focus(); // IE 8-10
-
-  if (document.selection) {
-    var ieRange = document.selection.createRange();
-    ieRange.text = text; // Move cursor after the inserted text
-
-    ieRange.collapse(false
-    /* to the end */
-    );
-    ieRange.select();
-    return;
-  } // Webkit + Edge
-
-
-  var isSuccess = document.execCommand('insertText', false, text);
-
-  if (!isSuccess) {
-    var start = input.selectionStart;
-    var end = input.selectionEnd; // Firefox (non-standard method)
-
-    if (typeof input.setRangeText === "function") {
-      input.setRangeText(text);
-    } else {
-      // To make a change we just need a Range, not a Selection
-      var range = document.createRange();
-      var textNode = document.createTextNode(text);
-
-      if (canManipulateViaTextNodes(input)) {
-        var node = input.firstChild; // If textarea is empty, just insert the text
-
-        if (!node) {
-          input.appendChild(textNode);
-        } else {
-          // Otherwise we need to find a nodes for start and end
-          var offset = 0;
-          var startNode = null;
-          var endNode = null;
-
-          while (node && (startNode === null || endNode === null)) {
-            var nodeLength = node.nodeValue.length; // if start of the selection falls into current node
-
-            if (start >= offset && start <= offset + nodeLength) {
-              range.setStart(startNode = node, start - offset);
-            } // if end of the selection falls into current node
-
-
-            if (end >= offset && end <= offset + nodeLength) {
-              range.setEnd(endNode = node, end - offset);
-            }
-
-            offset += nodeLength;
-            node = node.nextSibling;
-          } // If there is some text selected, remove it as we should replace it
-
-
-          if (start !== end) {
-            range.deleteContents();
-          }
-        }
-      } // If the node is a textarea and the range doesn't span outside the element
-      //
-      // Get the commonAncestorContainer of the selected range and test its type
-      // If the node is of type `#text` it means that we're still working with text nodes within our textarea element
-      // otherwise, if it's of type `#document` for example it means our selection spans outside the textarea.
-
-
-      if (canManipulateViaTextNodes(input) && range.commonAncestorContainer.nodeName === '#text') {
-        // Finally insert a new node. The browser will automatically split start and end nodes into two if necessary
-        range.insertNode(textNode);
-      } else {
-        // If the node is not a textarea or the range spans outside a textarea the only way is to replace the whole value
-        var value = input.value;
-        input.value = value.slice(0, start) + text + value.slice(end);
-      }
-    } // Correct the cursor position to be at the end of the insertion
-
-
-    input.setSelectionRange(start + text.length, start + text.length); // Notify any possible listeners of the change
-
-    var e = document.createEvent("UIEvent");
-    e.initEvent("input", true, false);
-    input.dispatchEvent(e);
-  }
-};
-
-exports.default = _default;
-},{}],"../lib/esm/commands/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.TextAreaTextApi = exports.TextAreaCommandOrchestrator = exports.getCommands = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/classCallCheck"));
-
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/createClass"));
-
-var _bold = require("./bold");
-
-var _code = require("./code");
-
-var _italic = require("./italic");
-
-var _link = require("./link");
-
-var _list = require("./list");
-
-var _quote = require("./quote");
-
-var _hr = require("./hr");
-
-var _divider = require("./divider");
-
-var _preview = require("./preview");
-
-var _fullscreen = require("./fullscreen");
-
-var _image = require("./image");
-
-var _strikeThrough = require("./strikeThrough");
-
-var _InsertTextAtPosition = _interopRequireDefault(require("../utils/InsertTextAtPosition"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var getCommands = function getCommands() {
-  return [_bold.bold, _italic.italic, _strikeThrough.strikethrough, _hr.hr, _divider.divider, _link.link, _quote.quote, _code.code, _image.image, _divider.divider, _list.unorderedListCommand, _list.orderedListCommand, _list.checkedListCommand, _divider.divider, _preview.preview, _fullscreen.fullscreen];
-};
-
-exports.getCommands = getCommands;
-
-function getStateFromTextArea(textArea) {
-  return {
-    selection: {
-      start: textArea.selectionStart,
-      end: textArea.selectionEnd
-    },
-    text: textArea.value,
-    selectedText: textArea.value.slice(textArea.selectionStart, textArea.selectionEnd)
-  };
-}
-
-var TextAreaTextApi =
-/*#__PURE__*/
-function () {
-  function TextAreaTextApi(textArea) {
-    (0, _classCallCheck2.default)(this, TextAreaTextApi);
-    this.textArea = void 0;
-    this.textArea = textArea;
-  }
-
-  (0, _createClass2.default)(TextAreaTextApi, [{
-    key: "replaceSelection",
-    value: function replaceSelection(text) {
-      (0, _InsertTextAtPosition.default)(this.textArea, text);
-      return getStateFromTextArea(this.textArea);
-    }
-  }, {
-    key: "setSelectionRange",
-    value: function setSelectionRange(selection) {
-      this.textArea.focus();
-      this.textArea.selectionStart = selection.start;
-      this.textArea.selectionEnd = selection.end;
-      return getStateFromTextArea(this.textArea);
-    }
-  }]);
-  return TextAreaTextApi;
-}();
-
-exports.TextAreaTextApi = TextAreaTextApi;
-
-var TextAreaCommandOrchestrator =
-/*#__PURE__*/
-function () {
-  function TextAreaCommandOrchestrator(textArea) {
-    (0, _classCallCheck2.default)(this, TextAreaCommandOrchestrator);
-    this.textArea = void 0;
-    this.textApi = void 0;
-    this.textArea = textArea;
-    this.textApi = new TextAreaTextApi(textArea);
-  }
-
-  (0, _createClass2.default)(TextAreaCommandOrchestrator, [{
-    key: "executeCommand",
-    value: function executeCommand(command) {
-      command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi);
-    }
-  }]);
-  return TextAreaCommandOrchestrator;
-}();
-
-exports.TextAreaCommandOrchestrator = TextAreaCommandOrchestrator;
-},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","./bold":"../lib/esm/commands/bold.js","./code":"../lib/esm/commands/code.js","./italic":"../lib/esm/commands/italic.js","./link":"../lib/esm/commands/link.js","./list":"../lib/esm/commands/list.js","./quote":"../lib/esm/commands/quote.js","./hr":"../lib/esm/commands/hr.js","./divider":"../lib/esm/commands/divider.js","./preview":"../lib/esm/commands/preview.js","./fullscreen":"../lib/esm/commands/fullscreen.js","./image":"../lib/esm/commands/image.js","./strikeThrough":"../lib/esm/commands/strikeThrough.js","../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js"}],"../lib/esm/index.less":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./Code":"../lib/esm/components/Markdown/Code.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -44490,6 +44618,8 @@ var tslib_1 = require("tslib");
 
 var react_1 = tslib_1.__importDefault(require("react"));
 
+var GithubCorner_1 = tslib_1.__importDefault(require("./GithubCorner"));
+
 var __1 = tslib_1.__importDefault(require("../"));
 
 require("./App.less");
@@ -44511,13 +44641,15 @@ function App() {
 
   return react_1.default.createElement("div", {
     className: "warpper"
-  }, react_1.default.createElement(__1.default, {
+  }, react_1.default.createElement(GithubCorner_1.default, {
+    url: "https://github.com/uiwjs/react-md-editor"
+  }), react_1.default.createElement(__1.default, {
     value: mdStr,
     height: 400,
     visiableDragbar: state.visiableDragbar,
     preview: state.preview,
-    onChange: function onChange(e) {
-      console.log('3');
+    onChange: function onChange(value) {
+      console.log('【onChange】', value);
     }
   }), react_1.default.createElement("div", {
     className: "doc-tools"
@@ -44533,7 +44665,7 @@ function App() {
 }
 
 exports.default = App;
-},{"tslib":"../node_modules/tslib/tslib.es6.js","react":"../node_modules/react/index.js","../":"../lib/esm/index.js","./App.less":"App.less"}],"index.tsx":[function(require,module,exports) {
+},{"tslib":"../node_modules/tslib/tslib.es6.js","react":"../node_modules/react/index.js","./GithubCorner":"GithubCorner.tsx","../":"../lib/esm/index.js","./App.less":"App.less"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44577,7 +44709,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50333" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61252" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
