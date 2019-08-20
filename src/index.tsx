@@ -68,6 +68,7 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
   public static defaultProps: IMDEditorProps = {
     value: '',
     prefixCls: 'w-md-editor',
+    height: 200,
     minHeight: 100,
     maxHeight: 1200,
     visiableDragbar: true,
@@ -149,8 +150,8 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
               height={this.state.height as number}
               maxHeight={maxHeight!}
               minHeight={minHeight!}
-              onChange={(height) => {
-                this.setState({ height });
+              onChange={(newHeight) => {
+                this.setState({ height: newHeight });
               }}
             />
           )}
