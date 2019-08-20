@@ -9,7 +9,7 @@ import { divider } from './divider';
 import { preview } from './preview';
 import { fullscreen } from './fullscreen';
 import { image } from './image';
-import { strikethrough } from './strikethrough';
+import { strikethrough } from './strikeThrough';
 import { ICommand, CommandOrchestrator, TextState, TextApi, TextRange } from '../Type';
 import insertText from '../utils/InsertTextAtPosition';
 
