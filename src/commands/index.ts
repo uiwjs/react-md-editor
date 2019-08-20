@@ -66,5 +66,5 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
 
 
 export {
-  getCommands, TextAreaCommandOrchestrator, TextAreaTextApi,
+  getCommands, TextAreaCommandOrchestrator, TextAreaTextApi, getStateFromTextArea
 }

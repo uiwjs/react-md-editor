@@ -6,8 +6,7 @@ import allowNode from './allowNode';
 import { IProps } from '../../Type';
 
 
-export interface IMarkdownPreviewProps extends IProps, React.HTMLAttributes<HTMLDivElement> {
-}
+export interface IMarkdownPreviewProps extends IProps, React.HTMLAttributes<HTMLDivElement> {}
 
 export interface IMarkdownPreviewState {
   value?: string;

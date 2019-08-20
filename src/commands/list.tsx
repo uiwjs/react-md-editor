@@ -27,9 +27,9 @@ export function insertBeforeEachLine(selectedText: string, insertBefore: string 
   return { modifiedText, insertionLength }
 }
 
-export const makeList = (state0: TextState, api: TextApi, insertBefore: string | AlterLineFunction) => {
+export const makeList = (state: TextState, api: TextApi, insertBefore: string | AlterLineFunction) => {
   // Adjust the selection to encompass the whole word if the caret is inside one
-  const newSelectionRange = selectWord({ text: state0.text, selection: state0.selection });
+  const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
   const state1 = api.setSelectionRange(newSelectionRange);
 
   const breaksBeforeCount = getBreaksNeededForEmptyLineBefore(state1.text, state1.selection.start);

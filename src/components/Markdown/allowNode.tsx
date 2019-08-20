@@ -8,5 +8,5 @@ export default function allowNode(node: any, index: number, parent: NodeType) {
     node.value = node.value.replace(/<(style|script|link|input|form)(.*)>/g, '&lt;$1$2&gt')
       .replace(/<\/(.*)(style|script|link|input|form)(.*)>/g, '&lt;/$1$2$3&gt')
   }
-  return node;
+  return true;
 }

@@ -133,8 +133,8 @@ export default function App() {
         height={400}
         visiableDragbar={state.visiableDragbar}
         preview={state.preview}
-        onChange={(e) => {
-          console.log('3')
+        onChange={(value) => {
+          console.log('【onChange】', value);
         }}
       />
       <div className="doc-tools">

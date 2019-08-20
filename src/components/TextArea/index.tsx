@@ -3,6 +3,7 @@ import Prism from 'prismjs';
 import classnames from 'classnames';
 import 'prismjs/components/prism-markdown.min.js';
 import { IProps } from '../../Type';
+import hotkeys from './utils';
 import './index.less';
 
 export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'shouldComponentUpdate'>, IProps {
@@ -67,6 +68,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
           {...otherProps}
           ref={this.text}
           onScroll={this.handleScroll.bind(this)}
+          onKeyDown={hotkeys.bind(this)}
           style={{ ...style }}
           className={`${prefixCls}-text-input`}
           value={this.state.value}
