@@ -29,6 +29,7 @@
   },
   "files": [
     "typings",
+    "dist",
     "lib",
     "src"
   ],
