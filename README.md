@@ -37,7 +37,7 @@ npm i @uiw/react-md-editor
 ## Using
 
 ```jsx
-import * as React from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import MEDitor from '@uiw/react-md-editor';
 
