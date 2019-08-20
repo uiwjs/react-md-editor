@@ -9,9 +9,10 @@
   "scripts": {
     "prepare": "npm run build",
     "watch": "npm run watch:types & npm run watch:ts",
-    "build": "npm run build:ts && npm run build:css && npm run build:types -- --outDir lib/cjs && npm run build:types -- --outDir lib/esm",
+    "build": "npm run build:ts && npm run build:css && npm run build:dist:css && npm run build:types -- --outDir lib/cjs && npm run build:types -- --outDir lib/esm",
     "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
     "build:css": "compile-less -d src -o lib/esm",
+    "build:dist:css": "compile-less -d src --combine dist/markdown-editor.css --rm-global",
     "build:ts": "tsbb build --target react",
     "watch:types": "npm run build:types -- --watch --outDir lib/cjs & npm run build:types -- --watch --outDir lib/esm",
     "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
