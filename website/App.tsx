@@ -1,4 +1,5 @@
 import React from 'react';
+import GithubCorner from './GithubCorner';
 import MDEditor from '../';
 import './App.less';
 
@@ -128,6 +129,7 @@ export default function App() {
   }
   return (
     <div className="warpper">
+      <GithubCorner url="https://github.com/uiwjs/react-md-editor" />
       <MDEditor
         value={mdStr}
         height={400}
