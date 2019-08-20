@@ -31,6 +31,7 @@ export default class Toolbar extends Component<IToolbarProps> {
             return (
               <li key={idx} className={classnames({ active: active && active[item.keyCommand] })}>
                 {React.createElement('button', {
+                  type: 'button',
                   "data-name": item.name, ...item.buttonProps,
                   onClick: this.handleClick.bind(this, item)
                 }, item.icon)}
