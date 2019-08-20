@@ -2,6 +2,7 @@
 # Edit at https://www.gitignore.io/?templates=node
 
 lib
+dist
 doc
 __snapshots__
 
