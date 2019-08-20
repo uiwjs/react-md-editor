@@ -36,9 +36,6 @@ npm i @uiw/react-md-editor
 
 ## Using
 
-> [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  
-> [Demo for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  
-
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
@@ -56,6 +53,9 @@ export default function App() {
   );
 }
 ```
+
+- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  
+- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  
 
 ### Props
 
