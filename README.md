@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  A markdown editor with preview, implemented with React.js and TypeScript.
+  A markdown editor with preview, implemented with React.js and TypeScript.  
 </p>
 
 ## Install
@@ -35,6 +35,9 @@ npm i @uiw/react-md-editor
 ```
 
 ## Using
+
+> [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  
+> [Demo for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  
 
 ```jsx
 import React from "react";
