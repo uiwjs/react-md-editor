@@ -25,10 +25,6 @@
 </p>
 
 <p align="center">
-  <b>Markdown Editor for React</b>
-</p>
-
-<p align="center">
   A markdown editor with preview, implemented with React.js and TypeScript.
 </p>
 
@@ -41,15 +37,12 @@ npm i @uiw/react-md-editor
 ## Using
 
 ```jsx
-import MEDitor from '@uiw/react-md-editor';
-
 import * as React from "react";
 import ReactDOM from "react-dom";
 import MEDitor from '@uiw/react-md-editor';
 
 export default function App() {
   const [value, setValue] = React.useState("**Hello world!!!**");
-  const [selectedTab, setSelectedTab] = React.useState("write");
   return (
     <div className="container">
       <MEDitor
