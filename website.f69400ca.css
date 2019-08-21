@@ -164,6 +164,14 @@ a.github:hover .octo-arm {
   color: #6a57ff;
   background-color: #dadada;
 }
+.w-md-editor-toolbar li button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.w-md-editor-toolbar li button:disabled:hover {
+  background-color: transparent;
+  color: #ccc;
+}
 .w-md-editor-toolbar li.active button {
   color: #06c;
   background-color: #e8e8e8;
@@ -173,7 +181,7 @@ a.github:hover .octo-arm {
   width: 1px;
   margin: -3px 3px 0 3px !important;
   vertical-align: middle;
-  background-color: #ddd;
+  background-color: #ccc;
 }
 
 .w-md-editor-bar {
@@ -221,14 +229,18 @@ a.github:hover .octo-arm {
   right: 0;
   bottom: 0;
 }
-.w-md-editor-input,
-.w-md-editor-preview {
-  transition: width 0.3s;
+.w-md-editor-show-preview .w-md-editor-input {
+  width: 0%;
+  overflow: hidden;
 }
-.w-md-editor-show-only-input .w-md-editor-input {
+.w-md-editor-show-preview .w-md-editor-preview {
+  width: 100%;
+  box-shadow: inset 0 0 0 0;
+}
+.w-md-editor-show-edit .w-md-editor-input {
   width: 100%;
 }
-.w-md-editor-show-only-input .w-md-editor-preview {
+.w-md-editor-show-edit .w-md-editor-preview {
   width: 0%;
   padding: 0;
 }
@@ -547,6 +559,7 @@ html {
 .warpper {
   padding: 20px;
   margin: 0 auto;
+  text-align: center;
   width: 950px;
 }
 .warpper .doc-tools {
