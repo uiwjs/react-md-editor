@@ -65,7 +65,10 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
   }
 }
 
-
 export {
-  getCommands, TextAreaCommandOrchestrator, TextAreaTextApi, getStateFromTextArea
+  // Toolbars.
+  bold, italic, strikethrough, hr, title, divider, link, quote, code, image,
+  unorderedListCommand, orderedListCommand, checkedListCommand, codeEdit, codeLive, codePreview, fullscreen,
+  // Tool method.
+  getCommands, getStateFromTextArea, TextAreaCommandOrchestrator, TextAreaTextApi
 }

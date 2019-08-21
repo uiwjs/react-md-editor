@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown';
 import Code from './Code';
 import allowNode from './allowNode';
 import { IProps } from '../../Type';
 
 
-export interface IMarkdownPreviewProps extends IProps, React.HTMLAttributes<HTMLDivElement> {}
+export interface IMarkdownPreviewProps extends IProps, Omit<ReactMarkdownProps, 'className'> {}
 
 export interface IMarkdownPreviewState {
   value?: string;
@@ -17,8 +17,13 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
   public constructor(props: IMarkdownPreviewProps) {
     super(props);
     this.state = {
-      value: '',
+      value: '' || props.source,
     };
+  }
+  UNSAFE_componentWillReceiveProps(nextProps: IMarkdownPreviewProps) {
+    if (nextProps.source !== this.props.source) {
+      this.setState({ value: nextProps.source });
+    }
   }
   public renderHTML(mdStr?: string) {
     this.setState({ value: mdStr });
