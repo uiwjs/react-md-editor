@@ -67,7 +67,7 @@ export default function App() {
 - `height?: number=200`: The height of the editor.
 - `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `fullscreen?: boolean=false`: Show markdown preview.
-- `preview?: boolean=true`: Show markdown preview.
+- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.
 - `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.
 - `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.
 

@@ -37,7 +37,7 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
   /**
    * Show markdown preview.
    */
-  preview?: boolean;
+  preview?: 'live' | 'edit' | 'preview';
   fullscreen?: boolean;
   /**
    * Maximum drag height. `visiableDragbar=true`
@@ -56,7 +56,7 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
 
 export interface IMDEditorState {
   height: React.CSSProperties['height'];
-  preview?: boolean;
+  preview?: IMDEditorProps['preview'];
   fullscreen?: boolean;
 }
 
@@ -72,7 +72,7 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
     minHeight: 100,
     maxHeight: 1200,
     visiableDragbar: true,
-    preview: true,
+    preview: 'live',
     fullscreen: false,
     commands: getCommands(),
   }
@@ -103,7 +103,7 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
   }
   public handleCommand = (command: ICommand) => {
     if (command.keyCommand === 'preview') {
-      this.setState({ preview: !this.state.preview });
+      this.setState({ preview: command.value as IMDEditorState['preview'] });
     }
     if (command.keyCommand === 'fullscreen') {
       this.setState({ fullscreen: !this.state.fullscreen });
@@ -114,7 +114,7 @@ export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEdi
   public render() {
     const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
     const cls = classnames(className, prefixCls, {
-      [`${prefixCls}-show-only-input`]: !this.state.preview,
+      [`${prefixCls}-show-${this.state.preview}`]: this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
     });
     return (

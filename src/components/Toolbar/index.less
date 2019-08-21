@@ -36,6 +36,14 @@
           color: #6a57ff;
           background-color: #dadada;
         }
+        &:disabled {
+          color: #ccc;
+          cursor: not-allowed;
+          &:hover {
+            background-color: transparent;
+            color: #ccc;
+          }
+        }
       }
       &.active button {
         color: #06c;
@@ -47,7 +55,7 @@
       width: 1px;
       margin: -3px 3px 0 3px !important;
       vertical-align: middle;
-      background-color: #ddd;
+      background-color: #ccc;
     }
   }
 }

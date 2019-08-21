@@ -7,6 +7,9 @@ export interface ICommand {
   name?: string,
   icon?: React.ReactElement,
   keyCommand: string,
+  value?: string,
+  position?: 'right'
+  liProps?: React.LiHTMLAttributes<HTMLLIElement>,
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>,
   execute?: (state: TextState, api: TextApi) => void,
 }

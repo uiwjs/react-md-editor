@@ -1,13 +1,43 @@
 import * as React from 'react';
 import { ICommand } from '../Type';
 
-export const preview: ICommand = {
+export const codePreview: ICommand = {
   name: 'preview',
   keyCommand: 'preview',
+  value: 'preview',
   buttonProps: { 'aria-label': 'Preview code' },
   icon: (
-    <svg width="12" height="12" viewBox="0 0 1280 1024">
-      <path fill="currentColor" d="M1097.723164 406.374815A723.296055 723.296055 0 0 1 1277.908224 630.647709a715.628605 715.628605 0 0 1-1277.908224 0 723.296055 723.296055 0 0 1 180.18506-224.272894l-89.453576-140.569904a68.36809 68.36809 0 0 1 29.391889-98.398934 84.341943 84.341943 0 0 1 108.622199 25.558165l80.508218 127.790822a713.072789 713.072789 0 0 1 249.831058-76.674493V79.869264a79.869264 79.869264 0 0 1 159.738528 0v162.933299A711.794881 711.794881 0 0 1 968.654434 320.754964l79.869264-127.790822a84.341943 84.341943 0 0 1 109.261153-26.197119 68.36809 68.36809 0 0 1 29.391889 99.037888zM638.954112 394.234687a235.774067 235.774067 0 1 0 239.607792 235.774067A237.69093 237.69093 0 0 0 638.954112 394.234687z m0 392.956779a157.182712 157.182712 0 1 1 159.738528-157.182712 158.46062 158.46062 0 0 1-159.738528 157.821666z m0 0" />
+    <svg width="12" height="12" viewBox="0 0 520 520">
+      <polygon fill="currentColor" points="0 71.293 0 122 38.023 123 38.023 398 0 397 0 449.707 91.023 450.413 91.023 72.293" />
+      <polygon fill="currentColor" points="148.023 72.293 520 71.293 520 122 200.023 124 200.023 397 520 396 520 449.707 148.023 450.413" />
+    </svg>
+  ),
+  execute: () => { },
+};
+
+export const codeEdit: ICommand = {
+  name: 'edit',
+  keyCommand: 'preview',
+  value: 'edit',
+  buttonProps: { 'aria-label': 'Edit code' },
+  icon: (
+    <svg width="12" height="12" viewBox="0 0 520 520">
+      <polygon fill="currentColor" points="0 71.293 0 122 319 122 319 397 0 397 0 449.707 372 449.413 372 71.293" />
+      <polygon fill="currentColor" points="429 71.293 520 71.293 520 122 481 123 481 396 520 396 520 449.707 429 449.413" />
+    </svg>
+  ),
+  execute: () => { },
+};
+
+export const codeLive: ICommand = {
+  name: 'live',
+  keyCommand: 'preview',
+  value: 'live',
+  buttonProps: { 'aria-label': 'Live code' },
+  icon: (
+    <svg width="12" height="12" viewBox="0 0 520 520">
+      <polygon fill="currentColor" points="0 71.293 0 122 179 122 179 397 0 397 0 449.707 232 449.413 232 71.293" />
+      <polygon fill="currentColor" points="289 71.293 520 71.293 520 122 341 123 341 396 520 396 520 449.707 289 449.413" />
     </svg>
   ),
   execute: () => { },

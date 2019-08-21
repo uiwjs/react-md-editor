@@ -6,7 +6,7 @@ import { unorderedListCommand, orderedListCommand, checkedListCommand } from './
 import { quote } from './quote';
 import { hr } from './hr';
 import { divider } from './divider';
-import { preview } from './preview';
+import { codePreview, codeEdit, codeLive } from './preview';
 import { fullscreen } from './fullscreen';
 import { image } from './image';
 import { strikethrough } from './strikeThrough';
@@ -15,7 +15,7 @@ import insertText from '../utils/InsertTextAtPosition';
 
 const getCommands: () => ICommand[] = () => [
   bold, italic, strikethrough, hr, divider, link, quote, code, image, divider,
-  unorderedListCommand, orderedListCommand, checkedListCommand, divider, preview, fullscreen,
+  unorderedListCommand, orderedListCommand, checkedListCommand, divider, codeEdit, codeLive, codePreview, divider, fullscreen,
 ];
 
 function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {

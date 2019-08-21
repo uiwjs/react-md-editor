@@ -26,12 +26,14 @@ export default class Toolbar extends Component<IToolbarProps> {
         <ul>
           {commands.map((item, idx) => {
             if (item.keyCommand === 'divider') {
-              return <li key={idx} className={`${prefixCls}-toolbar-divider`} />
+              return <li key={idx} {...item.liProps} className={`${prefixCls}-toolbar-divider`} />
             }
+            const activeBtn = active && (item.value ? active[item.keyCommand] && active[item.keyCommand] === item.value : active[item.keyCommand]); 
             return (
-              <li key={idx} className={classnames({ active: active && active[item.keyCommand] })}>
+              <li key={idx} {...item.liProps} className={classnames({ active: activeBtn })}>
                 {React.createElement('button', {
                   type: 'button',
+                  disabled: active && active.preview && active.preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand),
                   "data-name": item.name, ...item.buttonProps,
                   onClick: this.handleClick.bind(this, item)
                 }, item.icon)}
