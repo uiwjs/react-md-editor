@@ -74,10 +74,9 @@ export default function App() {
 ### Development
 
 ```bash
-npm run watch # Listen compile .tsx files.
-npm run build # compile .tsx files.
-
-npm run doc
+npm run watch:types  # Listen create type files.
+npm run watch:ts     # Listen compile .tsx files.
+npm run doc:dev      # Preview code example.
 ```
 
 ## License
