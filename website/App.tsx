@@ -1,6 +1,6 @@
 import React from 'react';
 import GithubCorner from './GithubCorner';
-import MDEditor, { IMDEditorProps } from '../';
+import MDEditor, { IMDEditorProps, commands } from '../';
 import Logo from './Logo';
 import './App.less';
 
@@ -9,22 +9,10 @@ const mdStr = `
   <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
 </p>
 
-# Markdown Editor for React
-## 大标题
-### 小标题
-#### 小标题
-##### 小标题
-###### 小标题
-
-<p align="center">
-  <style>
-  body {
-  padding: 100px;
-  }
-  </style>
-  A markdown editor with <b>preview</b>, implemented with React.js and TypeScript.  
-</p>
-
+\`\`\`javascript
+// Preview Markdown!
+<MDEditor.Markdown source="Preview Markdown!" />
+\`\`\`
 
 <p align="center">
   A markdown editor with preview, implemented with React.js and TypeScript.  
@@ -89,6 +77,24 @@ Licensed under the MIT License.
 **粗体文本**    __粗体文本__  
 ***粗斜体文本***    ___粗斜体文本___  
 
+# Markdown Editor for React
+## Title Name
+### Title Name
+#### Title Name
+##### Title Name
+###### Title Name
+
+<p align="center">
+  <style>
+  body {
+    padding: 100px;
+  }
+  </style>
+  A markdown editor with <b>preview</b>, implemented with React.js and TypeScript.  
+</p>
+
+
+
 \`\`\`javascript
 $(document).ready(function () {
   alert('hello world');
@@ -138,9 +144,9 @@ def g(x):
 
 ---
 
-| 表头 | 表头 |
+| Header | Header |
 | --- | --- |
-| 事实上 | 事实上 |
+| Content | Content |
 
 这个链接用 1 作为网址变量 [Google][1].
 这个链接用 yahoo 作为网址变量 [Yahoo!][yahoo].
@@ -154,6 +160,7 @@ def g(x):
 export default function App() {
   const [state, setVisiable] = React.useState({
     visiableDragbar: true,
+    value: mdStr,
     preview: 'edit',
   });
   const upDataVisiable = (keyName, e) => {
@@ -164,35 +171,47 @@ export default function App() {
   }
   return (
     <div className="warpper">
-      <Logo />
+      <header className="header">
+        <Logo />
+      </header>
       <GithubCorner url="https://github.com/uiwjs/react-md-editor" />
       <MDEditor
-        value={mdStr}
+        value={state.value}
         height={400}
         visiableDragbar={state.visiableDragbar}
         preview={state.preview as IMDEditorProps['preview']}
-        onChange={(value) => {
-          console.log('【onChange】', value);
+        onChange={(newValue) => {
+          setVisiable({ ...state, value: newValue });
         }}
       />
       <div className="doc-tools">
         <label>
           <input type="checkbox" checked={state.visiableDragbar} onChange={upDataVisiable.bind(this, 'visiableDragbar')} />
-          是否显示拖拽工具
+          {state.visiableDragbar ? 'Show' : 'Hidden'} Drag Bar
         </label>
         <label>
           <input type="radio" name="preview" value="edit" checked={state.preview === 'edit'} onChange={upPreview.bind(this)} />
-          编辑
+          Edit
         </label>
         <label>
           <input type="radio" name="preview" value="live" checked={state.preview === 'live'} onChange={upPreview.bind(this)} />
-          实时编辑
+          Live Preview
         </label>
         <label>
           <input type="radio" name="preview" value="preview" checked={state.preview === 'preview'} onChange={upPreview.bind(this)} />
-          预览
+          Preview
         </label>
       </div>
+      <div className="title">Custom toolbar</div>
+      <MDEditor
+        value="Hello Markdown!"
+        commands={[
+          commands.bold, commands.hr, commands.italic, commands.divider,
+          commands.codeEdit, commands.codeLive, commands.codePreview, commands.divider,
+          commands.fullscreen, 
+        ]}
+      />
+      <MDEditor.Markdown source={state.value} />
     </div>
   )
 }
