@@ -49,6 +49,7 @@ export default function App() {
         value={value}
         onChange={setValue}
       />
+      <MDEditor.Markdown source={value} />
     </div>
   );
 }
