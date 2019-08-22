@@ -163,7 +163,7 @@ export default function App() {
   const [state, setVisiable] = React.useState({
     visiableDragbar: true,
     value: mdStr,
-    preview: 'edit',
+    preview: 'live',
   });
   const upDataVisiable = (keyName, e) => {
     setVisiable({ ...state, [keyName]: e.target.checked });
@@ -213,7 +213,7 @@ export default function App() {
           commands.fullscreen, 
         ]}
       />
-      {/* <MDEditor.Markdown source={state.value} /> */}
+      <MDEditor.Markdown source={state.value} />
     </div>
   )
 }

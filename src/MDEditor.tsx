@@ -58,6 +58,7 @@ export interface IMDEditorState {
   height: React.CSSProperties['height'];
   preview?: MDEditorProps['preview'];
   fullscreen?: boolean;
+  value?: string;
 }
 
 export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState> {
@@ -83,10 +84,11 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
       height: props.height,
       preview: props.preview,
       fullscreen: props.fullscreen,
+      value: props.value,
     };
   }
   public componentDidMount() {
-    this.handleChange(this.props.value);
+    this.handleChange(this.state.value);
     this.commandOrchestrator = new TextAreaCommandOrchestrator(this.textarea.current!.text.current as HTMLTextAreaElement);
   }
   public UNSAFE_componentWillReceiveProps(nextProps: MDEditorProps) {
@@ -95,6 +97,11 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
     }
     if (nextProps.fullscreen !== this.props.fullscreen) {
       this.setState({ fullscreen: nextProps.fullscreen });
+    }
+    if (nextProps.value !== this.props.value) {
+      this.setState({ value: nextProps.value }, () => {
+        this.handleChange(nextProps.value);
+      });
     }
   }
   private handleChange(mdStr?: string) {
@@ -136,7 +143,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
             ref={this.textarea}
             className={`${prefixCls}-input`}
             prefixCls={prefixCls}
-            value={value}
+            value={this.state.value}
             autoFocus={autoFocus}
             onChange={this.handleChange.bind(this)}
           />
