@@ -204,7 +204,7 @@ export default function App() {
           Preview
         </label>
       </div>
-      <div className="title">Custom toolbar</div>
+      <div className="page-title">Custom toolbar</div>
       <MDEditor
         value="Hello Markdown!"
         commands={[
