@@ -33676,10 +33676,10 @@ var link = {
     width: "12",
     height: "12",
     role: "img",
-    viewBox: "0 0 512 512"
+    viewBox: "0 0 520 520"
   }, React.createElement("path", {
     fill: "currentColor",
-    d: "M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"
+    d: "M331.751196,182.121107 C392.438214,241.974735 391.605313,337.935283 332.11686,396.871226 C332.005129,396.991316 331.873084,397.121413 331.751196,397.241503 L263.493918,464.491645 C203.291404,523.80587 105.345257,523.797864 45.151885,464.491645 C-15.0506283,405.187427 -15.0506283,308.675467 45.151885,249.371249 L82.8416853,212.237562 C92.836501,202.39022 110.049118,208.9351 110.56511,222.851476 C111.223305,240.5867 114.451306,258.404985 120.407566,275.611815 C122.424812,281.438159 120.983487,287.882964 116.565047,292.23621 L103.272145,305.332975 C74.8052033,333.379887 73.9123737,379.047937 102.098973,407.369054 C130.563883,435.969378 177.350591,436.139505 206.033884,407.879434 L274.291163,340.6393 C302.9257,312.427264 302.805844,266.827265 274.291163,238.733318 C270.531934,235.036561 266.74528,232.16442 263.787465,230.157924 C259.544542,227.2873 256.928256,222.609848 256.731165,217.542518 C256.328935,206.967633 260.13184,196.070508 268.613213,187.714278 L289.998463,166.643567 C295.606326,161.118448 304.403592,160.439942 310.906317,164.911276 C318.353355,170.034591 325.328531,175.793397 331.751196,182.121107 Z M240.704978,55.4828366 L172.447607,122.733236 C172.325719,122.853326 172.193674,122.983423 172.081943,123.103513 C117.703294,179.334654 129.953294,261.569283 185.365841,328.828764 C191.044403,335.721376 198.762988,340.914712 206.209732,346.037661 C212.712465,350.509012 221.510759,349.829503 227.117615,344.305363 L248.502893,323.234572 C256.984277,314.87831 260.787188,303.981143 260.384957,293.406218 C260.187865,288.338869 257.571576,283.661398 253.328648,280.790763 C250.370829,278.78426 246.58417,275.912107 242.824936,272.215337 C214.310216,244.121282 206.209732,204.825874 229.906702,179.334654 L298.164073,112.094263 C326.847404,83.8340838 373.633159,84.0042113 402.099123,112.604645 C430.285761,140.92587 429.393946,186.594095 400.92595,214.641114 L387.63303,227.737929 C383.214584,232.091191 381.773257,238.536021 383.790506,244.362388 C389.746774,261.569283 392.974779,279.387637 393.632975,297.122928 C394.149984,311.039357 411.361608,317.584262 421.356437,307.736882 L459.046288,270.603053 C519.249898,211.29961 519.249898,114.787281 459.047304,55.4828366 C398.853851,-3.82360914 300.907572,-3.83161514 240.704978,55.4828366 Z"
   })),
   execute: function execute(state, api) {
     // Adjust the selection to encompass the whole word if the caret is inside one
@@ -33852,10 +33852,10 @@ var quote = {
   icon: React.createElement("svg", {
     width: "12",
     height: "12",
-    viewBox: "0 0 512 512"
+    viewBox: "0 0 520 520"
   }, React.createElement("path", {
     fill: "currentColor",
-    d: "M512 80v128c0 137.018-63.772 236.324-193.827 271.172-15.225 4.08-30.173-7.437-30.173-23.199v-33.895c0-10.057 6.228-19.133 15.687-22.55C369.684 375.688 408 330.054 408 256h-72c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h128c26.51 0 48 21.49 48 48zM176 32H48C21.49 32 0 53.49 0 80v128c0 26.51 21.49 48 48 48h72c0 74.054-38.316 119.688-104.313 143.528C6.228 402.945 0 412.021 0 422.078v33.895c0 15.762 14.948 27.279 30.173 23.199C160.228 444.324 224 345.018 224 208V80c0-26.51-21.49-48-48-48z"
+    d: "M520,95.75 L520,225.75 C520,364.908906 457.127578,437.050625 325.040469,472.443125 C309.577578,476.586875 294.396016,464.889922 294.396016,448.881641 L294.396016,414.457031 C294.396016,404.242891 300.721328,395.025078 310.328125,391.554687 C377.356328,367.342187 414.375,349.711094 414.375,274.5 L341.25,274.5 C314.325781,274.5 292.5,252.674219 292.5,225.75 L292.5,95.75 C292.5,68.8257812 314.325781,47 341.25,47 L471.25,47 C498.174219,47 520,68.8257812 520,95.75 Z M178.75,47 L48.75,47 C21.8257813,47 0,68.8257812 0,95.75 L0,225.75 C0,252.674219 21.8257813,274.5 48.75,274.5 L121.875,274.5 C121.875,349.711094 84.8563281,367.342187 17.828125,391.554687 C8.22132813,395.025078 1.89601563,404.242891 1.89601563,414.457031 L1.89601563,448.881641 C1.89601563,464.889922 17.0775781,476.586875 32.5404687,472.443125 C164.627578,437.050625 227.5,364.908906 227.5,225.75 L227.5,95.75 C227.5,68.8257812 205.674219,47 178.75,47 Z"
   })),
   execute: function execute(state, api) {
     // Adjust the selection to encompass the whole word if the caret is inside one
@@ -33895,7 +33895,7 @@ var hr = {
   name: 'hr',
   keyCommand: 'hr',
   buttonProps: {
-    'aria-label': 'HR code'
+    'aria-label': 'Insert HR'
   },
   icon: React.createElement("svg", {
     width: "12",
@@ -33911,6 +33911,44 @@ var hr = {
   }
 };
 exports.hr = hr;
+},{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/title.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.title = void 0;
+
+var React = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var title = {
+  name: 'title',
+  keyCommand: 'title',
+  buttonProps: {
+    'aria-label': 'Insert title'
+  },
+  icon: React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 520 520"
+  }, React.createElement("path", {
+    fill: "currentColor",
+    d: "M15.7083333,468 C7.03242448,468 0,462.030833 0,454.666667 L0,421.333333 C0,413.969167 7.03242448,408 15.7083333,408 L361.291667,408 C369.967576,408 377,413.969167 377,421.333333 L377,454.666667 C377,462.030833 369.967576,468 361.291667,468 L15.7083333,468 Z M21.6666667,366 C9.69989583,366 0,359.831861 0,352.222222 L0,317.777778 C0,310.168139 9.69989583,304 21.6666667,304 L498.333333,304 C510.300104,304 520,310.168139 520,317.777778 L520,352.222222 C520,359.831861 510.300104,366 498.333333,366 L21.6666667,366 Z M136.835938,64 L136.835937,126 L107.25,126 L107.25,251 L40.75,251 L40.75,126 L-5.68434189e-14,126 L-5.68434189e-14,64 L136.835938,64 Z M212,64 L212,251 L161.648438,251 L161.648438,64 L212,64 Z M378,64 L378,126 L343.25,126 L343.25,251 L281.75,251 L281.75,126 L238,126 L238,64 L378,64 Z M449.047619,189.550781 L520,189.550781 L520,251 L405,251 L405,64 L449.047619,64 L449.047619,189.550781 Z"
+  })),
+  execute: function execute(state, api) {
+    var modifyText = "## ".concat(state.selectedText, "\n");
+
+    if (!state.selectedText) {
+      modifyText = "## ";
+    }
+
+    console.log('state.selectedText:', state.selectedText);
+    api.replaceSelection(modifyText);
+  }
+};
+exports.title = title;
 },{"react":"../node_modules/react/index.js"}],"../lib/esm/commands/divider.js":[function(require,module,exports) {
 "use strict";
 
@@ -34018,19 +34056,10 @@ var fullscreen = {
   icon: React.createElement("svg", {
     width: "12",
     height: "12",
-    viewBox: "0 0 1024 1024"
+    viewBox: "0 0 520 520"
   }, React.createElement("path", {
     fill: "currentColor",
-    d: "M17.576714 2.21842C13.082991 2.21842 8.589268 3.98178 5.176314 7.394734c-3.412954 3.412954-5.062549 7.906677-5.062549 12.343517l0.113765 364.048439c0 2.21842 1.422064 4.493723 3.640484 5.403844C6.143317 390.214421 8.589268 389.645595 10.238862 387.996l122.980113-122.525053 164.959449 164.276858C301.363848 432.876347 305.743806 434.753472 310.578825 434.753472c4.835018 0 9.214976-1.99089 12.4004-5.062549l112.05866-111.6036c3.185424-3.185424 5.176314-7.565382 5.176314-12.514165 0-4.835018-1.99089-9.328741-5.176314-12.457283L270.192201 129.237196l119.567159-119.112099C391.408955 8.475503 391.97778 5.97267 391.067659 3.75425 390.100655 1.535829 387.882235 0.113765 385.663815 0.113765L17.576714 2.21842 17.576714 2.21842 17.576714 2.21842zM17.576714 2.21842"
-  }), React.createElement("path", {
-    fill: "currentColor",
-    d: "M17.690479 1024c-4.493723 0-8.930563-1.649594-12.514165-5.176314C1.76336 1015.410732 0 1010.917009 0 1006.309521l0.113765-367.120098c0-2.21842 1.422064-4.493723 3.640484-5.403844 2.21842-0.910121 4.721253-0.341295 6.370848 1.308299l122.980113 122.525053 164.959449-164.390623c3.185424-3.185424 7.565382-5.062549 12.343517-5.062549 4.835018 0 9.214976 1.99089 12.343517 5.062549l112.05866 111.6036c3.185424 3.185424 5.176314 7.565382 5.176314 12.457283 0 4.835018-1.99089 9.328741-5.176314 12.514165L270.192201 894.023331l119.737807 119.225864c1.649594 1.649594 2.21842 4.152428 1.308299 6.370848C390.214421 1021.838462 388.109766 1023.260527 385.77758 1023.260527L17.690479 1024 17.690479 1024 17.690479 1024zM17.690479 1024"
-  }), React.createElement("path", {
-    fill: "currentColor",
-    d: "M1006.707699 2.21842c4.493723 0 8.930563 1.76336 12.343517 5.176314 3.412954 3.412954 5.062549 7.906677 5.062549 12.343517l-0.113765 364.048439c0 2.21842-1.422064 4.493723-3.640484 5.403844-2.21842 0.910121-4.721253 0.341295-6.370848-1.308299l-122.980113-122.525053-164.959449 164.276858c-3.185424 3.185424-7.565382 5.062549-12.343517 5.062549s-9.214976-1.99089-12.343517-5.062549l-112.05866-111.6036c-3.185424-3.185424-5.176314-7.565382-5.176314-12.514165 0-4.835018 1.99089-9.328741 5.176314-12.457283l164.959449-164.276858-119.794689-118.770803c-1.649594-1.649594-2.21842-4.095545-1.308299-6.370848 0.967004-2.21842 3.185424-3.640484 5.403844-3.640484L1006.707699 2.21842 1006.707699 2.21842 1006.707699 2.21842zM1006.707699 2.21842"
-  }), React.createElement("path", {
-    fill: "currentColor",
-    d: "M1006.423286 1024c4.493723 0 8.930563-1.649594 12.514165-5.176314 3.412954-3.412954 5.176314-7.906677 5.176314-12.514165l-0.113765-367.120098c0-2.332185-1.422064-4.493723-3.640484-5.403844-2.21842-0.910121-4.721253-0.341295-6.370848 1.308299l-122.980113 122.525053-164.959449-164.390623c-3.185424-3.185424-7.565382-5.062549-12.343517-5.062549s-9.214976 1.99089-12.343517 5.062549l-112.05866 111.6036c-3.185424 3.185424-5.176314 7.565382-5.176314 12.457283 0 4.835018 1.99089 9.328741 5.176314 12.514165l164.959449 164.276858-119.965337 119.225864c-1.649594 1.649594-2.21842 4.152428-1.308299 6.370848 0.967004 2.21842 3.071659 3.640484 5.403844 3.640484L1006.423286 1024 1006.423286 1024 1006.423286 1024zM1006.423286 1024"
+    d: "M118 171.133334L118 342.200271C118 353.766938 126.675 365.333605 141.133333 365.333605L382.634614 365.333605C394.201281 365.333605 405.767948 356.658605 405.767948 342.200271L405.767948 171.133334C405.767948 159.566667 397.092948 148 382.634614 148L141.133333 148C126.674999 148 117.999999 156.675 118 171.133334zM465.353591 413.444444L370 413.444444 370 471.222222 474.0221 471.222222C500.027624 471.222222 520.254143 451 520.254143 425L520.254143 321 462.464089 321 462.464089 413.444444 465.353591 413.444444zM471.0221 43L367 43 367 100.777778 462.353591 100.777778 462.353591 196.111111 520.143647 196.111111 520.143647 89.2222219C517.254144 63.2222219 497.027624 43 471.0221 43zM57.7900547 100.777778L153.143646 100.777778 153.143646 43 46.2320439 43C20.2265191 43 0 63.2222219 0 89.2222219L0 193.222222 57.7900547 193.222222 57.7900547 100.777778zM57.7900547 321L0 321 0 425C0 451 20.2265191 471.222222 46.2320439 471.222223L150.254143 471.222223 150.254143 413.444445 57.7900547 413.444445 57.7900547 321z"
   })),
   execute: function execute() {}
 };
@@ -34135,6 +34164,108 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getStateFromTextArea = getStateFromTextArea;
+Object.defineProperty(exports, "bold", {
+  enumerable: true,
+  get: function () {
+    return _bold.bold;
+  }
+});
+Object.defineProperty(exports, "code", {
+  enumerable: true,
+  get: function () {
+    return _code.code;
+  }
+});
+Object.defineProperty(exports, "italic", {
+  enumerable: true,
+  get: function () {
+    return _italic.italic;
+  }
+});
+Object.defineProperty(exports, "link", {
+  enumerable: true,
+  get: function () {
+    return _link.link;
+  }
+});
+Object.defineProperty(exports, "unorderedListCommand", {
+  enumerable: true,
+  get: function () {
+    return _list.unorderedListCommand;
+  }
+});
+Object.defineProperty(exports, "orderedListCommand", {
+  enumerable: true,
+  get: function () {
+    return _list.orderedListCommand;
+  }
+});
+Object.defineProperty(exports, "checkedListCommand", {
+  enumerable: true,
+  get: function () {
+    return _list.checkedListCommand;
+  }
+});
+Object.defineProperty(exports, "quote", {
+  enumerable: true,
+  get: function () {
+    return _quote.quote;
+  }
+});
+Object.defineProperty(exports, "hr", {
+  enumerable: true,
+  get: function () {
+    return _hr.hr;
+  }
+});
+Object.defineProperty(exports, "title", {
+  enumerable: true,
+  get: function () {
+    return _title.title;
+  }
+});
+Object.defineProperty(exports, "divider", {
+  enumerable: true,
+  get: function () {
+    return _divider.divider;
+  }
+});
+Object.defineProperty(exports, "codePreview", {
+  enumerable: true,
+  get: function () {
+    return _preview.codePreview;
+  }
+});
+Object.defineProperty(exports, "codeEdit", {
+  enumerable: true,
+  get: function () {
+    return _preview.codeEdit;
+  }
+});
+Object.defineProperty(exports, "codeLive", {
+  enumerable: true,
+  get: function () {
+    return _preview.codeLive;
+  }
+});
+Object.defineProperty(exports, "fullscreen", {
+  enumerable: true,
+  get: function () {
+    return _fullscreen.fullscreen;
+  }
+});
+Object.defineProperty(exports, "image", {
+  enumerable: true,
+  get: function () {
+    return _image.image;
+  }
+});
+Object.defineProperty(exports, "strikethrough", {
+  enumerable: true,
+  get: function () {
+    return _strikeThrough.strikethrough;
+  }
+});
 exports.TextAreaTextApi = exports.TextAreaCommandOrchestrator = exports.getCommands = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/classCallCheck"));
@@ -34155,6 +34286,8 @@ var _quote = require("./quote");
 
 var _hr = require("./hr");
 
+var _title = require("./title");
+
 var _divider = require("./divider");
 
 var _preview = require("./preview");
@@ -34170,7 +34303,7 @@ var _InsertTextAtPosition = _interopRequireDefault(require("../utils/InsertTextA
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getCommands = function getCommands() {
-  return [_bold.bold, _italic.italic, _strikeThrough.strikethrough, _hr.hr, _divider.divider, _link.link, _quote.quote, _code.code, _image.image, _divider.divider, _list.unorderedListCommand, _list.orderedListCommand, _list.checkedListCommand, _divider.divider, _preview.codeEdit, _preview.codeLive, _preview.codePreview, _divider.divider, _fullscreen.fullscreen];
+  return [_bold.bold, _italic.italic, _strikeThrough.strikethrough, _hr.hr, _title.title, _divider.divider, _link.link, _quote.quote, _code.code, _image.image, _divider.divider, _list.unorderedListCommand, _list.orderedListCommand, _list.checkedListCommand, _divider.divider, _preview.codeEdit, _preview.codeLive, _preview.codePreview, _divider.divider, _fullscreen.fullscreen];
 };
 
 exports.getCommands = getCommands;
@@ -34236,7 +34369,7 @@ function () {
 }();
 
 exports.TextAreaCommandOrchestrator = TextAreaCommandOrchestrator;
-},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","./bold":"../lib/esm/commands/bold.js","./code":"../lib/esm/commands/code.js","./italic":"../lib/esm/commands/italic.js","./link":"../lib/esm/commands/link.js","./list":"../lib/esm/commands/list.js","./quote":"../lib/esm/commands/quote.js","./hr":"../lib/esm/commands/hr.js","./divider":"../lib/esm/commands/divider.js","./preview":"../lib/esm/commands/preview.js","./fullscreen":"../lib/esm/commands/fullscreen.js","./image":"../lib/esm/commands/image.js","./strikeThrough":"../lib/esm/commands/strikeThrough.js","../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js"}],"../lib/esm/components/TextArea/hotkeys.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","./bold":"../lib/esm/commands/bold.js","./code":"../lib/esm/commands/code.js","./italic":"../lib/esm/commands/italic.js","./link":"../lib/esm/commands/link.js","./list":"../lib/esm/commands/list.js","./quote":"../lib/esm/commands/quote.js","./hr":"../lib/esm/commands/hr.js","./title":"../lib/esm/commands/title.js","./divider":"../lib/esm/commands/divider.js","./preview":"../lib/esm/commands/preview.js","./fullscreen":"../lib/esm/commands/fullscreen.js","./image":"../lib/esm/commands/image.js","./strikeThrough":"../lib/esm/commands/strikeThrough.js","../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js"}],"../lib/esm/components/TextArea/hotkeys.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44404,12 +44537,21 @@ function (_Component) {
     _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(MarkdownPreview).call(this, props));
     _this.divElm = _react.default.createRef();
     _this.state = {
-      value: ''
+      value: '' || props.source
     };
     return _this;
   }
 
   (0, _createClass2.default)(MarkdownPreview, [{
+    key: "UNSAFE_componentWillReceiveProps",
+    value: function UNSAFE_componentWillReceiveProps(nextProps) {
+      if (nextProps.source !== this.props.source) {
+        this.setState({
+          value: nextProps.source
+        });
+      }
+    }
+  }, {
     key: "renderHTML",
     value: function renderHTML(mdStr) {
       this.setState({
@@ -44454,7 +44596,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/MDEditor.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44635,6 +44777,7 @@ function (_React$PureComponent) {
 }(_react.default.PureComponent);
 
 exports.default = MDEditor;
+MDEditor.Markdown = _Markdown.default;
 MDEditor.displayName = 'MDEditor';
 MDEditor.defaultProps = {
   value: '',
@@ -44647,7 +44790,80 @@ MDEditor.defaultProps = {
   fullscreen: false,
   commands: (0, _commands.getCommands)()
 };
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./components/TextArea":"../lib/esm/components/TextArea/index.js","./components/Toolbar":"../lib/esm/components/Toolbar/index.js","./components/DragBar":"../lib/esm/components/DragBar/index.js","./components/Markdown":"../lib/esm/components/Markdown/index.js","./commands":"../lib/esm/commands/index.js","./index.less":"../lib/esm/index.less","./markdowncolor.less":"../lib/esm/markdowncolor.less","./markdown.less":"../lib/esm/markdown.less"}],"Logo.tsx":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./components/TextArea":"../lib/esm/components/TextArea/index.js","./components/Toolbar":"../lib/esm/components/Toolbar/index.js","./components/DragBar":"../lib/esm/components/DragBar/index.js","./components/Markdown":"../lib/esm/components/Markdown/index.js","./commands":"../lib/esm/commands/index.js","./index.less":"../lib/esm/index.less","./markdowncolor.less":"../lib/esm/markdowncolor.less","./markdown.less":"../lib/esm/markdown.less"}],"../lib/esm/Type.js":[function(require,module,exports) {
+
+},{}],"../lib/esm/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "IMDEditorProps", {
+  enumerable: true,
+  get: function () {
+    return _MDEditor.IMDEditorProps;
+  }
+});
+Object.defineProperty(exports, "IMDEditorState", {
+  enumerable: true,
+  get: function () {
+    return _MDEditor.IMDEditorState;
+  }
+});
+Object.defineProperty(exports, "ICommand", {
+  enumerable: true,
+  get: function () {
+    return _Type.ICommand;
+  }
+});
+Object.defineProperty(exports, "CommandOrchestrator", {
+  enumerable: true,
+  get: function () {
+    return _Type.CommandOrchestrator;
+  }
+});
+Object.defineProperty(exports, "TextState", {
+  enumerable: true,
+  get: function () {
+    return _Type.TextState;
+  }
+});
+Object.defineProperty(exports, "TextApi", {
+  enumerable: true,
+  get: function () {
+    return _Type.TextApi;
+  }
+});
+Object.defineProperty(exports, "TextRange", {
+  enumerable: true,
+  get: function () {
+    return _Type.TextRange;
+  }
+});
+exports.MarkdownUtil = exports.commands = exports.default = void 0;
+
+var _MDEditor = _interopRequireWildcard(require("./MDEditor"));
+
+var commands = _interopRequireWildcard(require("./commands"));
+
+exports.commands = commands;
+
+var MarkdownUtil = _interopRequireWildcard(require("./utils/markdownUtils"));
+
+exports.MarkdownUtil = MarkdownUtil;
+
+var _Type = require("./Type");
+
+var _Markdown = _interopRequireDefault(require("./components/Markdown"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+_MDEditor.default.Markdown = _Markdown.default;
+var _default = _MDEditor.default;
+exports.default = _default;
+},{"./MDEditor":"../lib/esm/MDEditor.js","./commands":"../lib/esm/commands/index.js","./utils/markdownUtils":"../lib/esm/utils/markdownUtils.js","./Type":"../lib/esm/Type.js","./components/Markdown":"../lib/esm/components/Markdown/index.js"}],"Logo.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44714,17 +44930,18 @@ var react_1 = tslib_1.__importDefault(require("react"));
 
 var GithubCorner_1 = tslib_1.__importDefault(require("./GithubCorner"));
 
-var __1 = tslib_1.__importDefault(require("../"));
+var __1 = tslib_1.__importStar(require("../"));
 
 var Logo_1 = tslib_1.__importDefault(require("./Logo"));
 
 require("./App.less");
 
-var mdStr = "\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n</p>\n\n# Markdown Editor for React\n## \u5927\u6807\u9898\n### \u5C0F\u6807\u9898\n#### \u5C0F\u6807\u9898\n##### \u5C0F\u6807\u9898\n###### \u5C0F\u6807\u9898\n\n<p align=\"center\">\n  <style>\n  body {\n  padding: 100px;\n  }\n  </style>\n  A markdown editor with <b>preview</b>, implemented with React.js and TypeScript.  \n</p>\n\n\n<p align=\"center\">\n  A markdown editor with preview, implemented with React.js and TypeScript.  \n</p>\n\n## Install\n\n```bash\nnpm i @uiw/react-md-editor\n```\n\n## Using\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n    </div>\n  );\n}\n```\n\n- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  \n- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  \n\n### Props\n\n- `value: string`: The Markdown value.\n- `onChange?: (value: string)`: Event handler for the `onChange` event.\n- `commands?: ICommand[]`: An array of `ICommand`, which, each one, contain a `commands` property. If no commands are specified, the default will be used. Commands are explained in more details below.\n- `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.\n- `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.\n- `height?: number=200`: The height of the editor.\n- `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.\n- `fullscreen?: boolean=false`: Show markdown preview.\n- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.\n- `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.\n- `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.\n\n### Development\n\n```bash\nnpm run watch:types  # Listen create type files.\nnpm run watch:ts     # Listen compile .tsx files.\nnpm run doc:dev      # Preview code example.\n```\n\n## License\n\nLicensed under the MIT License.\n\n*\u659C\u4F53\u6587\u672C*    _\u659C\u4F53\u6587\u672C_  \n**\u7C97\u4F53\u6587\u672C**    __\u7C97\u4F53\u6587\u672C__  \n***\u7C97\u659C\u4F53\u6587\u672C***    ___\u7C97\u659C\u4F53\u6587\u672C___  \n\n```javascript\n$(document).ready(function () {\n  alert('hello world');\n});\n```\n\n\n```javascript\nimport * as React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  const [selectedTab, setSelectedTab] = React.useState(\"write\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n    </div>\n  );\n}\n```\n\n```python\ndef g(x):\n    yield from range(x, 0, -1)\n    yield from range(x)\n```\n\n    def g(x):\n        yield from range(x, 0, -1)\n        yield from range(x)\n\n\u6587\u5B57\u94FE\u63A5 [\u94FE\u63A5\u540D\u79F0](http://\u94FE\u63A5\u7F51\u5740)\n\u7F51\u5740\u94FE\u63A5 <http://\u94FE\u63A5\u7F51\u5740>\n\n\u5728\u5F53\u524D\u884C\u7684\u7ED3\u5C3E\u52A0 2 \u4E2A\u7A7A\u683C  \n\n- [x] \u6211\u7684\u4EFB\u52A1\n- [x] \u6211\u7684\u4EFB\u52A1\n\n1. ssss\n2. 3333\n\n---\n\n| \u8868\u5934 | \u8868\u5934 |\n| --- | --- |\n| \u4E8B\u5B9E\u4E0A | \u4E8B\u5B9E\u4E0A |\n\n\u8FD9\u4E2A\u94FE\u63A5\u7528 1 \u4F5C\u4E3A\u7F51\u5740\u53D8\u91CF [Google][1].\n\u8FD9\u4E2A\u94FE\u63A5\u7528 yahoo \u4F5C\u4E3A\u7F51\u5740\u53D8\u91CF [Yahoo!][yahoo].\n\u7136\u540E\u5728\u6587\u6863\u7684\u7ED3\u5C3E\u4E3A\u53D8\u91CF\u8D4B\u503C\uFF08\u7F51\u5740\uFF09\n\n  [1]: http://www.google.com/\n  [yahoo]: http://www.yahoo.com/\n";
+var mdStr = "\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n</p>\n\n```javascript\n// Preview Markdown!\n<MDEditor.Markdown source=\"Preview Markdown!\" />\n```\n\n<p align=\"center\">\n  A markdown editor with preview, implemented with React.js and TypeScript.  \n</p>\n\n## Install\n\n```bash\nnpm i @uiw/react-md-editor\n```\n\n## Using\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n    </div>\n  );\n}\n```\n\n- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  \n- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  \n\n### Props\n\n- `value: string`: The Markdown value.\n- `onChange?: (value: string)`: Event handler for the `onChange` event.\n- `commands?: ICommand[]`: An array of `ICommand`, which, each one, contain a `commands` property. If no commands are specified, the default will be used. Commands are explained in more details below.\n- `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.\n- `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.\n- `height?: number=200`: The height of the editor.\n- `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.\n- `fullscreen?: boolean=false`: Show markdown preview.\n- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.\n- `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.\n- `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.\n\n### Development\n\n```bash\nnpm run watch:types  # Listen create type files.\nnpm run watch:ts     # Listen compile .tsx files.\nnpm run doc:dev      # Preview code example.\n```\n\n## License\n\nLicensed under the MIT License.\n\n*\u659C\u4F53\u6587\u672C*    _\u659C\u4F53\u6587\u672C_  \n**\u7C97\u4F53\u6587\u672C**    __\u7C97\u4F53\u6587\u672C__  \n***\u7C97\u659C\u4F53\u6587\u672C***    ___\u7C97\u659C\u4F53\u6587\u672C___  \n\n# Markdown Editor for React\n## Title Name\n### Title Name\n#### Title Name\n##### Title Name\n###### Title Name\n\n<p align=\"center\">\n  <style>\n  body {\n    padding: 100px;\n  }\n  </style>\n  A markdown editor with <b>preview</b>, implemented with React.js and TypeScript.  \n</p>\n\n\n\n```javascript\n$(document).ready(function () {\n  alert('hello world');\n});\n```\n\n\n```javascript\nimport * as React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  const [selectedTab, setSelectedTab] = React.useState(\"write\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n    </div>\n  );\n}\n```\n\n```python\ndef g(x):\n    yield from range(x, 0, -1)\n    yield from range(x)\n```\n\n    def g(x):\n        yield from range(x, 0, -1)\n        yield from range(x)\n\n\u6587\u5B57\u94FE\u63A5 [\u94FE\u63A5\u540D\u79F0](http://\u94FE\u63A5\u7F51\u5740)\n\u7F51\u5740\u94FE\u63A5 <http://\u94FE\u63A5\u7F51\u5740>\n\n\u5728\u5F53\u524D\u884C\u7684\u7ED3\u5C3E\u52A0 2 \u4E2A\u7A7A\u683C  \n\n- [x] \u6211\u7684\u4EFB\u52A1\n- [x] \u6211\u7684\u4EFB\u52A1\n\n1. ssss\n2. 3333\n\n---\n\n| Header | Header |\n| --- | --- |\n| Content | Content |\n\n\u8FD9\u4E2A\u94FE\u63A5\u7528 1 \u4F5C\u4E3A\u7F51\u5740\u53D8\u91CF [Google][1].\n\u8FD9\u4E2A\u94FE\u63A5\u7528 yahoo \u4F5C\u4E3A\u7F51\u5740\u53D8\u91CF [Yahoo!][yahoo].\n\u7136\u540E\u5728\u6587\u6863\u7684\u7ED3\u5C3E\u4E3A\u53D8\u91CF\u8D4B\u503C\uFF08\u7F51\u5740\uFF09\n\n  [1]: http://www.google.com/\n  [yahoo]: http://www.yahoo.com/\n";
 
 function App() {
   var _react_1$default$useS = react_1.default.useState({
     visiableDragbar: true,
+    value: mdStr,
     preview: 'edit'
   }),
       _react_1$default$useS2 = _slicedToArray(_react_1$default$useS, 2),
@@ -44743,15 +44960,19 @@ function App() {
 
   return react_1.default.createElement("div", {
     className: "warpper"
-  }, react_1.default.createElement(Logo_1.default, null), react_1.default.createElement(GithubCorner_1.default, {
+  }, react_1.default.createElement("header", {
+    className: "header"
+  }, react_1.default.createElement(Logo_1.default, null)), react_1.default.createElement(GithubCorner_1.default, {
     url: "https://github.com/uiwjs/react-md-editor"
   }), react_1.default.createElement(__1.default, {
-    value: mdStr,
+    value: state.value,
     height: 400,
     visiableDragbar: state.visiableDragbar,
     preview: state.preview,
-    onChange: function onChange(value) {
-      console.log('【onChange】', value);
+    onChange: function onChange(newValue) {
+      setVisiable(_objectSpread({}, state, {
+        value: newValue
+      }));
     }
   }), react_1.default.createElement("div", {
     className: "doc-tools"
@@ -44759,25 +44980,32 @@ function App() {
     type: "checkbox",
     checked: state.visiableDragbar,
     onChange: upDataVisiable.bind(this, 'visiableDragbar')
-  }), "\u662F\u5426\u663E\u793A\u62D6\u62FD\u5DE5\u5177"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
+  }), state.visiableDragbar ? 'Show' : 'Hidden', " Drag Bar"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
     type: "radio",
     name: "preview",
     value: "edit",
     checked: state.preview === 'edit',
     onChange: upPreview.bind(this)
-  }), "\u7F16\u8F91"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
+  }), "Edit"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
     type: "radio",
     name: "preview",
     value: "live",
     checked: state.preview === 'live',
     onChange: upPreview.bind(this)
-  }), "\u5B9E\u65F6\u7F16\u8F91"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
+  }), "Live Preview"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
     type: "radio",
     name: "preview",
     value: "preview",
     checked: state.preview === 'preview',
     onChange: upPreview.bind(this)
-  }), "\u9884\u89C8")));
+  }), "Preview")), react_1.default.createElement("div", {
+    className: "title"
+  }, "Custom toolbar"), react_1.default.createElement(__1.default, {
+    value: "Hello Markdown!",
+    commands: [__1.commands.bold, __1.commands.hr, __1.commands.italic, __1.commands.divider, __1.commands.codeEdit, __1.commands.codeLive, __1.commands.codePreview, __1.commands.divider, __1.commands.fullscreen]
+  }), react_1.default.createElement(__1.default.Markdown, {
+    source: state.value
+  }));
 }
 
 exports.default = App;
@@ -44825,7 +45053,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56162" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59348" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

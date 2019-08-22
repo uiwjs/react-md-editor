@@ -559,11 +559,18 @@ html {
 .warpper {
   padding: 20px;
   margin: 0 auto;
+  max-width: 950px;
+}
+.warpper .title {
+  padding: 0 0 20px 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+.warpper .header {
   text-align: center;
-  width: 950px;
 }
 .warpper .doc-tools {
-  padding: 30px 0 0 0;
+  padding: 30px 0 30px 0;
   font-size: 12px;
 }
 .warpper .doc-tools label {
