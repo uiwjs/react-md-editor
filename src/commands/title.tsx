@@ -15,7 +15,6 @@ export const title: ICommand = {
     if (!state.selectedText) {
       modifyText = `## `;
     }
-    console.log('state.selectedText:', state.selectedText);
     api.replaceSelection(modifyText);
   },
 };
