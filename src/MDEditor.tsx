@@ -11,7 +11,7 @@ import './index.less';
 import './markdowncolor.less';
 import './markdown.less';
 
-export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
+export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
   /**
    * The Markdown value.
    */
@@ -56,17 +56,17 @@ export interface IMDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement
 
 export interface IMDEditorState {
   height: React.CSSProperties['height'];
-  preview?: IMDEditorProps['preview'];
+  preview?: MDEditorProps['preview'];
   fullscreen?: boolean;
 }
 
-export class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState> {
+export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState> {
   static Markdown = MarkdownPreview;
   public static displayName = 'MDEditor';
   public preview = React.createRef<MarkdownPreview>();
   public textarea = React.createRef<TextArea>();
   public commandOrchestrator!: CommandOrchestrator;
-  public static defaultProps: IMDEditorProps = {
+  public static defaultProps: MDEditorProps = {
     value: '',
     prefixCls: 'w-md-editor',
     height: 200,
@@ -77,7 +77,7 @@ export class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState
     fullscreen: false,
     commands: getCommands(),
   }
-  public constructor(props: IMDEditorProps) {
+  public constructor(props: MDEditorProps) {
     super(props);
     this.state = {
       height: props.height,
@@ -89,7 +89,7 @@ export class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState
     this.handleChange(this.props.value);
     this.commandOrchestrator = new TextAreaCommandOrchestrator(this.textarea.current!.text.current as HTMLTextAreaElement);
   }
-  public UNSAFE_componentWillReceiveProps(nextProps: IMDEditorProps) {
+  public UNSAFE_componentWillReceiveProps(nextProps: MDEditorProps) {
     if (nextProps.preview !== this.props.preview) {
       this.setState({ preview: nextProps.preview });
     }

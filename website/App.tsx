@@ -1,7 +1,7 @@
 import React from 'react';
 import GithubCorner from './GithubCorner';
-import MDEditor, { commands, IMDEditorProps } from '../';
-// import { IMDEditorProps } from '../lib/cjs/MDEditor';
+import MDEditor, { commands, MDEditorProps } from '../';
+
 import Logo from './Logo';
 import './App.less';
 
@@ -180,7 +180,7 @@ export default function App() {
         value={state.value}
         height={400}
         visiableDragbar={state.visiableDragbar}
-        preview={state.preview as IMDEditorProps['preview']}
+        preview={state.preview as MDEditorProps['preview']}
         onChange={(newValue) => {
           setVisiable({ ...state, value: newValue });
         }}
