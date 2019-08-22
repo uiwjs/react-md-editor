@@ -1,6 +1,7 @@
 import React from 'react';
 import GithubCorner from './GithubCorner';
-import MDEditor, { commands, MDEditorProps } from '../';
+import MDEditor, { commands } from '../';
+import { MDEditorProps } from '../lib/cjs/MDEditor';
 
 import Logo from './Logo';
 import './App.less';
