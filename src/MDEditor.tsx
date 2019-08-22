@@ -1,12 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
 import { ReactMarkdownProps } from 'react-markdown';
-import { IProps, ICommand, CommandOrchestrator } from './Type';
+import { IProps } from './Type';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import MarkdownPreview from './components/Markdown';
-import { getCommands, TextAreaCommandOrchestrator } from './commands';
+import { getCommands, TextAreaCommandOrchestrator, ICommand, CommandOrchestrator } from './commands';
 import './index.less';
 import './markdowncolor.less';
 import './markdown.less';
@@ -60,7 +60,7 @@ export interface IMDEditorState {
   fullscreen?: boolean;
 }
 
-export default class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState> {
+export class MDEditor extends React.PureComponent<IMDEditorProps, IMDEditorState> {
   static Markdown = MarkdownPreview;
   public static displayName = 'MDEditor';
   public preview = React.createRef<MarkdownPreview>();

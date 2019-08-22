@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextApi } from '../Type';
+import { ICommand, TextState, TextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 
 export const italic: ICommand = {

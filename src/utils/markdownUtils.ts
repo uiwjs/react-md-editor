@@ -1,4 +1,4 @@
-import { TextRange } from '../Type';
+import { TextRange } from '../commands';
 import getSurroundingWord from './getSurroundingWord';
 
 export interface TextSection {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand } from '../Type';
+import { ICommand } from './';
 
 export const fullscreen: ICommand = {
   name: 'fullscreen',

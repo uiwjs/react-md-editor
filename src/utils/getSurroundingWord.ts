@@ -1,4 +1,4 @@
-import { TextRange } from '../Type';
+import { TextRange } from '../commands';
 
 export default function getSurroundingWord(text: string, position: number): TextRange {
   if (!text) throw Error("Argument 'text' should be truthy");

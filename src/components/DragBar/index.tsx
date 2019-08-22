@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IProps} from '../../Type';
+import { IProps } from '../../Type';
 import './index.less';
 
 export interface IDragBarProps extends IProps {

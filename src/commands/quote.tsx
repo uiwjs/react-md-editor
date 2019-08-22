@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextApi } from '../Type';
-// import selectWord from '../utils/selectWord';
+import { ICommand, TextState, TextApi } from './';
 import { getBreaksNeededForEmptyLineBefore, getBreaksNeededForEmptyLineAfter, selectWord } from '../utils/markdownUtils';
 
 export const quote: ICommand = {

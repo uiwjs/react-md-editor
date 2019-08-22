@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand } from '../Type';
+import { ICommand } from './';
 
 export const codePreview: ICommand = {
   name: 'preview',

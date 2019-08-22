@@ -1,6 +1,7 @@
 import React from 'react';
 import GithubCorner from './GithubCorner';
-import MDEditor, { IMDEditorProps, commands } from '../';
+import MDEditor, { commands, IMDEditorProps } from '../';
+// import { IMDEditorProps } from '../lib/cjs/MDEditor';
 import Logo from './Logo';
 import './App.less';
 
@@ -211,7 +212,7 @@ export default function App() {
           commands.fullscreen, 
         ]}
       />
-      <MDEditor.Markdown source={state.value} />
+      {/* <MDEditor.Markdown source={state.value} /> */}
     </div>
   )
 }

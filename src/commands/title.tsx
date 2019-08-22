@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextApi } from '../Type';
+import { ICommand, TextState, TextApi } from './';
 
 export const title: ICommand = {
   name: 'title',

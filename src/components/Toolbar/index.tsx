@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import { ICommand, IProps } from '../../Type';
+import { IProps } from '../../Type';
+import { ICommand } from '../../commands';
 import './index.less';
 
 export interface IToolbarProps extends IProps {
