@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-bash';
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown';
 import Code from './Code';
 import allowNode from './allowNode';
 import { IProps } from '../../Type';
-
 
 export interface IMarkdownPreviewProps extends IProps, Omit<ReactMarkdownProps, 'className'> {}
 
@@ -13,7 +17,7 @@ export interface IMarkdownPreviewState {
 }
 
 export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IMarkdownPreviewState> {
-  public divElm = React.createRef<HTMLDivElement>();
+  public mdp = React.createRef<HTMLDivElement>();
   public constructor(props: IMarkdownPreviewProps) {
     super(props);
     this.state = {
@@ -26,12 +30,25 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
     }
   }
   public renderHTML(mdStr?: string) {
-    this.setState({ value: mdStr });
+    this.setState({ value: mdStr }, () => {
+      this.highlight();
+    });
+  }
+  public highlight() {
+    const codes = this.mdp.current!.getElementsByTagName('code');
+    for (const value of codes) {
+      const tag = value.parentNode as HTMLElement;
+      if (tag && tag.tagName === 'PRE' && value.dataset.lang) {
+        try {
+          Prism.highlightElement(value);
+        } catch (error) {}
+      }
+    }
   }
   render() {
     const { className, ...other } = this.props;
     return (
-      <div className={classnames(className, 'wmde-markdown', 'wmde-markdown-color')}>
+      <div ref={this.mdp} className={classnames(className, 'wmde-markdown', 'wmde-markdown-color')}>
         <ReactMarkdown
           escapeHtml={false}
           {...other}

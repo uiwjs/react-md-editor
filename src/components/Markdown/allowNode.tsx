@@ -1,4 +1,3 @@
-import React from 'react';
 import { NodeType, MarkdownAbstractSyntaxTree } from 'react-markdown';
 
 export default function allowNode(node: any, index: number, parent: NodeType) {

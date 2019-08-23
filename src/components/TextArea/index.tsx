@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import Prism from 'prismjs';
 import classnames from 'classnames';
-import 'prismjs/components/prism-markdown.min.js';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-markdown.js';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-python';
 import { IProps } from '../../Type';
 import hotkeys from './hotkeys';
 import './index.less';
@@ -48,10 +52,6 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   public shouldComponentUpdate(nextProps: ITextAreaProps, nextState: ITextAreaState) {
     return nextProps.value !== this.props.value || nextState.value !== this.state.value;
   }
-  private handleScroll(e: React.UIEvent<HTMLTextAreaElement>) {
-    const scrollTop = (e.target as HTMLTextAreaElement).scrollTop;
-    this.preElm.current!.scrollTop = scrollTop;
-  }
   public async highlight() {
     const { value } = this.state;
     const pre = this.preElm.current;
@@ -61,21 +61,21 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   render() {
     const { prefixCls, className, onChange, style, ...otherProps } = this.props;
     return (
-      <div className={classnames(`${prefixCls}-text`, className)}>
-        <pre
-          ref={this.preElm}
-          className={classnames(`${prefixCls}-text-pre`, 'wmde-markdown-color')}
-        />
-        <textarea
-          {...otherProps}
-          ref={this.text}
-          onScroll={this.handleScroll.bind(this)}
-          onKeyDown={hotkeys.bind(this)}
-          style={{ ...style }}
-          className={`${prefixCls}-text-input`}
-          value={this.state.value}
-          onChange={this.handleChange.bind(this)}
-        />
+      <div className={classnames(`${prefixCls}-aree`, className)}>
+        <div className={classnames(`${prefixCls}-text`)}>
+          <pre
+            ref={this.preElm}
+            className={classnames(`${prefixCls}-text-pre`, 'wmde-markdown-color')}
+          />
+          <textarea
+            {...otherProps}
+            ref={this.text}
+            onKeyDown={hotkeys.bind(this)}
+            className={`${prefixCls}-text-input`}
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
+          />
+        </div>
       </div>
     );
   }

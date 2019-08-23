@@ -1,90 +1,87 @@
 @md-editor:~"w-md-editor";
 
 .@{md-editor} {
+  &-aree {
+    overflow: auto;
+  }
   &-text {
+    min-height: 100%;
     position: relative;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    padding: 0px;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 18px;
+    font-variant-ligatures: common-ligatures;
+    background-color: #fdfdfd;
     &-pre, &-input {
-      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
-      line-height: 18px;
-      word-spacing: 0px !important;
-      font-size: 14px !important;
-      padding: 16px !important;
-      box-sizing: border-box;
-
-      overflow-x: hidden;
-      word-wrap: break-word;
-      word-break: break-all;
-      white-space: pre-wrap;
-    }
-    &-input {
-      background-color: transparent;
-      display: block;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: transparent;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      margin: 0;
-      overflow-y: scroll;
-      padding-right: 0 !important;
-      border-radius: 3px;
-      resize: none;
-      // resize: vertical;
-      outline: none;
-      position: relative;
-      z-index: 2;
-      word-break: break-all;
+      margin: 0px;
+      border: 0px;
+      background: none;
+      box-sizing: inherit;
+      display: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-style: inherit;
+      font-variant-ligatures: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      line-height: inherit;
+      tab-size: inherit;
+      text-indent: inherit;
+      text-rendering: inherit;
+      text-transform: inherit;
+      white-space: inherit;
+      word-break: inherit;
+      overflow-wrap: inherit;
+      padding: 10px;
     }
     &-pre {
-      height: 100%;
-      margin: 0;
+      position: relative;
+      pointer-events: none;
+    }
+    &-input {
       position: absolute;
-      white-space: pre-wrap;
-      padding-bottom: 34px !important;
-      z-index: 0;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      resize: none;
+      color: inherit;
       overflow: hidden;
-      color: red;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      outline: 0;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-fill-color: transparent;
+      &:empty {
+        -webkit-text-fill-color: inherit !important;
+      }
+    }
+  }
+}
+/**
+ * Hack to apply on some CSS on IE10 and IE11
+ */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /**
+    * IE doesn't support '-webkit-text-fill-color'
+    * So we use 'color: transparent' to make the text transparent on IE
+    * Unlike other browsers, it doesn't affect caret color in IE
+    */
+  .@{md-editor}-text-input {
+    color: transparent !important;
+    &::selection {
+      background-color: #accef7 !important;
+      color: transparent !important;
     }
   }
 }
 
 .@{md-editor}-text-pre {
-  color: #494949;
-  .punctuation {
-    color: #000692;
-  }
-  .title, .bold {
-    color: #000;
-  }
-  .keyword {
-    color: #000;
-  }
-  .italic {
-    font-style: italic;
-  }
-  .url {
-    color: #032f62;
-    .content {
-      color: #0366d6;
-      text-decoration: underline;
-    }
-  }
-  .list {
-    color: #5486B8;
-  }
-  .hr {
-    color: #999;
-  }
-  .blockquote {
-    color: #a6a6a6;
-  }
-  .code {
-    color: #6a737d;
-  }
+  color: #333;
   .table {
     .punctuation {
       color: #c3c3c3;
@@ -93,7 +90,22 @@
       color: #000;
     }
   }
-  .token.string {
-    color: #ff5722;
+
+  .url {
+    color: #032f62;
+    .content {
+      color: #0366d6;
+      text-decoration: underline;
+    }
+  }
+
+  .hr {
+    color: #999;
+  }
+  .blockquote {
+    color: #a6a6a6;
+  }
+  .title, .bold {
+    color: #000;
   }
 }

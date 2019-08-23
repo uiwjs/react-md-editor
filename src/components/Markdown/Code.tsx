@@ -1,5 +1,5 @@
 import React from 'react';
-// import Prism from 'prismjs';
+import classnames from 'classnames';
 
 export type ICode = {
   language: string;
@@ -8,8 +8,10 @@ export type ICode = {
 
 export default function Code({ language, value }: ICode) {
   return (
-    <pre className={`language-${language}`}>
-      <code>{value}</code>
+    <pre className={classnames({ [`language-${language}`]: language })}>
+      <code data-lang={language} className={classnames({ [`language-${language}`]: language })}>
+        {value}
+      </code>
     </pre>
   );
 }
