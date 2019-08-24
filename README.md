@@ -60,7 +60,7 @@ export default function App() {
 
 ### Custom Toolbars
 
-```jsx
+```tsx
 import React from "react";
 import ReactDOM from "react-dom";
 import MEDitor, { commands } from '@uiw/react-md-editor';
