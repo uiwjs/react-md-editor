@@ -62,6 +62,7 @@ export default function App() {
 
 - [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  
 - [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  
+- [Demo preview for Gitee gh-pages](https://uiw.gitee.io/react-md-editor/)  
 
 ### Custom Toolbars
 
