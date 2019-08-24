@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-bash';
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown';
