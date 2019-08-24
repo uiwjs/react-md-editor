@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-md-editor",
-  "version": "1.6.7",
+  "version": "1.8.0",
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "homepage": "https://uiwjs.github.io/react-md-editor/",
   "author": "kenny wang <wowohoo@qq.com>",
@@ -52,6 +52,7 @@
     "gh-pages": "^2.1.1",
     "less": "^3.9.0",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-markdown-string": "^1.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
