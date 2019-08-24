@@ -47,7 +47,8 @@ a.github:hover .octo-arm {
   overflow: auto;
   font-size: 14px;
   line-height: 18px;
-  font-variant-ligatures: common-ligatures;
+  -webkit-font-variant-ligatures: common-ligatures;
+          font-variant-ligatures: common-ligatures;
   background-color: #fdfdfd;
 }
 .w-md-editor-text-pre,
@@ -60,11 +61,13 @@ a.github:hover .octo-arm {
   font-family: inherit;
   font-size: inherit;
   font-style: inherit;
-  font-variant-ligatures: inherit;
+  -webkit-font-variant-ligatures: inherit;
+          font-variant-ligatures: inherit;
   font-weight: inherit;
   letter-spacing: inherit;
   line-height: inherit;
-  tab-size: inherit;
+  -moz-tab-size: inherit;
+       tab-size: inherit;
   text-indent: inherit;
   text-rendering: inherit;
   text-transform: inherit;
@@ -105,6 +108,10 @@ a.github:hover .octo-arm {
   .w-md-editor-text-input {
     color: transparent !important;
   }
+  .w-md-editor-text-input::-moz-selection {
+    background-color: #accef7 !important;
+    color: transparent !important;
+  }
   .w-md-editor-text-input::selection {
     background-color: #accef7 !important;
     color: transparent !important;
@@ -142,7 +149,10 @@ a.github:hover .octo-arm {
   background-color: #fbfbfb;
   padding: 4px 2px 4px 5px;
   border-radius: 3px 3px 0 0;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .w-md-editor-toolbar ul,
 .w-md-editor-toolbar li {
@@ -166,6 +176,7 @@ a.github:hover .octo-arm {
   overflow: visible;
   outline: none;
   cursor: pointer;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 .w-md-editor-toolbar li button:hover {
@@ -206,7 +217,10 @@ a.github:hover .octo-arm {
   z-index: 3;
   height: 10px;
   border-radius: 0 0 3px 0;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .w-md-editor-bar svg {
   display: block;
@@ -244,6 +258,7 @@ a.github:hover .octo-arm {
 .w-md-editor-show-preview .w-md-editor-input {
   width: 0%;
   overflow: hidden;
+  border-radius: 5px;
 }
 .w-md-editor-show-preview .w-md-editor-preview {
   width: 100%;
@@ -355,13 +370,16 @@ a.github:hover .octo-arm {
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-  hyphens: none;
+  -webkit-hyphens: none;
+      -ms-hyphens: none;
+          hyphens: none;
 }
 .wmde-markdown pre code {
   background: none;
   overflow-wrap: normal;
   white-space: inherit;
-  tab-size: 2;
+  -moz-tab-size: 2;
+       tab-size: 2;
   padding: 16px;
   font-size: 95%;
   line-height: 1.5;

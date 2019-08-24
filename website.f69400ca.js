@@ -35081,7 +35081,7 @@ var _default = function _default(e) {
 };
 
 exports.default = _default;
-},{"../../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js","../../commands":"../lib/esm/commands/index.js","../../commands/list":"../lib/esm/commands/list.js"}],"../lib/esm/components/TextArea/index.less":[function(require,module,exports) {
+},{"../../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js","../../commands":"../lib/esm/commands/index.js","../../commands/list":"../lib/esm/commands/list.js"}],"../lib/esm/components/TextArea/index.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35130,7 +35130,7 @@ require("prismjs/components/prism-python");
 
 var _hotkeys = _interopRequireDefault(require("./hotkeys"));
 
-require("./index.less");
+require("./index.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -35275,7 +35275,7 @@ TextArea.defaultProps = {
   spellCheck: false
 };
 TextArea.state = void 0;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/esm/asyncToGenerator":"../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-markdown.js":"../node_modules/prismjs/components/prism-markdown.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-python":"../node_modules/prismjs/components/prism-python.js","./hotkeys":"../lib/esm/components/TextArea/hotkeys.js","./index.less":"../lib/esm/components/TextArea/index.less"}],"../node_modules/@babel/runtime/helpers/esm/objectSpread.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/esm/asyncToGenerator":"../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-markdown.js":"../node_modules/prismjs/components/prism-markdown.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-python":"../node_modules/prismjs/components/prism-python.js","./hotkeys":"../lib/esm/components/TextArea/hotkeys.js","./index.css":"../lib/esm/components/TextArea/index.css"}],"../node_modules/@babel/runtime/helpers/esm/objectSpread.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35305,7 +35305,7 @@ function _objectSpread(target) {
 
   return target;
 }
-},{"./defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js"}],"../lib/esm/components/Toolbar/index.less":[function(require,module,exports) {
+},{"./defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js"}],"../lib/esm/components/Toolbar/index.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35336,7 +35336,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-require("./index.less");
+require("./index.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -35412,7 +35412,7 @@ exports.default = Toolbar;
 Toolbar.defaultProps = {
   commands: []
 };
-},{"@babel/runtime/helpers/esm/objectSpread":"../node_modules/@babel/runtime/helpers/esm/objectSpread.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./index.less":"../lib/esm/components/Toolbar/index.less"}],"../lib/esm/components/DragBar/index.less":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectSpread":"../node_modules/@babel/runtime/helpers/esm/objectSpread.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./index.css":"../lib/esm/components/Toolbar/index.css"}],"../lib/esm/components/DragBar/index.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35437,7 +35437,7 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/inhe
 
 var _react = _interopRequireWildcard(require("react"));
 
-require("./index.less");
+require("./index.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -35518,7 +35518,7 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = DragBar;
-},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","./index.less":"../lib/esm/components/DragBar/index.less"}],"../node_modules/prismjs/components/prism-bash.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","./index.css":"../lib/esm/components/DragBar/index.css"}],"../node_modules/prismjs/components/prism-bash.js":[function(require,module,exports) {
 (function(Prism) {
 	// $ set | grep '^[A-Z][^[:space:]]*=' | cut -d= -f1 | tr '\n' '|'
 	// + LC_ALL, RANDOM, REPLY, SECONDS.
@@ -45505,17 +45505,17 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = MarkdownPreview;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-bash":"../node_modules/prismjs/components/prism-bash.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./Code":"../lib/esm/components/Markdown/Code.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/index.less":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-bash":"../node_modules/prismjs/components/prism-bash.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./Code":"../lib/esm/components/Markdown/Code.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/index.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdowncolor.less":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdowncolor.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdown.less":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdown.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -45558,11 +45558,11 @@ var _Markdown = _interopRequireDefault(require("./components/Markdown"));
 
 var _commands = require("./commands");
 
-require("./index.less");
+require("./index.css");
 
-require("./markdowncolor.less");
+require("./markdowncolor.css");
 
-require("./markdown.less");
+require("./markdown.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45725,7 +45725,7 @@ MDEditor.defaultProps = {
   fullscreen: false,
   commands: (0, _commands.getCommands)()
 };
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./components/TextArea":"../lib/esm/components/TextArea/index.js","./components/Toolbar":"../lib/esm/components/Toolbar/index.js","./components/DragBar":"../lib/esm/components/DragBar/index.js","./components/Markdown":"../lib/esm/components/Markdown/index.js","./commands":"../lib/esm/commands/index.js","./index.less":"../lib/esm/index.less","./markdowncolor.less":"../lib/esm/markdowncolor.less","./markdown.less":"../lib/esm/markdown.less"}],"../lib/esm/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./components/TextArea":"../lib/esm/components/TextArea/index.js","./components/Toolbar":"../lib/esm/components/Toolbar/index.js","./components/DragBar":"../lib/esm/components/DragBar/index.js","./components/Markdown":"../lib/esm/components/Markdown/index.js","./commands":"../lib/esm/commands/index.js","./index.css":"../lib/esm/index.css","./markdowncolor.css":"../lib/esm/markdowncolor.css","./markdown.css":"../lib/esm/markdown.css"}],"../lib/esm/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
