@@ -35028,19 +35028,25 @@ function stopPropagation(e) {
   e.preventDefault();
 }
 
-var _default = function _default(e) {
+var _default = function _default(options, e) {
   var target = e.target;
   var starVal = target.value.substr(0, target.selectionStart);
   var valArr = starVal.split('\n');
   var currentLineStr = valArr[valArr.length - 1];
   var textArea = new _commands.TextAreaTextApi(target);
+
+  if (!options.tabSize) {
+    options.tabSize = 2;
+  }
   /**
    * `9` - `Tab`
    */
 
+
   if (e.keyCode === 9) {
     stopPropagation(e);
-    var val = '  ';
+    var space = new Array(options.tabSize + 1).join(' ');
+    var val = space;
 
     if (target.selectionStart !== target.selectionEnd) {
       var _star = target.value.substring(0, target.selectionStart).split('\n');
@@ -35062,11 +35068,11 @@ var _default = function _default(e) {
         start: target.value.indexOf(modifiedText),
         end: target.selectionEnd
       });
-      var modifiedTextObj = (0, _list.insertBeforeEachLine)(modifiedText, '  ');
+      var modifiedTextObj = (0, _list.insertBeforeEachLine)(modifiedText, space);
       textArea.replaceSelection(modifiedTextObj.modifiedText);
       textArea.setSelectionRange({
-        start: newStarNum + 2,
-        end: newStarNum + oldSelectText.length + modifiedTextLine.length * 2
+        start: newStarNum + options.tabSize,
+        end: newStarNum + oldSelectText.length + modifiedTextLine.length * options.tabSize
       });
     } else {
       return (0, _InsertTextAtPosition.default)(target, val);
@@ -35081,7 +35087,7 @@ var _default = function _default(e) {
 };
 
 exports.default = _default;
-},{"../../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js","../../commands":"../lib/esm/commands/index.js","../../commands/list":"../lib/esm/commands/list.js"}],"../lib/esm/components/TextArea/index.css":[function(require,module,exports) {
+},{"../../utils/InsertTextAtPosition":"../lib/esm/utils/InsertTextAtPosition.js","../../commands":"../lib/esm/commands/index.js","../../commands/list":"../lib/esm/commands/list.js"}],"../lib/esm/components/TextArea/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35130,7 +35136,7 @@ require("prismjs/components/prism-python");
 
 var _hotkeys = _interopRequireDefault(require("./hotkeys"));
 
-require("./index.css");
+require("./index.less");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -35248,8 +35254,9 @@ function (_Component) {
           prefixCls = _this$props.prefixCls,
           className = _this$props.className,
           onChange = _this$props.onChange,
+          tabSize = _this$props.tabSize,
           style = _this$props.style,
-          otherProps = (0, _objectWithoutProperties2.default)(_this$props, ["prefixCls", "className", "onChange", "style"]);
+          otherProps = (0, _objectWithoutProperties2.default)(_this$props, ["prefixCls", "className", "onChange", "tabSize", "style"]);
       return _react.default.createElement("div", {
         className: (0, _classnames.default)("".concat(prefixCls, "-aree"), className)
       }, _react.default.createElement("div", {
@@ -35259,7 +35266,9 @@ function (_Component) {
         className: (0, _classnames.default)("".concat(prefixCls, "-text-pre"), 'wmde-markdown-color')
       }), _react.default.createElement("textarea", (0, _extends2.default)({}, otherProps, {
         ref: this.text,
-        onKeyDown: _hotkeys.default.bind(this),
+        onKeyDown: _hotkeys.default.bind(this, {
+          tabSize: tabSize
+        }),
         className: "".concat(prefixCls, "-text-input"),
         value: this.state.value,
         onChange: this.handleChange.bind(this)
@@ -35271,11 +35280,12 @@ function (_Component) {
 
 exports.default = TextArea;
 TextArea.defaultProps = {
+  tabSize: 2,
   autoFocus: true,
   spellCheck: false
 };
 TextArea.state = void 0;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/esm/asyncToGenerator":"../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-markdown.js":"../node_modules/prismjs/components/prism-markdown.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-python":"../node_modules/prismjs/components/prism-python.js","./hotkeys":"../lib/esm/components/TextArea/hotkeys.js","./index.css":"../lib/esm/components/TextArea/index.css"}],"../node_modules/@babel/runtime/helpers/esm/objectSpread.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/esm/asyncToGenerator":"../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-markdown.js":"../node_modules/prismjs/components/prism-markdown.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-python":"../node_modules/prismjs/components/prism-python.js","./hotkeys":"../lib/esm/components/TextArea/hotkeys.js","./index.less":"../lib/esm/components/TextArea/index.less"}],"../node_modules/@babel/runtime/helpers/esm/objectSpread.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35305,7 +35315,7 @@ function _objectSpread(target) {
 
   return target;
 }
-},{"./defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js"}],"../lib/esm/components/Toolbar/index.css":[function(require,module,exports) {
+},{"./defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js"}],"../lib/esm/components/Toolbar/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35336,7 +35346,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-require("./index.css");
+require("./index.less");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -35412,7 +35422,7 @@ exports.default = Toolbar;
 Toolbar.defaultProps = {
   commands: []
 };
-},{"@babel/runtime/helpers/esm/objectSpread":"../node_modules/@babel/runtime/helpers/esm/objectSpread.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./index.css":"../lib/esm/components/Toolbar/index.css"}],"../lib/esm/components/DragBar/index.css":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/objectSpread":"../node_modules/@babel/runtime/helpers/esm/objectSpread.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./index.less":"../lib/esm/components/Toolbar/index.less"}],"../lib/esm/components/DragBar/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -35437,7 +35447,7 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/inhe
 
 var _react = _interopRequireWildcard(require("react"));
 
-require("./index.css");
+require("./index.less");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -35518,7 +35528,10 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = DragBar;
-},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","./index.css":"../lib/esm/components/DragBar/index.css"}],"../node_modules/prismjs/components/prism-bash.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","./index.less":"../lib/esm/components/DragBar/index.less"}],"../node_modules/prismjs/components/prism-tsx.js":[function(require,module,exports) {
+var typescript = Prism.util.clone(Prism.languages.typescript);
+Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
+},{}],"../node_modules/prismjs/components/prism-bash.js":[function(require,module,exports) {
 (function(Prism) {
 	// $ set | grep '^[A-Z][^[:space:]]*=' | cut -d= -f1 | tr '\n' '|'
 	// + LC_ALL, RANDOM, REPLY, SECONDS.
@@ -45396,6 +45409,8 @@ require("prismjs/components/prism-clike");
 
 require("prismjs/components/prism-jsx");
 
+require("prismjs/components/prism-tsx");
+
 require("prismjs/components/prism-markup");
 
 require("prismjs/components/prism-bash");
@@ -45505,17 +45520,17 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = MarkdownPreview;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-bash":"../node_modules/prismjs/components/prism-bash.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./Code":"../lib/esm/components/Markdown/Code.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/index.css":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-tsx":"../node_modules/prismjs/components/prism-tsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-bash":"../node_modules/prismjs/components/prism-bash.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./Code":"../lib/esm/components/Markdown/Code.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdowncolor.css":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdowncolor.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdown.css":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../lib/esm/markdown.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -45558,11 +45573,11 @@ var _Markdown = _interopRequireDefault(require("./components/Markdown"));
 
 var _commands = require("./commands");
 
-require("./index.css");
+require("./index.less");
 
-require("./markdowncolor.css");
+require("./markdowncolor.less");
 
-require("./markdown.css");
+require("./markdown.less");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45661,11 +45676,13 @@ function (_React$PureComponent) {
           preview = _this$props.preview,
           fullscreen = _this$props.fullscreen,
           previewOptions = _this$props.previewOptions,
+          textareaProps = _this$props.textareaProps,
           maxHeight = _this$props.maxHeight,
           minHeight = _this$props.minHeight,
           autoFocus = _this$props.autoFocus,
+          tabSize = _this$props.tabSize,
           onChange = _this$props.onChange,
-          other = (0, _objectWithoutProperties2.default)(_this$props, ["prefixCls", "className", "value", "commands", "height", "visiableDragbar", "preview", "fullscreen", "previewOptions", "maxHeight", "minHeight", "autoFocus", "onChange"]);
+          other = (0, _objectWithoutProperties2.default)(_this$props, ["prefixCls", "className", "value", "commands", "height", "visiableDragbar", "preview", "fullscreen", "previewOptions", "textareaProps", "maxHeight", "minHeight", "autoFocus", "tabSize", "onChange"]);
       var cls = (0, _classnames2.default)(className, prefixCls, (_classnames = {}, (0, _defineProperty2.default)(_classnames, "".concat(prefixCls, "-show-").concat(this.state.preview), this.state.preview), (0, _defineProperty2.default)(_classnames, "".concat(prefixCls, "-fullscreen"), this.state.fullscreen), _classnames));
       return _react.default.createElement("div", (0, _extends2.default)({
         className: cls,
@@ -45685,14 +45702,16 @@ function (_React$PureComponent) {
         style: {
           height: this.state.fullscreen ? 'calc(100% - 29px)' : this.state.height - 29
         }
-      }, _react.default.createElement(_TextArea.default, {
+      }, _react.default.createElement(_TextArea.default, (0, _extends2.default)({
         ref: this.textarea,
+        tabSize: tabSize,
         className: "".concat(prefixCls, "-input"),
         prefixCls: prefixCls,
         value: this.state.value,
-        autoFocus: autoFocus,
+        autoFocus: autoFocus
+      }, textareaProps, {
         onChange: this.handleChange.bind(this)
-      }), _react.default.createElement(_Markdown.default, (0, _extends2.default)({}, previewOptions, {
+      })), _react.default.createElement(_Markdown.default, (0, _extends2.default)({}, previewOptions, {
         ref: this.preview,
         className: "".concat(prefixCls, "-preview")
       })), visiableDragbar && !this.state.fullscreen && _react.default.createElement(_DragBar.default, {
@@ -45720,12 +45739,13 @@ MDEditor.defaultProps = {
   height: 200,
   minHeight: 100,
   maxHeight: 1200,
+  tabSize: 2,
   visiableDragbar: true,
   preview: 'live',
   fullscreen: false,
   commands: (0, _commands.getCommands)()
 };
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./components/TextArea":"../lib/esm/components/TextArea/index.js","./components/Toolbar":"../lib/esm/components/Toolbar/index.js","./components/DragBar":"../lib/esm/components/DragBar/index.js","./components/Markdown":"../lib/esm/components/Markdown/index.js","./commands":"../lib/esm/commands/index.js","./index.css":"../lib/esm/index.css","./markdowncolor.css":"../lib/esm/markdowncolor.css","./markdown.css":"../lib/esm/markdown.css"}],"../lib/esm/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/defineProperty":"../node_modules/@babel/runtime/helpers/esm/defineProperty.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","./components/TextArea":"../lib/esm/components/TextArea/index.js","./components/Toolbar":"../lib/esm/components/Toolbar/index.js","./components/DragBar":"../lib/esm/components/DragBar/index.js","./components/Markdown":"../lib/esm/components/Markdown/index.js","./commands":"../lib/esm/commands/index.js","./index.less":"../lib/esm/index.less","./markdowncolor.less":"../lib/esm/markdowncolor.less","./markdown.less":"../lib/esm/markdown.less"}],"../lib/esm/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45752,7 +45772,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 _MDEditor.MDEditor.Markdown = _Markdown.default;
 var _default = _MDEditor.MDEditor;
 exports.default = _default;
-},{"./MDEditor":"../lib/esm/MDEditor.js","./commands":"../lib/esm/commands/index.js","./utils/markdownUtils":"../lib/esm/utils/markdownUtils.js","./components/Markdown":"../lib/esm/components/Markdown/index.js"}],"Logo.tsx":[function(require,module,exports) {
+},{"./MDEditor":"../lib/esm/MDEditor.js","./commands":"../lib/esm/commands/index.js","./utils/markdownUtils":"../lib/esm/utils/markdownUtils.js","./components/Markdown":"../lib/esm/components/Markdown/index.js"}],"../README.md":[function(require,module,exports) {
+module.exports = "<p align=\"center\">\n  <a href=\"https://github.com/uiwjs/react-md-editor\">\n    <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n  </a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/uiwjs/react-md-editor/issues\">\n    <img src=\"https://img.shields.io/github/issues/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/network\">\n    <img src=\"https://img.shields.io/github/forks/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/stargazers\">\n    <img src=\"https://img.shields.io/github/stars/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/releases\">\n    <img src=\"https://img.shields.io/github/release/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://www.npmjs.com/package/@uiw/react-md-editor\">\n    <img src=\"https://img.shields.io/npm/v/@uiw/react-md-editor.svg\">\n  </a>\n</p>\n\n<!--dividing-->\n\nA markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc.\n\n### Featrue\n\n- 📑 Indent line or selected text by pressing tab key, with customizable indentation.\n- ♻️ Based on `textarea` encapsulation, does not depend on any modern code editors.\n- 🚧 Does not depend on the [`uiw`](https://github.com/uiwjs/uiw) component library.\n- 🚘 Automatic list on new lines.\n\n### Quick Start\n\n```bash\nnpm i @uiw/react-md-editor\n```\n\n### Using\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n      <MDEditor.Markdown source={value} />\n    </div>\n  );\n}\n```\n\n- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  \n- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  \n\n### Custom Toolbars\n\n```tsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor, { commands } from '@uiw/react-md-editor';\n\nconst title3: commands.ICommand = {\n  name: 'title3',\n  keyCommand: 'title3',\n  buttonProps: { 'aria-label': 'Insert title3' },\n  icon: (\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 520 520\">\n      <path fill=\"currentColor\" d=\"M15.7083333,468 C7.03242448,468 0,462.030833 0,454.666667 L0,421.333333 C0,413.969167 7.03242448,408 15.7083333,408 L361.291667,408 C369.967576,408 377,413.969167 377,421.333333 L377,454.666667 C377,462.030833 369.967576,468 361.291667,468 L15.7083333,468 Z M21.6666667,366 C9.69989583,366 0,359.831861 0,352.222222 L0,317.777778 C0,310.168139 9.69989583,304 21.6666667,304 L498.333333,304 C510.300104,304 520,310.168139 520,317.777778 L520,352.222222 C520,359.831861 510.300104,366 498.333333,366 L21.6666667,366 Z M136.835938,64 L136.835937,126 L107.25,126 L107.25,251 L40.75,251 L40.75,126 L-5.68434189e-14,126 L-5.68434189e-14,64 L136.835938,64 Z M212,64 L212,251 L161.648438,251 L161.648438,64 L212,64 Z M378,64 L378,126 L343.25,126 L343.25,251 L281.75,251 L281.75,126 L238,126 L238,64 L378,64 Z M449.047619,189.550781 L520,189.550781 L520,251 L405,251 L405,64 L449.047619,64 L449.047619,189.550781 Z\" />\n    </svg>\n  ),\n  execute: (state: commands.TextState, api: commands.TextApi) => {\n    let modifyText = `### ${state.selectedText}\\n`;\n    if (!state.selectedText) {\n      modifyText = `### `;\n    }\n    api.replaceSelection(modifyText);\n  },\n};\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MDEditor\n        value=\"Hello Markdown!\"\n        commands={[\n          commands.bold, commands.hr, commands.italic, commands.divider, commands.codeEdit, commands.codeLive, commands.codePreview, commands.divider,\n          commands.fullscreen, \n          // Custom Toolbars\n          title3,\n        ]}\n      />\n    </div>\n  );\n}\n```\n\n### Preview Markdown\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  return (\n    <div className=\"container\">\n      <MDEditor.Markdown source=\"Hello Markdown!\" />\n    </div>\n  );\n}\n```\n\n### Props\n\n- `value: string`: The Markdown value.\n- `onChange?: (value: string)`: Event handler for the `onChange` event.\n- `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L20-L29), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L111-L112) property. If no commands are specified, the default will be used. Commands are explained in more details below.\n- `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.\n- `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.\n- `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.\n- `height?: number=200`: The height of the editor.\n- `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.\n- `fullscreen?: boolean=false`: Show markdown preview.\n- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.\n- `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.\n- `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.\n- `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.\n\n### Development\n\n```bash\nnpm run watch:types  # Listen create type files.\nnpm run watch:ts     # Listen compile .tsx files.\nnpm run doc:dev      # Preview code example.\n```\n\n### Other\n\nIf you need more features-rich Markdown Editor, you can use [@uiwjs/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)\n\n### License\n\nLicensed under the MIT License."
+},{}],"Logo.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45821,11 +45843,13 @@ var GithubCorner_1 = tslib_1.__importDefault(require("./GithubCorner"));
 
 var __1 = tslib_1.__importStar(require("../"));
 
+var README_md_1 = tslib_1.__importDefault(require("../README.md"));
+
 var Logo_1 = tslib_1.__importDefault(require("./Logo"));
 
 require("./App.less");
 
-var mdStr = "\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n</p>\n\n<p align=\"center\">\n  A markdown editor with preview, implemented with React.js and TypeScript.  \n</p>\n\n## Install\n\n```bash\nnpm i @uiw/react-md-editor\n```\n\n## Using\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n    </div>\n  );\n}\n```\n\n- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  \n- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  \n\n### Props\n\n- `value: string`: The Markdown value.\n- `onChange?: (value: string)`: Event handler for the `onChange` event.\n- `commands?: ICommand[]`: An array of `ICommand`, which, each one, contain a `commands` property. If no commands are specified, the default will be used. Commands are explained in more details below.\n- `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.\n- `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.\n- `height?: number=200`: The height of the editor.\n- `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.\n- `fullscreen?: boolean=false`: Show markdown preview.\n- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.\n- `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.\n- `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.\n\n### Development\n\n```bash\nnpm run watch:types  # Listen create type files.\nnpm run watch:ts     # Listen compile .tsx files.\nnpm run doc:dev      # Preview code example.\n```\n\n## License\n\nLicensed under the MIT License.\n\n*\u659C\u4F53\u6587\u672C*    _\u659C\u4F53\u6587\u672C_  \n**\u7C97\u4F53\u6587\u672C**    __\u7C97\u4F53\u6587\u672C__  \n***\u7C97\u659C\u4F53\u6587\u672C***    ___\u7C97\u659C\u4F53\u6587\u672C___  \n\n# Markdown Editor for React\n## Title Name\n### Title Name\n#### Title Name\n##### Title Name\n###### Title Name\n\n<p align=\"center\">\n  <style>\n  body {\n    padding: 100px;\n  }\n  </style>\n  A markdown editor with <b>preview</b>, implemented with React.js and TypeScript.  \n</p>\n\n\n\n```javascript\n$(document).ready(function () {\n  alert('hello world');\n});\n```\n\n\n```javascript\nimport * as React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  const [selectedTab, setSelectedTab] = React.useState(\"write\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n    </div>\n  );\n}\n```\n\n```python\ndef g(x):\n    yield from range(x, 0, -1)\n    yield from range(x)\n```\n\n    def g(x):\n        yield from range(x, 0, -1)\n        yield from range(x)\n\n\u6587\u5B57\u94FE\u63A5 [\u94FE\u63A5\u540D\u79F0](http://\u94FE\u63A5\u7F51\u5740)\n\u7F51\u5740\u94FE\u63A5 <http://\u94FE\u63A5\u7F51\u5740>\n\n\u5728\u5F53\u524D\u884C\u7684\u7ED3\u5C3E\u52A0 2 \u4E2A\u7A7A\u683C  \n\n- [x] \u6211\u7684\u4EFB\u52A1\n- [x] \u6211\u7684\u4EFB\u52A1\n\n1. ssss\n2. 3333\n\n---\n\n| Header | Header |\n| --- | --- |\n| Content | Content |\n\n\u8FD9\u4E2A\u94FE\u63A5\u7528 1 \u4F5C\u4E3A\u7F51\u5740\u53D8\u91CF [Google][1].\n\u8FD9\u4E2A\u94FE\u63A5\u7528 yahoo \u4F5C\u4E3A\u7F51\u5740\u53D8\u91CF [Yahoo!][yahoo].\n\u7136\u540E\u5728\u6587\u6863\u7684\u7ED3\u5C3E\u4E3A\u53D8\u91CF\u8D4B\u503C\uFF08\u7F51\u5740\uFF09\n\n  [1]: http://www.google.com/\n  [yahoo]: http://www.yahoo.com/\n";
+var mdStr = "<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n</p>\n".concat(README_md_1.default.replace(/([\s\S]*)<!--dividing-->/, ''), "\n");
 
 function App() {
   var _react_1$default$useS = react_1.default.useState({
@@ -45856,6 +45880,7 @@ function App() {
   }), react_1.default.createElement(__1.default, {
     value: state.value,
     height: 400,
+    tabSize: 6,
     visiableDragbar: state.visiableDragbar,
     preview: state.preview,
     onChange: function onChange(newValue) {
@@ -45868,25 +45893,27 @@ function App() {
   }, react_1.default.createElement("label", null, react_1.default.createElement("input", {
     type: "checkbox",
     checked: state.visiableDragbar,
-    onChange: upDataVisiable.bind(this, 'visiableDragbar')
+    onChange: function onChange(e) {
+      return upDataVisiable('visiableDragbar', e);
+    }
   }), state.visiableDragbar ? 'Show' : 'Hidden', " Drag Bar"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
     type: "radio",
     name: "preview",
     value: "edit",
     checked: state.preview === 'edit',
-    onChange: upPreview.bind(this)
+    onChange: upPreview
   }), "Edit"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
     type: "radio",
     name: "preview",
     value: "live",
     checked: state.preview === 'live',
-    onChange: upPreview.bind(this)
+    onChange: upPreview
   }), "Live Preview"), react_1.default.createElement("label", null, react_1.default.createElement("input", {
     type: "radio",
     name: "preview",
     value: "preview",
     checked: state.preview === 'preview',
-    onChange: upPreview.bind(this)
+    onChange: upPreview
   }), "Preview")), react_1.default.createElement("div", {
     className: "page-title"
   }, "Custom toolbar"), react_1.default.createElement(__1.default, {
@@ -45898,7 +45925,7 @@ function App() {
 }
 
 exports.default = App;
-},{"tslib":"../node_modules/tslib/tslib.es6.js","react":"../node_modules/react/index.js","./GithubCorner":"GithubCorner.tsx","../":"../lib/esm/index.js","./Logo":"Logo.tsx","./App.less":"App.less"}],"index.tsx":[function(require,module,exports) {
+},{"tslib":"../node_modules/tslib/tslib.es6.js","react":"../node_modules/react/index.js","./GithubCorner":"GithubCorner.tsx","../":"../lib/esm/index.js","../README.md":"../README.md","./Logo":"Logo.tsx","./App.less":"App.less"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45942,7 +45969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64216" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49657" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
