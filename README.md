@@ -24,8 +24,7 @@
   </a>
 </p>
 
-A markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc. If you need more features-rich Markdown Editor, you can use [@uiwjs/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)
-
+A markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc.
 
 ### Featrue
 
@@ -145,6 +144,10 @@ npm run watch:types  # Listen create type files.
 npm run watch:ts     # Listen compile .tsx files.
 npm run doc:dev      # Preview code example.
 ```
+
+### Other
+
+If you need more features-rich Markdown Editor, you can use [@uiwjs/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)
 
 ### License
 
