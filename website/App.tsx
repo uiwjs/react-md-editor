@@ -11,11 +11,6 @@ const mdStr = `
   <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
 </p>
 
-\`\`\`javascript
-// Preview Markdown!
-<MDEditor.Markdown source="Preview Markdown!" />
-\`\`\`
-
 <p align="center">
   A markdown editor with preview, implemented with React.js and TypeScript.  
 </p>
