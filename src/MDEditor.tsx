@@ -47,7 +47,14 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Minimum drag height. `visiableDragbar=true`
    */
   minHeight?: number;
+  /**
+   * This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.
+   */
   previewOptions?: ReactMarkdownProps;
+  /**
+   * Set the `textarea` related props.
+   */
+  textareaProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
   /**
    * The number of characters to insert when pressing tab key.
    * Default `2` spaces.
@@ -126,7 +133,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
     this.commandOrchestrator.executeCommand(command);
   }
   public render() {
-    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, maxHeight, minHeight, autoFocus, tabSize, onChange, ...other } = this.props;
+    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, textareaProps, maxHeight, minHeight, autoFocus, tabSize, onChange, ...other } = this.props;
     const cls = classnames(className, prefixCls, {
       [`${prefixCls}-show-${this.state.preview}`]: this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
@@ -152,6 +159,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
             prefixCls={prefixCls}
             value={this.state.value}
             autoFocus={autoFocus}
+            {...textareaProps}
             onChange={this.handleChange.bind(this)}
           />
           <MarkdownPreview

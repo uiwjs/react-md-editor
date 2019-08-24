@@ -129,6 +129,7 @@ export default function App() {
 - `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L20-L29), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L111-L112) property. If no commands are specified, the default will be used. Commands are explained in more details below.
 - `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.
+- `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
 - `height?: number=200`: The height of the editor.
 - `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `fullscreen?: boolean=false`: Show markdown preview.

@@ -10,7 +10,7 @@ import { IProps } from '../../Type';
 import hotkeys, { IHotkeyOptions } from './hotkeys';
 import './index.less';
 
-export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'shouldComponentUpdate'>, IProps {
+export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'>, IProps {
   onChange?: (value?: string) => void;
   tabSize?: number;
 }
