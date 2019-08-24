@@ -24,9 +24,15 @@
   </a>
 </p>
 
-<p align="center">
-  A markdown editor with preview, implemented with React.js and TypeScript.  
-</p>
+A markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc. If you need more features-rich Markdown Editor, you can use [@uiwjs/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)
+
+
+### Featrue
+
+- 📑 Indent line or selected text by pressing tab key, with customizable indentation.
+- ♻️ Based on `textarea` encapsulation, does not depend on any modern code editors.
+- 🚧 Does not depend on the [`uiw`](https://github.com/uiwjs/uiw) component library.
+- 🚘 Automatic list on new lines.
 
 ### Quick Start
 
@@ -130,6 +136,7 @@ export default function App() {
 - `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.
 - `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.
 - `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.
+- `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.
 
 ### Development
 

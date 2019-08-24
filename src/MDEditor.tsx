@@ -43,11 +43,16 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Maximum drag height. `visiableDragbar=true`
    */
   maxHeight?: number;
-  previewOptions?: ReactMarkdownProps;
   /**
    * Minimum drag height. `visiableDragbar=true`
    */
   minHeight?: number;
+  previewOptions?: ReactMarkdownProps;
+  /**
+   * The number of characters to insert when pressing tab key.
+   * Default `2` spaces.
+   */
+  tabSize?: number;
   /**
    * You can create your own commands or reuse existing commands.
    */
@@ -73,6 +78,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
     height: 200,
     minHeight: 100,
     maxHeight: 1200,
+    tabSize: 2,
     visiableDragbar: true,
     preview: 'live',
     fullscreen: false,
@@ -120,7 +126,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
     this.commandOrchestrator.executeCommand(command);
   }
   public render() {
-    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, maxHeight, minHeight, autoFocus, onChange, ...other } = this.props;
+    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, maxHeight, minHeight, autoFocus, tabSize, onChange, ...other } = this.props;
     const cls = classnames(className, prefixCls, {
       [`${prefixCls}-show-${this.state.preview}`]: this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
@@ -141,6 +147,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
         >
           <TextArea
             ref={this.textarea}
+            tabSize={tabSize}
             className={`${prefixCls}-input`}
             prefixCls={prefixCls}
             value={this.state.value}

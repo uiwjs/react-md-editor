@@ -7,11 +7,12 @@ import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-python';
 import { IProps } from '../../Type';
-import hotkeys from './hotkeys';
+import hotkeys, { IHotkeyOptions } from './hotkeys';
 import './index.less';
 
 export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'shouldComponentUpdate'>, IProps {
   onChange?: (value?: string) => void;
+  tabSize?: number;
 }
 
 export interface ITextAreaState {
@@ -22,6 +23,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   public preElm = React.createRef<HTMLPreElement>();
   public text = React.createRef<HTMLTextAreaElement>();
   public static defaultProps: ITextAreaProps = {
+    tabSize: 2,
     autoFocus: true,
     spellCheck: false,
   }
@@ -59,7 +61,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     pre!.innerHTML = html;
   }
   render() {
-    const { prefixCls, className, onChange, style, ...otherProps } = this.props;
+    const { prefixCls, className, onChange, tabSize, style, ...otherProps } = this.props;
     return (
       <div className={classnames(`${prefixCls}-aree`, className)}>
         <div className={classnames(`${prefixCls}-text`)}>
@@ -70,7 +72,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
           <textarea
             {...otherProps}
             ref={this.text}
-            onKeyDown={hotkeys.bind(this)}
+            onKeyDown={hotkeys.bind(this, { tabSize } as IHotkeyOptions)}
             className={`${prefixCls}-text-input`}
             value={this.state.value}
             onChange={this.handleChange.bind(this)}

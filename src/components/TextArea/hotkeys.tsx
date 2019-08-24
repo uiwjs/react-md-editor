@@ -3,6 +3,10 @@ import { TextAreaTextApi } from '../../commands';
 import { insertBeforeEachLine } from '../../commands/list';
 
 
+export interface IHotkeyOptions {
+  tabSize?: number;
+}
+
 /**
  * - `13` - `Enter`
  * - `9` - `Tab`
@@ -12,18 +16,22 @@ function stopPropagation(e: React.KeyboardEvent<HTMLTextAreaElement>) {
   e.preventDefault();
 }
 
-export default (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElement>) => {
   const target = e.target as HTMLTextAreaElement;
   const starVal = target.value.substr(0, target.selectionStart);
   const valArr = starVal.split('\n');
   const currentLineStr = valArr[valArr.length - 1];
   const textArea = new TextAreaTextApi(target);
+  if (!options.tabSize) {
+    options.tabSize = 2;
+  }
   /**
    * `9` - `Tab`
    */
   if (e.keyCode === 9) {
     stopPropagation(e);
-    let val = '  ';
+    const space = new Array(options.tabSize + 1).join(' ');
+    let val = space;
     if (target.selectionStart !== target.selectionEnd) {
       const _star = target.value.substring(0, target.selectionStart).split('\n');
       const _end = target.value.substring(0, target.selectionEnd).split('\n');
@@ -42,11 +50,11 @@ export default (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         end: target.selectionEnd,
       });
 
-      const modifiedTextObj = insertBeforeEachLine(modifiedText, '  ');
+      const modifiedTextObj = insertBeforeEachLine(modifiedText, space);
       textArea.replaceSelection(modifiedTextObj.modifiedText);
       textArea.setSelectionRange({
-        start: newStarNum + 2,
-        end: newStarNum + oldSelectText.length + (modifiedTextLine.length * 2),
+        start: newStarNum + options.tabSize,
+        end: newStarNum + oldSelectText.length + (modifiedTextLine.length * options.tabSize),
       });
     } else {
       return insertText(target, val);

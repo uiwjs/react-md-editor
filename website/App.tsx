@@ -6,8 +6,7 @@ import { MDEditorProps } from '../lib/cjs/MDEditor';
 import Logo from './Logo';
 import './App.less';
 
-const mdStr = `
-<p align="center">
+const mdStr = `<p align="center">
   <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
 </p>
 
@@ -175,6 +174,7 @@ export default function App() {
       <MDEditor
         value={state.value}
         height={400}
+        tabSize={6}
         visiableDragbar={state.visiableDragbar}
         preview={state.preview as MDEditorProps['preview']}
         onChange={(newValue) => {
