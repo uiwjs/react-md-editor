@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/katex": "^0.10.1",
     "@types/prismjs": "^1.16.0",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
@@ -50,6 +51,7 @@
     "babel-plugin-transform-rename-import": "^2.3.0",
     "compile-less-cli": "^1.1.5",
     "gh-pages": "^2.1.1",
+    "katex": "^0.11.0",
     "less": "^3.9.0",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-markdown-string": "^1.4.0",

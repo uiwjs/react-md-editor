@@ -123,6 +123,59 @@ export default function App() {
 }
 ```
 
+### Support Custom KaTeX Preview
+
+KaTeX is a fast, easy-to-use JavaScript library for TeX math rendering on the web, We perform math rendering through [`KaTeX`](https://github.com/KaTeX/KaTeX).
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import MEDitor from '@uiw/react-md-editor';
+import katex from 'katex';
+import 'katex/dist/katex.css';
+
+
+const mdKaTeX = `This is to display the 
+\`\$\$\c = \\pm\\sqrt{a^2 + b^2}\$\$\`
+ in one line
+
+\`\`\`KaTeX
+c = \\pm\\sqrt{a^2 + b^2}
+\`\`\`
+`;
+
+const renderers = {
+  inlineCode: ({ children }) => {
+    if (/^\$\$(.*)\$\$/.test(children)) {
+      const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
+        throwOnError: false,
+      });
+      return <code dangerouslySetInnerHTML={{ __html: html }} />
+    }
+    return children;
+  },
+  code: ({ children, language, value }) => {
+    if (language.toLocaleLowerCase() === 'katex') {
+      const html = katex.renderToString(value, {
+        throwOnError: false
+      });
+      return (
+        <pre>
+          <code dangerouslySetInnerHTML={{ __html: html }} />
+        </pre>
+      );
+    }
+    return children;
+  }
+}
+
+export default function App() {
+  return (
+    <MDEditor value={mdKaTeX} previewOptions={{ renderers: renderers }} />
+  );
+}
+```
+
 ### Props
 
 - `value: string`: The Markdown value.

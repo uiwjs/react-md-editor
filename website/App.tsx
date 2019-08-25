@@ -1,4 +1,6 @@
 import React from 'react';
+import katex from 'katex';
+import 'katex/dist/katex.css';
 import GithubCorner from './GithubCorner';
 import MDEditor, { commands } from '../';
 import ReadmeStr from '../README.md';
@@ -11,6 +13,16 @@ const mdStr = `<p align="center">
   <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
 </p>
 ${ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')}
+`;
+
+
+const mdKaTeX = `This is to display the 
+\`\$\$\c = \\pm\\sqrt{a^2 + b^2}\$\$\`
+ in one line
+
+\`\`\`KaTeX
+c = \\pm\\sqrt{a^2 + b^2}
+\`\`\`
 `;
 
 export default function App() {
@@ -34,7 +46,6 @@ export default function App() {
       <MDEditor
         value={state.value}
         height={400}
-        tabSize={6}
         visiableDragbar={state.visiableDragbar}
         preview={state.preview as MDEditorProps['preview']}
         onChange={(newValue) => {
@@ -68,6 +79,37 @@ export default function App() {
           commands.fullscreen, 
         ]}
       />
+      <div className="page-title">Support Custom KaTeX Preview</div>
+      <MDEditor
+        value={mdKaTeX}
+        previewOptions={{
+          renderers: {
+            inlineCode: ({ children }) => {
+              if (/^\$\$(.*)\$\$/.test(children)) {
+                const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
+                  throwOnError: false,
+                });
+                return <code dangerouslySetInnerHTML={{ __html: html }} />
+              }
+              return children;
+            },
+            code: ({ children, language, value }) => {
+              if (language.toLocaleLowerCase() === 'katex') {
+                const html = katex.renderToString(value, {
+                  throwOnError: false
+                });
+                return (
+                  <pre>
+                    <code dangerouslySetInnerHTML={{ __html: html }} />
+                  </pre>
+                );
+              }
+              return children;
+            }
+          }
+        }}
+      />
+      <div className="page-title">This Demo1 Preview</div>
       <MDEditor.Markdown source={state.value} />
     </div>
   )
