@@ -109,8 +109,6 @@ export default function App() {
           }
         }}
       />
-      <div className="page-title">This Demo1 Preview</div>
-      <MDEditor.Markdown source={state.value} />
     </div>
   )
 }
