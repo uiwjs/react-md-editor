@@ -44,13 +44,13 @@ npm i @uiw/react-md-editor
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import MEDitor from '@uiw/react-md-editor';
+import MDEditor from '@uiw/react-md-editor';
 
 export default function App() {
   const [value, setValue] = React.useState("**Hello world!!!**");
   return (
     <div className="container">
-      <MEDitor
+      <MDEditor
         value={value}
         onChange={setValue}
       />
@@ -69,7 +69,7 @@ export default function App() {
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import MEDitor, { commands } from '@uiw/react-md-editor';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 
 const title3: commands.ICommand = {
   name: 'title3',
@@ -112,7 +112,7 @@ export default function App() {
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import MEDitor from '@uiw/react-md-editor';
+import MDEditor from '@uiw/react-md-editor';
 
 export default function App() {
   return (
@@ -127,10 +127,16 @@ export default function App() {
 
 KaTeX is a fast, easy-to-use JavaScript library for TeX math rendering on the web, We perform math rendering through [`KaTeX`](https://github.com/KaTeX/KaTeX).
 
+The following example is preview in [CodeSandbox](https://codesandbox.io/s/markdown-editor-katex-for-react-7v3vl).
+
+```bash
+npm install katex
+```
+
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import MEDitor from '@uiw/react-md-editor';
+import MDEditor from '@uiw/react-md-editor';
 import katex from 'katex';
 import 'katex/dist/katex.css';
 
