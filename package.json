@@ -20,9 +20,8 @@
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
     "deploy": "gh-pages -d doc",
-    "doc": "npm run doc:build",
-    "doc:dev": "NODE_ENV=development parcel website/index.html --out-dir doc --no-cache",
-    "doc:build": "NODE_ENV=production parcel build website/index.html --out-dir doc --public-url ./ --no-cache --no-source-maps"
+    "doc": "kkt build",
+    "doc:dev": "kkt start"
   },
   "repository": {
     "type": "git",
@@ -41,6 +40,7 @@
     "react-dom": ">=16.7.0"
   },
   "devDependencies": {
+    "@kkt/plugin-less": "^1.2.0",
     "@types/classnames": "^2.2.7",
     "@types/katex": "^0.10.1",
     "@types/prismjs": "^1.16.0",
@@ -52,9 +52,9 @@
     "compile-less-cli": "^1.1.5",
     "gh-pages": "^2.1.1",
     "katex": "^0.11.0",
+    "kkt": "^4.2.0",
     "less": "^3.9.0",
-    "parcel-bundler": "^1.12.3",
-    "parcel-plugin-markdown-string": "^1.4.0",
+    "raw-loader": "^3.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",

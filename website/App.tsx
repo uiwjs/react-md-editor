@@ -23,6 +23,12 @@ const mdKaTeX = `This is to display the
 \`\`\`KaTeX
 c = \\pm\\sqrt{a^2 + b^2}
 \`\`\`
+
+\`\`\`KaTeX
+f(x) = \int_{-\infty}^\infty
+    \hat f(\\xi)\,e^{2 \pi i \\xi x}
+    \,d\\xi
+\`\`\`
 `;
 
 export default function App() {
