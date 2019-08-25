@@ -1047,6 +1047,7 @@ a.github:hover .octo-arm {
 
 .w-md-editor-aree {
   overflow: auto;
+  border-radius: 5px;
 }
 .w-md-editor-text {
   min-height: 100%;
@@ -1257,7 +1258,6 @@ a.github:hover .octo-arm {
 .w-md-editor-show-preview .w-md-editor-input {
   width: 0%;
   overflow: hidden;
-  border-radius: 5px;
 }
 .w-md-editor-show-preview .w-md-editor-preview {
   width: 100%;
@@ -1537,7 +1537,7 @@ html {
   text-align: center;
 }
 .warpper .doc-tools {
-  padding: 30px 0 30px 0;
+  padding: 30px 0 0 0;
   font-size: 12px;
 }
 .warpper .doc-tools label {

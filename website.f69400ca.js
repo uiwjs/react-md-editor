@@ -52958,205 +52958,6 @@ exports.default = DragBar;
 },{"@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","./index.less":"../lib/esm/components/DragBar/index.less"}],"../node_modules/prismjs/components/prism-tsx.js":[function(require,module,exports) {
 var typescript = Prism.util.clone(Prism.languages.typescript);
 Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
-},{}],"../node_modules/prismjs/components/prism-bash.js":[function(require,module,exports) {
-(function(Prism) {
-	// $ set | grep '^[A-Z][^[:space:]]*=' | cut -d= -f1 | tr '\n' '|'
-	// + LC_ALL, RANDOM, REPLY, SECONDS.
-	// + make sure PS1..4 are here as they are not always set,
-	// - some useless things.
-	var envVars = '\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BASH_COMPLETION_COMPAT_DIR|BASH_LINENO|BASH_REMATCH|BASH_SOURCE|BASH_VERSINFO|BASH_VERSION|COLORTERM|COLUMNS|COMP_WORDBREAKS|DBUS_SESSION_BUS_ADDRESS|DEFAULTS_PATH|DESKTOP_SESSION|DIRSTACK|DISPLAY|EUID|GDMSESSION|GDM_LANG|GNOME_KEYRING_CONTROL|GNOME_KEYRING_PID|GPG_AGENT_INFO|GROUPS|HISTCONTROL|HISTFILE|HISTFILESIZE|HISTSIZE|HOME|HOSTNAME|HOSTTYPE|IFS|INSTANCE|JOB|LANG|LANGUAGE|LC_ADDRESS|LC_ALL|LC_IDENTIFICATION|LC_MEASUREMENT|LC_MONETARY|LC_NAME|LC_NUMERIC|LC_PAPER|LC_TELEPHONE|LC_TIME|LESSCLOSE|LESSOPEN|LINES|LOGNAME|LS_COLORS|MACHTYPE|MAILCHECK|MANDATORY_PATH|NO_AT_BRIDGE|OLDPWD|OPTERR|OPTIND|ORBIT_SOCKETDIR|OSTYPE|PAPERSIZE|PATH|PIPESTATUS|PPID|PS1|PS2|PS3|PS4|PWD|RANDOM|REPLY|SECONDS|SELINUX_INIT|SESSION|SESSIONTYPE|SESSION_MANAGER|SHELL|SHELLOPTS|SHLVL|SSH_AUTH_SOCK|TERM|UID|UPSTART_EVENTS|UPSTART_INSTANCE|UPSTART_JOB|UPSTART_SESSION|USER|WINDOWID|XAUTHORITY|XDG_CONFIG_DIRS|XDG_CURRENT_DESKTOP|XDG_DATA_DIRS|XDG_GREETER_DATA_DIR|XDG_MENU_PREFIX|XDG_RUNTIME_DIR|XDG_SEAT|XDG_SEAT_PATH|XDG_SESSION_DESKTOP|XDG_SESSION_ID|XDG_SESSION_PATH|XDG_SESSION_TYPE|XDG_VTNR|XMODIFIERS)\\b';
-	var insideString = {
-		'environment': {
-			pattern: RegExp("\\$" + envVars),
-			alias: 'constant'
-		},
-		'variable': [
-			// [0]: Arithmetic Environment
-			{
-				pattern: /\$?\(\([\s\S]+?\)\)/,
-				greedy: true,
-				inside: {
-					// If there is a $ sign at the beginning highlight $(( and )) as variable
-					'variable': [
-						{
-							pattern: /(^\$\(\([\s\S]+)\)\)/,
-							lookbehind: true
-						},
-						/^\$\(\(/
-					],
-					'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
-					// Operators according to https://www.gnu.org/software/bash/manual/bashref.html#Shell-Arithmetic
-					'operator': /--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,
-					// If there is no $ sign at the beginning highlight (( and )) as punctuation
-					'punctuation': /\(\(?|\)\)?|,|;/
-				}
-			},
-			// [1]: Command Substitution
-			{
-				pattern: /\$\((?:\([^)]+\)|[^()])+\)|`[^`]+`/,
-				greedy: true,
-				inside: {
-					'variable': /^\$\(|^`|\)$|`$/
-				}
-			},
-			// [2]: Brace expansion
-			{
-				pattern: /\$\{[^}]+\}/,
-				greedy: true,
-				inside: {
-					'operator': /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
-					'punctuation': /[\[\]]/,
-					'environment': {
-						pattern: RegExp("(\\{)" + envVars),
-						lookbehind: true,
-						alias: 'constant'
-					}
-				}
-			},
-			/\$(?:\w+|[#?*!@$])/
-		],
-		// Escape sequences from echo and printf's manuals, and escaped quotes.
-		'entity': /\\(?:[abceEfnrtv\\"]|O?[0-7]{1,3}|x[0-9a-fA-F]{1,2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})/
-	};
-
-	Prism.languages.bash = {
-		'shebang': {
-			pattern: /^#!\s*\/.*/,
-			alias: 'important'
-		},
-		'comment': {
-			pattern: /(^|[^"{\\$])#.*/,
-			lookbehind: true
-		},
-		'function-name': [
-			// a) function foo {
-			// b) foo() {
-			// c) function foo() {
-			// but not “foo {”
-			{
-				// a) and c)
-				pattern: /(\bfunction\s+)\w+(?=(?:\s*\(?:\s*\))?\s*\{)/,
-				lookbehind: true,
-				alias: 'function'
-			},
-			{
-				// b)
-				pattern: /\b\w+(?=\s*\(\s*\)\s*\{)/,
-				alias: 'function'
-			}
-		],
-		// Highlight variable names as variables in for and select beginnings.
-		'for-or-select': {
-			pattern: /(\b(?:for|select)\s+)\w+(?=\s+in\s)/,
-			alias: 'variable',
-			lookbehind: true
-		},
-		// Highlight variable names as variables in the left-hand part
-		// of assignments (“=” and “+=”).
-		'assign-left': {
-			pattern: /(^|[\s;|&]|[<>]\()\w+(?=\+?=)/,
-			inside: {
-				'environment': {
-					pattern: RegExp("(^|[\\s;|&]|[<>]\\()" + envVars),
-					lookbehind: true,
-					alias: 'constant'
-				}
-			},
-			alias: 'variable',
-			lookbehind: true
-		},
-		'string': [
-			// Support for Here-documents https://en.wikipedia.org/wiki/Here_document
-			{
-				pattern: /((?:^|[^<])<<-?\s*)(\w+?)\s*(?:\r?\n|\r)(?:[\s\S])*?(?:\r?\n|\r)\2/,
-				lookbehind: true,
-				greedy: true,
-				inside: insideString
-			},
-			// Here-document with quotes around the tag
-			// → No expansion (so no “inside”).
-			{
-				pattern: /((?:^|[^<])<<-?\s*)(["'])(\w+)\2\s*(?:\r?\n|\r)(?:[\s\S])*?(?:\r?\n|\r)\3/,
-				lookbehind: true,
-				greedy: true
-			},
-			// “Normal” string
-			{
-				pattern: /(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\1)[^\\])*\1/,
-				greedy: true,
-				inside: insideString
-			}
-		],
-		'environment': {
-			pattern: RegExp("\\$?" + envVars),
-			alias: 'constant'
-		},
-		'variable': insideString.variable,
-		'function': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:add|apropos|apt|aptitude|apt-cache|apt-get|aspell|automysqlbackup|awk|basename|bash|bc|bconsole|bg|bzip2|cal|cat|cfdisk|chgrp|chkconfig|chmod|chown|chroot|cksum|clear|cmp|column|comm|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|debootstrap|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|env|ethtool|expand|expect|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|git|gparted|grep|groupadd|groupdel|groupmod|groups|grub-mkconfig|gzip|halt|head|hg|history|host|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|ip|jobs|join|kill|killall|less|link|ln|locate|logname|logrotate|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|lynx|make|man|mc|mdadm|mkconfig|mkdir|mke2fs|mkfifo|mkfs|mkisofs|mknod|mkswap|mmv|more|most|mount|mtools|mtr|mutt|mv|nano|nc|netstat|nice|nl|nohup|notify-send|npm|nslookup|op|open|parted|passwd|paste|pathchk|ping|pkill|pnpm|popd|pr|printcap|printenv|ps|pushd|pv|quota|quotacheck|quotactl|ram|rar|rcp|reboot|remsync|rename|renice|rev|rm|rmdir|rpm|rsync|scp|screen|sdiff|sed|sendmail|seq|service|sftp|sh|shellcheck|shuf|shutdown|sleep|slocate|sort|split|ssh|stat|strace|su|sudo|sum|suspend|swapon|sync|tac|tail|tar|tee|time|timeout|top|touch|tr|traceroute|tsort|tty|umount|uname|unexpand|uniq|units|unrar|unshar|unzip|update-grub|uptime|useradd|userdel|usermod|users|uudecode|uuencode|v|vdir|vi|vim|virsh|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yarn|yes|zenity|zip|zsh|zypper)(?=$|[)\s;|&])/,
-			lookbehind: true
-		},
-		'keyword': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:if|then|else|elif|fi|for|while|in|case|esac|function|select|do|done|until)(?=$|[)\s;|&])/,
-			lookbehind: true
-		},
-		// https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html
-		'builtin': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:\.|:|break|cd|continue|eval|exec|exit|export|getopts|hash|pwd|readonly|return|shift|test|times|trap|umask|unset|alias|bind|builtin|caller|command|declare|echo|enable|help|let|local|logout|mapfile|printf|read|readarray|source|type|typeset|ulimit|unalias|set|shopt)(?=$|[)\s;|&])/,
-			lookbehind: true,
-			// Alias added to make those easier to distinguish from strings.
-			alias: 'class-name'
-		},
-		'boolean': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:true|false)(?=$|[)\s;|&])/,
-			lookbehind: true
-		},
-		'file-descriptor': {
-			pattern: /\B&\d\b/,
-			alias: 'important'
-		},
-		'operator': {
-			// Lots of redirections here, but not just that.
-			pattern: /\d?<>|>\||\+=|==?|!=?|=~|<<[<-]?|[&\d]?>>|\d?[<>]&?|&[>&]?|\|[&|]?|<=?|>=?/,
-			inside: {
-				'file-descriptor': {
-					pattern: /^\d/,
-					alias: 'important'
-				}
-			}
-		},
-		'punctuation': /\$?\(\(?|\)\)?|\.\.|[{}[\];\\]/,
-		'number': {
-			pattern: /(^|\s)(?:[1-9]\d*|0)(?:[.,]\d+)?\b/,
-			lookbehind: true
-		}
-	};
-
-	/* Patterns in command substitution. */
-	var toBeCopied = [
-		'comment',
-		'function-name',
-		'for-or-select',
-		'assign-left',
-		'string',
-		'environment',
-		'function',
-		'keyword',
-		'builtin',
-		'boolean',
-		'file-descriptor',
-		'operator',
-		'punctuation',
-		'number'
-	];
-	var inside = insideString.variable[1].inside;
-	for(var i = 0; i < toBeCopied.length; i++) {
-		inside[toBeCopied[i]] = Prism.languages.bash[toBeCopied[i]];
-	}
-
-	Prism.languages.shell = Prism.languages.bash;
-})(Prism);
-
 },{}],"../node_modules/xtend/immutable.js":[function(require,module,exports) {
 module.exports = extend;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -62790,6 +62591,10 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/exten
 
 var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutProperties"));
 
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/asyncToGenerator"));
+
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/createClass"));
@@ -62806,15 +62611,11 @@ var _classnames = _interopRequireDefault(require("classnames"));
 
 var _prismjs = _interopRequireDefault(require("prismjs"));
 
-require("prismjs/components/prism-clike");
+require("prismjs/components/prism-markup");
 
 require("prismjs/components/prism-jsx");
 
 require("prismjs/components/prism-tsx");
-
-require("prismjs/components/prism-markup");
-
-require("prismjs/components/prism-bash");
 
 var _reactMarkdown = _interopRequireDefault(require("react-markdown"));
 
@@ -62863,38 +62664,80 @@ function (_Component) {
     }
   }, {
     key: "highlight",
-    value: function highlight() {
-      var codes = this.mdp.current.getElementsByTagName('code');
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+    value: function () {
+      var _highlight = (0, _asyncToGenerator2.default)(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee() {
+        var codes, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, _value, tag;
 
-      try {
-        for (var _iterator = codes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var _value = _step.value;
-          var tag = _value.parentNode;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                codes = this.mdp.current.getElementsByTagName('code');
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 4;
 
-          if (tag && tag.tagName === 'PRE' && /^language\-/.test(tag.className.trim())) {
-            try {
-              _prismjs.default.highlightElement(_value);
-            } catch (error) {}
+                for (_iterator = codes[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  _value = _step.value;
+                  tag = _value.parentNode;
+
+                  if (tag && tag.tagName === 'PRE' && /^language\-/.test(_value.className.trim())) {
+                    try {
+                      _prismjs.default.highlightElement(_value);
+                    } catch (error) {}
+                  }
+                }
+
+                _context.next = 12;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](4);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
+
+              case 12:
+                _context.prev = 12;
+                _context.prev = 13;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 15:
+                _context.prev = 15;
+
+                if (!_didIteratorError) {
+                  _context.next = 18;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 18:
+                return _context.finish(15);
+
+              case 19:
+                return _context.finish(12);
+
+              case 20:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
+        }, _callee, this, [[4, 8, 12, 20], [13,, 15, 19]]);
+      }));
+
+      function highlight() {
+        return _highlight.apply(this, arguments);
       }
-    }
+
+      return highlight;
+    }()
   }, {
     key: "render",
     value: function render() {
@@ -62919,7 +62762,7 @@ exports.default = MarkdownPreview;
 MarkdownPreview.defaultProps = {
   renderers: {}
 };
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-clike":"../node_modules/prismjs/components/prism-clike.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-tsx":"../node_modules/prismjs/components/prism-tsx.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-bash":"../node_modules/prismjs/components/prism-bash.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/index.less":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutProperties":"../node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js","@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/esm/asyncToGenerator":"../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js","@babel/runtime/helpers/esm/classCallCheck":"../node_modules/@babel/runtime/helpers/esm/classCallCheck.js","@babel/runtime/helpers/esm/createClass":"../node_modules/@babel/runtime/helpers/esm/createClass.js","@babel/runtime/helpers/esm/possibleConstructorReturn":"../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js","@babel/runtime/helpers/esm/getPrototypeOf":"../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js","@babel/runtime/helpers/esm/inherits":"../node_modules/@babel/runtime/helpers/esm/inherits.js","react":"../node_modules/react/index.js","classnames":"../node_modules/classnames/index.js","prismjs":"../node_modules/prismjs/prism.js","prismjs/components/prism-markup":"../node_modules/prismjs/components/prism-markup.js","prismjs/components/prism-jsx":"../node_modules/prismjs/components/prism-jsx.js","prismjs/components/prism-tsx":"../node_modules/prismjs/components/prism-tsx.js","react-markdown":"../node_modules/react-markdown/lib/react-markdown.js","./allowNode":"../lib/esm/components/Markdown/allowNode.js"}],"../lib/esm/index.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -63172,7 +63015,7 @@ _MDEditor.MDEditor.Markdown = _Markdown.default;
 var _default = _MDEditor.MDEditor;
 exports.default = _default;
 },{"./MDEditor":"../lib/esm/MDEditor.js","./commands":"../lib/esm/commands/index.js","./utils/markdownUtils":"../lib/esm/utils/markdownUtils.js","./components/Markdown":"../lib/esm/components/Markdown/index.js"}],"../README.md":[function(require,module,exports) {
-module.exports = "<p align=\"center\">\n  <a href=\"https://github.com/uiwjs/react-md-editor\">\n    <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n  </a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/uiwjs/react-md-editor/issues\">\n    <img src=\"https://img.shields.io/github/issues/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/network\">\n    <img src=\"https://img.shields.io/github/forks/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/stargazers\">\n    <img src=\"https://img.shields.io/github/stars/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/releases\">\n    <img src=\"https://img.shields.io/github/release/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://www.npmjs.com/package/@uiw/react-md-editor\">\n    <img src=\"https://img.shields.io/npm/v/@uiw/react-md-editor.svg\">\n  </a>\n</p>\n\n<!--dividing-->\n\nA simple markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc.\n\n### Featrue\n\n- 📑 Indent line or selected text by pressing tab key, with customizable indentation.\n- ♻️ Based on `textarea` encapsulation, does not depend on any modern code editors.\n- 🚧 Does not depend on the [`uiw`](https://github.com/uiwjs/uiw) component library.\n- 🚘 Automatic list on new lines.\n\n### Quick Start\n\n```bash\nnpm i @uiw/react-md-editor\n```\n\n### Using\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MEDitor\n        value={value}\n        onChange={setValue}\n      />\n      <MDEditor.Markdown source={value} />\n    </div>\n  );\n}\n```\n\n- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  \n- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  \n- [Demo preview for Gitee gh-pages](https://uiw.gitee.io/react-md-editor/)  \n\n### Custom Toolbars\n\n```tsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor, { commands } from '@uiw/react-md-editor';\n\nconst title3: commands.ICommand = {\n  name: 'title3',\n  keyCommand: 'title3',\n  buttonProps: { 'aria-label': 'Insert title3' },\n  icon: (\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 520 520\">\n      <path fill=\"currentColor\" d=\"M15.7083333,468 C7.03242448,468 0,462.030833 0,454.666667 L0,421.333333 C0,413.969167 7.03242448,408 15.7083333,408 L361.291667,408 C369.967576,408 377,413.969167 377,421.333333 L377,454.666667 C377,462.030833 369.967576,468 361.291667,468 L15.7083333,468 Z M21.6666667,366 C9.69989583,366 0,359.831861 0,352.222222 L0,317.777778 C0,310.168139 9.69989583,304 21.6666667,304 L498.333333,304 C510.300104,304 520,310.168139 520,317.777778 L520,352.222222 C520,359.831861 510.300104,366 498.333333,366 L21.6666667,366 Z M136.835938,64 L136.835937,126 L107.25,126 L107.25,251 L40.75,251 L40.75,126 L-5.68434189e-14,126 L-5.68434189e-14,64 L136.835938,64 Z M212,64 L212,251 L161.648438,251 L161.648438,64 L212,64 Z M378,64 L378,126 L343.25,126 L343.25,251 L281.75,251 L281.75,126 L238,126 L238,64 L378,64 Z M449.047619,189.550781 L520,189.550781 L520,251 L405,251 L405,64 L449.047619,64 L449.047619,189.550781 Z\" />\n    </svg>\n  ),\n  execute: (state: commands.TextState, api: commands.TextApi) => {\n    let modifyText = `### ${state.selectedText}\\n`;\n    if (!state.selectedText) {\n      modifyText = `### `;\n    }\n    api.replaceSelection(modifyText);\n  },\n};\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MDEditor\n        value=\"Hello Markdown!\"\n        commands={[\n          commands.bold, commands.hr, commands.italic, commands.divider, commands.codeEdit, commands.codeLive, commands.codePreview, commands.divider,\n          commands.fullscreen, \n          // Custom Toolbars\n          title3,\n        ]}\n      />\n    </div>\n  );\n}\n```\n\n### Preview Markdown\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\n\nexport default function App() {\n  return (\n    <div className=\"container\">\n      <MDEditor.Markdown source=\"Hello Markdown!\" />\n    </div>\n  );\n}\n```\n\n### Support Custom KaTeX Preview\n\nKaTeX is a fast, easy-to-use JavaScript library for TeX math rendering on the web, We perform math rendering through [`KaTeX`](https://github.com/KaTeX/KaTeX).\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MEDitor from '@uiw/react-md-editor';\nimport katex from 'katex';\nimport 'katex/dist/katex.css';\n\n\nconst mdKaTeX = `This is to display the \n\\`\\$\\$\\c = \\\\pm\\\\sqrt{a^2 + b^2}\\$\\$\\`\n in one line\n\n\\`\\`\\`KaTeX\nc = \\\\pm\\\\sqrt{a^2 + b^2}\n\\`\\`\\`\n`;\n\nconst renderers = {\n  inlineCode: ({ children }) => {\n    if (/^\\$\\$(.*)\\$\\$/.test(children)) {\n      const html = katex.renderToString(children.replace(/^\\$\\$(.*)\\$\\$/, '$1'), {\n        throwOnError: false,\n      });\n      return <code dangerouslySetInnerHTML={{ __html: html }} />\n    }\n    return children;\n  },\n  code: ({ children, language, value }) => {\n    if (language.toLocaleLowerCase() === 'katex') {\n      const html = katex.renderToString(value, {\n        throwOnError: false\n      });\n      return (\n        <pre>\n          <code dangerouslySetInnerHTML={{ __html: html }} />\n        </pre>\n      );\n    }\n    return children;\n  }\n}\n\nexport default function App() {\n  return (\n    <MDEditor value={mdKaTeX} previewOptions={{ renderers: renderers }} />\n  );\n}\n```\n\n### Props\n\n- `value: string`: The Markdown value.\n- `onChange?: (value: string)`: Event handler for the `onChange` event.\n- `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L20-L29), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L111-L112) property. If no commands are specified, the default will be used. Commands are explained in more details below.\n- `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.\n- `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.\n- `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.\n- `height?: number=200`: The height of the editor.\n- `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.\n- `fullscreen?: boolean=false`: Show markdown preview.\n- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.\n- `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.\n- `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.\n- `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.\n\n### Development\n\n```bash\nnpm run watch:types  # Listen create type files.\nnpm run watch:ts     # Listen compile .tsx files.\nnpm run doc:dev      # Preview code example.\n```\n\n### Other\n\nIf you need more features-rich Markdown Editor, you can use [@uiwjs/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)\n\n### License\n\nLicensed under the MIT License."
+module.exports = "<p align=\"center\">\n  <a href=\"https://github.com/uiwjs/react-md-editor\">\n    <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n  </a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/uiwjs/react-md-editor/issues\">\n    <img src=\"https://img.shields.io/github/issues/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/network\">\n    <img src=\"https://img.shields.io/github/forks/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/stargazers\">\n    <img src=\"https://img.shields.io/github/stars/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://github.com/uiwjs/react-md-editor/releases\">\n    <img src=\"https://img.shields.io/github/release/uiwjs/react-md-editor.svg\">\n  </a>\n  <a href=\"https://www.npmjs.com/package/@uiw/react-md-editor\">\n    <img src=\"https://img.shields.io/npm/v/@uiw/react-md-editor.svg\">\n  </a>\n</p>\n\n<!--dividing-->\n\nA simple markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc.\n\n### Featrue\n\n- 📑 Indent line or selected text by pressing tab key, with customizable indentation.\n- ♻️ Based on `textarea` encapsulation, does not depend on any modern code editors.\n- 🚧 Does not depend on the [`uiw`](https://github.com/uiwjs/uiw) component library.\n- 🚘 Automatic list on new lines.\n\n### Quick Start\n\n```bash\nnpm i @uiw/react-md-editor\n```\n\n### Using\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MDEditor from '@uiw/react-md-editor';\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MDEditor\n        value={value}\n        onChange={setValue}\n      />\n      <MDEditor.Markdown source={value} />\n    </div>\n  );\n}\n```\n\n- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  \n- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  \n- [Demo preview for Gitee gh-pages](https://uiw.gitee.io/react-md-editor/)  \n\n### Custom Toolbars\n\n```tsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MDEditor, { commands } from '@uiw/react-md-editor';\n\nconst title3: commands.ICommand = {\n  name: 'title3',\n  keyCommand: 'title3',\n  buttonProps: { 'aria-label': 'Insert title3' },\n  icon: (\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 520 520\">\n      <path fill=\"currentColor\" d=\"M15.7083333,468 C7.03242448,468 0,462.030833 0,454.666667 L0,421.333333 C0,413.969167 7.03242448,408 15.7083333,408 L361.291667,408 C369.967576,408 377,413.969167 377,421.333333 L377,454.666667 C377,462.030833 369.967576,468 361.291667,468 L15.7083333,468 Z M21.6666667,366 C9.69989583,366 0,359.831861 0,352.222222 L0,317.777778 C0,310.168139 9.69989583,304 21.6666667,304 L498.333333,304 C510.300104,304 520,310.168139 520,317.777778 L520,352.222222 C520,359.831861 510.300104,366 498.333333,366 L21.6666667,366 Z M136.835938,64 L136.835937,126 L107.25,126 L107.25,251 L40.75,251 L40.75,126 L-5.68434189e-14,126 L-5.68434189e-14,64 L136.835938,64 Z M212,64 L212,251 L161.648438,251 L161.648438,64 L212,64 Z M378,64 L378,126 L343.25,126 L343.25,251 L281.75,251 L281.75,126 L238,126 L238,64 L378,64 Z M449.047619,189.550781 L520,189.550781 L520,251 L405,251 L405,64 L449.047619,64 L449.047619,189.550781 Z\" />\n    </svg>\n  ),\n  execute: (state: commands.TextState, api: commands.TextApi) => {\n    let modifyText = `### ${state.selectedText}\\n`;\n    if (!state.selectedText) {\n      modifyText = `### `;\n    }\n    api.replaceSelection(modifyText);\n  },\n};\n\nexport default function App() {\n  const [value, setValue] = React.useState(\"**Hello world!!!**\");\n  return (\n    <div className=\"container\">\n      <MDEditor\n        value=\"Hello Markdown!\"\n        commands={[\n          commands.bold, commands.hr, commands.italic, commands.divider, commands.codeEdit, commands.codeLive, commands.codePreview, commands.divider,\n          commands.fullscreen, \n          // Custom Toolbars\n          title3,\n        ]}\n      />\n    </div>\n  );\n}\n```\n\n### Preview Markdown\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MDEditor from '@uiw/react-md-editor';\n\nexport default function App() {\n  return (\n    <div className=\"container\">\n      <MDEditor.Markdown source=\"Hello Markdown!\" />\n    </div>\n  );\n}\n```\n\n### Support Custom KaTeX Preview\n\nKaTeX is a fast, easy-to-use JavaScript library for TeX math rendering on the web, We perform math rendering through [`KaTeX`](https://github.com/KaTeX/KaTeX).\n\nThe following example is preview in [CodeSandbox](https://codesandbox.io/s/markdown-editor-katex-for-react-7v3vl).\n\n```bash\nnpm install katex\n```\n\n```jsx\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport MDEditor from '@uiw/react-md-editor';\nimport katex from 'katex';\nimport 'katex/dist/katex.css';\n\n\nconst mdKaTeX = `This is to display the \n\\`\\$\\$\\c = \\\\pm\\\\sqrt{a^2 + b^2}\\$\\$\\`\n in one line\n\n\\`\\`\\`KaTeX\nc = \\\\pm\\\\sqrt{a^2 + b^2}\n\\`\\`\\`\n`;\n\nconst renderers = {\n  inlineCode: ({ children }) => {\n    if (/^\\$\\$(.*)\\$\\$/.test(children)) {\n      const html = katex.renderToString(children.replace(/^\\$\\$(.*)\\$\\$/, '$1'), {\n        throwOnError: false,\n      });\n      return <code dangerouslySetInnerHTML={{ __html: html }} />\n    }\n    return children;\n  },\n  code: ({ children, language, value }) => {\n    if (language.toLocaleLowerCase() === 'katex') {\n      const html = katex.renderToString(value, {\n        throwOnError: false\n      });\n      return (\n        <pre>\n          <code dangerouslySetInnerHTML={{ __html: html }} />\n        </pre>\n      );\n    }\n    return children;\n  }\n}\n\nexport default function App() {\n  return (\n    <MDEditor value={mdKaTeX} previewOptions={{ renderers: renderers }} />\n  );\n}\n```\n\n### Props\n\n- `value: string`: The Markdown value.\n- `onChange?: (value: string)`: Event handler for the `onChange` event.\n- `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L20-L29), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L111-L112) property. If no commands are specified, the default will be used. Commands are explained in more details below.\n- `autoFocus?: number=true`: Can be used to make `Markdown Editor` focus itself on initialization.\n- `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.\n- `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.\n- `height?: number=200`: The height of the editor.\n- `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.\n- `fullscreen?: boolean=false`: Show markdown preview.\n- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.\n- `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.\n- `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.\n- `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.\n\n### Development\n\n```bash\nnpm run watch:types  # Listen create type files.\nnpm run watch:ts     # Listen compile .tsx files.\nnpm run doc:dev      # Preview code example.\n```\n\n### Other\n\nIf you need more features-rich Markdown Editor, you can use [@uiwjs/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor)\n\n### License\n\nLicensed under the MIT License."
 },{}],"Logo.tsx":[function(require,module,exports) {
 "use strict";
 
@@ -63253,7 +63096,7 @@ var Logo_1 = tslib_1.__importDefault(require("./Logo"));
 require("./App.less");
 
 var mdStr = "<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true\">\n</p>\n".concat(README_md_1.default.replace(/([\s\S]*)<!--dividing-->/, ''), "\n");
-var mdKaTeX = "This is to display the \n`$$c = \\pm\\sqrt{a^2 + b^2}$$`\n in one line\n\n```KaTeX\nc = \\pm\\sqrt{a^2 + b^2}\n```\n";
+var mdKaTeX = "This is to display the \n`$$c = \\pm\\sqrt{a^2 + b^2}$$`\n in one line\n\n```KaTeX\nc = \\pm\\sqrt{a^2 + b^2}\n```\n\n```KaTeX\nf(x) = int_{-infty}^infty\n    hat f(\\xi),e^{2 pi i \\xi x}\n    ,d\\xi\n```\n";
 
 function App() {
   var _react_1$default$useS = react_1.default.useState({
@@ -63364,10 +63207,6 @@ function App() {
         }
       }
     }
-  }), react_1.default.createElement("div", {
-    className: "page-title"
-  }, "This Demo1 Preview"), react_1.default.createElement(__1.default.Markdown, {
-    source: state.value
   }));
 }
 
@@ -63416,7 +63255,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65055" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61177" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -63591,5 +63430,90 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.tsx"], null)
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-loader.js":[function(require,module,exports) {
+var getBundleURL = require('./bundle-url').getBundleURL;
+
+function loadBundlesLazy(bundles) {
+  if (!Array.isArray(bundles)) {
+    bundles = [bundles];
+  }
+
+  var id = bundles[bundles.length - 1];
+
+  try {
+    return Promise.resolve(require(id));
+  } catch (err) {
+    if (err.code === 'MODULE_NOT_FOUND') {
+      return new LazyPromise(function (resolve, reject) {
+        loadBundles(bundles.slice(0, -1)).then(function () {
+          return require(id);
+        }).then(resolve, reject);
+      });
+    }
+
+    throw err;
+  }
+}
+
+function loadBundles(bundles) {
+  return Promise.all(bundles.map(loadBundle));
+}
+
+var bundleLoaders = {};
+
+function registerBundleLoader(type, loader) {
+  bundleLoaders[type] = loader;
+}
+
+module.exports = exports = loadBundlesLazy;
+exports.load = loadBundles;
+exports.register = registerBundleLoader;
+var bundles = {};
+
+function loadBundle(bundle) {
+  var id;
+
+  if (Array.isArray(bundle)) {
+    id = bundle[1];
+    bundle = bundle[0];
+  }
+
+  if (bundles[bundle]) {
+    return bundles[bundle];
+  }
+
+  var type = (bundle.substring(bundle.lastIndexOf('.') + 1, bundle.length) || bundle).toLowerCase();
+  var bundleLoader = bundleLoaders[type];
+
+  if (bundleLoader) {
+    return bundles[bundle] = bundleLoader(getBundleURL() + bundle).then(function (resolved) {
+      if (resolved) {
+        module.bundle.register(id, resolved);
+      }
+
+      return resolved;
+    }).catch(function (e) {
+      delete bundles[bundle];
+      throw e;
+    });
+  }
+}
+
+function LazyPromise(executor) {
+  this.executor = executor;
+  this.promise = null;
+}
+
+LazyPromise.prototype.then = function (onSuccess, onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.then(onSuccess, onError);
+};
+
+LazyPromise.prototype.catch = function (onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.catch(onError);
+};
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],0:[function(require,module,exports) {
+var b=require("../node_modules/parcel-bundler/src/builtins/bundle-loader.js");
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js",0,"index.tsx"], null)
 //# sourceMappingURL=/website.f69400ca.js.map
