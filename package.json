@@ -20,7 +20,7 @@
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
     "deploy": "gh-pages -d doc",
-    "doc": "kkt build",
+    "doc": "kkt build --emptyDir",
     "doc:dev": "kkt start"
   },
   "repository": {
