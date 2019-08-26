@@ -61,7 +61,7 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
     }
   }
   render() {
-    const { className, renderers, ...other } = this.props;
+    const { className, ...other } = this.props;
     return (
       <div ref={this.mdp} className={classnames(className, 'wmde-markdown', 'wmde-markdown-color')}>
         <ReactMarkdown
