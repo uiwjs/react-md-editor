@@ -7,8 +7,9 @@ import { IProps } from '../../Type';
 import hotkeys, { IHotkeyOptions } from './hotkeys';
 import './index.less';
 
-export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'>, IProps {
+export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'onScroll'>, IProps {
   onChange?: (value?: string) => void;
+  onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   tabSize?: number;
 }
 
@@ -18,6 +19,7 @@ export interface ITextAreaState {
 
 export default class TextArea extends Component<ITextAreaProps, ITextAreaState> {
   public preElm = React.createRef<HTMLPreElement>();
+  public warp = React.createRef<HTMLDivElement>();
   public text = React.createRef<HTMLTextAreaElement>();
   public static defaultProps: ITextAreaProps = {
     tabSize: 2,
@@ -55,12 +57,12 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     const { value } = this.state;
     const pre = this.preElm.current;
     const html = Prism.highlight(value as string, Prism.languages.markdown, 'markdown');
-    pre!.innerHTML = html;
+    pre!.innerHTML = `${html}<br />`;
   }
   render() {
-    const { prefixCls, className, onChange, tabSize, style, ...otherProps } = this.props;
+    const { prefixCls, className, onChange, onScroll, tabSize, style, ...otherProps } = this.props;
     return (
-      <div className={classnames(`${prefixCls}-aree`, className)}>
+      <div ref={this.warp} className={classnames(`${prefixCls}-aree`, className)} onScroll={onScroll}>
         <div className={classnames(`${prefixCls}-text`)}>
           <pre
             ref={this.preElm}

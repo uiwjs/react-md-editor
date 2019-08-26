@@ -7,7 +7,10 @@ import allowNode from './allowNode';
 import { IProps } from '../../Type';
 import { loadLang } from './langs';
 
-export interface IMarkdownPreviewProps extends IProps, Omit<ReactMarkdownProps, 'className'> { }
+export interface IMarkdownPreviewProps extends IProps, Omit<ReactMarkdownProps, 'className'> {
+  onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
+  onMouseOver?: (e: React.MouseEvent<HTMLDivElement>) => void;
+}
 
 export interface IMarkdownPreviewState {
   value?: string;
@@ -61,15 +64,11 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
     }
   }
   render() {
-    const { className, ...other } = this.props;
+    const { className, onScroll, onMouseOver, ...other } = this.props;
+    const cls = classnames(className, 'wmde-markdown', 'wmde-markdown-color');
     return (
-      <div ref={this.mdp} className={classnames(className, 'wmde-markdown', 'wmde-markdown-color')}>
-        <ReactMarkdown
-          escapeHtml={false}
-          allowNode={allowNode}
-          {...other}
-          source={this.state.value}
-        />
+      <div ref={this.mdp} onScroll={onScroll} onMouseOver={onMouseOver} className={cls} >
+        <ReactMarkdown escapeHtml={false} allowNode={allowNode} {...other} source={this.state.value} />
       </div>
     );
   }

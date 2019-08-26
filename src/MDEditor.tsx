@@ -79,6 +79,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
   public preview = React.createRef<MarkdownPreview>();
   public textarea = React.createRef<TextArea>();
   public commandOrchestrator!: CommandOrchestrator;
+  public leftScroll:boolean = false;
   public static defaultProps: MDEditorProps = {
     value: '',
     prefixCls: 'w-md-editor',
@@ -115,6 +116,19 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
       this.setState({ value: nextProps.value }, () => {
         this.handleChange(nextProps.value);
       });
+    }
+  }
+  private handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const preview = this.preview.current!.mdp.current! as HTMLDivElement;
+    const textarea = this.textarea.current!.warp.current! as HTMLDivElement;
+    if (textarea && preview) {
+      const scale = (textarea.scrollHeight - textarea.offsetHeight) / (preview.scrollHeight - preview.offsetHeight);
+      if (e.target === textarea && this.leftScroll) {
+        preview.scrollTop = textarea.scrollTop / scale;
+      }
+      if (e.target === preview && !this.leftScroll) {
+        textarea.scrollTop = preview.scrollTop * scale;
+      }
     }
   }
   private handleChange(mdStr?: string) {
@@ -160,11 +174,15 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
             value={this.state.value}
             autoFocus={autoFocus}
             {...textareaProps}
+            onScroll={this.handleScroll}
+            onMouseOver={() => this.leftScroll = true}
+            onMouseLeave={() => this.leftScroll = false}
             onChange={this.handleChange.bind(this)}
           />
           <MarkdownPreview
             {...previewOptions}
             ref={this.preview}
+            onScroll={this.handleScroll}
             className={`${prefixCls}-preview`}
           />
           {visiableDragbar && !this.state.fullscreen && (
