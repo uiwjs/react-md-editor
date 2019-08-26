@@ -249,7 +249,7 @@ export async function loadLang(ext: string) {
   });
   try {
     if (langs.length > 0) {
-      Promise.all(langs.map((key) => import(`prismjs/components/prism-${key}`)));
+      return Promise.all(langs.map((key) => import(`prismjs/components/prism-${key}`)));
     }
   } catch (error) { }
 }

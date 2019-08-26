@@ -25,10 +25,19 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
       value: '' || props.source,
     };
   }
+  componentDidMount() {
+    this.highlight();
+  }
   UNSAFE_componentWillReceiveProps(nextProps: IMarkdownPreviewProps) {
     if (nextProps.source !== this.props.source) {
-      this.setState({ value: nextProps.source });
+      this.setState({ value: nextProps.source }, () => {
+        this.highlight();
+      });
     }
+  }
+  public shouldComponentUpdate(nextProps: IMarkdownPreviewProps, nextState: IMarkdownPreviewState) {
+    return nextProps.source !== this.props.source
+      || nextState.value !== this.state.value;
   }
   public renderHTML(mdStr?: string) {
     this.setState({ value: mdStr }, () => {
@@ -46,13 +55,13 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
             this.loadedLang.push(lang);
             await loadLang(lang);
           }
-          Prism.highlightElement(value);
-        } catch (error) {}
+          await Prism.highlightElement(value);
+        } catch (error) { }
       }
     }
   }
   render() {
-    const { className, ...other } = this.props;
+    const { className, renderers, ...other } = this.props;
     return (
       <div ref={this.mdp} className={classnames(className, 'wmde-markdown', 'wmde-markdown-color')}>
         <ReactMarkdown
