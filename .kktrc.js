@@ -27,7 +27,7 @@ module.exports = {
     if (env === 'prod') {
       // Webpack configuration changed in production mode
       conf.entry[0] = path.resolve(process.cwd(), 'website');
-      conf.output.publicPath = '';
+      conf.output.publicPath = './';
       conf.output.path = path.resolve(__dirname, 'doc');
     } else {
       conf.entry[1] = path.resolve(process.cwd(), 'website', 'index.js');
