@@ -1,121 +1,121 @@
 /* stylelint-disable font-family-no-missing-generic-family-keyword */
 @font-face {
   font-family: 'KaTeX_AMS';
-  src: url(static/media/KaTeX_AMS-Regular.e78e28b4.woff2) format('woff2'), url(static/media/KaTeX_AMS-Regular.7f06b4e3.woff) format('woff'), url(static/media/KaTeX_AMS-Regular.aaf4eee9.ttf) format('truetype');
+  src: url(./static/media/KaTeX_AMS-Regular.e78e28b4.woff2) format('woff2'), url(./static/media/KaTeX_AMS-Regular.7f06b4e3.woff) format('woff'), url(./static/media/KaTeX_AMS-Regular.aaf4eee9.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Caligraphic';
-  src: url(static/media/KaTeX_Caligraphic-Bold.4ec58bef.woff2) format('woff2'), url(static/media/KaTeX_Caligraphic-Bold.1e802ca9.woff) format('woff'), url(static/media/KaTeX_Caligraphic-Bold.021dd4dc.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Caligraphic-Bold.4ec58bef.woff2) format('woff2'), url(./static/media/KaTeX_Caligraphic-Bold.1e802ca9.woff) format('woff'), url(./static/media/KaTeX_Caligraphic-Bold.021dd4dc.ttf) format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Caligraphic';
-  src: url(static/media/KaTeX_Caligraphic-Regular.7edb53b6.woff2) format('woff2'), url(static/media/KaTeX_Caligraphic-Regular.d3b46c3a.woff) format('woff'), url(static/media/KaTeX_Caligraphic-Regular.d49f2d55.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Caligraphic-Regular.7edb53b6.woff2) format('woff2'), url(./static/media/KaTeX_Caligraphic-Regular.d3b46c3a.woff) format('woff'), url(./static/media/KaTeX_Caligraphic-Regular.d49f2d55.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Fraktur';
-  src: url(static/media/KaTeX_Fraktur-Bold.d5b59ec9.woff2) format('woff2'), url(static/media/KaTeX_Fraktur-Bold.c4c8cab7.woff) format('woff'), url(static/media/KaTeX_Fraktur-Bold.a31e7cba.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Fraktur-Bold.d5b59ec9.woff2) format('woff2'), url(./static/media/KaTeX_Fraktur-Bold.c4c8cab7.woff) format('woff'), url(./static/media/KaTeX_Fraktur-Bold.a31e7cba.ttf) format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Fraktur';
-  src: url(static/media/KaTeX_Fraktur-Regular.32a5339e.woff2) format('woff2'), url(static/media/KaTeX_Fraktur-Regular.b7d9c46b.woff) format('woff'), url(static/media/KaTeX_Fraktur-Regular.a48dad4f.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Fraktur-Regular.32a5339e.woff2) format('woff2'), url(./static/media/KaTeX_Fraktur-Regular.b7d9c46b.woff) format('woff'), url(./static/media/KaTeX_Fraktur-Regular.a48dad4f.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Main';
-  src: url(static/media/KaTeX_Main-Bold.8e1e01c4.woff2) format('woff2'), url(static/media/KaTeX_Main-Bold.22086eb5.woff) format('woff'), url(static/media/KaTeX_Main-Bold.9ceff51b.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Main-Bold.8e1e01c4.woff2) format('woff2'), url(./static/media/KaTeX_Main-Bold.22086eb5.woff) format('woff'), url(./static/media/KaTeX_Main-Bold.9ceff51b.ttf) format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Main';
-  src: url(static/media/KaTeX_Main-BoldItalic.284a17fe.woff2) format('woff2'), url(static/media/KaTeX_Main-BoldItalic.4c57dbc4.woff) format('woff'), url(static/media/KaTeX_Main-BoldItalic.e8b44b99.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Main-BoldItalic.284a17fe.woff2) format('woff2'), url(./static/media/KaTeX_Main-BoldItalic.4c57dbc4.woff) format('woff'), url(./static/media/KaTeX_Main-BoldItalic.e8b44b99.ttf) format('truetype');
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: 'KaTeX_Main';
-  src: url(static/media/KaTeX_Main-Italic.e533d5a2.woff2) format('woff2'), url(static/media/KaTeX_Main-Italic.99be0e10.woff) format('woff'), url(static/media/KaTeX_Main-Italic.29c86397.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Main-Italic.e533d5a2.woff2) format('woff2'), url(./static/media/KaTeX_Main-Italic.99be0e10.woff) format('woff'), url(./static/media/KaTeX_Main-Italic.29c86397.ttf) format('truetype');
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: 'KaTeX_Main';
-  src: url(static/media/KaTeX_Main-Regular.5c734d78.woff2) format('woff2'), url(static/media/KaTeX_Main-Regular.b741441f.woff) format('woff'), url(static/media/KaTeX_Main-Regular.5c94aef4.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Main-Regular.5c734d78.woff2) format('woff2'), url(./static/media/KaTeX_Main-Regular.b741441f.woff) format('woff'), url(./static/media/KaTeX_Main-Regular.5c94aef4.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Math';
-  src: url(static/media/KaTeX_Math-BoldItalic.d747bd1e.woff2) format('woff2'), url(static/media/KaTeX_Math-BoldItalic.b13731ef.woff) format('woff'), url(static/media/KaTeX_Math-BoldItalic.9a2834a9.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Math-BoldItalic.d747bd1e.woff2) format('woff2'), url(./static/media/KaTeX_Math-BoldItalic.b13731ef.woff) format('woff'), url(./static/media/KaTeX_Math-BoldItalic.9a2834a9.ttf) format('truetype');
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: 'KaTeX_Math';
-  src: url(static/media/KaTeX_Math-Italic.4ad08b82.woff2) format('woff2'), url(static/media/KaTeX_Math-Italic.f0303906.woff) format('woff'), url(static/media/KaTeX_Math-Italic.291e76b8.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Math-Italic.4ad08b82.woff2) format('woff2'), url(./static/media/KaTeX_Math-Italic.f0303906.woff) format('woff'), url(./static/media/KaTeX_Math-Italic.291e76b8.ttf) format('truetype');
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: 'KaTeX_SansSerif';
-  src: url(static/media/KaTeX_SansSerif-Bold.6e0830be.woff2) format('woff2'), url(static/media/KaTeX_SansSerif-Bold.3fb41955.woff) format('woff'), url(static/media/KaTeX_SansSerif-Bold.7dc027cb.ttf) format('truetype');
+  src: url(./static/media/KaTeX_SansSerif-Bold.6e0830be.woff2) format('woff2'), url(./static/media/KaTeX_SansSerif-Bold.3fb41955.woff) format('woff'), url(./static/media/KaTeX_SansSerif-Bold.7dc027cb.ttf) format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_SansSerif';
-  src: url(static/media/KaTeX_SansSerif-Italic.fba01c9c.woff2) format('woff2'), url(static/media/KaTeX_SansSerif-Italic.727a9b0d.woff) format('woff'), url(static/media/KaTeX_SansSerif-Italic.4059868e.ttf) format('truetype');
+  src: url(./static/media/KaTeX_SansSerif-Italic.fba01c9c.woff2) format('woff2'), url(./static/media/KaTeX_SansSerif-Italic.727a9b0d.woff) format('woff'), url(./static/media/KaTeX_SansSerif-Italic.4059868e.ttf) format('truetype');
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: 'KaTeX_SansSerif';
-  src: url(static/media/KaTeX_SansSerif-Regular.d929cd67.woff2) format('woff2'), url(static/media/KaTeX_SansSerif-Regular.2555754a.woff) format('woff'), url(static/media/KaTeX_SansSerif-Regular.5c58d168.ttf) format('truetype');
+  src: url(./static/media/KaTeX_SansSerif-Regular.d929cd67.woff2) format('woff2'), url(./static/media/KaTeX_SansSerif-Regular.2555754a.woff) format('woff'), url(./static/media/KaTeX_SansSerif-Regular.5c58d168.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Script';
-  src: url(static/media/KaTeX_Script-Regular.755e2491.woff2) format('woff2'), url(static/media/KaTeX_Script-Regular.d524c9a5.woff) format('woff'), url(static/media/KaTeX_Script-Regular.d12ea9ef.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Script-Regular.755e2491.woff2) format('woff2'), url(./static/media/KaTeX_Script-Regular.d524c9a5.woff) format('woff'), url(./static/media/KaTeX_Script-Regular.d12ea9ef.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Size1';
-  src: url(static/media/KaTeX_Size1-Regular.048c39cb.woff2) format('woff2'), url(static/media/KaTeX_Size1-Regular.08b5f00e.woff) format('woff'), url(static/media/KaTeX_Size1-Regular.7342d45b.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Size1-Regular.048c39cb.woff2) format('woff2'), url(./static/media/KaTeX_Size1-Regular.08b5f00e.woff) format('woff'), url(./static/media/KaTeX_Size1-Regular.7342d45b.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Size2';
-  src: url(static/media/KaTeX_Size2-Regular.81d6b8d5.woff2) format('woff2'), url(static/media/KaTeX_Size2-Regular.af24b0e4.woff) format('woff'), url(static/media/KaTeX_Size2-Regular.eb130dcc.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Size2-Regular.81d6b8d5.woff2) format('woff2'), url(./static/media/KaTeX_Size2-Regular.af24b0e4.woff) format('woff'), url(./static/media/KaTeX_Size2-Regular.eb130dcc.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Size3';
-  src: url(static/media/KaTeX_Size3-Regular.b311ca09.woff2) format('woff2'), url(static/media/KaTeX_Size3-Regular.0d892640.woff) format('woff'), url(static/media/KaTeX_Size3-Regular.7e02a40c.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Size3-Regular.b311ca09.woff2) format('woff2'), url(./static/media/KaTeX_Size3-Regular.0d892640.woff) format('woff'), url(./static/media/KaTeX_Size3-Regular.7e02a40c.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Size4';
-  src: url(static/media/KaTeX_Size4-Regular.6a3255df.woff2) format('woff2'), url(static/media/KaTeX_Size4-Regular.68895bb8.woff) format('woff'), url(static/media/KaTeX_Size4-Regular.ad767252.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Size4-Regular.6a3255df.woff2) format('woff2'), url(./static/media/KaTeX_Size4-Regular.68895bb8.woff) format('woff'), url(./static/media/KaTeX_Size4-Regular.ad767252.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'KaTeX_Typewriter';
-  src: url(static/media/KaTeX_Typewriter-Regular.6cc31ea5.woff2) format('woff2'), url(static/media/KaTeX_Typewriter-Regular.3fe216d2.woff) format('woff'), url(static/media/KaTeX_Typewriter-Regular.25702356.ttf) format('truetype');
+  src: url(./static/media/KaTeX_Typewriter-Regular.6cc31ea5.woff2) format('woff2'), url(./static/media/KaTeX_Typewriter-Regular.3fe216d2.woff) format('woff'), url(./static/media/KaTeX_Typewriter-Regular.25702356.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
