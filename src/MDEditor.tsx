@@ -188,7 +188,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
             onScroll={this.handleScroll}
             className={`${prefixCls}-preview`}
           />
-          {visiableDragbar && !this.state.fullscreen && (
+          {visiableDragbar && this.state.preview !== 'preview' && !this.state.fullscreen && (
             <DragBar
               prefixCls={prefixCls}
               height={this.state.height as number}
