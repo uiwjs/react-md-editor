@@ -152,6 +152,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
       [`${prefixCls}-show-${this.state.preview}`]: this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
     });
+    console.log('this.state.preview:', this.state.preview);
     return (
       <div className={cls} style={{ height: this.state.fullscreen ? '100%' : this.state.height }} {...other}>
         <Toolbar
@@ -181,14 +182,12 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
               onChange={this.handleChange.bind(this)}
             />
           )}
-          {/(preview|live)/.test(this.state.preview as string) && (
-            <MarkdownPreview
-              {...previewOptions}
-              ref={this.preview}
-              onScroll={this.handleScroll}
-              className={`${prefixCls}-preview`}
-            />
-          )}
+          <MarkdownPreview
+            {...previewOptions}
+            ref={this.preview}
+            onScroll={this.handleScroll}
+            className={`${prefixCls}-preview`}
+          />
           {visiableDragbar && !this.state.fullscreen && (
             <DragBar
               prefixCls={prefixCls}
