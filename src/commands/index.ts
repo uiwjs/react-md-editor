@@ -24,7 +24,7 @@ export interface ICommand {
   value?: string,
   position?: 'right'
   liProps?: React.LiHTMLAttributes<HTMLLIElement>,
-  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>,
+  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null,
   execute?: (state: TextState, api: TextApi) => void,
 }
 

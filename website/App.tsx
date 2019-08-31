@@ -31,6 +31,15 @@ f(x) = \int_{-\infty}^\infty
 \`\`\`
 `;
 
+const title: commands.ICommand = {
+  name: 'title3',
+  keyCommand: 'title3',
+  buttonProps: null,
+  icon: (
+    <span style={{ padding: '0 5px' }}>Custom Toolbar</span>
+  ),
+};
+
 export default function App() {
   const [state, setVisiable] = React.useState({
     visiableDragbar: true,
@@ -80,6 +89,7 @@ export default function App() {
       <MDEditor
         value="Hello Markdown!"
         commands={[
+          title,
           commands.bold, commands.hr, commands.italic, commands.divider,
           commands.codeEdit, commands.codeLive, commands.codePreview, commands.divider,
           commands.fullscreen, 

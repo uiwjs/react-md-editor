@@ -32,7 +32,8 @@ export default class Toolbar extends Component<IToolbarProps> {
             const activeBtn = active && (item.value ? active[item.keyCommand] && active[item.keyCommand] === item.value : active[item.keyCommand]); 
             return (
               <li key={idx} {...item.liProps} className={classnames({ active: activeBtn })}>
-                {React.createElement('button', {
+                {!item.buttonProps && item.icon}
+                {item.buttonProps && React.createElement('button', {
                   type: 'button',
                   disabled: active && active.preview && active.preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand),
                   "data-name": item.name, ...item.buttonProps,
