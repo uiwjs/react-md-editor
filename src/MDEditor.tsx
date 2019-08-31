@@ -166,25 +166,29 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
           className={`${prefixCls}-content`}
           style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : (this.state.height as number) - 29 }}
         >
-          <TextArea
-            ref={this.textarea}
-            tabSize={tabSize}
-            className={`${prefixCls}-input`}
-            prefixCls={prefixCls}
-            value={this.state.value}
-            autoFocus={autoFocus}
-            {...textareaProps}
-            onScroll={this.handleScroll}
-            onMouseOver={() => this.leftScroll = true}
-            onMouseLeave={() => this.leftScroll = false}
-            onChange={this.handleChange.bind(this)}
-          />
-          <MarkdownPreview
-            {...previewOptions}
-            ref={this.preview}
-            onScroll={this.handleScroll}
-            className={`${prefixCls}-preview`}
-          />
+          {/(edit|live)/.test(this.state.preview as string) && (
+            <TextArea
+              ref={this.textarea}
+              tabSize={tabSize}
+              className={`${prefixCls}-input`}
+              prefixCls={prefixCls}
+              value={this.state.value}
+              autoFocus={autoFocus}
+              {...textareaProps}
+              onScroll={this.handleScroll}
+              onMouseOver={() => this.leftScroll = true}
+              onMouseLeave={() => this.leftScroll = false}
+              onChange={this.handleChange.bind(this)}
+            />
+          )}
+          {/(preview|live)/.test(this.state.preview as string) && (
+            <MarkdownPreview
+              {...previewOptions}
+              ref={this.preview}
+              onScroll={this.handleScroll}
+              className={`${prefixCls}-preview`}
+            />
+          )}
           {visiableDragbar && !this.state.fullscreen && (
             <DragBar
               prefixCls={prefixCls}
