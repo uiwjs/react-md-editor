@@ -1077,9 +1077,9 @@ a.github:hover .octo-arm {
   padding: 0;
   font-size: 14px;
   line-height: 18px;
-  font-feature-settings: "liga", "clig";
-  font-variant-ligatures: common-ligatures;
-  background-color: #fdfdfd;
+  -webkit-font-variant-ligatures: common-ligatures;
+          font-feature-settings: "liga", "clig";
+          font-variant-ligatures: common-ligatures;
 }
 .w-md-editor-text-pre,
 .w-md-editor-text-input {
@@ -1091,14 +1091,15 @@ a.github:hover .octo-arm {
   font-family: inherit;
   font-size: inherit;
   font-style: inherit;
-  font-feature-settings: inherit;
-  font-variant-ligatures: inherit;
+  -webkit-font-variant-ligatures: inherit;
+          font-feature-settings: inherit;
+          font-variant-ligatures: inherit;
   font-weight: inherit;
   letter-spacing: inherit;
   line-height: inherit;
   -moz-tab-size: inherit;
-    -o-tab-size: inherit;
-       tab-size: inherit;
+       -o-tab-size: inherit;
+     tab-size: inherit;
   text-indent: inherit;
   text-rendering: inherit;
   text-transform: inherit;
@@ -1198,6 +1199,7 @@ a.github:hover .octo-arm {
 .w-md-editor-toolbar li button {
   border: none;
   height: 20px;
+  line-height: 14px;
   background: none;
   color: #586069;
   padding: 4px;
@@ -1289,6 +1291,7 @@ a.github:hover .octo-arm {
 .w-md-editor-show-preview .w-md-editor-input {
   width: 0%;
   overflow: hidden;
+  background-color: #fdfdfd;
 }
 .w-md-editor-show-preview .w-md-editor-preview {
   width: 100%;
@@ -1409,8 +1412,8 @@ a.github:hover .octo-arm {
   overflow-wrap: normal;
   white-space: inherit;
   -moz-tab-size: 2;
-    -o-tab-size: 2;
-       tab-size: 2;
+       -o-tab-size: 2;
+     tab-size: 2;
   padding: 16px;
   font-size: 95%;
   line-height: 1.5;
