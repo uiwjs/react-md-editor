@@ -152,7 +152,6 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
       [`${prefixCls}-show-${this.state.preview}`]: this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
     });
-    console.log('this.state.preview:', this.state.preview);
     return (
       <div className={cls} style={{ height: this.state.fullscreen ? '100%' : this.state.height }} {...other}>
         <Toolbar

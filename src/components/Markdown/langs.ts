@@ -21,6 +21,7 @@ export interface ILangData {
 }
 
 const langData: ILangData = {
+  meta: {},
   markup: { a: ['html', 'xml', 'svg', 'mathml'] },
   css: { p: 'markup' },
   clike: {},
