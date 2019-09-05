@@ -6,14 +6,15 @@ import { IProps } from '../../Type';
 import hotkeys, { IHotkeyOptions } from './hotkeys';
 import './index.less';
 
-export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'onScroll'>, IProps {
-  onChange?: (value?: ITextAreaProps['value']) => void;
+export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>, IProps {
+  onChange?: (value?: string) => void;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
+  value?: string;
   tabSize?: number;
 }
 
 export interface ITextAreaState {
-  value: ITextAreaProps['value'];
+  value?: string;
 }
 
 export default class TextArea extends Component<ITextAreaProps, ITextAreaState> {

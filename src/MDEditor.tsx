@@ -19,7 +19,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * Event handler for the `onChange` event.
    */
-  onChange?: (value: string) => void;
+  onChange?: (value?: string) => void;
   /**
    * Can be used to make `Markdown Editor` focus itself on initialization. Defaults to on.
    * it will be set to true when either the source `textarea` is focused,
@@ -54,7 +54,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * Set the `textarea` related props.
    */
-  textareaProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+  textareaProps?: ITextAreaProps;
   /**
    * The number of characters to insert when pressing tab key.
    * Default `2` spaces.
