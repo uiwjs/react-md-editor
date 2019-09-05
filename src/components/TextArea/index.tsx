@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-markdown.js';
-import 'prismjs/components/prism-clike';
 import { IProps } from '../../Type';
 import hotkeys, { IHotkeyOptions } from './hotkeys';
 import './index.less';
 
 export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'onScroll'>, IProps {
-  onChange?: (value?: string) => void;
+  onChange?: (value?: ITextAreaProps['value']) => void;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   tabSize?: number;
 }
@@ -36,9 +35,9 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   private handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     const { onChange } = this.props;
     this.setState({ value: e.target.value }, () => {
+      onChange && onChange(this.state.value);
       this.highlight();
     });
-    onChange && onChange(e.target.value);
   }
   public async componentDidMount() {
     this.highlight();
