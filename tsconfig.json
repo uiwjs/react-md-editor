@@ -1,32 +1,30 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "allowSyntheticDefaultImports": true,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "importHelpers": true,
-    "declaration": true,
-    "jsx": "react",
-    "target": "esnext",
-    "noImplicitAny": true,
-    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
     "moduleResolution": "node",
-    "sourceMap": true,
-    "strict": true, /* Enable all strict type-checking options. */
-    "outDir": "lib",
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "src/types/*"
-      ]
-    }
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "baseUrl": "website",
+    "jsx": "react"
   },
   "include": [
-    "src/**/*"
+    "website",
+    "src"
   ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts"
+  "typeRoots": [
+    "node_modules/@types"
   ]
 }
