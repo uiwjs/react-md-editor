@@ -64,7 +64,8 @@ export default function App() {
         visiableDragbar={state.visiableDragbar}
         preview={state.preview as MDEditorProps['preview']}
         onChange={(newValue) => {
-          setVisiable({ ...state, value: newValue });
+
+          setVisiable({ ...state, value: newValue || ''});
         }}
       />
       <div className="doc-tools">

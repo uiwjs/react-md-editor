@@ -48,7 +48,8 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
     });
   }
   public async highlight() {
-    const codes = this.mdp.current!.getElementsByTagName('code');
+    if (!this.mdp.current) return;
+    const codes = this.mdp.current.getElementsByTagName('code') as unknown as HTMLElement[];
     for (const value of codes) {
       const tag = value.parentNode as HTMLElement;
       if (tag && tag.tagName === 'PRE' && /^language\-/.test(value.className.trim())) {
