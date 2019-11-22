@@ -3,6 +3,7 @@
 
 lib
 dist
+build
 doc
 __snapshots__
 
