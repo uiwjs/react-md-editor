@@ -1,0 +1,2 @@
+(window["webpackJsonp@uiw/react-md-editor"]=window["webpackJsonp@uiw/react-md-editor"]||[]).push([[214],{246:function(n,e){Prism.languages["nand2tetris-hdl"]={comment:/\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,keyword:/\b(?:CHIP|IN|OUT|PARTS|BUILTIN|CLOCKED)\b/,boolean:/\b(?:true|false)\b/,function:/[A-Za-z][A-Za-z0-9]*(?=\()/,number:/\b\d+\b/,operator:/=|\.\./,punctuation:/[{}[\];(),:]/}}}]);
+//# sourceMappingURL=214.63beb089.chunk.js.map
