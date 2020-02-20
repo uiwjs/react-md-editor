@@ -17,7 +17,7 @@ ${ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')}
 
 
 const mdKaTeX = `This is to display the 
-\`\$\$\c = \\pm\\sqrt{a^2 + b^2}\$\$\`
+\`$$c = \\pm\\sqrt{a^2 + b^2}$$\`
  in one line
 
 \`\`\`KaTeX
@@ -25,9 +25,9 @@ c = \\pm\\sqrt{a^2 + b^2}
 \`\`\`
 
 \`\`\`KaTeX
-f(x) = \int_{-\infty}^\infty
-    \hat f(\\xi)\,e^{2 \pi i \\xi x}
-    \,d\\xi
+\\f{x} = \\int_{-\\infty}^\\infty
+    \\hat \\f\\xi\\,e^{2 \\pi i \\xi x}
+    \\,d\\xi
 \`\`\`
 `;
 
