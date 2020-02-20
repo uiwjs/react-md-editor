@@ -52,8 +52,8 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
     const codes = this.mdp.current.getElementsByTagName('code') as unknown as HTMLElement[];
     for (const value of codes) {
       const tag = value.parentNode as HTMLElement;
-      if (tag && tag.tagName === 'PRE' && /^language\-/.test(value.className.trim())) {
-        const lang = value.className.trim().replace(/^language\-/, '');
+      if (tag && tag.tagName === 'PRE' && /^language-/.test(value.className.trim())) {
+        const lang = value.className.trim().replace(/^language-/, '');
         try {
           if (!this.loadedLang.includes(lang as never)) {
             this.loadedLang.push(lang);
