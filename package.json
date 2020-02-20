@@ -63,6 +63,9 @@
     "prismjs": "^1.19.0",
     "react-markdown": "^4.3.1"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
