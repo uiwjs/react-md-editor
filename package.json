@@ -22,7 +22,8 @@
     "css:build": "compile-less -d src -o lib/esm",
     "css:build:dist": "compile-less -d src --combine dist/markdown-editor.css --rm-global",
     "ts:watch": "tsbb watch --env-name esm:dev --env-name cjs --target react",
-    "ts:build": "tsbb build --target react"
+    "ts:build": "tsbb build --target react",
+    "map": "source-map-explorer build/static/js/*.js --html build/website-result.html"
   },
   "repository": {
     "type": "git",
@@ -55,6 +56,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-test-renderer": "^16.12.0",
+    "source-map-explorer": "^2.4.2",
     "tsbb": "^1.5.2"
   },
   "dependencies": {
