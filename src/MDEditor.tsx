@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { ReactMarkdownProps } from 'react-markdown';
-import { IProps } from './Type';
+import { IProps } from './utils';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';

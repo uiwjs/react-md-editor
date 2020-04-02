@@ -4,7 +4,7 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-markup';
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown';
 import allowNode from './allowNode';
-import { IProps } from '../../Type';
+import { IProps } from '../../utils';
 import { loadLang } from './langs';
 
 export interface IMarkdownPreviewProps extends IProps, Omit<ReactMarkdownProps, 'className'> {

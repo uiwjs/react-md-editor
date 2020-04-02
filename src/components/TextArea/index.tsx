@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-markdown.js';
-import { IProps } from '../../Type';
+import { IProps } from '../../utils';
 import hotkeys, { IHotkeyOptions } from './hotkeys';
 import './index.less';
 

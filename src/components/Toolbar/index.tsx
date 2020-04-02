@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import { IProps } from '../../Type';
+import { IProps } from '../../utils';
 import { ICommand } from '../../commands';
 import './index.less';
 
