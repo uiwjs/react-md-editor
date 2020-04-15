@@ -8,6 +8,7 @@ import { IProps } from '../../utils';
 import { loadLang } from './langs';
 
 export interface IMarkdownPreviewProps extends IProps, Omit<ReactMarkdownProps, 'className'> {
+  style?: React.CSSProperties;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   onMouseOver?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
@@ -65,10 +66,10 @@ export default class MarkdownPreview extends Component<IMarkdownPreviewProps, IM
     }
   }
   render() {
-    const { className, onScroll, onMouseOver, ...other } = this.props;
+    const { className, style, onScroll, onMouseOver, ...other } = this.props;
     const cls = classnames(className, 'wmde-markdown', 'wmde-markdown-color');
     return (
-      <div ref={this.mdp} onScroll={onScroll} onMouseOver={onMouseOver} className={cls} >
+      <div ref={this.mdp} onScroll={onScroll} style={style} onMouseOver={onMouseOver} className={cls} >
         <ReactMarkdown escapeHtml={false} allowNode={allowNode} {...other} source={this.state.value} />
       </div>
     );
