@@ -30,7 +30,6 @@
     "url": "https://github.com/uiwjs/react-md-editor"
   },
   "files": [
-    "typings",
     "dist",
     "lib",
     "src"

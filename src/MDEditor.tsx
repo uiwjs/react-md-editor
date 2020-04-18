@@ -8,8 +8,6 @@ import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, TextAreaCommandOrchestrator, ICommand, CommandOrchestrator } from './commands';
 import './index.less';
-import './markdowncolor.less';
-import './markdown.less';
 
 export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
   /**
