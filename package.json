@@ -42,7 +42,7 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.7.1",
+    "@kkt/loader-less": "5.8.0",
     "@types/classnames": "2.2.10",
     "@types/katex": "0.11.0",
     "@types/prismjs": "1.16.0",
