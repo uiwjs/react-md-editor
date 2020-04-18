@@ -1,11 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 import { ReactMarkdownProps } from 'react-markdown';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
-import MarkdownPreview from './components/Markdown';
 import { getCommands, TextAreaCommandOrchestrator, ICommand, CommandOrchestrator } from './commands';
 import './index.less';
 import './markdowncolor.less';
