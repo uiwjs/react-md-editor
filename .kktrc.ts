@@ -9,20 +9,12 @@ export const moduleScopePluginOpts: ModuleScopePluginOpts = [
 ];
 
 export const loaderOneOf: LoaderOneOf = [
-  [require.resolve('@kkt/loader-less'), {}],
+  require.resolve('@kkt/loader-less'),
+  require.resolve('@kkt/loader-raw')
 ]
 
 export default (conf: webpack.Configuration, options: OptionConf, webpack: Webpack) => {
   const pkg = require(path.resolve(process.cwd(), 'package.json'));
-  conf.module!.rules.map((item) => {
-    if (item.oneOf) {
-      item.oneOf.unshift({
-        test: /\.md$/,
-        use: require.resolve('raw-loader'),
-      });
-    }
-    return item;
-  });
   // 获取版本
   conf.plugins!.push(
     new webpack.DefinePlugin({
