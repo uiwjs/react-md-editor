@@ -64,14 +64,14 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   commands?: ICommand[];
 }
 
-export interface IMDEditorState {
+export interface MDEditorState {
   height: React.CSSProperties['height'];
   preview?: MDEditorProps['preview'];
   fullscreen?: boolean;
   value?: string;
 }
 
-export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState> {
+export default class MDEditor extends React.PureComponent<MDEditorProps, MDEditorState> {
   static Markdown = MarkdownPreview;
   public static displayName = 'MDEditor';
   public preview = React.createRef<MarkdownPreview>();
@@ -136,7 +136,7 @@ export class MDEditor extends React.PureComponent<MDEditorProps, IMDEditorState>
   }
   public handleCommand = (command: ICommand) => {
     if (command.keyCommand === 'preview') {
-      this.setState({ preview: command.value as IMDEditorState['preview'] });
+      this.setState({ preview: command.value as MDEditorState['preview'] });
     }
     if (command.keyCommand === 'fullscreen') {
       this.setState({ fullscreen: !this.state.fullscreen });
