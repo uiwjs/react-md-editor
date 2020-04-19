@@ -1,10 +1,12 @@
 import React from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.css';
-import GithubCorner from './GithubCorner';
-import MDEditor, { commands } from '../';
+import GithubCorner from '@uiw/react-github-corners';
+import MarkdownPreview from '@uiw/react-markdown-preview';
+import Github from '@uiw/react-shields/lib/esm/github';
+import Npm from '@uiw/react-shields/lib/esm/npm';
+import MDEditor, { commands, ICommand, MDEditorProps } from '../';
 import ReadmeStr from '../README.md';
-import { MDEditorProps } from '../lib/cjs/MDEditor';
 
 import Logo from './Logo';
 import './App.less';
@@ -31,7 +33,7 @@ c = \\pm\\sqrt{a^2 + b^2}
 \`\`\`
 `;
 
-const title: commands.ICommand = {
+const title: ICommand = {
   name: 'title3',
   keyCommand: 'title3',
   buttonProps: null,
@@ -54,14 +56,23 @@ export default function App() {
   }
   return (
     <div className="warpper">
+      <GithubCorner fixed target="__blank" href="https://github.com/uiwjs/react-md-editor" />
       <header className="header">
         <Logo />
       </header>
-      <GithubCorner url="https://github.com/uiwjs/react-md-editor" />
+      <div className="badges">
+        <Npm.Version scope="@uiw" packageName="react-shields" href="https://www.npmjs.com/package/@uiw/react-md-editor" />
+        <Github user="uiwjs" repo="react-md-editor">
+          <Github.Social type="forks" href="https://github.com/uiwjs/react-md-editor" />
+          <Github.Social type="stars" href="https://github.com/uiwjs/react-md-editor/stargazers" />
+          <Github.Social type="watchers" href="https://github.com/uiwjs/react-md-editor/watchers" />
+        </Github>
+      </div>
       <MDEditor
         value={state.value}
         height={400}
         visiableDragbar={state.visiableDragbar}
+        // preview={state.preview}
         preview={state.preview as MDEditorProps['preview']}
         onChange={(newValue) => {
 
@@ -126,6 +137,7 @@ export default function App() {
           }
         }}
       />
+      <MarkdownPreview style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
   )
 }
