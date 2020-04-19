@@ -18,13 +18,13 @@
     "isolatedModules": true,
     "declaration": true,
     "baseUrl": "website",
-    "jsx": "react"
+    "jsx": "react",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
     "website",
     "src"
-  ],
-  "typeRoots": [
-    "node_modules/@types"
   ]
 }
