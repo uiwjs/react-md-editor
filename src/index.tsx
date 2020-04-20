@@ -7,19 +7,6 @@ export type { ICommand, CommandOrchestrator, TextRange, TextState, TextApi } fro
 export type { MDEditorProps, MDEditorState } from './MDEditor';
 export type { TextSection } from './utils/markdownUtils';
 
-export type {
-  ReactMarkdownProps,
-  MarkdownAbstractSyntaxTree,
-  NodeType,
-  RemarkParseOptions,
-  Position,
-  Point,
-  AlignType,
-  ReferenceType,
-  LinkTargetResolver,
-  Renderers,
-} from 'react-markdown';
-
 MDEditor.Markdown = Markdown;
 
 export {
