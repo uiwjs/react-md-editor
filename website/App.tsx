@@ -122,7 +122,7 @@ export default function App() {
               return children;
             },
             code: ({ children, language, value }) => {
-              if (language.toLocaleLowerCase() === 'katex') {
+              if (language && language.toLocaleLowerCase() === 'katex') {
                 const html = katex.renderToString(value, {
                   throwOnError: false
                 });
@@ -132,7 +132,14 @@ export default function App() {
                   </pre>
                 );
               }
-              return children;
+              const props = {
+                className: language ? `language-${language}` : '',
+              }
+              return (
+                <pre {...props}>
+                  <code {...props}>{value}</code>
+                </pre>
+              );
             }
           }
         }}
