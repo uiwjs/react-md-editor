@@ -42,8 +42,8 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.8.0",
-    "@kkt/loader-raw": "5.8.0",
+    "@kkt/loader-less": "5.9.0",
+    "@kkt/loader-raw": "5.9.0",
     "@types/classnames": "2.2.10",
     "@types/katex": "0.11.0",
     "@types/node": "13.13.0",
@@ -55,7 +55,7 @@
     "@uiw/react-shields": "1.1.0",
     "compile-less-cli": "1.4.0",
     "katex": "0.11.1",
-    "kkt": "5.8.0",
+    "kkt": "5.9.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-test-renderer": "16.13.1",
