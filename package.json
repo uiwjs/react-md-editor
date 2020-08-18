@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@kkt/loader-less": "5.9.0",
-    "@kkt/loader-raw": "5.9.0",
+    "@kkt/loader-raw": "5.10.3",
     "@types/classnames": "2.2.10",
     "@types/katex": "0.11.0",
     "@types/node": "13.13.0",
