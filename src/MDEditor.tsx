@@ -117,8 +117,11 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
     }
   }
   private handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const preview = this.preview.current!.mdp.current! as HTMLDivElement;
-    const textarea = this.textarea.current!.warp.current! as HTMLDivElement;
+    if (!this.textarea.current || !this.preview.current) {
+      return;
+    }
+    const preview = this.preview.current.mdp.current! as HTMLDivElement;
+    const textarea = this.textarea.current.warp.current! as HTMLDivElement;
     if (textarea && preview) {
       const scale = (textarea.scrollHeight - textarea.offsetHeight) / (preview.scrollHeight - preview.offsetHeight);
       if (e.target === textarea && this.leftScroll) {
@@ -162,7 +165,7 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
         />
         <div
           className={`${prefixCls}-content`}
-          style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : `calc(${this.state.height} - 29px` }}
+          style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : (this.state.height as number) - 29 }}
         >
           {/(edit|live)/.test(this.state.preview as string) && (
             <TextArea
