@@ -162,7 +162,7 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
         />
         <div
           className={`${prefixCls}-content`}
-          style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : (this.state.height as number) - 29 }}
+          style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : `calc(${this.state.height} - 29px` }}
         >
           {/(edit|live)/.test(this.state.preview as string) && (
             <TextArea

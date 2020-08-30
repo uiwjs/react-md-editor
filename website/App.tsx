@@ -121,7 +121,7 @@ export default function App() {
               }
               return children;
             },
-            code: ({ children, language, value }) => {
+            code: ({ language, value }) => {
               if (language && language.toLocaleLowerCase() === 'katex') {
                 const html = katex.renderToString(value, {
                   throwOnError: false
