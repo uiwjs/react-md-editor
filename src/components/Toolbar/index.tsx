@@ -33,7 +33,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
                 type: 'button',
                 disabled: active && active.preview && active.preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand),
                 "data-name": item.name, ...item.buttonProps,
-                onClick: handleClick.bind(item)
+                onClick: () =>  handleClick(item)
               }, item.icon)}
             </li>
           );
