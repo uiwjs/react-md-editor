@@ -117,7 +117,7 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
     }
   }
   private handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    if (!this.textarea.current || !this.preview.current) {
+    if (!this.textarea.current || !this.preview.current || !this.preview.current.mdp || !this.textarea.current.warp) {
       return;
     }
     const preview = this.preview.current.mdp.current! as HTMLDivElement;
