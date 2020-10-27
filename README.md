@@ -177,7 +177,10 @@ const renderers = {
 
 export default function App() {
   return (
-    <MDEditor value={mdKaTeX} previewOptions={{ renderers: renderers }} />
+    <MDEditor
+      value={mdKaTeX || ''}
+      previewOptions={{ renderers: renderers }}
+    />
   );
 }
 ```
