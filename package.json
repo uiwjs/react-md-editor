@@ -13,7 +13,7 @@
     "coverage": "tsbb test --env=jsdom --coverage",
     "released": "npm run build && npm run doc",
     "doc": "ENTRYDIR=website kkt build",
-    "doc:dev": "ENTRYDIR=website PUBLIC_URL=/ kkt start",
+    "start": "ENTRYDIR=website PUBLIC_URL=/ kkt start",
     "build": "npm run ts:build && npm run types:esm && npm run types:cjs && npm run css:build && npm run css:build:dist",
     "types:build": "tsbb types --sourceRoot src --target ESNEXT",
     "types:watch": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
