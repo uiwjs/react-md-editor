@@ -47,7 +47,7 @@
     "@types/classnames": "2.2.10",
     "@types/katex": "0.11.0",
     "@types/node": "13.13.0",
-    "@types/prismjs": "1.16.0",
+    "@types/prismjs": "1.16.2",
     "@types/react": "16.9.45",
     "@types/react-dom": "16.9.6",
     "@types/react-test-renderer": "16.9.2",
