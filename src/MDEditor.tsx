@@ -1,15 +1,22 @@
-import React from 'react';
-import classnames from 'classnames';
-import { ReactMarkdownProps } from 'react-markdown';
-import MarkdownPreview from '@uiw/react-markdown-preview';
-import { IProps } from './utils';
-import TextArea, { ITextAreaProps } from './components/TextArea';
-import Toolbar from './components/Toolbar';
-import DragBar from './components/DragBar';
-import { getCommands, TextAreaCommandOrchestrator, ICommand, CommandOrchestrator } from './commands';
-import './index.less';
+import React from "react";
+import classnames from "classnames";
+import { ReactMarkdownProps } from "react-markdown";
+import MarkdownPreview from "@uiw/react-markdown-preview";
+import { IProps } from "./utils";
+import TextArea, { ITextAreaProps } from "./components/TextArea";
+import Toolbar from "./components/Toolbar";
+import DragBar from "./components/DragBar";
+import {
+  getCommands,
+  TextAreaCommandOrchestrator,
+  ICommand,
+  CommandOrchestrator,
+} from "./commands";
+import "./index.less";
 
-export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
+export interface MDEditorProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">,
+    IProps {
   /**
    * The Markdown value.
    */
@@ -23,11 +30,11 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * it will be set to true when either the source `textarea` is focused,
    * or it has an `autofocus` attribute and no other element is focused.
    */
-  autoFocus?: ITextAreaProps['autoFocus'];
+  autoFocus?: ITextAreaProps["autoFocus"];
   /**
    * The height of the editor.
    */
-  height?: React.CSSProperties['height'];
+  height?: React.CSSProperties["height"];
   /**
    * Show drag and drop tool. Set the height of the editor.
    */
@@ -35,7 +42,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * Show markdown preview.
    */
-  preview?: 'live' | 'edit' | 'preview';
+  preview?: "live" | "edit" | "preview";
   fullscreen?: boolean;
   /**
    * Maximum drag height. `visiableDragbar=true`
@@ -62,46 +69,57 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * You can create your own commands or reuse existing commands.
    */
   commands?: ICommand[];
+  /**
+   * Hide the tool bar
+   */
+  hideToolbar?: boolean;
 }
 
 export interface MDEditorState {
-  height: React.CSSProperties['height'];
-  preview?: MDEditorProps['preview'];
+  height: React.CSSProperties["height"];
+  preview?: MDEditorProps["preview"];
   fullscreen?: boolean;
   value?: string;
 }
 
-export default class MDEditor extends React.PureComponent<MDEditorProps, MDEditorState> {
+export default class MDEditor extends React.PureComponent<
+  MDEditorProps,
+  MDEditorState
+> {
   static Markdown = MarkdownPreview;
-  public static displayName = 'MDEditor';
+  public static displayName = "MDEditor";
   public preview = React.createRef<MarkdownPreview>();
   public textarea = React.createRef<TextArea>();
   public commandOrchestrator!: CommandOrchestrator;
-  public leftScroll:boolean = false;
+  public leftScroll: boolean = false;
   public static defaultProps: MDEditorProps = {
-    value: '',
-    prefixCls: 'w-md-editor',
+    value: "",
+    prefixCls: "w-md-editor",
     height: 200,
     minHeight: 100,
     maxHeight: 1200,
     tabSize: 2,
     visiableDragbar: true,
-    preview: 'live',
+    preview: "live",
     fullscreen: false,
+    hideToolbar: false,
     commands: getCommands(),
-  }
+  };
   public constructor(props: MDEditorProps) {
     super(props);
     this.state = {
       height: props.height,
-      preview: props.preview,
+      preview: "live",
       fullscreen: props.fullscreen,
       value: props.value,
     };
   }
   public componentDidMount() {
+    this.setState({ preview: this.props.preview });
     this.handleChange(this.state.value);
-    this.commandOrchestrator = new TextAreaCommandOrchestrator(this.textarea.current!.text.current as HTMLTextAreaElement);
+    this.commandOrchestrator = new TextAreaCommandOrchestrator(
+      (this.textarea.current!.text.current || null) as HTMLTextAreaElement
+    );
   }
   public UNSAFE_componentWillReceiveProps(nextProps: MDEditorProps) {
     if (nextProps.preview !== this.props.preview) {
@@ -117,13 +135,20 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
     }
   }
   private handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    if (!this.textarea.current || !this.preview.current || !this.preview.current.mdp || !this.textarea.current.warp) {
+    if (
+      !this.textarea.current ||
+      !this.preview.current ||
+      !this.preview.current.mdp ||
+      !this.textarea.current.warp
+    ) {
       return;
     }
     const preview = this.preview.current.mdp.current! as HTMLDivElement;
     const textarea = this.textarea.current.warp.current! as HTMLDivElement;
     if (textarea && preview) {
-      const scale = (textarea.scrollHeight - textarea.offsetHeight) / (preview.scrollHeight - preview.offsetHeight);
+      const scale =
+        (textarea.scrollHeight - textarea.offsetHeight) /
+        (preview.scrollHeight - preview.offsetHeight);
       if (e.target === textarea && this.leftScroll) {
         preview.scrollTop = textarea.scrollTop / scale;
       }
@@ -131,41 +156,72 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
         textarea.scrollTop = preview.scrollTop * scale;
       }
     }
-  }
+  };
   private handleChange(mdStr?: string) {
     const { onChange } = this.props;
     this.preview.current!.renderHTML(mdStr);
-    onChange && onChange(mdStr || '');
+    onChange && onChange(mdStr || "");
   }
   public handleCommand = (command: ICommand) => {
-    if (command.keyCommand === 'preview') {
-      this.setState({ preview: command.value as MDEditorState['preview'] });
+    if (command.keyCommand === "preview") {
+      this.setState({ preview: command.value as MDEditorState["preview"] });
     }
-    if (command.keyCommand === 'fullscreen') {
+    if (command.keyCommand === "fullscreen") {
       this.setState({ fullscreen: !this.state.fullscreen });
-      document.body.style.overflow = this.state.fullscreen ? 'initial' : 'hidden';
+      document.body.style.overflow = this.state.fullscreen
+        ? "initial"
+        : "hidden";
     }
     this.commandOrchestrator.executeCommand(command);
-  }
+  };
   public render() {
-    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, textareaProps, maxHeight, minHeight, autoFocus, tabSize, onChange, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      value,
+      commands,
+      height,
+      visiableDragbar,
+      preview,
+      fullscreen,
+      previewOptions,
+      textareaProps,
+      maxHeight,
+      minHeight,
+      autoFocus,
+      tabSize,
+      onChange,
+      hideToolbar,
+      ...other
+    } = this.props;
     const cls = classnames(className, prefixCls, {
       [`${prefixCls}-show-${this.state.preview}`]: this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
     });
     return (
-      <div className={cls} style={{ height: this.state.fullscreen ? '100%' : this.state.height }} {...other}>
-        <Toolbar
-          active={{
-            fullscreen: this.state.fullscreen,
-            preview: this.state.preview,
-          }}
-          prefixCls={prefixCls} commands={commands}
-          onCommand={this.handleCommand}
-        />
+      <div
+        className={cls}
+        style={{ height: this.state.fullscreen ? "100%" : this.state.height }}
+        {...other}
+      >
+        {!hideToolbar && (
+          <Toolbar
+            active={{
+              fullscreen: this.state.fullscreen,
+              preview: this.state.preview,
+            }}
+            prefixCls={prefixCls}
+            commands={commands}
+            onCommand={this.handleCommand}
+          />
+        )}
         <div
           className={`${prefixCls}-content`}
-          style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : (this.state.height as number) - 29 }}
+          style={{
+            height: this.state.fullscreen
+              ? "calc(100% - 29px)"
+              : (this.state.height as number) - 29,
+          }}
         >
           {/(edit|live)/.test(this.state.preview as string) && (
             <TextArea
@@ -177,8 +233,8 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
               autoFocus={autoFocus}
               {...textareaProps}
               onScroll={this.handleScroll}
-              onMouseOver={() => this.leftScroll = true}
-              onMouseLeave={() => this.leftScroll = false}
+              onMouseOver={() => (this.leftScroll = true)}
+              onMouseLeave={() => (this.leftScroll = false)}
               onChange={this.handleChange.bind(this)}
             />
           )}
@@ -188,19 +244,21 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
             onScroll={this.handleScroll}
             className={`${prefixCls}-preview`}
           />
-          {visiableDragbar && this.state.preview !== 'preview' && !this.state.fullscreen && (
-            <DragBar
-              prefixCls={prefixCls}
-              height={this.state.height as number}
-              maxHeight={maxHeight!}
-              minHeight={minHeight!}
-              onChange={(newHeight) => {
-                this.setState({ height: newHeight });
-              }}
-            />
-          )}
+          {visiableDragbar &&
+            this.state.preview !== "preview" &&
+            !this.state.fullscreen && (
+              <DragBar
+                prefixCls={prefixCls}
+                height={this.state.height as number}
+                maxHeight={maxHeight!}
+                minHeight={minHeight!}
+                onChange={(newHeight) => {
+                  this.setState({ height: newHeight });
+                }}
+              />
+            )}
         </div>
       </div>
-    )
+    );
   }
 }
