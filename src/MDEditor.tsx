@@ -62,6 +62,10 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * You can create your own commands or reuse existing commands.
    */
   commands?: ICommand[];
+  /**
+   * Hide the tool bar
+   */
+  hideToolbar?: boolean;
 }
 
 export interface MDEditorState {
@@ -101,7 +105,7 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
   }
   public componentDidMount() {
     this.handleChange(this.state.value);
-    this.commandOrchestrator = new TextAreaCommandOrchestrator(this.textarea.current!.text.current as HTMLTextAreaElement);
+    this.commandOrchestrator = new TextAreaCommandOrchestrator((this.textarea.current!.text.current || null) as HTMLTextAreaElement);
   }
   public UNSAFE_componentWillReceiveProps(nextProps: MDEditorProps) {
     if (nextProps.preview !== this.props.preview) {
@@ -148,21 +152,21 @@ export default class MDEditor extends React.PureComponent<MDEditorProps, MDEdito
     this.commandOrchestrator.executeCommand(command);
   }
   public render() {
-    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, textareaProps, maxHeight, minHeight, autoFocus, tabSize, onChange, ...other } = this.props;
+    const { prefixCls, className, value, commands, height, visiableDragbar, preview, fullscreen, previewOptions, textareaProps, maxHeight, minHeight, autoFocus, tabSize, onChange, hideToolbar, ...other } = this.props;
     const cls = classnames(className, prefixCls, {
       [`${prefixCls}-show-${this.state.preview}`]: this.state.preview,
       [`${prefixCls}-fullscreen`]: this.state.fullscreen,
     });
     return (
       <div className={cls} style={{ height: this.state.fullscreen ? '100%' : this.state.height }} {...other}>
-        <Toolbar
+        {!hideToolbar && <Toolbar
           active={{
             fullscreen: this.state.fullscreen,
             preview: this.state.preview,
           }}
           prefixCls={prefixCls} commands={commands}
           onCommand={this.handleCommand}
-        />
+        />}
         <div
           className={`${prefixCls}-content`}
           style={{ height: this.state.fullscreen ? 'calc(100% - 29px)' : (this.state.height as number) - 29 }}
