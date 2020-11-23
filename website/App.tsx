@@ -61,7 +61,7 @@ export default function App() {
         <Logo />
       </header>
       <div className="badges">
-        <Npm.Version scope="@uiw" packageName="react-shields" href="https://www.npmjs.com/package/@uiw/react-md-editor" />
+        <Npm.Version scope="@uiw" packageName="react-md-editor" href="https://www.npmjs.com/package/@uiw/react-md-editor" />
         <Github user="uiwjs" repo="react-md-editor">
           <Github.Social type="forks" href="https://github.com/uiwjs/react-md-editor" />
           <Github.Social type="stars" href="https://github.com/uiwjs/react-md-editor/stargazers" />
