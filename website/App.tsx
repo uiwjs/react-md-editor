@@ -89,7 +89,7 @@ export default function App() {
           commands.fullscreen, 
         ]}
       />
-      <div className="page-title">Support Custom KaTeX Preview. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/925a266eb98013c7ba6ad0fe189a926f9e4c1560/website/App.tsx#L111-L146">Example Code</a></div>
+      <div className="page-title">Support Custom KaTeX Preview. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/a89811dca76bf4f952331e706f538fed37d6d7f3/website/ExmapleKaTeX.tsx#L1-L60">Example Code</a></div>
       <ExmapleKaTeX />
       <MarkdownPreview style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
