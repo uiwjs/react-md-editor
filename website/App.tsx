@@ -107,7 +107,7 @@ export default function App() {
           commands.fullscreen, 
         ]}
       />
-      <div className="page-title">Support Custom KaTeX Preview</div>
+      <div className="page-title">Support Custom KaTeX Preview. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/925a266eb98013c7ba6ad0fe189a926f9e4c1560/website/App.tsx#L111-L146">Example Code</a></div>
       <MDEditor
         value={mdKaTeX}
         previewOptions={{
