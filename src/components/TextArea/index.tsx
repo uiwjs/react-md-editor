@@ -30,7 +30,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
   public constructor(props: ITextAreaProps) {
     super(props);
     this.state = {
-      value: props.value,
+      value: props.value || '',
     };
   }
   private handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -41,6 +41,9 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     });
   }
   public async componentDidMount() {
+    if (this.props.autoFocus && this.text.current) {
+      this.text.current.focus();
+    }
     this.highlight();
   }
   public UNSAFE_componentWillReceiveProps(nextProps: ITextAreaProps) {

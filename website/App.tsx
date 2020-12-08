@@ -1,11 +1,12 @@
 import React from 'react';
 import GithubCorner from '@uiw/react-github-corners';
-import MarkdownPreview from '@uiw/react-markdown-preview';
 import Github from '@uiw/react-shields/lib/esm/github';
 import Npm from '@uiw/react-shields/lib/esm/npm';
-import MDEditor, { commands, ICommand, MDEditorProps } from '../';
+import MDEditor from '../';
 import ReadmeStr from '../README.md';
+import Exmaple from './Exmaple';
 import ExmapleKaTeX from './ExmapleKaTeX';
+import ExampleCustomToolbar from './ExampleCustomToolbar';
 import Logo from './Logo';
 import './App.less';
 
@@ -15,30 +16,10 @@ const mdStr = `<p align="center">
 ${ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')}
 `;
 
-const title: ICommand = {
-  name: 'title3',
-  keyCommand: 'title3',
-  buttonProps: null,
-  icon: (
-    <span style={{ padding: '0 5px' }}>Custom Toolbar</span>
-  ),
-};
-
 export default function App() {
-  const [state, setVisiable] = React.useState({
-    visiableDragbar: true,
-    value: mdStr,
-    preview: 'live',
-  });
-  const upDataVisiable = (keyName: string, e: React.ChangeEvent<HTMLInputElement>) => {
-    setVisiable({ ...state, [keyName]: e.target.checked });
-  }
-  const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVisiable({ ...state, preview: e.target.value });
-  }
   return (
     <div className="warpper">
-      <GithubCorner fixed target="__blank" href="https://github.com/uiwjs/react-md-editor" />
+      <GithubCorner fixed target="__blank" zIndex={99999} href="https://github.com/uiwjs/react-md-editor" />
       <header className="header">
         <Logo />
       </header>
@@ -50,48 +31,12 @@ export default function App() {
           <Github.Social type="watchers" href="https://github.com/uiwjs/react-md-editor/watchers" />
         </Github>
       </div>
-      <MDEditor
-        value={state.value}
-        height={400}
-        visiableDragbar={state.visiableDragbar}
-        // preview={state.preview}
-        preview={state.preview as MDEditorProps['preview']}
-        onChange={(newValue) => {
-
-          setVisiable({ ...state, value: newValue || ''});
-        }}
-      />
-      <div className="doc-tools">
-        <label>
-          <input type="checkbox" checked={state.visiableDragbar} onChange={(e) => upDataVisiable('visiableDragbar', e)} />
-          {state.visiableDragbar ? 'Show' : 'Hidden'} Drag Bar
-        </label>
-        <label>
-          <input type="radio" name="preview" value="edit" checked={state.preview === 'edit'} onChange={upPreview} />
-          Edit
-        </label>
-        <label>
-          <input type="radio" name="preview" value="live" checked={state.preview === 'live'} onChange={upPreview} />
-          Live Preview
-        </label>
-        <label>
-          <input type="radio" name="preview" value="preview" checked={state.preview === 'preview'} onChange={upPreview} />
-          Preview
-        </label>
-      </div>
+      <Exmaple mdStr={mdStr} />
       <div className="page-title">Custom toolbar</div>
-      <MDEditor
-        value="Hello Markdown!"
-        commands={[
-          title,
-          commands.bold, commands.hr, commands.italic, commands.divider,
-          commands.codeEdit, commands.codeLive, commands.codePreview, commands.divider,
-          commands.fullscreen, 
-        ]}
-      />
+      <ExampleCustomToolbar />
       <div className="page-title">Support Custom KaTeX Preview. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/a89811dca76bf4f952331e706f538fed37d6d7f3/website/ExmapleKaTeX.tsx#L1-L60">Example Code</a></div>
       <ExmapleKaTeX />
-      <MarkdownPreview style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
+      <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
   )
 }

@@ -4,17 +4,17 @@ import { IProps } from '../../utils';
 import { ICommand } from '../../commands';
 import './index.less';
 
-export interface IToolbarProps extends IProps {
-  onCommand?: (command: ICommand) => void;
-  commands?: ICommand[];
+export interface IToolbarProps<T> extends IProps {
+  onCommand?: (command: ICommand<T>) => void;
+  commands?: ICommand<T>[];
   active?: {
     [key: string]: any,
   },
 }
 
-export default function Toolbar(props: IToolbarProps = {}) {
+export default function Toolbar<T>(props: IToolbarProps<T> = {}) {
   const { prefixCls, commands = [], active } = props;
-  function handleClick(command: ICommand) {
+  function handleClick(command: ICommand<T>) {
     const { onCommand } = props;
     onCommand && onCommand(command);
   }

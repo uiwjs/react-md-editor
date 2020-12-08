@@ -12,8 +12,8 @@ c = \\pm\\sqrt{a^2 + b^2}
 \`\`\`
 
 \`\`\`KaTeX
-\\f{x} = \\int_{-\\infty}^\\infty
-    \\hat \\f\\xi\\,e^{2 \\pi i \\xi x}
+\\f\\relax{x} = \\int_{-\\infty}^\\infty
+    \\f\\hat\\xi\\,e^{2 \\pi i \\xi x}
     \\,d\\xi
 \`\`\`
 `;
@@ -33,7 +33,7 @@ export default () => {
             }
             return children;
           },
-          code: ({ language, value }) => {
+          code: ({ language, value, children }) => {
             if (language && language.toLocaleLowerCase() === 'katex') {
               const html = katex.renderToString(value, {
                 throwOnError: false

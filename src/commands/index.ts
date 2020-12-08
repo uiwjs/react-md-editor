@@ -17,11 +17,11 @@ export interface CommandOrchestrator {
   executeCommand(command: ICommand): void
 }
 
-export interface ICommand {
+export interface ICommand<T = string> {
   name?: string,
   icon?: React.ReactElement,
   keyCommand: string,
-  value?: string,
+  value?: T,
   position?: 'right'
   liProps?: React.LiHTMLAttributes<HTMLLIElement>,
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null,
@@ -101,7 +101,7 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
     this.textApi = new TextAreaTextApi(textArea);
   }
 
-  executeCommand(command: ICommand): void {
+  executeCommand(command: ICommand<string>): void {
     command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi);
   }
 }
