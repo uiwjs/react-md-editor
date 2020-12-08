@@ -1,2 +1,0 @@
-(this["webpackJsonp@uiw/react-md-editor"]=this["webpackJsonp@uiw/react-md-editor"]||[]).push([[177],{225:function(e,n){var a;(a=Prism).languages.ignore={comment:/^#.*/m,entry:{pattern:/\S(?:.*(?:(?:\\ )|\S))?/,alias:"string",inside:{operator:/^!|\*\*?|\?/,regex:{pattern:/(^|[^\\])\[[^\[\]]*\]/,lookbehind:!0},punctuation:/\//}}},a.languages.gitignore=a.languages.ignore,a.languages.hgignore=a.languages.ignore,a.languages.npmignore=a.languages.ignore}}]);
-//# sourceMappingURL=177.9108fbe6.chunk.js.map
