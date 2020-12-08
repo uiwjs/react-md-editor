@@ -32,6 +32,7 @@ A simple markdown editor with preview, implemented with React.js and TypeScript.
 - ♻️ Based on `textarea` encapsulation, does not depend on any modern code editors.
 - 🚧 Does not depend on the [`uiw`](https://github.com/uiwjs/uiw) component library.
 - 🚘 Automatic list on new lines.
+- 😻 GitHub flavored markdown support
 
 ### Quick Start
 
