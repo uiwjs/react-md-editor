@@ -98,10 +98,15 @@ const InternalMDEditor = (props: MDEditorProps,
 
   useEffect(() => {
     if (preview !== props.preview && props.preview) {
-      console.log('props.preview:', preview, props.preview)
       setPreview(props.preview!);
     }
   }, [props.preview]);
+
+  useEffect(() => {
+    if (value !== props.value) {
+      setValue(props.preview!);
+    }
+  }, [props.value]);
 
   function handleChange(mdStr?: string) {
     setValue(mdStr!);
