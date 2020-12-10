@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 import MarkdownPreview, {MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
@@ -83,7 +83,6 @@ const InternalMDEditor = (props: MDEditorProps,
   const leftScroll = useRef(false);
   const previewRef = React.createRef<MarkdownPreviewRef>()
 
-  // const height = useRef<MDEditorProps['height']>(heightWarp || 200);
   const [height, setHeight] = useState(heightWarp);
   const textarea = React.createRef<TextArea>();
   const commandOrchestrator = useRef<TextAreaCommandOrchestrator>()
@@ -96,17 +95,9 @@ const InternalMDEditor = (props: MDEditorProps,
     commandOrchestrator.current = new TextAreaCommandOrchestrator((textarea.current!.text.current || null) as HTMLTextAreaElement);
   }, []);
 
-  useEffect(() => {
-    if (preview !== props.preview && props.preview) {
-      setPreview(props.preview!);
-    }
-  }, [props.preview]);
-
-  useEffect(() => {
-    if (value !== props.value) {
-      setValue(props.preview!);
-    }
-  }, [props.value]);
+  useMemo(() => preview !== props.preview && props.preview && setPreview(props.preview!), [props.preview]);
+  useMemo(() => value !== props.value && setValue(props.value!), [props.value]);
+  useMemo(() => height !== props.height && setHeight(props.height!), [props.height]);
 
   function handleChange(mdStr?: string) {
     setValue(mdStr!);
