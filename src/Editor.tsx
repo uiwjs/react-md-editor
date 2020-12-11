@@ -97,7 +97,7 @@ const InternalMDEditor = (props: MDEditorProps,
 
   useMemo(() => preview !== props.preview && props.preview && setPreview(props.preview!), [props.preview]);
   useMemo(() => value !== props.value && setValue(props.value!), [props.value]);
-  useMemo(() => height !== props.height && setHeight(props.height!), [props.height]);
+  useMemo(() => height !== props.height && setHeight(heightWarp!), [heightWarp]);
 
   function handleChange(mdStr?: string) {
     setValue(mdStr!);
@@ -168,7 +168,7 @@ const InternalMDEditor = (props: MDEditorProps,
         {/(live|preview)/.test(preview as string) && (
           <MarkdownPreview {...mdProps} className={`${prefixCls}-preview`}/>
         )}
-        {visiableDragbar && preview !== 'preview' && !isFullscreen && (
+        {visiableDragbar && !isFullscreen && (
           <DragBar
             prefixCls={prefixCls}
             height={height as number}
