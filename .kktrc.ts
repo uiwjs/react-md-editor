@@ -1,26 +1,24 @@
-import { OptionConf, LoaderOneOf, ModuleScopePluginOpts } from 'kkt';
-import webpack from 'webpack';
 import path from 'path';
+import webpack, {Configuration} from 'webpack';
+import { LoaderConfOptions } from 'kkt';
+import lessModules from '@kkt/less-modules';
+import rawModules from '@kkt/raw-modules';
+import scopePluginOptions from '@kkt/scope-plugin-options';
+import pkg from './package.json';
 
-type Webpack = typeof webpack;
-
-export const moduleScopePluginOpts: ModuleScopePluginOpts = [
-  path.resolve(process.cwd(), 'README.md'),
-];
-
-export const loaderOneOf: LoaderOneOf = [
-  require.resolve('@kkt/loader-less'),
-  require.resolve('@kkt/loader-raw')
-]
-
-export default (conf: webpack.Configuration, options: OptionConf, webpack: Webpack) => {
-  const pkg = require(path.resolve(process.cwd(), 'package.json'));
-  // 获取版本
-  conf.plugins!.push(
-    new webpack.DefinePlugin({
-      VERSION: JSON.stringify(pkg.version),
-    })
-  );
+export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
+  conf = rawModules(conf, env, { ...options });
+  conf = lessModules(conf, env, options);
+  conf = scopePluginOptions(conf, env, {
+    ...options,
+    allowedFiles: [
+      path.resolve(process.cwd(), 'README.md')
+    ]
+  });
+  // Get the project version.
+  conf.plugins!.push(new webpack.DefinePlugin({
+    VERSION: JSON.stringify(pkg.version),
+  }));
   conf.output = { ...conf.output, publicPath: './' }
   return conf;
 }
