@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import MDEditor, { MDEditorProps } from '../';
 
-
-export default (props = {} as { mdStr: string }) => {
+const Exmaple = (props = {} as { mdStr: string }) => {
   const [state, setVisiable] = React.useState({
     visiableDragbar: true,
     hideToolbar: true,
@@ -53,3 +52,5 @@ export default (props = {} as { mdStr: string }) => {
     </Fragment>
   )
 }
+
+export default Exmaple;

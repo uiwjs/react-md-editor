@@ -1,7 +1,7 @@
 import React from 'react';
 import MDEditor, { commands, ICommand } from '../';
 
-export default () => {
+const ExampleCustomToolbar = () => {
   const title: ICommand<string> = {
     name: 'title3',
     keyCommand: 'title3',
@@ -23,3 +23,4 @@ export default () => {
     />
   )
 }
+export default ExampleCustomToolbar;
