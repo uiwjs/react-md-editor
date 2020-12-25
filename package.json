@@ -56,7 +56,7 @@
     "@uiw/react-shields": "1.1.0",
     "compile-less-cli": "1.5.1",
     "katex": "0.12.0",
-    "kkt": "6.0.5",
+    "kkt": "6.0.11",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-test-renderer": "17.0.1",
