@@ -5,6 +5,7 @@ lib
 dist
 build
 doc
+package-lock.json
 __snapshots__
 
 ### Node ###
