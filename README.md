@@ -1,24 +1,27 @@
 <p align="center">
   <a href="https://github.com/uiwjs/react-md-editor">
-    <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
+    <img alt="react-md-editor logo" src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
   </a>
 </p>
 
 <p align="center">
+  <a href="https://github.com/uiwjs/react-md-editor/actions">
+    <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/workflows/Build%20&%20Deploy/badge.svg">
+  </a>
   <a href="https://github.com/uiwjs/react-md-editor/issues">
-    <img src="https://img.shields.io/github/issues/uiwjs/react-md-editor.svg">
+    <img alt="Issues" src="https://img.shields.io/github/issues/uiwjs/react-md-editor.svg">
   </a>
   <a href="https://github.com/uiwjs/react-md-editor/network">
-    <img src="https://img.shields.io/github/forks/uiwjs/react-md-editor.svg">
+    <img alt="Forks" src="https://img.shields.io/github/forks/uiwjs/react-md-editor.svg">
   </a>
   <a href="https://github.com/uiwjs/react-md-editor/stargazers">
-    <img src="https://img.shields.io/github/stars/uiwjs/react-md-editor.svg">
+    <img alt="Stars" src="https://img.shields.io/github/stars/uiwjs/react-md-editor.svg">
   </a>
   <a href="https://github.com/uiwjs/react-md-editor/releases">
-    <img src="https://img.shields.io/github/release/uiwjs/react-md-editor.svg">
+    <img alt="Release" src="https://img.shields.io/github/release/uiwjs/react-md-editor.svg">
   </a>
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
-    <img src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
+    <img alt="npm version" src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
   </a>
 </p>
 
