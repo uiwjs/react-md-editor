@@ -6,7 +6,7 @@ import rawModules from '@kkt/raw-modules';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import pkg from './package.json';
 
-export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
+export default (conf: Configuration, env: 'production' | 'development', options: LoaderConfOptions) => {
   conf = rawModules(conf, env, { ...options });
   conf = lessModules(conf, env, options);
   conf = scopePluginOptions(conf, env, {
@@ -19,6 +19,8 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
   conf.plugins!.push(new webpack.DefinePlugin({
     VERSION: JSON.stringify(pkg.version),
   }));
-  conf.output = { ...conf.output, publicPath: './' }
+  if (env === 'production') {
+    conf.output = { ...conf.output, publicPath: './' }
+  }
   return conf;
 }
