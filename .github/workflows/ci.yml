@@ -29,6 +29,37 @@ jobs:
     - run: npm run doc
     - run: npm run map
 
+    - name: Create Tag
+      id: create_tag
+      uses: jaywcjlove/create-tag-action@v1.1.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        package-path: ./package.json
+
+    - name: Generate Changelog
+      id: changelog
+      uses: jaywcjlove/changelog-generator@v1.3.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        head-ref: ${{steps.create_tag.outputs.version}}
+        filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+        filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      if: steps.create_tag.outputs.successful
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.create_tag.outputs.version }}
+        release_name: ${{ steps.create_tag.outputs.version }}
+        body: |
+          ${{ steps.changelog.outputs.compareurl }}
+          ${{ steps.changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
+
     - name: Build and Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
