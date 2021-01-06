@@ -18,9 +18,9 @@ export const comment: ICommand = {
     </svg>
   ),
   execute: (state: TextState, api: TextApi) => {
-    let modifyText = `[//]: # (${state.selectedText})\n`;
+    let modifyText = `<!--  ${state.selectedText} --> \n`;
     if (!state.selectedText) {
-      modifyText = `[//]: # (Comment here)\n`;
+      modifyText = `<!--  Comment here --> \n`;
     }
     api.replaceSelection(modifyText);
   },
