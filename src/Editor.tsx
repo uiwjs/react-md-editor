@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
-import MarkdownPreview, {MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
+import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
-import { getCommands, TextAreaCommandOrchestrator, ICommand, CommandOrchestrator } from './commands';
+import { getCommands, TextAreaCommandOrchestrator, ICommand } from './commands';
 import './index.less';
 
 export type PreviewType = 'live' | 'edit' | 'preview';
@@ -69,6 +69,13 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   hideToolbar?: boolean;
 }
 
+function setGroupPopFalse(data: Record<string, boolean>) {
+  Object.keys(data).forEach(keyname => {
+    data[keyname] = false;
+  });
+  return data;
+}
+
 const InternalMDEditor = (props: MDEditorProps, 
   ref?:
     | ((instance: HTMLDivElement) => void)
@@ -79,6 +86,7 @@ const InternalMDEditor = (props: MDEditorProps,
   const [value, setValue] = useState<string>(propsValue || '')
   const [preview, setPreview] = useState<PreviewType>(previewType);
   const [isFullscreen, setIsFullscreen] = useState(isfullscreen || false);
+  const [groupPop, setGroupPop] = useState<Record<string, boolean>>({});
   
   const leftScroll = useRef(false);
   const previewRef = React.createRef<MarkdownPreviewRef>()
@@ -86,11 +94,11 @@ const InternalMDEditor = (props: MDEditorProps,
   const [height, setHeight] = useState(heightWarp);
   const textarea = React.createRef<TextArea>();
   const commandOrchestrator = useRef<TextAreaCommandOrchestrator>()
+
   const cls = classnames(className, prefixCls, {
     [`${prefixCls}-show-${preview}`]: preview,
     [`${prefixCls}-fullscreen`]: isFullscreen,
   });
-
   useEffect(() => {
     commandOrchestrator.current = new TextAreaCommandOrchestrator((textarea.current!.text.current || null) as HTMLTextAreaElement);
   }, []);
@@ -103,13 +111,19 @@ const InternalMDEditor = (props: MDEditorProps,
     setValue(mdStr!);
     onChange && onChange(mdStr || '');
   }
-  function handleCommand(command: ICommand) {
+  function handleCommand(command: ICommand, groupName?: string) {
     if (command.keyCommand === 'preview') {
       setPreview(command.value as PreviewType);
     }
     if (command.keyCommand === 'fullscreen') {
       setIsFullscreen(!isFullscreen);
       document.body.style.overflow = isFullscreen ? 'initial' : 'hidden';
+    }
+    if (command.keyCommand === 'group') {
+      setGroupPop({ ...setGroupPopFalse(groupPop), [`${groupName}`]: true });
+    }
+    if (groupName && command.keyCommand !== 'group') {
+      setGroupPop({ ...groupPop, [`${groupName}`]: false });
     }
     commandOrchestrator.current!.executeCommand(command);
   }
@@ -129,6 +143,7 @@ const InternalMDEditor = (props: MDEditorProps,
       }
     }
   }
+  const chestratorObj = useMemo(() => commandOrchestrator.current, [commandOrchestrator.current]);
   const mdProps = {
     ...previewOptions,
     ref: previewRef,
@@ -136,16 +151,24 @@ const InternalMDEditor = (props: MDEditorProps,
     source: value,
   } as unknown as MarkdownPreviewProps;
   return (
-    <div className={cls} style={{ height: isFullscreen ? '100%' : hideToolbar ? Number(height) - 29 : height }} {...other}>
-      {!hideToolbar && <Toolbar
-        active={{
-          fullscreen: isFullscreen,
-          preview: preview,
-        }}
-        prefixCls={prefixCls}
-        commands={commands}
-        onCommand={handleCommand}
-      />}
+    <div className={cls} onClick={() => setGroupPop({...setGroupPopFalse(groupPop)})} style={{ height: isFullscreen ? '100%' : hideToolbar ? Number(height) - 29 : height }} {...other}>
+      {!hideToolbar && (
+        <Toolbar
+          active={{
+            fullscreen: isFullscreen,
+            preview: preview,
+            ...groupPop
+          }}
+          prefixCls={prefixCls}
+          commands={commands}
+          commandHelp={{
+            getState: commandOrchestrator.current && commandOrchestrator.current!.getState,
+            textApi: commandOrchestrator.current && commandOrchestrator.current!.textApi,
+            ...chestratorObj,
+          }}
+          onCommand={handleCommand}
+        />
+      )}
       <div
         className={`${prefixCls}-content`}
         style={{ height: isFullscreen ? 'calc(100% - 29px)' : Number(height) - 29 }}

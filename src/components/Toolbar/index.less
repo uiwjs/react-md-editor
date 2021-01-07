@@ -15,7 +15,7 @@
     li {
       display: inline-block;
       font-size: 14px;
-      button {
+      > button {
         border: none;
         height: 20px;
         line-height: 14px;
@@ -23,7 +23,7 @@
         color: #586069;
         padding: 4px;
         margin: 0 1px;
-        border-radius: 3px;
+        border-radius: 2px;
         text-transform: none;
         font-weight: normal;
         overflow: visible;
@@ -32,11 +32,11 @@
         transition: all .3s;
         &:hover {
           color: #06c;
-          background-color: #e8e8e8;
+          background-color: #dcdcdc;
         }
         &:active {
           color: #6a57ff;
-          background-color: #dadada;
+          background-color: #dcdcdc;
         }
         &:disabled {
           color: #ccc;
@@ -47,7 +47,7 @@
           }
         }
       }
-      &.active button {
+      &.active > button {
         color: #06c;
         background-color: #e8e8e8;
       }
