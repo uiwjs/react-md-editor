@@ -32,9 +32,9 @@ export default function App() {
         </Github>
       </div>
       <Exmaple mdStr={mdStr} />
-      <div className="page-title">Custom toolbar. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/99a8608b7b116526af0af9233d82a916b9b77374/website/ExampleCustomToolbar.tsx#L1-L25">Example Code</a></div>
+      <div className="page-title">Custom toolbar. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExampleCustomToolbar.tsx#L1-L55">Example Code</a></div>
       <ExampleCustomToolbar />
-      <div className="page-title">Support Custom KaTeX Preview. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/99a8608b7b116526af0af9233d82a916b9b77374/website/ExmapleKaTeX.tsx#L1-L60">Example Code</a></div>
+      <div className="page-title">Support Custom KaTeX Preview. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExmapleKaTeX.tsx#L1-L62">Example Code</a></div>
       <ExmapleKaTeX />
       <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
