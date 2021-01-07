@@ -236,9 +236,8 @@ export default function App() {
 ### Development
 
 ```bash
-npm run watch:types  # Listen create type files.
-npm run watch:ts     # Listen compile .tsx files.
-npm run doc:dev      # Preview code example.
+npm run watch  # Listen create type and .tsx files.
+npm run start  # Preview code example.
 ```
 
 ### Other
