@@ -46,13 +46,6 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     }
     this.highlight();
   }
-  public UNSAFE_componentWillReceiveProps(nextProps: ITextAreaProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value }, () => {
-        this.highlight();
-      });
-    }
-  }
   public shouldComponentUpdate(nextProps: ITextAreaProps, nextState: ITextAreaState) {
     return nextProps.value !== this.props.value || nextState.value !== this.state.value;
   }
