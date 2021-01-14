@@ -45,6 +45,10 @@ npm i @uiw/react-md-editor
 
 ### Using
 
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-for-react-izdd6?fontsize=14&hidenavigation=1&theme=dark)
+[![Open in Github gh-pages](https://img.shields.io/badge/Open%20In-Github%20gh--pages-blue?logo=github)](https://codesandbox.io/embed/markdown-editor-for-react-izdd6?fontsize=14&hidenavigation=1&theme=dark)
+[![Open in Gitee gh-pages](https://img.shields.io/badge/Open%20In-Gitee%20gh--pages-blue?logo=gitee)](https://codesandbox.io/embed/markdown-editor-for-react-izdd6?fontsize=14&hidenavigation=1&theme=dark)
+
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
@@ -64,11 +68,9 @@ export default function App() {
 }
 ```
 
-- [Demo preview for CodeSandbox](https://codesandbox.io/s/markdown-editor-for-react-izdd6)  
-- [Demo preview for Github gh-pages](https://uiwjs.github.io/react-md-editor/)  
-- [Demo preview for Gitee gh-pages](https://uiw.gitee.io/react-md-editor/)  
-
 ### Custom Toolbars
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-m2n10?fontsize=14&hidenavigation=1&theme=dark)
 
 ```tsx
 import React from "react";
@@ -140,6 +142,8 @@ export default function App() {
 
 ### Preview Markdown
 
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-preview-markdown-vrucl?fontsize=14&hidenavigation=1&theme=dark)
+
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
@@ -159,6 +163,8 @@ export default function App() {
 KaTeX is a fast, easy-to-use JavaScript library for TeX math rendering on the web, We perform math rendering through [`KaTeX`](https://github.com/KaTeX/KaTeX).
 
 The following example is preview in [CodeSandbox](https://codesandbox.io/s/markdown-editor-katex-for-react-7v3vl).
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-katex-for-react-7v3vl?fontsize=14&hidenavigation=1&theme=dark)
 
 ```bash
 npm install katex
