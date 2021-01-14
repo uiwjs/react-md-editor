@@ -20,6 +20,9 @@
   <a href="https://github.com/uiwjs/react-md-editor/releases">
     <img alt="Release" src="https://img.shields.io/github/release/uiwjs/react-md-editor.svg">
   </a>
+  <a href="https://gitee.com/uiw/react-md-editor">
+    <img alt="Release" src="https://jaywcjlove.github.io/sb/ico/gitee.svg">
+  </a>
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
     <img alt="npm version" src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
   </a>
@@ -46,8 +49,8 @@ npm i @uiw/react-md-editor
 ### Using
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-for-react-izdd6?fontsize=14&hidenavigation=1&theme=dark)
-[![Open in Github gh-pages](https://img.shields.io/badge/Open%20In-Github%20gh--pages-blue?logo=github)](https://codesandbox.io/embed/markdown-editor-for-react-izdd6?fontsize=14&hidenavigation=1&theme=dark)
-[![Open in Gitee gh-pages](https://img.shields.io/badge/Open%20In-Gitee%20gh--pages-blue?logo=gitee)](https://codesandbox.io/embed/markdown-editor-for-react-izdd6?fontsize=14&hidenavigation=1&theme=dark)
+[![Open in Github gh-pages](https://img.shields.io/badge/Open%20In-Github%20gh--pages-blue?logo=github)](ttps://uiwjs.github.io/react-md-editor/)
+[![Open in Gitee gh-pages](https://img.shields.io/badge/Open%20In-Gitee%20gh--pages-blue?logo=web)](https://uiw.gitee.io/react-md-editor/)
 
 ```jsx
 import React from "react";
