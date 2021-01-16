@@ -25,6 +25,7 @@
     "css:build:dist": "compile-less -d src --combine dist/markdown-editor.css --rm-global",
     "ts:watch": "tsbb watch --env-name esm:dev --env-name cjs --target react",
     "ts:build": "tsbb build --target react",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "map": "source-map-explorer build/static/js/*.js --html build/website-result.html"
   },
   "repository": {
@@ -57,7 +58,10 @@
     "@uiw/react-shields": "1.1.0",
     "compile-less-cli": "1.6.0",
     "katex": "0.12.0",
+    "husky": "4.3.7",
     "kkt": "6.0.11",
+    "lint-staged": "10.5.3",
+    "prettier": "2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-test-renderer": "17.0.1",
@@ -68,6 +72,16 @@
     "@babel/runtime": "^7.8.4",
     "@uiw/react-markdown-preview": "^2.1.1",
     "classnames": "^2.2.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,less,md,json}": [
+      "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'"
+    ]
   },
   "eslintConfig": {
     "extends": [
