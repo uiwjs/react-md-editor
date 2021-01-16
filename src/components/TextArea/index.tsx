@@ -40,11 +40,16 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
       this.highlight();
     });
   }
-  public async componentDidMount() {
+  public componentDidMount() {
     if (this.props.autoFocus && this.text.current) {
       this.text.current.focus();
     }
     this.highlight();
+  }
+  componentDidUpdate(prevProps: ITextAreaProps) {
+    if (this.props.value !== prevProps.value) {
+      this.setState({ value: this.props.value }, this.highlight);
+    }
   }
   public shouldComponentUpdate(nextProps: ITextAreaProps, nextState: ITextAreaState) {
     return nextProps.value !== this.props.value || nextState.value !== this.state.value;

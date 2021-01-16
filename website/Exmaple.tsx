@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import MDEditor, { MDEditorProps } from '../';
 
+let count = 1;
+
 const Exmaple = (props = {} as { mdStr: string }) => {
   const [state, setVisiable] = React.useState({
     visiableDragbar: true,
@@ -14,6 +16,9 @@ const Exmaple = (props = {} as { mdStr: string }) => {
   const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVisiable({ ...state, preview: e.target.value });
   }
+  const updateHandle = (str: string) => {
+    setVisiable({ ...state, value: str });
+  }
   return (
     <Fragment>
       <MDEditor
@@ -23,7 +28,6 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         visiableDragbar={state.visiableDragbar}
         preview={state.preview as MDEditorProps['preview']}
         onChange={(newValue) => {
-
           setVisiable({ ...state, value: newValue || ''});
         }}
       />
@@ -48,6 +52,16 @@ const Exmaple = (props = {} as { mdStr: string }) => {
           <input type="radio" name="preview" value="preview" checked={state.preview === 'preview'} onChange={upPreview} />
           Preview
         </label>
+        <button
+          type="button"
+          style={{ marginLeft: 10 }}
+          onClick={() => {
+            count += 1;
+            updateHandle(`## Test ${count}`)
+          }}
+        >
+            Set Value
+        </button>
       </div>
     </Fragment>
   )
