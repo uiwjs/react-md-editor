@@ -2,7 +2,6 @@ import insertText from '../../utils/InsertTextAtPosition';
 import { TextAreaTextApi } from '../../commands';
 import { insertBeforeEachLine } from '../../commands/list';
 
-
 export interface IHotkeyOptions {
   tabSize?: number;
 }
@@ -54,7 +53,7 @@ export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElem
       textArea.replaceSelection(modifiedTextObj.modifiedText);
       textArea.setSelectionRange({
         start: newStarNum + options.tabSize,
-        end: newStarNum + oldSelectText.length + (modifiedTextLine.length * options.tabSize),
+        end: newStarNum + oldSelectText.length + modifiedTextLine.length * options.tabSize,
       });
     } else {
       return insertText(target, val);
@@ -66,4 +65,4 @@ export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElem
     stopPropagation(e);
     return insertText(target, `\n- `);
   }
-}
+};

@@ -11,10 +11,10 @@ let browserSupportsTextareaTextNodes: any;
  * @return {boolean}
  */
 function canManipulateViaTextNodes(input: HTMLTextAreaElement | HTMLInputElement) {
-  if (input.nodeName !== "TEXTAREA") {
+  if (input.nodeName !== 'TEXTAREA') {
     return false;
   }
-  if (typeof browserSupportsTextareaTextNodes === "undefined") {
+  if (typeof browserSupportsTextareaTextNodes === 'undefined') {
     const textarea: HTMLTextAreaElement = document.createElement('textarea');
     textarea.value = '1';
     browserSupportsTextareaTextNodes = !!textarea.firstChild;
@@ -49,7 +49,7 @@ export default (input: HTMLTextAreaElement | HTMLInputElement, text: string) => 
     const start = input.selectionStart!;
     const end = input.selectionEnd!;
     // Firefox (non-standard method)
-    if (typeof input.setRangeText === "function") {
+    if (typeof input.setRangeText === 'function') {
       input.setRangeText(text);
     } else {
       // To make a change we just need a Range, not a Selection
@@ -111,8 +111,8 @@ export default (input: HTMLTextAreaElement | HTMLInputElement, text: string) => 
     input.setSelectionRange(start + text.length, start + text.length);
 
     // Notify any possible listeners of the change
-    const e = document.createEvent("UIEvent");
-    e.initEvent("input", true, false);
+    const e = document.createEvent('UIEvent');
+    e.initEvent('input', true, false);
     input.dispatchEvent(e);
   }
-}
+};

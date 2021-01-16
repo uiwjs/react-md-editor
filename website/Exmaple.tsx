@@ -12,13 +12,13 @@ const Exmaple = (props = {} as { mdStr: string }) => {
   });
   const upDataVisiable = (keyName: string, e: React.ChangeEvent<HTMLInputElement>) => {
     setVisiable({ ...state, [keyName]: e.target.checked });
-  }
+  };
   const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVisiable({ ...state, preview: e.target.value });
-  }
+  };
   const updateHandle = (str: string) => {
     setVisiable({ ...state, value: str });
-  }
+  };
   return (
     <Fragment>
       <MDEditor
@@ -28,12 +28,16 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         visiableDragbar={state.visiableDragbar}
         preview={state.preview as MDEditorProps['preview']}
         onChange={(newValue) => {
-          setVisiable({ ...state, value: newValue || ''});
+          setVisiable({ ...state, value: newValue || '' });
         }}
       />
       <div className="doc-tools">
         <label>
-          <input type="checkbox" checked={state.visiableDragbar} onChange={(e) => upDataVisiable('visiableDragbar', e)} />
+          <input
+            type="checkbox"
+            checked={state.visiableDragbar}
+            onChange={(e) => upDataVisiable('visiableDragbar', e)}
+          />
           {state.visiableDragbar ? 'Show' : 'Hidden'} Drag Bar
         </label>
         <label>
@@ -49,7 +53,13 @@ const Exmaple = (props = {} as { mdStr: string }) => {
           Live Preview
         </label>
         <label>
-          <input type="radio" name="preview" value="preview" checked={state.preview === 'preview'} onChange={upPreview} />
+          <input
+            type="radio"
+            name="preview"
+            value="preview"
+            checked={state.preview === 'preview'}
+            onChange={upPreview}
+          />
           Preview
         </label>
         <button
@@ -57,14 +67,14 @@ const Exmaple = (props = {} as { mdStr: string }) => {
           style={{ marginLeft: 10 }}
           onClick={() => {
             count += 1;
-            updateHandle(`## Test ${count}`)
+            updateHandle(`## Test ${count}`);
           }}
         >
-            Set Value
+          Set Value
         </button>
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
 export default Exmaple;

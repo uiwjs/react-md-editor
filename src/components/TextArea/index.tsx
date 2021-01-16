@@ -6,7 +6,9 @@ import { IProps } from '../../utils';
 import hotkeys, { IHotkeyOptions } from './hotkeys';
 import './index.less';
 
-export interface ITextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>, IProps {
+export interface ITextAreaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>,
+    IProps {
   onChange?: (value?: string) => void;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   value?: string;
@@ -25,7 +27,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     tabSize: 2,
     autoFocus: true,
     spellCheck: false,
-  }
+  };
   public static state: ITextAreaState;
   public constructor(props: ITextAreaProps) {
     super(props);
@@ -65,10 +67,7 @@ export default class TextArea extends Component<ITextAreaProps, ITextAreaState> 
     return (
       <div ref={this.warp} className={classnames(`${prefixCls}-aree`, className)} onScroll={onScroll}>
         <div className={classnames(`${prefixCls}-text`)}>
-          <pre
-            ref={this.preElm}
-            className={classnames(`${prefixCls}-text-pre`, 'wmde-markdown-color')}
-          />
+          <pre ref={this.preElm} className={classnames(`${prefixCls}-text-pre`, 'wmde-markdown-color')} />
           <textarea
             {...otherProps}
             ref={this.text}

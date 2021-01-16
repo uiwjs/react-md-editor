@@ -7,9 +7,6 @@ export type { TextSection } from './utils/markdownUtils';
 
 export * from './Editor';
 
-export {
-  MarkdownUtil,
-  commands,
-}
+export { MarkdownUtil, commands };
 
 export default MDEditor;

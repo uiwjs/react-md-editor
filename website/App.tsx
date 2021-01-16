@@ -24,7 +24,11 @@ export default function App() {
         <Logo />
       </header>
       <div className="badges">
-        <Npm.Version scope="@uiw" packageName="react-md-editor" href="https://www.npmjs.com/package/@uiw/react-md-editor" />
+        <Npm.Version
+          scope="@uiw"
+          packageName="react-md-editor"
+          href="https://www.npmjs.com/package/@uiw/react-md-editor"
+        />
         <Github user="uiwjs" repo="react-md-editor">
           <Github.Social type="forks" href="https://github.com/uiwjs/react-md-editor" />
           <Github.Social type="stars" href="https://github.com/uiwjs/react-md-editor/stargazers" />
@@ -32,11 +36,27 @@ export default function App() {
         </Github>
       </div>
       <Exmaple mdStr={mdStr} />
-      <div className="page-title">Custom toolbar. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExampleCustomToolbar.tsx#L1-L55">Example Code</a></div>
+      <div className="page-title">
+        Custom toolbar.{' '}
+        <a
+          target="__blank"
+          href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExampleCustomToolbar.tsx#L1-L55"
+        >
+          Example Code
+        </a>
+      </div>
       <ExampleCustomToolbar />
-      <div className="page-title">Support Custom KaTeX Preview. <a target="__blank" href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExmapleKaTeX.tsx#L1-L62">Example Code</a></div>
+      <div className="page-title">
+        Support Custom KaTeX Preview.{' '}
+        <a
+          target="__blank"
+          href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExmapleKaTeX.tsx#L1-L62"
+        >
+          Example Code
+        </a>
+      </div>
       <ExmapleKaTeX />
       <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
-  )
+  );
 }

@@ -1,10 +1,10 @@
-import * as React from "react";
-import { ICommand, TextState, TextApi } from "./";
+import * as React from 'react';
+import { ICommand, TextState, TextApi } from './';
 
 export const comment: ICommand = {
-  name: "comment",
-  keyCommand: "comment",
-  buttonProps: { "aria-label": "Insert comment" },
+  name: 'comment',
+  keyCommand: 'comment',
+  buttonProps: { 'aria-label': 'Insert comment' },
   icon: (
     <svg
       width="12"

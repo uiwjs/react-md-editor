@@ -70,37 +70,55 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
 }
 
 function setGroupPopFalse(data: Record<string, boolean>) {
-  Object.keys(data).forEach(keyname => {
+  Object.keys(data).forEach((keyname) => {
     data[keyname] = false;
   });
   return data;
 }
 
-const InternalMDEditor = (props: MDEditorProps, 
-  ref?:
-    | ((instance: HTMLDivElement) => void)
-    | React.RefObject<HTMLDivElement | null>
-    | null
-  ) => {
-  const { prefixCls = 'w-md-editor', className, value: propsValue, commands = getCommands(), height: heightWarp = 200, visiableDragbar = true, preview: previewType = 'live', fullscreen: isfullscreen, previewOptions, textareaProps, maxHeight = 1200, minHeight = 100, autoFocus, tabSize = 2, onChange, hideToolbar, ...other } = props || {};
-  const [value, setValue] = useState<string>(propsValue || '')
+const InternalMDEditor = (
+  props: MDEditorProps,
+  ref?: ((instance: HTMLDivElement) => void) | React.RefObject<HTMLDivElement | null> | null,
+) => {
+  const {
+    prefixCls = 'w-md-editor',
+    className,
+    value: propsValue,
+    commands = getCommands(),
+    height: heightWarp = 200,
+    visiableDragbar = true,
+    preview: previewType = 'live',
+    fullscreen: isfullscreen,
+    previewOptions,
+    textareaProps,
+    maxHeight = 1200,
+    minHeight = 100,
+    autoFocus,
+    tabSize = 2,
+    onChange,
+    hideToolbar,
+    ...other
+  } = props || {};
+  const [value, setValue] = useState<string>(propsValue || '');
   const [preview, setPreview] = useState<PreviewType>(previewType);
   const [isFullscreen, setIsFullscreen] = useState(isfullscreen || false);
   const [groupPop, setGroupPop] = useState<Record<string, boolean>>({});
-  
+
   const leftScroll = useRef(false);
-  const previewRef = React.createRef<MarkdownPreviewRef>()
+  const previewRef = React.createRef<MarkdownPreviewRef>();
 
   const [height, setHeight] = useState(heightWarp);
   const textarea = React.createRef<TextArea>();
-  const commandOrchestrator = useRef<TextAreaCommandOrchestrator>()
+  const commandOrchestrator = useRef<TextAreaCommandOrchestrator>();
 
   const cls = classnames(className, prefixCls, {
     [`${prefixCls}-show-${preview}`]: preview,
     [`${prefixCls}-fullscreen`]: isFullscreen,
   });
   useEffect(() => {
-    commandOrchestrator.current = new TextAreaCommandOrchestrator((textarea.current!.text.current || null) as HTMLTextAreaElement);
+    commandOrchestrator.current = new TextAreaCommandOrchestrator(
+      (textarea.current!.text.current || null) as HTMLTextAreaElement,
+    );
   }, []);
 
   useMemo(() => preview !== props.preview && props.preview && setPreview(props.preview!), [props.preview]);
@@ -134,7 +152,8 @@ const InternalMDEditor = (props: MDEditorProps,
     const previewDom = previewRef.current.mdp.current! as HTMLDivElement;
     const textareaDom = textarea.current.warp.current! as HTMLDivElement;
     if (textareaDom && previewDom) {
-      const scale = (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
+      const scale =
+        (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
       if (e.target === textareaDom && leftScroll.current) {
         previewDom.scrollTop = textareaDom.scrollTop / scale;
       }
@@ -144,20 +163,25 @@ const InternalMDEditor = (props: MDEditorProps,
     }
   }
   const chestratorObj = useMemo(() => commandOrchestrator.current, [commandOrchestrator.current]);
-  const mdProps = {
+  const mdProps = ({
     ...previewOptions,
     ref: previewRef,
     onScroll: handleScroll,
     source: value,
-  } as unknown as MarkdownPreviewProps;
+  } as unknown) as MarkdownPreviewProps;
   return (
-    <div className={cls} onClick={() => setGroupPop({...setGroupPopFalse(groupPop)})} style={{ height: isFullscreen ? '100%' : hideToolbar ? Number(height) - 29 : height }} {...other}>
+    <div
+      className={cls}
+      onClick={() => setGroupPop({ ...setGroupPopFalse(groupPop) })}
+      style={{ height: isFullscreen ? '100%' : hideToolbar ? Number(height) - 29 : height }}
+      {...other}
+    >
       {!hideToolbar && (
         <Toolbar
           active={{
             fullscreen: isFullscreen,
             preview: preview,
-            ...groupPop
+            ...groupPop,
           }}
           prefixCls={prefixCls}
           commands={commands}
@@ -183,13 +207,13 @@ const InternalMDEditor = (props: MDEditorProps,
             autoFocus={autoFocus}
             {...textareaProps}
             onScroll={handleScroll}
-            onMouseOver={() => leftScroll.current = true}
-            onMouseLeave={() => leftScroll.current = false}
+            onMouseOver={() => (leftScroll.current = true)}
+            onMouseLeave={() => (leftScroll.current = false)}
             onChange={handleChange}
           />
         )}
         {/(live|preview)/.test(preview as string) && (
-          <MarkdownPreview {...mdProps} className={`${prefixCls}-preview`}/>
+          <MarkdownPreview {...mdProps} className={`${prefixCls}-preview`} />
         )}
         {visiableDragbar && !isFullscreen && (
           <DragBar
@@ -204,8 +228,8 @@ const InternalMDEditor = (props: MDEditorProps,
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const MDEditor = React.forwardRef<HTMLDivElement, MDEditorProps>(InternalMDEditor);
 

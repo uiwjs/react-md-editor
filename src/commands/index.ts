@@ -21,31 +21,31 @@ import { strikethrough } from './strikeThrough';
 import insertText from '../utils/InsertTextAtPosition';
 
 export interface CommandOrchestrator {
-  executeCommand(command: ICommand): void
+  executeCommand(command: ICommand): void;
 }
 export type ICommandChildHandleParam = {
   getState?: TextAreaCommandOrchestrator['getState'];
   textApi?: TextApi;
-}
-export type ICommandChildHandle  = {
+};
+export type ICommandChildHandle = {
   children?: (handle: { close: () => void; execute: () => void } & ICommandChildHandleParam) => React.ReactElement;
-}
+};
 export type ICommandChildCommands<T = string> = {
   children?: Array<ICommand<T>>;
-}
+};
 
 export type ICommand<T = string> = {
-  keyCommand?: string,
-  name?: string,
-  groupName?: string,
-  icon?: React.ReactElement,
-  value?: T,
-  position?: 'right'
-  liProps?: React.LiHTMLAttributes<HTMLLIElement>,
-  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null,
-  execute?: (state: TextState, api: TextApi) => void,
-} & ICommandChildCommands & ICommandChildHandle;
-
+  keyCommand?: string;
+  name?: string;
+  groupName?: string;
+  icon?: React.ReactElement;
+  value?: T;
+  position?: 'right';
+  liProps?: React.LiHTMLAttributes<HTMLLIElement>;
+  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null;
+  execute?: (state: TextState, api: TextApi) => void;
+} & ICommandChildCommands &
+  ICommandChildHandle;
 
 export interface TextRange {
   start: number;
@@ -53,9 +53,9 @@ export interface TextRange {
 }
 
 export interface TextState {
-  text: string,
-  selectedText: string,
-  selection: TextRange,
+  text: string;
+  selectedText: string;
+  selection: TextRange;
 }
 
 export interface TextApi {
@@ -74,20 +74,37 @@ export interface TextApi {
 }
 
 const getCommands: () => ICommand[] = () => [
-  bold, italic, strikethrough, hr, title,
-  divider, link, quote, code, image, divider,
-  unorderedListCommand, orderedListCommand, checkedListCommand, divider, codeEdit, codeLive, codePreview, divider, fullscreen,
+  bold,
+  italic,
+  strikethrough,
+  hr,
+  title,
+  divider,
+  link,
+  quote,
+  code,
+  image,
+  divider,
+  unorderedListCommand,
+  orderedListCommand,
+  checkedListCommand,
+  divider,
+  codeEdit,
+  codeLive,
+  codePreview,
+  divider,
+  fullscreen,
 ];
 
 function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {
-  console.log('textArea:', textArea)
+  console.log('textArea:', textArea);
   return {
     selection: {
       start: textArea.selectionStart,
-      end: textArea.selectionEnd
+      end: textArea.selectionEnd,
     },
     text: textArea.value,
-    selectedText: textArea.value.slice(textArea.selectionStart, textArea.selectionEnd)
+    selectedText: textArea.value.slice(textArea.selectionStart, textArea.selectionEnd),
   };
 }
 
@@ -111,7 +128,6 @@ class TextAreaTextApi implements TextApi {
   }
 }
 
-
 class TextAreaCommandOrchestrator implements CommandOrchestrator {
   textArea: HTMLTextAreaElement;
   textApi: TextApi;
@@ -122,7 +138,7 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
   }
 
   getState() {
-    console.log('>getState>', this.textArea)
+    console.log('>getState>', this.textArea);
     if (!this.textArea) return false;
     return getStateFromTextArea(this.textArea);
   }
@@ -134,9 +150,33 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
 
 export {
   // Toolbars.
-  title, title1, title2, title3, title4, title5, title6,
-  bold, italic, strikethrough, hr, group, divider, link, quote, code, image,
-  unorderedListCommand, orderedListCommand, checkedListCommand, codeEdit, codeLive, codePreview, fullscreen,
+  title,
+  title1,
+  title2,
+  title3,
+  title4,
+  title5,
+  title6,
+  bold,
+  italic,
+  strikethrough,
+  hr,
+  group,
+  divider,
+  link,
+  quote,
+  code,
+  image,
+  unorderedListCommand,
+  orderedListCommand,
+  checkedListCommand,
+  codeEdit,
+  codeLive,
+  codePreview,
+  fullscreen,
   // Tool method.
-  getCommands, getStateFromTextArea, TextAreaCommandOrchestrator, TextAreaTextApi
-}
+  getCommands,
+  getStateFromTextArea,
+  TextAreaCommandOrchestrator,
+  TextAreaTextApi,
+};
