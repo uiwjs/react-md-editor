@@ -227,6 +227,8 @@ export default function App() {
 
 ### Support Custom Mermaid Preview
 
+Using [mermaid](https://github.com/mermaid-js/mermaid) to generation of diagram and flowchart from text in a similar manner as markdown
+
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-mermaid-for-react-uvtsx?fontsize=14&hidenavigation=1&theme=dark)
 
 ```jsx
