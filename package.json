@@ -55,6 +55,7 @@
     "@types/react-dom": "17.0.0",
     "@types/react-test-renderer": "17.0.0",
     "@uiw/react-github-corners": "1.2.0",
+    "@uiw/react-codesandbox": "1.1.0",
     "@uiw/react-shields": "1.1.0",
     "compile-less-cli": "1.6.0",
     "katex": "0.12.0",

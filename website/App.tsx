@@ -6,6 +6,7 @@ import MDEditor from '../';
 import ReadmeStr from '../README.md';
 import Exmaple from './Exmaple';
 import ExmapleKaTeX from './ExmapleKaTeX';
+import ExampleMermaid from './ExampleMermaid';
 import ExampleCustomToolbar from './ExampleCustomToolbar';
 import Logo from './Logo';
 import './App.less';
@@ -56,6 +57,16 @@ export default function App() {
         </a>
       </div>
       <ExmapleKaTeX />
+      <div className="page-title">
+        Support Custom Mermaid Preview.{' '}
+        <a
+          target="__blank"
+          href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExmapleKaTeX.tsx#L1-L62"
+        >
+          Example Code
+        </a>
+      </div>
+      <ExampleMermaid />
       <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
   );
