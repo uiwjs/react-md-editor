@@ -1,0 +1,2 @@
+(this["webpackJsonp@uiw/react-md-editor"]=this["webpackJsonp@uiw/react-md-editor"]||[]).push([[421],{475:function(s,e){var i=Prism.util.clone(Prism.languages.typescript);Prism.languages.tsx=Prism.languages.extend("jsx",i)}}]);
+//# sourceMappingURL=421.cb633dc9.chunk.js.map
