@@ -19,6 +19,28 @@ export default (conf: Configuration, env: 'production' | 'development', options:
       VERSION: JSON.stringify(pkg.version),
     }),
   );
+  conf.optimization = {
+    ...conf.optimization,
+    splitChunks: {
+      cacheGroups: {
+        reactvendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'react-vendor',
+          chunks: 'all',
+        },
+        katex: {
+          test: /[\\/]node_modules[\\/](katex)[\\/]/,
+          name: 'katex-vendor',
+          chunks: 'all',
+        },
+        micromark: {
+          test: /[\\/]node_modules[\\/](micromark)[\\/]/,
+          name: 'micromark-vendor',
+          chunks: 'all',
+        },
+      },
+    },
+  };
   if (env === 'production') {
     conf.output = { ...conf.output, publicPath: './' };
   }
