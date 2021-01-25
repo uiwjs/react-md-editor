@@ -17,8 +17,8 @@
   <a href="https://github.com/uiwjs/react-md-editor/stargazers">
     <img alt="Stars" src="https://img.shields.io/github/stars/uiwjs/react-md-editor.svg">
   </a>
-  <a href="https://github.com/uiwjs/react-md-editor/releases">
-    <img alt="Release" src="https://img.shields.io/github/release/uiwjs/react-md-editor.svg">
+  <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md">
+    <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg">
   </a>
   <a href="https://gitee.com/uiw/react-md-editor">
     <img alt="Release" src="https://jaywcjlove.github.io/sb/ico/gitee.svg">
