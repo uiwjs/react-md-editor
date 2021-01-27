@@ -4,7 +4,7 @@ import MDEditor, { MDEditorProps } from '../';
 let count = 1;
 
 const Exmaple = (props = {} as { mdStr: string }) => {
-  const [state, setVisiable] = React.useState({
+  const [state, setVisiable] = React.useState<MDEditorProps>({
     visiableDragbar: true,
     hideToolbar: true,
     value: props.mdStr || '',
@@ -14,7 +14,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
     setVisiable({ ...state, [keyName]: e.target.checked });
   };
   const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVisiable({ ...state, preview: e.target.value });
+    setVisiable({ ...state, preview: e.target.value as MDEditorProps['preview'] });
   };
   const updateHandle = (str: string) => {
     setVisiable({ ...state, value: str });
@@ -26,7 +26,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         height={400}
         hideToolbar={!state.hideToolbar}
         visiableDragbar={state.visiableDragbar}
-        preview={state.preview as MDEditorProps['preview']}
+        preview={state.preview}
         onChange={(newValue) => {
           setVisiable({ ...state, value: newValue || '' });
         }}

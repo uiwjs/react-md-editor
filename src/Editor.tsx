@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
@@ -116,10 +116,12 @@ const InternalMDEditor = (
     [`${prefixCls}-fullscreen`]: isFullscreen,
   });
   useEffect(() => {
-    commandOrchestrator.current = new TextAreaCommandOrchestrator(
-      (textarea.current!.text.current || null) as HTMLTextAreaElement,
-    );
-  }, []);
+    if (textarea.current && commandOrchestrator.current) {
+      commandOrchestrator.current = new TextAreaCommandOrchestrator(
+        (textarea.current!.text.current || null) as HTMLTextAreaElement,
+      );
+    }
+  }, [textarea.current, commandOrchestrator.current]);
 
   useMemo(() => preview !== props.preview && props.preview && setPreview(props.preview!), [props.preview]);
   useMemo(() => value !== props.value && setValue(props.value!), [props.value]);
@@ -143,7 +145,7 @@ const InternalMDEditor = (
     if (groupName && command.keyCommand !== 'group') {
       setGroupPop({ ...groupPop, [`${groupName}`]: false });
     }
-    commandOrchestrator.current!.executeCommand(command);
+    commandOrchestrator.current && commandOrchestrator.current!.executeCommand(command);
   }
   function handleScroll(e: React.UIEvent<HTMLDivElement>) {
     if (!textarea.current || !previewRef.current || !previewRef.current.mdp.current || !textarea.current.warp) {
@@ -170,51 +172,53 @@ const InternalMDEditor = (
     source: value,
   } as unknown) as MarkdownPreviewProps;
   return (
-    <div
-      className={cls}
-      onClick={() => setGroupPop({ ...setGroupPopFalse(groupPop) })}
-      style={{ height: isFullscreen ? '100%' : hideToolbar ? Number(height) - 29 : height }}
-      {...other}
-    >
-      {!hideToolbar && (
-        <Toolbar
-          active={{
-            fullscreen: isFullscreen,
-            preview: preview,
-            ...groupPop,
-          }}
-          prefixCls={prefixCls}
-          commands={commands}
-          commandHelp={{
-            getState: commandOrchestrator.current && commandOrchestrator.current!.getState,
-            textApi: commandOrchestrator.current && commandOrchestrator.current!.textApi,
-            ...chestratorObj,
-          }}
-          onCommand={handleCommand}
-        />
-      )}
+    <Fragment>
       <div
-        className={`${prefixCls}-content`}
-        style={{ height: isFullscreen ? 'calc(100% - 29px)' : Number(height) - 29 }}
+        className={cls}
+        onClick={() => setGroupPop({ ...setGroupPopFalse(groupPop) })}
+        style={{ height: isFullscreen ? '100%' : hideToolbar ? Number(height) - 29 : height }}
+        {...other}
       >
-        {/(edit|live)/.test(preview as string) && (
-          <TextArea
-            ref={textarea}
-            tabSize={tabSize}
-            className={`${prefixCls}-input`}
+        {!hideToolbar && (
+          <Toolbar
+            active={{
+              fullscreen: isFullscreen,
+              preview: preview,
+              ...groupPop,
+            }}
             prefixCls={prefixCls}
-            value={value}
-            autoFocus={autoFocus}
-            {...textareaProps}
-            onScroll={handleScroll}
-            onMouseOver={() => (leftScroll.current = true)}
-            onMouseLeave={() => (leftScroll.current = false)}
-            onChange={handleChange}
+            commands={commands}
+            commandHelp={{
+              getState: commandOrchestrator.current && commandOrchestrator.current!.getState,
+              textApi: commandOrchestrator.current && commandOrchestrator.current!.textApi,
+              ...chestratorObj,
+            }}
+            onCommand={handleCommand}
           />
         )}
-        {/(live|preview)/.test(preview as string) && (
-          <MarkdownPreview {...mdProps} className={`${prefixCls}-preview`} />
-        )}
+        <div
+          className={`${prefixCls}-content`}
+          style={{ height: isFullscreen ? 'calc(100% - 29px)' : Number(height) - 29 }}
+        >
+          {/(edit|live)/.test(preview as string) && (
+            <TextArea
+              ref={textarea}
+              tabSize={tabSize}
+              className={`${prefixCls}-input`}
+              prefixCls={prefixCls}
+              value={value}
+              autoFocus={autoFocus}
+              {...textareaProps}
+              onScroll={handleScroll}
+              onMouseOver={() => (leftScroll.current = true)}
+              onMouseLeave={() => (leftScroll.current = false)}
+              onChange={handleChange}
+            />
+          )}
+          {/(live|preview)/.test(preview as string) && (
+            <MarkdownPreview {...mdProps} className={`${prefixCls}-preview`} />
+          )}
+        </div>
         {visiableDragbar && !isFullscreen && (
           <DragBar
             prefixCls={prefixCls}
@@ -227,7 +231,7 @@ const InternalMDEditor = (
           />
         )}
       </div>
-    </div>
+    </Fragment>
   );
 };
 
