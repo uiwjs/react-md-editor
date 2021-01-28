@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
-import TextArea, { ITextAreaProps } from './components/TextArea';
+import TextArea, { ITextAreaProps, TextAreaRef } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, TextAreaCommandOrchestrator, ICommand } from './commands';
@@ -108,30 +108,51 @@ const InternalMDEditor = (
   const previewRef = React.createRef<MarkdownPreviewRef>();
 
   const [height, setHeight] = useState(heightWarp);
-  const textarea = React.createRef<TextArea>();
+  const textarea = React.createRef<TextAreaRef>();
   const commandOrchestrator = useRef<TextAreaCommandOrchestrator>();
+  const selectionRange = useRef<{ count: number; scrollTop: number }>({ count: 0, scrollTop: 0 });
 
   const cls = classnames(className, prefixCls, {
     [`${prefixCls}-show-${preview}`]: preview,
     [`${prefixCls}-fullscreen`]: isFullscreen,
   });
-  useEffect(() => {
-    if (textarea.current && commandOrchestrator.current) {
+
+  const commandOrchestratorHandle = () => {
+    if (textarea.current && textarea.current.text) {
       commandOrchestrator.current = new TextAreaCommandOrchestrator(
-        (textarea.current!.text.current || null) as HTMLTextAreaElement,
+        (textarea.current.text || null) as HTMLTextAreaElement,
       );
     }
-  }, [textarea.current, commandOrchestrator.current]);
+    return commandOrchestrator.current;
+  };
 
+  useMemo(() => commandOrchestratorHandle(), [textarea.current]);
   useMemo(() => preview !== props.preview && props.preview && setPreview(props.preview!), [props.preview]);
   useMemo(() => value !== props.value && setValue(props.value!), [props.value]);
   useMemo(() => height !== props.height && setHeight(heightWarp!), [heightWarp]);
-
-  function handleChange(mdStr?: string) {
-    setValue(mdStr!);
-    onChange && onChange(mdStr || '');
+  function handleTextAreaMount(isMount: boolean) {
+    if (textarea.current && textarea.current.text && textarea.current.warp && isMount) {
+      textarea.current.text.blur();
+      textarea.current.text.focus();
+      textarea.current.text.selectionStart = selectionRange.current.count;
+      textarea.current.text.selectionEnd = selectionRange.current.count;
+      textarea.current.warp.scrollTo(0, selectionRange.current.scrollTop!);
+    }
+  }
+  function modifySelectionRange() {
+    if (textarea.current && textarea.current.text && textarea.current.warp) {
+      selectionRange.current.count = textarea.current.text.selectionStart;
+      selectionRange.current.scrollTop = textarea.current.warp.scrollTop;
+    }
+  }
+  function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    modifySelectionRange();
+    setValue(event.target.value!);
+    onChange && onChange(event.target.value || '');
   }
   function handleCommand(command: ICommand, groupName?: string) {
+    commandOrchestratorHandle();
+    modifySelectionRange();
     if (command.keyCommand === 'preview') {
       setPreview(command.value as PreviewType);
     }
@@ -151,8 +172,8 @@ const InternalMDEditor = (
     if (!textarea.current || !previewRef.current || !previewRef.current.mdp.current || !textarea.current.warp) {
       return;
     }
-    const previewDom = previewRef.current.mdp.current! as HTMLDivElement;
-    const textareaDom = textarea.current.warp.current! as HTMLDivElement;
+    const previewDom = previewRef.current.mdp.current;
+    const textareaDom = textarea.current.warp;
     if (textareaDom && previewDom) {
       const scale =
         (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
@@ -164,7 +185,7 @@ const InternalMDEditor = (
       }
     }
   }
-  const chestratorObj = useMemo(() => commandOrchestrator.current, [commandOrchestrator.current]);
+  const chestratorObj = useMemo(() => commandOrchestratorHandle(), [textarea.current, commandOrchestrator.current]);
   const mdProps = ({
     ...previewOptions,
     ref: previewRef,
@@ -212,6 +233,7 @@ const InternalMDEditor = (
               onScroll={handleScroll}
               onMouseOver={() => (leftScroll.current = true)}
               onMouseLeave={() => (leftScroll.current = false)}
+              onMount={handleTextAreaMount}
               onChange={handleChange}
             />
           )}

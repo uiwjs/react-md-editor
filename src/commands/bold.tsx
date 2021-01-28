@@ -15,6 +15,7 @@ export const bold: ICommand = {
     </svg>
   ),
   execute: (state: TextState, api: TextApi) => {
+    console.log('>>>newSelectionRange', state);
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
     const state1 = api.setSelectionRange(newSelectionRange);

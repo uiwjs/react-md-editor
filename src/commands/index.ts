@@ -97,7 +97,6 @@ const getCommands: () => ICommand[] = () => [
 ];
 
 function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {
-  console.log('textArea:', textArea);
   return {
     selection: {
       start: textArea.selectionStart,
