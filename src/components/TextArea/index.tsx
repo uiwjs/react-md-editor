@@ -43,7 +43,7 @@ export default React.forwardRef<TextAreaRef, ITextAreaProps>((props, ref) => {
     };
   }, []);
   useEffect(() => {
-    if (props.value === value) {
+    if (props.value !== value) {
       setValue(props.value);
     }
   }, [props.value]);
