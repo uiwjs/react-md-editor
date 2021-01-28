@@ -66,7 +66,7 @@ export default function App() {
           Example Code
         </a>
       </div>
-      {/* <ExampleMermaid /> */}
+      <ExampleMermaid />
       <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
   );

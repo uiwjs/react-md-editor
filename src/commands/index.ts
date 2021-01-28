@@ -137,7 +137,6 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
   }
 
   getState() {
-    console.log('>getState>', this.textArea);
     if (!this.textArea) return false;
     return getStateFromTextArea(this.textArea);
   }
