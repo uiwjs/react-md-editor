@@ -35,9 +35,9 @@ export default React.forwardRef<TextAreaRef, ITextAreaProps>((props, ref) => {
     const pre = preElm.current;
     const html = Prism.highlight(value as string, Prism.languages.markdown, 'markdown');
     pre!.innerHTML = `${html}<br />`;
-    onMount && onMount(true);
   };
   useEffect(() => {
+    onMount && onMount(true);
     return () => {
       onMount && onMount(false);
     };

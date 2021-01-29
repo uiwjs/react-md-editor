@@ -126,7 +126,6 @@ const InternalMDEditor = (
     return commandOrchestrator.current;
   };
 
-  useMemo(() => commandOrchestratorHandle(), [textarea.current]);
   useMemo(() => preview !== props.preview && props.preview && setPreview(props.preview!), [props.preview]);
   useMemo(() => value !== props.value && setValue(props.value!), [props.value]);
   useMemo(() => height !== props.height && setHeight(heightWarp!), [heightWarp]);
