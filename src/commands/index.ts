@@ -6,6 +6,13 @@ import { unorderedListCommand, orderedListCommand, checkedListCommand } from './
 import { quote } from './quote';
 import { hr } from './hr';
 import { title } from './title';
+import { title1 } from './title1';
+import { title2 } from './title2';
+import { title3 } from './title3';
+import { title4 } from './title4';
+import { title5 } from './title5';
+import { title6 } from './title6';
+import { group } from './group';
 import { divider } from './divider';
 import { codePreview, codeEdit, codeLive } from './preview';
 import { fullscreen } from './fullscreen';
@@ -14,19 +21,31 @@ import { strikethrough } from './strikeThrough';
 import insertText from '../utils/InsertTextAtPosition';
 
 export interface CommandOrchestrator {
-  executeCommand(command: ICommand): void
+  executeCommand(command: ICommand): void;
 }
+export type ICommandChildHandleParam = {
+  getState?: TextAreaCommandOrchestrator['getState'];
+  textApi?: TextApi;
+};
+export type ICommandChildHandle = {
+  children?: (handle: { close: () => void; execute: () => void } & ICommandChildHandleParam) => React.ReactElement;
+};
+export type ICommandChildCommands<T = string> = {
+  children?: Array<ICommand<T>>;
+};
 
-export interface ICommand {
-  name?: string,
-  icon?: React.ReactElement,
-  keyCommand: string,
-  value?: string,
-  position?: 'right'
-  liProps?: React.LiHTMLAttributes<HTMLLIElement>,
-  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement>,
-  execute?: (state: TextState, api: TextApi) => void,
-}
+export type ICommand<T = string> = {
+  keyCommand?: string;
+  name?: string;
+  groupName?: string;
+  icon?: React.ReactElement;
+  value?: T;
+  position?: 'right';
+  liProps?: React.LiHTMLAttributes<HTMLLIElement>;
+  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null;
+  execute?: (state: TextState, api: TextApi) => void;
+} & ICommandChildCommands &
+  ICommandChildHandle;
 
 export interface TextRange {
   start: number;
@@ -34,9 +53,9 @@ export interface TextRange {
 }
 
 export interface TextState {
-  text: string,
-  selectedText: string,
-  selection: TextRange,
+  text: string;
+  selectedText: string;
+  selection: TextRange;
 }
 
 export interface TextApi {
@@ -54,20 +73,37 @@ export interface TextApi {
   setSelectionRange(selection: TextRange): TextState;
 }
 
-
 const getCommands: () => ICommand[] = () => [
-  bold, italic, strikethrough, hr, title, divider, link, quote, code, image, divider,
-  unorderedListCommand, orderedListCommand, checkedListCommand, divider, codeEdit, codeLive, codePreview, divider, fullscreen,
+  bold,
+  italic,
+  strikethrough,
+  hr,
+  title,
+  divider,
+  link,
+  quote,
+  code,
+  image,
+  divider,
+  unorderedListCommand,
+  orderedListCommand,
+  checkedListCommand,
+  divider,
+  codeEdit,
+  codeLive,
+  codePreview,
+  divider,
+  fullscreen,
 ];
 
 function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {
   return {
     selection: {
       start: textArea.selectionStart,
-      end: textArea.selectionEnd
+      end: textArea.selectionEnd,
     },
     text: textArea.value,
-    selectedText: textArea.value.slice(textArea.selectionStart, textArea.selectionEnd)
+    selectedText: textArea.value.slice(textArea.selectionStart, textArea.selectionEnd),
   };
 }
 
@@ -91,7 +127,6 @@ class TextAreaTextApi implements TextApi {
   }
 }
 
-
 class TextAreaCommandOrchestrator implements CommandOrchestrator {
   textArea: HTMLTextAreaElement;
   textApi: TextApi;
@@ -101,15 +136,45 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
     this.textApi = new TextAreaTextApi(textArea);
   }
 
-  executeCommand(command: ICommand): void {
+  getState() {
+    if (!this.textArea) return false;
+    return getStateFromTextArea(this.textArea);
+  }
+
+  executeCommand(command: ICommand<string>): void {
     command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi);
   }
 }
 
 export {
   // Toolbars.
-  bold, italic, strikethrough, hr, title, divider, link, quote, code, image,
-  unorderedListCommand, orderedListCommand, checkedListCommand, codeEdit, codeLive, codePreview, fullscreen,
+  title,
+  title1,
+  title2,
+  title3,
+  title4,
+  title5,
+  title6,
+  bold,
+  italic,
+  strikethrough,
+  hr,
+  group,
+  divider,
+  link,
+  quote,
+  code,
+  image,
+  unorderedListCommand,
+  orderedListCommand,
+  checkedListCommand,
+  codeEdit,
+  codeLive,
+  codePreview,
+  fullscreen,
   // Tool method.
-  getCommands, getStateFromTextArea, TextAreaCommandOrchestrator, TextAreaTextApi
-}
+  getCommands,
+  getStateFromTextArea,
+  TextAreaCommandOrchestrator,
+  TextAreaTextApi,
+};

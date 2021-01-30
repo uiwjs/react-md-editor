@@ -1,0 +1,30 @@
+@md-editor:~ "w-md-editor";
+
+.@{md-editor} {
+  &-toolbar-child {
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2);
+    background-color: #fff;
+    z-index: 1;
+    display: none;
+    &.active {
+      display: block;
+    }
+    .@{md-editor}-toolbar {
+      border-bottom: 0;
+      padding: 3px;
+      border-radius: 3px;
+      ul > li {
+        display: block;
+        button {
+          width: -webkit-fill-available;
+          height: initial;
+          box-sizing: border-box;
+          padding: 3px 4px 2px 4px;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

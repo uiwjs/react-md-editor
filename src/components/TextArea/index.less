@@ -1,4 +1,4 @@
-@md-editor:~"w-md-editor";
+@md-editor:~ "w-md-editor";
 
 .@{md-editor} {
   &-aree {
@@ -13,12 +13,14 @@
     word-break: keep-all;
     overflow-wrap: break-word;
     box-sizing: border-box;
-    padding: 0;
+    padding: 10px;
+    margin: 0;
     font-size: 14px;
     line-height: 18px;
     font-variant-ligatures: common-ligatures;
-    background-color: #fdfdfd;
-    &-pre, &-input {
+    &-pre,
+    &-input,
+    & > &-pre {
       margin: 0;
       border: 0;
       background: none;
@@ -36,9 +38,10 @@
       text-rendering: inherit;
       text-transform: inherit;
       white-space: inherit;
-      word-break: inherit;
       overflow-wrap: inherit;
-      padding: 10px;
+      word-break: inherit;
+      word-break: normal;
+      padding: 0;
     }
     &-pre {
       position: relative;
@@ -54,6 +57,7 @@
       color: inherit;
       overflow: hidden;
       outline: 0;
+      padding: 10px;
       -webkit-font-smoothing: antialiased;
       -webkit-text-fill-color: transparent;
       &:empty {
@@ -105,7 +109,8 @@
   .blockquote {
     color: #a6a6a6;
   }
-  .title, .bold {
+  .title,
+  .bold {
     color: #000;
   }
 }

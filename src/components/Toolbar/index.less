@@ -1,4 +1,4 @@
-@md-editor:~"w-md-editor";
+@md-editor:~ "w-md-editor";
 
 .@{md-editor} {
   &-toolbar {
@@ -7,34 +7,37 @@
     padding: 4px 2px 4px 5px;
     border-radius: 3px 3px 0 0;
     user-select: none;
-    ul, li {
+    ul,
+    li {
       margin: 0;
       padding: 0;
       list-style: none;
     }
     li {
       display: inline-block;
-      button {
+      font-size: 14px;
+      > button {
         border: none;
         height: 20px;
+        line-height: 14px;
         background: none;
         color: #586069;
         padding: 4px;
         margin: 0 1px;
-        border-radius: 3px;
+        border-radius: 2px;
         text-transform: none;
         font-weight: normal;
         overflow: visible;
         outline: none;
         cursor: pointer;
-        transition: all .3s;
+        transition: all 0.3s;
         &:hover {
           color: #06c;
-          background-color: #e8e8e8;
+          background-color: #dcdcdc;
         }
         &:active {
           color: #6a57ff;
-          background-color: #dadada;
+          background-color: #dcdcdc;
         }
         &:disabled {
           color: #ccc;
@@ -45,7 +48,7 @@
           }
         }
       }
-      &.active button {
+      &.active > button {
         color: #06c;
         background-color: #e8e8e8;
       }

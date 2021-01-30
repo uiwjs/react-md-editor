@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-md-editor",
-  "version": "1.10.0",
+  "version": "2.1.8",
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "homepage": "https://uiwjs.github.io/react-md-editor/",
   "author": "kenny wang <wowohoo@qq.com>",
@@ -9,26 +9,30 @@
   "typings": "lib/cjs/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
-    "watch": "npm run watch:types & npm run watch:ts",
-    "build": "npm run build:ts && npm run build:css && npm run build:dist:css && npm run build:types -- --outDir lib/cjs && npm run build:types -- --outDir lib/esm",
-    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
-    "build:css": "compile-less -d src -o lib/esm",
-    "build:dist:css": "compile-less -d src --combine dist/markdown-editor.css --rm-global",
-    "build:ts": "tsbb build --target react",
-    "watch:types": "npm run build:types -- --watch --outDir lib/cjs & npm run build:types -- --watch --outDir lib/esm",
-    "watch:ts": "tsbb watch --target react --env-name cjs --env-name esm:dev",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
-    "deploy": "gh-pages -d doc",
-    "doc": "kkt build --emptyDir",
-    "doc:dev": "kkt start"
+    "released": "npm run build && npm run doc",
+    "doc": "kkt build --app-src ./website",
+    "start": "kkt start --app-src ./website",
+    "build": "npm run ts:build && npm run types:esm && npm run types:cjs && npm run css:build && npm run css:build:dist",
+    "watch": "npm run ts:watch & npm run types:watch & npm run css:watch",
+    "types:build": "tsbb types --sourceRoot src --target ESNEXT",
+    "types:watch": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
+    "types:esm": "npm run types:build -- --outDir ../lib/esm",
+    "types:cjs": "npm run types:build -- --outDir ../lib/cjs",
+    "css:build": "compile-less -d src -o lib/esm",
+    "css:watch": "compile-less -d src -o lib/esm --watch",
+    "css:build:dist": "compile-less -d src --combine dist/markdown-editor.css --rm-global",
+    "ts:watch": "tsbb watch --env-name esm:dev --env-name cjs --target react",
+    "ts:build": "tsbb build --target react",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "map": "source-map-explorer build/static/js/*.js --html build/website-result.html"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/react-md-editor"
   },
   "files": [
-    "typings",
     "dist",
     "lib",
     "src"
@@ -36,34 +40,69 @@
   "keywords": [],
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16.7.0",
-    "react-dom": ">=16.7.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@kkt/plugin-less": "^1.2.0",
-    "@types/classnames": "^2.2.7",
-    "@types/katex": "^0.10.1",
-    "@types/prismjs": "^1.16.0",
-    "@types/react": "^16.8.17",
-    "@types/react-dom": "^16.8.4",
-    "@types/react-test-renderer": "^16.8.1",
-    "babel-plugin-transform-remove-imports": "^1.0.8",
-    "babel-plugin-transform-rename-import": "^2.3.0",
-    "compile-less-cli": "^1.1.5",
-    "gh-pages": "^2.1.1",
-    "katex": "^0.11.0",
-    "kkt": "^4.2.0",
-    "less": "^3.9.0",
-    "raw-loader": "^3.1.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-test-renderer": "^16.8.6",
-    "tsbb": "1.1.3"
+    "@kkt/less-modules": "6.6.2",
+    "@kkt/raw-modules": "6.6.2",
+    "@kkt/scope-plugin-options": "6.6.2",
+    "@types/classnames": "2.2.11",
+    "@types/katex": "0.11.0",
+    "@types/node": "14.14.20",
+    "@types/prismjs": "1.16.2",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "@types/react-test-renderer": "17.0.0",
+    "@uiw/react-github-corners": "1.2.0",
+    "@uiw/react-codesandbox": "1.1.0",
+    "@uiw/react-shields": "1.1.1",
+    "compile-less-cli": "1.6.0",
+    "katex": "0.12.0",
+    "husky": "4.3.8",
+    "kkt": "6.6.2",
+    "lint-staged": "10.5.3",
+    "prettier": "2.2.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-test-renderer": "17.0.1",
+    "source-map-explorer": "2.5.2",
+    "tsbb": "2.0.5"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
-    "classnames": "^2.2.6",
-    "prismjs": "^1.17.1",
-    "react-markdown": "^4.1.0"
+    "@babel/runtime": "^7.8.4",
+    "@uiw/react-markdown-preview": "^2.1.1",
+    "classnames": "^2.2.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

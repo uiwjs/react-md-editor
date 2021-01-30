@@ -1,11 +1,13 @@
 import React from 'react';
-import katex from 'katex';
-import 'katex/dist/katex.css';
-import GithubCorner from './GithubCorner';
-import MDEditor, { commands } from '../';
+import GithubCorner from '@uiw/react-github-corners';
+import Github from '@uiw/react-shields/lib/esm/github';
+import Npm from '@uiw/react-shields/lib/esm/npm';
+import MDEditor from '../';
 import ReadmeStr from '../README.md';
-import { MDEditorProps } from '../lib/cjs/MDEditor';
-
+import Exmaple from './Exmaple';
+import ExmapleKaTeX from './ExmapleKaTeX';
+import ExampleMermaid from './ExampleMermaid';
+import ExampleCustomToolbar from './ExampleCustomToolbar';
 import Logo from './Logo';
 import './App.less';
 
@@ -15,106 +17,57 @@ const mdStr = `<p align="center">
 ${ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')}
 `;
 
-
-const mdKaTeX = `This is to display the 
-\`\$\$\c = \\pm\\sqrt{a^2 + b^2}\$\$\`
- in one line
-
-\`\`\`KaTeX
-c = \\pm\\sqrt{a^2 + b^2}
-\`\`\`
-
-\`\`\`KaTeX
-f(x) = \int_{-\infty}^\infty
-    \hat f(\\xi)\,e^{2 \pi i \\xi x}
-    \,d\\xi
-\`\`\`
-`;
-
 export default function App() {
-  const [state, setVisiable] = React.useState({
-    visiableDragbar: true,
-    value: mdStr,
-    preview: 'live',
-  });
-  const upDataVisiable = (keyName: string, e: React.ChangeEvent<HTMLInputElement>) => {
-    setVisiable({ ...state, [keyName]: e.target.checked });
-  }
-  const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVisiable({ ...state, preview: e.target.value });
-  }
   return (
     <div className="warpper">
+      <GithubCorner fixed target="__blank" zIndex={99999} href="https://github.com/uiwjs/react-md-editor" />
       <header className="header">
         <Logo />
       </header>
-      <GithubCorner url="https://github.com/uiwjs/react-md-editor" />
-      <MDEditor
-        value={state.value}
-        height={400}
-        visiableDragbar={state.visiableDragbar}
-        preview={state.preview as MDEditorProps['preview']}
-        onChange={(newValue) => {
-          setVisiable({ ...state, value: newValue });
-        }}
-      />
-      <div className="doc-tools">
-        <label>
-          <input type="checkbox" checked={state.visiableDragbar} onChange={(e) => upDataVisiable('visiableDragbar', e)} />
-          {state.visiableDragbar ? 'Show' : 'Hidden'} Drag Bar
-        </label>
-        <label>
-          <input type="radio" name="preview" value="edit" checked={state.preview === 'edit'} onChange={upPreview} />
-          Edit
-        </label>
-        <label>
-          <input type="radio" name="preview" value="live" checked={state.preview === 'live'} onChange={upPreview} />
-          Live Preview
-        </label>
-        <label>
-          <input type="radio" name="preview" value="preview" checked={state.preview === 'preview'} onChange={upPreview} />
-          Preview
-        </label>
+      <div className="badges">
+        <Npm.Version
+          scope="@uiw"
+          packageName="react-md-editor"
+          href="https://www.npmjs.com/package/@uiw/react-md-editor"
+        />
+        <Github user="uiwjs" repo="react-md-editor">
+          <Github.Social type="forks" href="https://github.com/uiwjs/react-md-editor" />
+          <Github.Social type="stars" href="https://github.com/uiwjs/react-md-editor/stargazers" />
+          <Github.Social type="watchers" href="https://github.com/uiwjs/react-md-editor/watchers" />
+        </Github>
       </div>
-      <div className="page-title">Custom toolbar</div>
-      <MDEditor
-        value="Hello Markdown!"
-        commands={[
-          commands.bold, commands.hr, commands.italic, commands.divider,
-          commands.codeEdit, commands.codeLive, commands.codePreview, commands.divider,
-          commands.fullscreen, 
-        ]}
-      />
-      <div className="page-title">Support Custom KaTeX Preview</div>
-      <MDEditor
-        value={mdKaTeX}
-        previewOptions={{
-          renderers: {
-            inlineCode: ({ children }) => {
-              if (/^\$\$(.*)\$\$/.test(children)) {
-                const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
-                  throwOnError: false,
-                });
-                return <code dangerouslySetInnerHTML={{ __html: html }} />
-              }
-              return children;
-            },
-            code: ({ children, language, value }) => {
-              if (language.toLocaleLowerCase() === 'katex') {
-                const html = katex.renderToString(value, {
-                  throwOnError: false
-                });
-                return (
-                  <pre>
-                    <code dangerouslySetInnerHTML={{ __html: html }} />
-                  </pre>
-                );
-              }
-              return children;
-            }
-          }
-        }}
-      />
+      <Exmaple mdStr={mdStr} />
+      <div className="page-title">
+        Custom toolbar.{' '}
+        <a
+          target="__blank"
+          href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExampleCustomToolbar.tsx#L1-L55"
+        >
+          Example Code
+        </a>
+      </div>
+      <ExampleCustomToolbar />
+      <div className="page-title">
+        Support Custom KaTeX Preview.{' '}
+        <a
+          target="__blank"
+          href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExmapleKaTeX.tsx#L1-L62"
+        >
+          Example Code
+        </a>
+      </div>
+      <ExmapleKaTeX />
+      <div className="page-title">
+        Support Custom Mermaid Preview.{' '}
+        <a
+          target="__blank"
+          href="https://github.com/uiwjs/react-md-editor/blob/194b47965004ba92df6d691f45b01a8849e006ab/website/ExampleMermaid.tsx#L1-L87"
+        >
+          Example Code
+        </a>
+      </div>
+      <ExampleMermaid />
+      <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
-  )
+  );
 }
