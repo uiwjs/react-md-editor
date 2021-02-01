@@ -225,6 +225,52 @@ export default function App() {
 }
 ```
 
+### Markdown text to Imgage
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-text-to-images-ijqmx?fontsize=14&hidenavigation=1&theme=dark)
+
+```jsx
+import React from "react";
+import MDEditor, { commands, ICommand, TextState, TextApi } from "@uiw/react-md-editor";
+import domToImage from "dom-to-image";
+
+const textToImage: ICommand = {
+  name: "Text To Image",
+  keyCommand: "text2image",
+  buttonProps: { "aria-label": "Insert title3" },
+  icon: (
+    <svg width="12" height="12" viewBox="0 0 20 20">
+      <path fill="currentColor" d="M15 9c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4-7H1c-.55 0-1 .45-1 1v14c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 13l-6-5-2 2-4-5-4 8V4h16v11z" ></path>
+    </svg>
+  ),
+  execute: (state: TextState, api: TextApi) => {
+    const dom = document.getElementsByClassName("w-md-editor")[0];
+    if (dom) {
+      domToImage.toJpeg(dom, {}).then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = "image.jpg";
+        link.href = dataUrl;
+        link.click();
+      });
+    }
+  }
+};
+
+export default function App() {
+  return (
+    <div className="container">
+      <MDEditor
+        value="**Hello world!!!**"
+        commands={[
+          textToImage,
+          commands.divider
+        ]}
+      />
+    </div>
+  );
+}
+```
+
 ### Support Custom Mermaid Preview
 
 Using [mermaid](https://github.com/mermaid-js/mermaid) to generation of diagram and flowchart from text in a similar manner as markdown
