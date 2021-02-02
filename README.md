@@ -180,7 +180,6 @@ import MDEditor from '@uiw/react-md-editor';
 import katex from 'katex';
 import 'katex/dist/katex.css';
 
-
 const mdKaTeX = `This is to display the 
 \`\$\$\c = \\pm\\sqrt{a^2 + b^2}\$\$\`
  in one line
@@ -196,14 +195,14 @@ const renderers = {
       const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
         throwOnError: false,
       });
-      return <code dangerouslySetInnerHTML={{ __html: html }} />
+      return <code dangerouslySetInnerHTML={{ __html: html }} />;
     }
     return children;
   },
-  code: ({ children, language, value }) => {
-    if (language.toLocaleLowerCase() === 'katex') {
+  code: ({ language, value, children }) => {
+    if (language && language.toLocaleLowerCase() === 'katex') {
       const html = katex.renderToString(value, {
-        throwOnError: false
+        throwOnError: false,
       });
       return (
         <pre>
@@ -211,15 +210,22 @@ const renderers = {
         </pre>
       );
     }
-    return children;
-  }
+    const props = {
+      className: language ? `language-${language}` : '',
+    };
+    return (
+      <pre {...props}>
+        <code {...props}>{value}</code>
+      </pre>
+    );
+  },
 }
 
 export default function App() {
   return (
     <MDEditor
-      value={mdKaTeX || ''}
-      previewOptions={{ renderers: renderers }}
+      value={mdKaTeX}
+      previewOptions={{ renderers }}
     />
   );
 }
