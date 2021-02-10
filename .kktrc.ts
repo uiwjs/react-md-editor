@@ -38,6 +38,11 @@ export default (conf: Configuration, env: 'production' | 'development', options:
           name: 'micromark-vendor',
           chunks: 'all',
         },
+        prismjs: {
+          test: /[\\/]node_modules[\\/](prismjs)[\\/]/,
+          name: 'prismjs-vendor',
+          chunks: 'async',
+        },
       },
     },
   };
