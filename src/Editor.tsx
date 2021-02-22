@@ -194,7 +194,7 @@ const InternalMDEditor = (
     ...previewOptions,
     ref: previewRef,
     onScroll: handleScroll,
-    source: value,
+    source: value || '',
   } as unknown) as MarkdownPreviewProps;
   return (
     <Fragment>
@@ -231,7 +231,7 @@ const InternalMDEditor = (
               tabSize={tabSize}
               className={`${prefixCls}-input`}
               prefixCls={prefixCls}
-              value={value}
+              value={value || ''}
               autoFocus={autoFocus}
               {...textareaProps}
               onScroll={handleScroll}
