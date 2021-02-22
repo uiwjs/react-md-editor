@@ -37,6 +37,9 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Show markdown preview.
    */
   preview?: PreviewType;
+  /**
+   * Full screen display editor.
+   */
   fullscreen?: boolean;
   /**
    * Maximum drag height. `visiableDragbar=true`
@@ -131,8 +134,10 @@ const InternalMDEditor = (
   useMemo(() => height !== props.height && setHeight(heightWarp!), [heightWarp]);
   function handleTextAreaMount(isMount: boolean) {
     if (textarea.current && textarea.current.text && textarea.current.warp && isMount) {
-      textarea.current.text.blur();
-      textarea.current.text.focus();
+      if (autoFocus) {
+        textarea.current.text.blur();
+        textarea.current.text.focus();
+      }
       textarea.current.text.selectionStart = selectionRange.current.count;
       textarea.current.text.selectionEnd = selectionRange.current.count;
       textarea.current.warp.scrollTo(0, selectionRange.current.scrollTop!);
