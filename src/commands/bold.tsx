@@ -4,6 +4,7 @@ import { selectWord } from '../utils/markdownUtils';
 
 export const bold: ICommand = {
   name: 'bold',
+  shortCuts: 'Ctrl+B, Cmd+B',
   keyCommand: 'bold',
   buttonProps: { 'aria-label': 'Add bold text' },
   icon: (

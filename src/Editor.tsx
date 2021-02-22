@@ -233,7 +233,9 @@ const InternalMDEditor = (
               onMouseOver={() => (leftScroll.current = true)}
               onMouseLeave={() => (leftScroll.current = false)}
               onMount={handleTextAreaMount}
+              onCommand={handleCommand}
               onChange={handleChange}
+              commands={props.commands}
             />
           )}
           {/(live|preview)/.test(preview as string) && (

@@ -4,6 +4,7 @@ import { selectWord } from '../utils/markdownUtils';
 
 export const image: ICommand = {
   name: 'image',
+  shortCuts: 'Ctrl+Shift+I, Cmd+Shift+I',
   keyCommand: 'image',
   buttonProps: { 'aria-label': 'Add image' },
   icon: (

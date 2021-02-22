@@ -5,6 +5,7 @@ import { selectWord } from '../utils/markdownUtils';
 export const link: ICommand = {
   name: 'link',
   keyCommand: 'link',
+  shortCuts: 'Ctrl+K, Cmd+Shift+K',
   buttonProps: { 'aria-label': 'Add a link' },
   icon: (
     <svg data-name="italic" width="12" height="12" role="img" viewBox="0 0 520 520">

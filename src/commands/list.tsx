@@ -66,6 +66,7 @@ export const makeList = (state: TextState, api: TextApi, insertBefore: string | 
 export const unorderedListCommand: ICommand = {
   name: 'unordered-list',
   keyCommand: 'list',
+  shortCuts: 'Ctrl+Shift+]',
   buttonProps: { 'aria-label': 'Add unordered list' },
   icon: (
     <svg data-name="unordered-list" width="12" height="12" viewBox="0 0 512 512">
@@ -82,6 +83,7 @@ export const unorderedListCommand: ICommand = {
 
 export const orderedListCommand: ICommand = {
   name: 'ordered-list',
+  shortCuts: 'Ctrl+Shift+[',
   keyCommand: 'list',
   buttonProps: { 'aria-label': 'Add ordered list' },
   icon: (
@@ -99,6 +101,7 @@ export const orderedListCommand: ICommand = {
 
 export const checkedListCommand: ICommand = {
   name: 'checked-list',
+  shortCuts: 'Ctrl+Shift+C',
   keyCommand: 'list',
   buttonProps: { 'aria-label': 'Add checked list' },
   icon: (

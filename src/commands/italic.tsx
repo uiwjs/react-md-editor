@@ -4,6 +4,7 @@ import { selectWord } from '../utils/markdownUtils';
 
 export const italic: ICommand = {
   name: 'italic',
+  shortCuts: 'ctrl+I, Cmd+I',
   keyCommand: 'italic',
   buttonProps: { 'aria-label': 'Add italic text' },
   icon: (

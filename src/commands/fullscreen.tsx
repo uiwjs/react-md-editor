@@ -3,6 +3,7 @@ import { ICommand } from './';
 
 export const fullscreen: ICommand = {
   name: 'fullscreen',
+  shortCuts: 'F11, Ctrl+F11, Cmd+F11', // bad
   keyCommand: 'fullscreen',
   buttonProps: { 'aria-label': 'fullscreen' },
   icon: (

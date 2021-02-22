@@ -15,7 +15,7 @@ function stopPropagation(e: React.KeyboardEvent<HTMLTextAreaElement>) {
   e.preventDefault();
 }
 
-export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElement>): boolean => {
   const target = e.target as HTMLTextAreaElement;
   const starVal = target.value.substr(0, target.selectionStart);
   const valArr = starVal.split('\n');
@@ -56,13 +56,16 @@ export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElem
         end: newStarNum + oldSelectText.length + modifiedTextLine.length * options.tabSize,
       });
     } else {
-      return insertText(target, val);
+      insertText(target, val);
+      return true;
     }
   } else if (e.keyCode === 13 && /^-\s/.test(currentLineStr)) {
     /**
      * `13` - `Enter`
      */
     stopPropagation(e);
-    return insertText(target, `\n- `);
+    insertText(target, `\n- `);
+    return true;
   }
+  return false;
 };
