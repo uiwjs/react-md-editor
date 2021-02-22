@@ -4,6 +4,7 @@ import { selectWord } from '../utils/markdownUtils';
 
 export const strikethrough: ICommand = {
   name: 'strikethrough',
+  shortCuts: 'Alt+Shift+5',
   keyCommand: 'strikethrough',
   buttonProps: { 'aria-label': 'Add strikethrough text' },
   icon: (

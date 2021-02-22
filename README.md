@@ -71,7 +71,7 @@ export default function App() {
 }
 ```
 
-### Custom Toolbars
+### Custom Toolbars and shortcut keys
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-m2n10?fontsize=14&hidenavigation=1&theme=dark)
 
@@ -83,6 +83,7 @@ import MDEditor, { commands, ICommand, TextState, TextApi } from '@uiw/react-md-
 const title3: ICommand = {
   name: 'title3',
   keyCommand: 'title3',
+  shortcut: 'Ctrl+3, Cmd+3, shift+3'
   buttonProps: { 'aria-label': 'Insert title3' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
@@ -107,7 +108,7 @@ export default function App() {
         commands={[
           // Custom Toolbars
           title3,
-          commands.group([commands.title1, commands.title2, commands.title3, commands.title4, commands.title5, commands.title6], {
+  commands.group([commands.title1, commands.title2, commands.title3, commands.title4, commands.title5, commands.title6], {
             name: 'title',
             groupName: 'title',
             buttonProps: { 'aria-label': 'Insert title'}
@@ -321,6 +322,47 @@ If you need more features-rich Markdown Editor, you can use [@uiwjs/react-markdo
 - [@uiw/react-codemirror](https://github.com/uiwjs/react-codemirror): CodeMirror component for React. @codemirror
 - [@uiw/react-monacoeditor](https://github.com/jaywcjlove/react-monacoeditor): Monaco Editor component for React.
 - [@uiw/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor): A markdown editor with preview, implemented with React.js and TypeScript.
+
+### Keyboard Shortcuts
+
+Markdown related keyboard shortcuts
+
+ | operate | shortCuts |
+ | :------------ |:---------------:|
+ | Heading1      | Ctrl+1          |
+ | Heading2      | Ctrl+2          |
+ | Heading3      | Ctrl+3          |
+ | Heading4      | Ctrl+4          |
+ | Heading5      | Ctrl+5          |
+ | Heading6      | Ctrl+6          |
+ | Increase Heading Level |  |
+ | Decrease Heading Level |  |
+ | Paragraph |  |
+ | Table |  |
+ | Code Fences |  |
+ | Math Block |  |
+ | Quote | Ctrl+Shift+Q |
+ | Unordered List | Ctrl+Shift+] |
+ | Task List | Ctrl+Shift+[ |
+ | List Indentation → Indent |  |
+ | List Indentation → Outdent |  |
+ | Footnotes |  |
+ | Horizontal Line | Ctrl+Shift+H |
+ | Table of Contents |  |
+ | YAML Front Matter |  |
+ | to enter line breaks | Ctrl+S |
+ | Strong | Ctrl+ B |
+ | Emphasis | Ctrl+ I |
+ | Underline |  |
+ | Code | Ctrl +` |
+ | Strike | Alt+ Shift+ 5 |
+ | Comment | ctrl + / |
+ | Hyperlink | Ctrl+K |
+ | lmage | Ctrl+ Shift+ I |
+ | Clear |  |
+ | Inline Math |  |
+ | Superscript |  |
+ | Superscript |  |
 
 ### License
 

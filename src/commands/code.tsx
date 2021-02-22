@@ -8,6 +8,7 @@ import {
 
 export const code: ICommand = {
   name: 'code',
+  shortCuts: 'Ctrl+`',
   keyCommand: 'code',
   buttonProps: { 'aria-label': 'Insert code' },
   icon: (

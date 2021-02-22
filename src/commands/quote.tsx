@@ -8,6 +8,7 @@ import {
 
 export const quote: ICommand = {
   name: 'quote',
+  shortCuts: 'Ctrl+Shift+Q',
   keyCommand: 'quote',
   buttonProps: { 'aria-label': 'Insert a quote' },
   icon: (

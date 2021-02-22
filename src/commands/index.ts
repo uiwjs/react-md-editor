@@ -36,6 +36,7 @@ export type ICommandChildCommands<T = string> = {
 
 export type ICommand<T = string> = {
   keyCommand?: string;
+  shortCuts?: string;
   name?: string;
   groupName?: string;
   icon?: React.ReactElement;
@@ -95,6 +96,8 @@ const getCommands: () => ICommand[] = () => [
   divider,
   fullscreen,
 ];
+
+const getAllCommands: () => ICommand[] = () => [...getCommands(), title1, title2, title3, title4, title5, title6];
 
 function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {
   return {
@@ -175,6 +178,7 @@ export {
   // Tool method.
   getCommands,
   getStateFromTextArea,
+  getAllCommands,
   TextAreaCommandOrchestrator,
   TextAreaTextApi,
 };

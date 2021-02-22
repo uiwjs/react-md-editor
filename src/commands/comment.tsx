@@ -3,6 +3,7 @@ import { ICommand, TextState, TextApi } from './';
 
 export const comment: ICommand = {
   name: 'comment',
+  shortCuts: 'Ctrl+/, Cmd+/',
   keyCommand: 'comment',
   buttonProps: { 'aria-label': 'Insert comment' },
   icon: (

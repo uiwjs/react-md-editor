@@ -3,6 +3,7 @@ import { ICommand, TextState, TextApi } from './';
 
 export const title2: ICommand = {
   name: 'title2',
+  shortCuts: 'Ctrl+2, Cmd+2',
   keyCommand: 'title2',
   buttonProps: { 'aria-label': 'Insert title2' },
   icon: <div style={{ fontSize: 16, textAlign: 'left' }}>Title 2</div>,

@@ -4,9 +4,17 @@ import MDEditor, { commands, ICommand } from '../';
 const ExampleCustomToolbar = () => {
   const title: ICommand<string> = {
     name: 'title3',
+    shortCuts: 'Ctrl+3, Cmd+3, shift+3',
     keyCommand: 'title3',
     buttonProps: null,
     icon: <span style={{ padding: '0 5px' }}>Custom Toolbar</span>,
+    execute: (state: commands.TextState, api: commands.TextApi) => {
+      let modifyText = `### ${state.selectedText}\n`;
+      if (!state.selectedText) {
+        modifyText = `### `;
+      }
+      api.replaceSelection(modifyText);
+    },
   };
 
   return (
