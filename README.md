@@ -335,34 +335,18 @@ Markdown related keyboard shortcuts
  | Heading4      | Ctrl+4          |
  | Heading5      | Ctrl+5          |
  | Heading6      | Ctrl+6          |
- | Increase Heading Level |  |
- | Decrease Heading Level |  |
- | Paragraph |  |
- | Table |  |
- | Code Fences |  |
- | Math Block |  |
  | Quote | Ctrl+Shift+Q |
  | Unordered List | Ctrl+Shift+] |
  | Task List | Ctrl+Shift+[ |
- | List Indentation → Indent |  |
- | List Indentation → Outdent |  |
- | Footnotes |  |
  | Horizontal Line | Ctrl+Shift+H |
- | Table of Contents |  |
- | YAML Front Matter |  |
  | to enter line breaks | Ctrl+S |
  | Strong | Ctrl+ B |
  | Emphasis | Ctrl+ I |
- | Underline |  |
  | Code | Ctrl +` |
  | Strike | Alt+ Shift+ 5 |
  | Comment | ctrl + / |
  | Hyperlink | Ctrl+K |
  | lmage | Ctrl+ Shift+ I |
- | Clear |  |
- | Inline Math |  |
- | Superscript |  |
- | Superscript |  |
 
 ### License
 
