@@ -86,7 +86,7 @@ export default React.forwardRef<TextAreaRef, ITextAreaProps>((props, ref) => {
 
   const onKeyDown: OnKeyDown = (e) => {
     const isMatch = hotkeys({ tabSize } as IHotkeyOptions, e);
-    if (isMatch && shortCutsKeyList.length > 0) {
+    if (!isMatch && shortCutsKeyList.length > 0) {
       const onKeyDownCode = getKeyboardCode(e);
       for (let i = 0; i < shortCutsKeyList.length; i++) {
         if (shortCutsKeyList[i] && shortCutsKeyList[i].length > 0) {
