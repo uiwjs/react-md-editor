@@ -11,11 +11,8 @@ import ExampleCustomToolbar from './ExampleCustomToolbar';
 import Logo from './Logo';
 import './App.less';
 
-const mdStr = `<p align="center">
-  <img src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
-</p>
-${ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')}
-`;
+// const mdStr = ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '').replace(/^\s+/, '');
+const mdStr = '---';
 
 export default function App() {
   return (
@@ -46,7 +43,7 @@ export default function App() {
           Example Code
         </a>
       </div>
-      <ExampleCustomToolbar />
+      {/* <ExampleCustomToolbar /> */}
       <div className="page-title">
         Support Custom KaTeX Preview.{' '}
         <a
@@ -56,7 +53,7 @@ export default function App() {
           Example Code
         </a>
       </div>
-      <ExmapleKaTeX />
+      {/* <ExmapleKaTeX /> */}
       <div className="page-title">
         Support Custom Mermaid Preview.{' '}
         <a
@@ -66,7 +63,7 @@ export default function App() {
           Example Code
         </a>
       </div>
-      <ExampleMermaid />
+      {/* <ExampleMermaid /> */}
       <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
   );

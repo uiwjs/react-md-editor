@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classnames from 'classnames';
 import { IProps } from '../../utils';
+import { EditorContext } from '../../Context';
 import { ICommand, ICommandChildHandleParam } from '../../commands';
 import Child from './Child';
 import './index.less';
@@ -9,22 +10,24 @@ export interface IToolbarProps extends IProps {
   onCommand?: (command: ICommand<string>, groupName?: string) => void;
   commands?: ICommand<string>[];
   groupName?: string;
-  commandHelp?: ICommandChildHandleParam;
+  // commandHelp?: ICommandChildHandleParam;
   active?: {
     [key: string]: any;
   };
 }
 
 export default function Toolbar(props: IToolbarProps = {}) {
-  const { prefixCls, commands = [], commandHelp = {}, active, groupName } = props;
+  const { prefixCls, active, groupName } = props;
+  const { commands, commandOrchestrator, dispatch } = useContext(EditorContext);
   function handleClick(command: ICommand<string>, name?: string) {
+    console.log('command', commandOrchestrator, name, command);
     const { onCommand } = props;
     onCommand && onCommand(command, groupName || name);
   }
   return (
     <div className={`${prefixCls}-toolbar`}>
       <ul>
-        {commands.map((item, idx) => {
+        {(commands || []).map((item, idx) => {
           if (item.keyCommand === 'divider') {
             return <li key={idx} {...item.liProps} className={`${prefixCls}-toolbar-divider`} />;
           }
@@ -38,7 +41,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
               ? item.children({
                   close: () => handleClick({}, item.groupName),
                   execute: () => handleClick({ execute: item.execute }),
-                  ...commandHelp,
+                  // ...commandHelp,
                 })
               : undefined;
           return (
