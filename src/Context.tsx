@@ -18,6 +18,9 @@ export type ContextStore = {
   container?: HTMLDivElement | null;
   dispatch?: React.Dispatch<ContextStore>;
   barPopup?: Record<string, boolean>;
+  scrollTop?: number;
+  scrollTopPreview?: number;
+  tabSize?: number;
 };
 
 export function reducer(state: ContextStore, action: ContextStore) {

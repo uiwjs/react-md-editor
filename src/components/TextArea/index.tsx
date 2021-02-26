@@ -11,11 +11,8 @@ import Textarea from './Textarea';
 export interface ITextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>,
     IProps {
-  // onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  // onMount?: (isMount: boolean) => void;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   value?: string;
-  tabSize?: number;
 }
 
 export type TextAreaRef = {
@@ -25,12 +22,13 @@ export type TextAreaRef = {
 
 export default (props: ITextAreaProps) => {
   const { prefixCls, className, onScroll } = props || {};
-  const { dispatch } = useContext(EditorContext);
+  const { scrollTop, dispatch } = useContext(EditorContext);
   const warp = React.createRef<HTMLDivElement>();
   useEffect(() => {
     const state: ContextStore = {};
     if (warp.current) {
       state.textareaWarp = warp.current || undefined;
+      warp.current.scrollTop = scrollTop || 0;
     }
     if (dispatch) {
       dispatch({ ...state });
