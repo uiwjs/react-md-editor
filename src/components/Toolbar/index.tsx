@@ -25,8 +25,8 @@ export default function Toolbar(props: IToolbarProps = {}) {
       state.fullscreen = !fullscreen;
       document.body.style.overflow = fullscreen ? 'initial' : 'hidden';
     }
-    if (groupName && command.keyCommand !== 'group') {
-      state.barPopup = { ...barPopup, [`${groupName}`]: false };
+    if (name && command.keyCommand !== 'group') {
+      state.barPopup = { ...barPopup, [`${name}`]: false };
     }
 
     if (Object.keys(state).length) {
@@ -65,7 +65,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
                     disabled,
                     'data-name': item.name,
                     ...item.buttonProps,
-                    onClick: (evn: any) => {
+                    onClick: (evn: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                       evn.stopPropagation();
                       handleClick(item, item.groupName);
                     },

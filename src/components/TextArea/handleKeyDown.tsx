@@ -2,10 +2,6 @@ import insertText from '../../utils/InsertTextAtPosition';
 import { TextAreaTextApi } from '../../commands';
 import { insertBeforeEachLine } from '../../commands/list';
 
-export interface IHotkeyOptions {
-  tabSize?: number;
-}
-
 /**
  * - `13` - `Enter`
  * - `9` - `Tab`
@@ -15,22 +11,18 @@ function stopPropagation(e: React.KeyboardEvent<HTMLTextAreaElement>) {
   e.preventDefault();
 }
 
-export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+export default (e: React.KeyboardEvent<HTMLTextAreaElement>, tabSize: number = 2) => {
   const target = e.target as HTMLTextAreaElement;
   const starVal = target.value.substr(0, target.selectionStart);
   const valArr = starVal.split('\n');
   const currentLineStr = valArr[valArr.length - 1];
   const textArea = new TextAreaTextApi(target);
-  if (!options.tabSize) {
-    options.tabSize = 2;
-  }
   /**
    * `9` - `Tab`
    */
-  if (e.keyCode === 9) {
+  if (e.code.toLowerCase() === 'tab') {
     stopPropagation(e);
-    const space = new Array(options.tabSize + 1).join(' ');
-    let val = space;
+    const space = new Array(tabSize + 1).join('  ');
     if (target.selectionStart !== target.selectionEnd) {
       const _star = target.value.substring(0, target.selectionStart).split('\n');
       const _end = target.value.substring(0, target.selectionEnd).split('\n');
@@ -49,20 +41,39 @@ export default (options: IHotkeyOptions, e: React.KeyboardEvent<HTMLTextAreaElem
         end: target.selectionEnd,
       });
 
-      const modifiedTextObj = insertBeforeEachLine(modifiedText, space);
-      textArea.replaceSelection(modifiedTextObj.modifiedText);
+      const modifiedTextObj = insertBeforeEachLine(modifiedText, e.shiftKey ? '' : space);
+
+      let text = modifiedTextObj.modifiedText;
+      if (e.shiftKey) {
+        text = text
+          .split('\n')
+          .map((item) => item.replace(new RegExp(`^${space}`), ''))
+          .join('\n');
+      }
+      textArea.replaceSelection(text);
+
+      let startTabSize = e.shiftKey ? -tabSize : tabSize;
+      let endTabSize = e.shiftKey ? -modifiedTextLine.length * tabSize : modifiedTextLine.length * tabSize;
+
       textArea.setSelectionRange({
-        start: newStarNum + options.tabSize,
-        end: newStarNum + oldSelectText.length + modifiedTextLine.length * options.tabSize,
+        start: newStarNum + startTabSize,
+        end: newStarNum + oldSelectText.length + endTabSize,
       });
     } else {
-      return insertText(target, val);
+      return insertText(target, space);
     }
-  } else if (e.keyCode === 13 && /^-\s/.test(currentLineStr)) {
+  } else if (e.code.toLowerCase() === 'enter' && (/^(-|\*)\s/.test(currentLineStr) || /^\d+.\s/.test(currentLineStr))) {
     /**
      * `13` - `Enter`
      */
     stopPropagation(e);
-    return insertText(target, `\n- `);
+    let startStr = '\n- ';
+    if (currentLineStr.startsWith('*')) {
+      startStr = '\n* ';
+    }
+    if (/^\d+.\s/.test(currentLineStr)) {
+      startStr = `\n${parseInt(currentLineStr) + 1}. `;
+    }
+    return insertText(target, startStr);
   }
 };

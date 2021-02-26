@@ -105,7 +105,10 @@ const InternalMDEditor = (
   let [state, dispatch] = useReducer(reducer, {
     markdown: propsValue,
     preview: previewType,
-    height: height,
+    height,
+    tabSize,
+    scrollTop: 0,
+    scrollTopPreview: 0,
     commands,
     fullscreen,
     onChange,
@@ -126,8 +129,6 @@ const InternalMDEditor = (
     }
   }, []);
 
-  const textarea = React.createRef<TextAreaRef>();
-  const selectionRange = useRef<{ count: number; scrollTop: number }>({ count: 0, scrollTop: 0 });
   const cls = classnames(className, prefixCls, {
     [`${prefixCls}-show-${state.preview}`]: state.preview,
     [`${prefixCls}-fullscreen`]: state.fullscreen,
@@ -135,63 +136,63 @@ const InternalMDEditor = (
   useMemo(() => props.value !== state.markdown && dispatch({ markdown: props.value }), [props.value]);
   useMemo(() => props.preview !== state.preview && dispatch({ preview: props.preview }), [props.preview]);
   useMemo(() => props.height !== state.height && dispatch({ height: props.height }), [props.height]);
+  useMemo(() => props.tabSize !== state.tabSize && dispatch({ tabSize: props.tabSize }), [props.tabSize]);
   useMemo(() => props.autoFocus !== state.autoFocus && dispatch({ autoFocus: props.autoFocus }), [props.autoFocus]);
   useMemo(() => props.fullscreen !== state.fullscreen && dispatch({ fullscreen: props.fullscreen }), [
     props.fullscreen,
   ]);
 
-  function handleTextAreaMount(isMount: boolean) {
-    // if (textarea.current && textarea.current.text && textarea.current.warp && isMount) {
-    //   if (autoFocus) {
-    //     textarea.current.text.blur();
-    //     textarea.current.text.focus();
-    //   }
-    //   textarea.current.text.selectionStart = selectionRange.current.count;
-    //   textarea.current.text.selectionEnd = selectionRange.current.count;
-    //   textarea.current.warp.scrollTo(0, selectionRange.current.scrollTop!);
-    // }
-  }
-  function modifySelectionRange() {
-    if (textarea.current && textarea.current.text && textarea.current.warp) {
-      selectionRange.current.count = textarea.current.text.selectionStart;
-      selectionRange.current.scrollTop = textarea.current.warp.scrollTop;
+  const textareaDomRef = useRef<HTMLDivElement>();
+  const previewDomRef = useRef<HTMLDivElement>();
+  const active = useRef<'text' | 'preview'>();
+  useMemo(() => {
+    if (previewRef.current) {
+      previewDomRef.current = previewRef.current.mdp.current || undefined;
     }
-  }
-  // function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-  //   modifySelectionRange();
-  //   // setValue(event.target.value!);
-  //   onChange && onChange(event.target.value || '');
-  // }
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>, data: ContextStore = {}) => {
-    console.group();
-    console.log('>11111>', previewRef.current);
-    console.log('>11111>', state.textarea);
-    console.log('>11111>', state.textareaWarp);
-    console.log('>11111>', data);
-    console.groupEnd();
-    if (!state.textarea || !previewRef.current || !previewRef.current.mdp.current || !state.textareaWarp) {
-      return;
+  }, [previewRef.current]);
+
+  useMemo(() => {
+    textareaDomRef.current = state.textareaWarp;
+    if (state.textareaWarp) {
+      state.textareaWarp.addEventListener('mouseover', () => {
+        active.current = 'text';
+      });
+      state.textareaWarp.addEventListener('mouseleave', () => {
+        active.current = 'preview';
+      });
     }
-    const previewDom = previewRef.current.mdp.current;
-    const textareaDom = state.textareaWarp;
+  }, [state.textareaWarp]);
+
+  function handleScroll(e: React.UIEvent<HTMLDivElement>) {
+    const textareaDom = textareaDomRef.current;
+    const previewDom = previewDomRef.current;
     if (textareaDom && previewDom) {
       const scale =
         (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
-
-      if (e.target === textareaDom) {
+      if (e.target === textareaDom && active.current === 'text') {
         previewDom.scrollTop = textareaDom.scrollTop / scale;
       }
-      if (e.target === previewDom) {
+      if (e.target === previewDom && active.current === 'preview') {
         textareaDom.scrollTop = previewDom.scrollTop * scale;
       }
+      let scrollTop = 0;
+      if (active.current === 'text') {
+        scrollTop = textareaDom.scrollTop || 0;
+      } else if (active.current === 'preview') {
+        scrollTop = previewDom.scrollTop || 0;
+      }
+      dispatch({ scrollTop });
     }
-  };
+  }
+
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div
         ref={container}
         className={cls}
-        onClick={() => dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } })}
+        onClick={() => {
+          dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });
+        }}
         style={{ height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - 29 : state.height }}
         {...other}
       >
@@ -202,15 +203,11 @@ const InternalMDEditor = (
         >
           {/(edit|live)/.test(state.preview || '') && (
             <TextArea
-              tabSize={tabSize}
               className={`${prefixCls}-input`}
               prefixCls={prefixCls}
               autoFocus={autoFocus}
               {...textareaProps}
               onScroll={handleScroll}
-              // onMouseOver={() => (leftScroll.current = true)}
-              // onMouseLeave={() => (leftScroll.current = false)}
-              // onMount={handleTextAreaMount}
             />
           )}
           {/(live|preview)/.test(state.preview || '') && (
