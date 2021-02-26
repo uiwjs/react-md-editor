@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import classnames from 'classnames';
 import { IProps } from '../../utils';
-import { EditorContext } from '../../Context';
-import { ICommand, ICommandChildHandleParam } from '../../commands';
+import { EditorContext, PreviewType, ContextStore } from '../../Context';
+import { ICommand } from '../../commands';
 import Child from './Child';
 import './index.less';
 
@@ -10,40 +10,50 @@ export interface IToolbarProps extends IProps {
   onCommand?: (command: ICommand<string>, groupName?: string) => void;
   commands?: ICommand<string>[];
   groupName?: string;
-  // commandHelp?: ICommandChildHandleParam;
-  active?: {
-    [key: string]: any;
-  };
 }
 
 export default function Toolbar(props: IToolbarProps = {}) {
-  const { prefixCls, active, groupName } = props;
-  const { commands, commandOrchestrator, dispatch } = useContext(EditorContext);
+  const { prefixCls, groupName } = props;
+  const { commands, fullscreen, preview, barPopup = {}, commandOrchestrator, dispatch } = useContext(EditorContext);
   function handleClick(command: ICommand<string>, name?: string) {
-    console.log('command', commandOrchestrator, name, command);
-    const { onCommand } = props;
-    onCommand && onCommand(command, groupName || name);
+    if (!dispatch) return;
+    const state: ContextStore = {};
+    if (command.keyCommand === 'preview') {
+      state.preview = command.value as PreviewType;
+    }
+    if (command.keyCommand === 'fullscreen') {
+      state.fullscreen = !fullscreen;
+      document.body.style.overflow = fullscreen ? 'initial' : 'hidden';
+    }
+    if (groupName && command.keyCommand !== 'group') {
+      state.barPopup = { ...barPopup, [`${groupName}`]: false };
+    }
+
+    if (Object.keys(state).length) {
+      dispatch({ ...state });
+    }
+    commandOrchestrator && commandOrchestrator.executeCommand(command);
   }
   return (
     <div className={`${prefixCls}-toolbar`}>
       <ul>
-        {(commands || []).map((item, idx) => {
+        {(props.commands || commands || []).map((item, idx) => {
           if (item.keyCommand === 'divider') {
             return <li key={idx} {...item.liProps} className={`${prefixCls}-toolbar-divider`} />;
           }
           if (!item.keyCommand) return;
           const activeBtn =
-            active &&
-            (item.value ? active[item.keyCommand] && active[item.keyCommand] === item.value : active[item.keyCommand]);
-
+            (fullscreen && item.keyCommand === 'fullscreen') ||
+            (item.keyCommand === 'preview' && preview === item.value);
           const childNode =
             typeof item.children === 'function'
               ? item.children({
                   close: () => handleClick({}, item.groupName),
                   execute: () => handleClick({ execute: item.execute }),
-                  // ...commandHelp,
                 })
               : undefined;
+          const disabled =
+            barPopup && preview && preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand);
           return (
             <li key={idx} {...item.liProps} className={classnames({ active: activeBtn })}>
               {!item.buttonProps && item.icon}
@@ -52,11 +62,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
                   'button',
                   {
                     type: 'button',
-                    disabled:
-                      active &&
-                      active.preview &&
-                      active.preview === 'preview' &&
-                      !/(preview|fullscreen)/.test(item.keyCommand),
+                    disabled,
                     'data-name': item.name,
                     ...item.buttonProps,
                     onClick: (evn: any) => {
@@ -68,10 +74,8 @@ export default function Toolbar(props: IToolbarProps = {}) {
                 )}
               {item.children && (
                 <Child
-                  active={active}
                   groupName={item.groupName}
                   prefixCls={prefixCls}
-                  onCommand={props.onCommand}
                   children={childNode}
                   commands={
                     Array.isArray(item.children) && typeof item.children !== 'function' ? item.children : undefined

@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, useMemo, useContext, useState, useRef } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import classnames from 'classnames';
 import 'prismjs/components/prism-markdown.js';
 import { IProps } from '../../utils';
@@ -11,8 +11,8 @@ import Textarea from './Textarea';
 export interface ITextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>,
     IProps {
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onMount?: (isMount: boolean) => void;
+  // onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  // onMount?: (isMount: boolean) => void;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   value?: string;
   tabSize?: number;
@@ -24,7 +24,7 @@ export type TextAreaRef = {
 };
 
 export default (props: ITextAreaProps) => {
-  const { prefixCls, className, onChange, onMount, onScroll } = props || {};
+  const { prefixCls, className, onScroll } = props || {};
   const { dispatch } = useContext(EditorContext);
   const warp = React.createRef<HTMLDivElement>();
   useEffect(() => {

@@ -11,8 +11,7 @@ import ExampleCustomToolbar from './ExampleCustomToolbar';
 import Logo from './Logo';
 import './App.less';
 
-// const mdStr = ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '').replace(/^\s+/, '');
-const mdStr = '---';
+const mdStr = ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '').replace(/^\s+/, '');
 
 export default function App() {
   return (

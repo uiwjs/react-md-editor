@@ -9,12 +9,15 @@ export type ContextStore = {
   preview?: PreviewType;
   height?: number;
   fullscreen?: boolean;
+  autoFocus?: boolean;
+  onChange?: (value?: string) => void;
   textarea?: HTMLTextAreaElement;
   commandOrchestrator?: TextAreaCommandOrchestrator;
   textareaWarp?: HTMLDivElement;
   textareaPre?: HTMLPreElement;
   container?: HTMLDivElement | null;
   dispatch?: React.Dispatch<ContextStore>;
+  barPopup?: Record<string, boolean>;
 };
 
 export function reducer(state: ContextStore, action: ContextStore) {
