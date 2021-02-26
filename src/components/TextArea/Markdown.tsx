@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useMemo } from 'react';
-import Prism from 'prismjs';
 import { IProps } from '../../utils';
-import './index.less';
 import { EditorContext } from '../../Context';
+import './index.less';
 
 export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreElement> {}
 
@@ -19,10 +18,10 @@ export default function Markdown(props: MarkdownProps) {
     if (!preRef.current) return;
     // const html = Prism.highlight(markdown as string, Prism.languages.markdown, 'markdown');
     // preRef.current.innerHTML = `${html}<br />`;
-    preRef.current.innerHTML = `${markdown}<br />`;
+    // preRef.current.innerHTML = `${markdown}<br />`;
+    preRef.current.innerText = `${markdown}<br />`;
   };
   useEffect(() => {
-    console.log('textareaP22re:', markdown, preRef.current, textareaPre);
     highlight();
   }, [markdown, preRef.current]);
   return useMemo(() => <pre {...other} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />, [

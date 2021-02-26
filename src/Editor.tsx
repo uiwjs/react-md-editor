@@ -1,13 +1,13 @@
-import React, { Fragment, useEffect, useReducer, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useReducer, useMemo, useRef } from 'react';
 import classnames from 'classnames';
 import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
 import TextArea, { ITextAreaProps, TextAreaRef } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
-import { getCommands, TextAreaCommandOrchestrator, ICommand } from './commands';
-import './index.less';
+import { getCommands, ICommand } from './commands';
 import { reducer, EditorContext, ContextStore, PreviewType } from './Context';
+import './index.less';
 
 export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
   /**
@@ -71,7 +71,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   hideToolbar?: boolean;
 }
 
-function setGroupPopFalse(data: Record<string, boolean>) {
+function setGroupPopFalse(data: Record<string, boolean> = {}) {
   Object.keys(data).forEach((keyname) => {
     data[keyname] = false;
   });
@@ -91,7 +91,7 @@ const InternalMDEditor = (
     visiableDragbar = true,
     preview: previewType = 'live',
     fullscreen = false,
-    previewOptions,
+    previewOptions = {},
     textareaProps,
     maxHeight = 1200,
     minHeight = 100,
@@ -102,64 +102,44 @@ const InternalMDEditor = (
     ...other
   } = props || {};
 
-  const [state, dispatch] = useReducer(reducer, {
+  let [state, dispatch] = useReducer(reducer, {
     markdown: propsValue,
     preview: previewType,
     height: height,
     commands,
     fullscreen,
+    onChange,
+    barPopup: {},
   });
   const container = useRef<HTMLDivElement>(null);
-  const previewRef = useRef<MarkdownPreviewRef>();
+  const previewRef = useRef<MarkdownPreviewRef>(null);
 
   useEffect(() => {
-    const state: ContextStore = {};
+    const stateInit: ContextStore = {};
     if (container.current) {
-      state.container = container.current || undefined;
+      stateInit.container = container.current || undefined;
     }
-    state.markdown = propsValue || '';
+    stateInit.markdown = propsValue || '';
+    stateInit.barPopup = {};
     if (dispatch) {
-      dispatch({ ...state });
+      dispatch({ ...stateInit });
     }
   }, []);
 
-  // const [value, setValue] = useState<string>(propsValue || '');
-  // const [preview, setPreview] = useState<PreviewType>(previewType);
-  // const [isFullscreen, setIsFullscreen] = useState(isfullscreen || false);
-  const [groupPop, setGroupPop] = useState<Record<string, boolean>>({});
-
-  const leftScroll = useRef(false);
-
-  // const [height, setHeight] = useState(heightWarp);
   const textarea = React.createRef<TextAreaRef>();
-  const commandOrchestrator = useRef<TextAreaCommandOrchestrator>();
   const selectionRange = useRef<{ count: number; scrollTop: number }>({ count: 0, scrollTop: 0 });
-
   const cls = classnames(className, prefixCls, {
     [`${prefixCls}-show-${state.preview}`]: state.preview,
     [`${prefixCls}-fullscreen`]: state.fullscreen,
   });
-
-  // const commandOrchestratorHandle = () => {
-  //   console.log('textarea.current>>>', textarea.current)
-  //   // console.log('textarea.current>>>', textarea.current.text)
-  //   if (textarea.current && textarea.current.text) {
-  //     commandOrchestrator.current = new TextAreaCommandOrchestrator(
-  //       (textarea.current.text || null) as HTMLTextAreaElement,
-  //     );
-  //   }
-  //   return commandOrchestrator.current;
-  // };
   useMemo(() => props.value !== state.markdown && dispatch({ markdown: props.value }), [props.value]);
   useMemo(() => props.preview !== state.preview && dispatch({ preview: props.preview }), [props.preview]);
   useMemo(() => props.height !== state.height && dispatch({ height: props.height }), [props.height]);
+  useMemo(() => props.autoFocus !== state.autoFocus && dispatch({ autoFocus: props.autoFocus }), [props.autoFocus]);
   useMemo(() => props.fullscreen !== state.fullscreen && dispatch({ fullscreen: props.fullscreen }), [
     props.fullscreen,
   ]);
 
-  // useMemo(() => preview !== props.preview && props.preview && setPreview(props.preview!), [props.preview]);
-  // useMemo(() => value !== props.value && setValue(props.value!), [props.value]);
-  // useMemo(() => height !== props.height && setHeight(heightWarp!), [heightWarp]);
   function handleTextAreaMount(isMount: boolean) {
     // if (textarea.current && textarea.current.text && textarea.current.warp && isMount) {
     //   if (autoFocus) {
@@ -182,96 +162,65 @@ const InternalMDEditor = (
   //   // setValue(event.target.value!);
   //   onChange && onChange(event.target.value || '');
   // }
-  function handleCommand(command: ICommand, groupName?: string) {
-    // commandOrchestratorHandle();
-    modifySelectionRange();
-    if (command.keyCommand === 'preview') {
-      dispatch({ preview: command.value as PreviewType });
-    }
-    if (command.keyCommand === 'fullscreen') {
-      dispatch({ fullscreen: !state.fullscreen });
-      document.body.style.overflow = state.fullscreen ? 'initial' : 'hidden';
-    }
-    if (command.keyCommand === 'group') {
-      setGroupPop({ ...setGroupPopFalse(groupPop), [`${groupName}`]: true });
-    }
-    if (groupName && command.keyCommand !== 'group') {
-      setGroupPop({ ...groupPop, [`${groupName}`]: false });
-    }
-    commandOrchestrator.current && commandOrchestrator.current!.executeCommand(command);
-  }
-  function handleScroll(e: React.UIEvent<HTMLDivElement>) {
-    if (!textarea.current || !previewRef.current || !previewRef.current.mdp.current || !textarea.current.warp) {
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>, data: ContextStore = {}) => {
+    console.group();
+    console.log('>11111>', previewRef.current);
+    console.log('>11111>', state.textarea);
+    console.log('>11111>', state.textareaWarp);
+    console.log('>11111>', data);
+    console.groupEnd();
+    if (!state.textarea || !previewRef.current || !previewRef.current.mdp.current || !state.textareaWarp) {
       return;
     }
     const previewDom = previewRef.current.mdp.current;
-    const textareaDom = textarea.current.warp;
+    const textareaDom = state.textareaWarp;
     if (textareaDom && previewDom) {
       const scale =
         (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
-      if (e.target === textareaDom && leftScroll.current) {
+
+      if (e.target === textareaDom) {
         previewDom.scrollTop = textareaDom.scrollTop / scale;
       }
-      if (e.target === previewDom && !leftScroll.current) {
+      if (e.target === previewDom) {
         textareaDom.scrollTop = previewDom.scrollTop * scale;
       }
     }
-  }
-  // const chestratorObj = useMemo(() => commandOrchestratorHandle(), [textarea.current, commandOrchestrator.current]);
-  const mdProps = ({
-    ...previewOptions,
-    ref: previewRef,
-    onScroll: handleScroll,
-    source: state.markdown || '',
-  } as unknown) as MarkdownPreviewProps;
-  // console.log('state>', state)
+  };
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div
         ref={container}
         className={cls}
-        onClick={() => setGroupPop({ ...setGroupPopFalse(groupPop) })}
+        onClick={() => dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } })}
         style={{ height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - 29 : state.height }}
         {...other}
       >
-        {!hideToolbar && (
-          <Toolbar
-            active={{
-              fullscreen: state.fullscreen,
-              preview: state.preview,
-              ...groupPop,
-            }}
-            prefixCls={prefixCls}
-            commands={commands}
-            // commandHelp={{
-            //   getState: commandOrchestrator.current && commandOrchestrator.current!.getState,
-            //   textApi: commandOrchestrator.current && commandOrchestrator.current!.textApi,
-            //   // ...chestratorObj,
-            // }}
-            onCommand={handleCommand}
-          />
-        )}
+        {!hideToolbar && <Toolbar prefixCls={prefixCls} />}
         <div
           className={`${prefixCls}-content`}
           style={{ height: state.fullscreen ? 'calc(100% - 29px)' : Number(state.height) - 29 }}
         >
           {/(edit|live)/.test(state.preview || '') && (
             <TextArea
-              // ref={textarea}
               tabSize={tabSize}
               className={`${prefixCls}-input`}
               prefixCls={prefixCls}
               autoFocus={autoFocus}
               {...textareaProps}
               onScroll={handleScroll}
-              onMouseOver={() => (leftScroll.current = true)}
-              onMouseLeave={() => (leftScroll.current = false)}
-              onMount={handleTextAreaMount}
-              // onChange={handleChange}
+              // onMouseOver={() => (leftScroll.current = true)}
+              // onMouseLeave={() => (leftScroll.current = false)}
+              // onMount={handleTextAreaMount}
             />
           )}
           {/(live|preview)/.test(state.preview || '') && (
-            <MarkdownPreview {...mdProps} className={`${prefixCls}-preview`} />
+            <MarkdownPreview
+              {...(previewOptions as unknown)}
+              onScroll={handleScroll}
+              ref={previewRef}
+              source={state.markdown || ''}
+              className={`${prefixCls}-preview`}
+            />
           )}
         </div>
         {visiableDragbar && !state.fullscreen && (

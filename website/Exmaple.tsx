@@ -22,6 +22,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
   return (
     <Fragment>
       <MDEditor
+        autoFocus
         value={state.value}
         height={400}
         hideToolbar={!state.hideToolbar}
