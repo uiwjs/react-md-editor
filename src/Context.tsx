@@ -9,6 +9,7 @@ export type ContextStore = {
   preview?: PreviewType;
   height?: number;
   fullscreen?: boolean;
+  highlightEnable?: boolean;
   autoFocus?: boolean;
   onChange?: (value?: string) => void;
   textarea?: HTMLTextAreaElement;

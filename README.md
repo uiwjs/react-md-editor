@@ -352,6 +352,7 @@ ReactDOM.render(<App />, document.getElementById("container"));
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
 - `height?: number=200`: The height of the editor.
 - `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
+- `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
 - `fullscreen?: boolean=false`: Show markdown preview.
 - `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.
 - `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.

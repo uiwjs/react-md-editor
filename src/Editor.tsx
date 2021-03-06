@@ -57,6 +57,11 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   textareaProps?: ITextAreaProps;
   /**
+   * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
+   * @default true
+   */
+  highlightEnable?: boolean;
+  /**
    * The number of characters to insert when pressing tab key.
    * Default `2` spaces.
    */
@@ -89,6 +94,7 @@ const InternalMDEditor = (
     commands = getCommands(),
     height = 200,
     visiableDragbar = true,
+    highlightEnable = true,
     preview: previewType = 'live',
     fullscreen = false,
     previewOptions = {},
@@ -101,11 +107,11 @@ const InternalMDEditor = (
     hideToolbar,
     ...other
   } = props || {};
-
   let [state, dispatch] = useReducer(reducer, {
     markdown: propsValue,
     preview: previewType,
     height,
+    highlightEnable,
     tabSize,
     scrollTop: 0,
     scrollTopPreview: 0,
@@ -135,7 +141,8 @@ const InternalMDEditor = (
   useMemo(() => propsValue !== state.markdown && dispatch({ markdown: propsValue }), [propsValue]);
   useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType]);
   useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
-  useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize: tabSize }), [tabSize]);
+  useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize }), [tabSize]);
+  useMemo(() => highlightEnable !== state.highlightEnable && dispatch({ highlightEnable }), [highlightEnable]);
   useMemo(() => autoFocus !== state.autoFocus && dispatch({ autoFocus: autoFocus }), [autoFocus]);
   useMemo(() => fullscreen !== state.fullscreen && dispatch({ fullscreen: fullscreen }), [fullscreen]);
 
@@ -181,7 +188,6 @@ const InternalMDEditor = (
       dispatch({ scrollTop });
     }
   }
-
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div
