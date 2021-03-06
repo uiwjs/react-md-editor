@@ -9,15 +9,14 @@ import './index.less';
 export interface IToolbarProps extends IProps {
   onCommand?: (command: ICommand<string>, groupName?: string) => void;
   commands?: ICommand<string>[];
-  groupName?: string;
 }
 
 export default function Toolbar(props: IToolbarProps = {}) {
-  const { prefixCls, groupName } = props;
+  const { prefixCls } = props;
   const { commands, fullscreen, preview, barPopup = {}, commandOrchestrator, dispatch } = useContext(EditorContext);
   function handleClick(command: ICommand<string>, name?: string) {
     if (!dispatch) return;
-    const state: ContextStore = {};
+    const state: ContextStore = { barPopup: { ...barPopup } };
     if (command.keyCommand === 'preview') {
       state.preview = command.value as PreviewType;
     }
@@ -25,8 +24,14 @@ export default function Toolbar(props: IToolbarProps = {}) {
       state.fullscreen = !fullscreen;
       document.body.style.overflow = fullscreen ? 'initial' : 'hidden';
     }
-    if (name && command.keyCommand !== 'group') {
-      state.barPopup = { ...barPopup, [`${name}`]: false };
+    if (commands && command.keyCommand === 'group') {
+      commands.forEach((item) => {
+        if (name === item.groupName) {
+          state.barPopup![name!] = true;
+        } else if (item.keyCommand) {
+          state.barPopup![item.groupName!] = false;
+        }
+      });
     }
 
     if (Object.keys(state).length) {

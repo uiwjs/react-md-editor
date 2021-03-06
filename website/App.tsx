@@ -32,7 +32,7 @@ export default function App() {
           <Github.Social type="watchers" href="https://github.com/uiwjs/react-md-editor/watchers" />
         </Github>
       </div>
-      <Exmaple mdStr={mdStr} />
+      {/* <Exmaple mdStr={mdStr} /> */}
       <div className="page-title">
         Custom toolbar.{' '}
         <a
@@ -42,7 +42,7 @@ export default function App() {
           Example Code
         </a>
       </div>
-      {/* <ExampleCustomToolbar /> */}
+      <ExampleCustomToolbar />
       <div className="page-title">
         Support Custom KaTeX Preview.{' '}
         <a

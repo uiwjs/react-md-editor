@@ -19,7 +19,7 @@ export default function Markdown(props: MarkdownProps) {
     // const html = Prism.highlight(markdown as string, Prism.languages.markdown, 'markdown');
     // preRef.current.innerHTML = `${html}<br />`;
     // preRef.current.innerHTML = `${markdown}<br />`;
-    preRef.current.innerText = `${markdown}<br />`;
+    preRef.current.innerText = `${markdown}`;
   };
   useEffect(() => {
     highlight();
