@@ -4,7 +4,8 @@ import Toolbar, { IToolbarProps } from './';
 import { EditorContext } from '../../Context';
 
 export type ChildProps = IToolbarProps & {
-  children?: any;
+  children?: JSX.Element;
+  groupName?: string;
 };
 
 export default function Child(props: ChildProps) {
@@ -16,7 +17,7 @@ export default function Child(props: ChildProps) {
         className={`${prefixCls}-toolbar-child ${groupName && barPopup[groupName] ? 'active' : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {Array.isArray(commands) ? <Toolbar commands={commands} {...props} groupName={groupName} /> : children}
+        {Array.isArray(commands) ? <Toolbar commands={commands} {...props} /> : children}
       </div>
     ),
     [commands, barPopup, groupName, prefixCls],

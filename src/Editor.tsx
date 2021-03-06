@@ -116,7 +116,6 @@ const InternalMDEditor = (
   });
   const container = useRef<HTMLDivElement>(null);
   const previewRef = useRef<MarkdownPreviewRef>(null);
-
   useEffect(() => {
     const stateInit: ContextStore = {};
     if (container.current) {
@@ -125,7 +124,7 @@ const InternalMDEditor = (
     stateInit.markdown = propsValue || '';
     stateInit.barPopup = {};
     if (dispatch) {
-      dispatch({ ...stateInit });
+      dispatch({ ...state, ...stateInit });
     }
   }, []);
 
@@ -133,14 +132,12 @@ const InternalMDEditor = (
     [`${prefixCls}-show-${state.preview}`]: state.preview,
     [`${prefixCls}-fullscreen`]: state.fullscreen,
   });
-  useMemo(() => props.value !== state.markdown && dispatch({ markdown: props.value }), [props.value]);
-  useMemo(() => props.preview !== state.preview && dispatch({ preview: props.preview }), [props.preview]);
-  useMemo(() => props.height !== state.height && dispatch({ height: props.height }), [props.height]);
-  useMemo(() => props.tabSize !== state.tabSize && dispatch({ tabSize: props.tabSize }), [props.tabSize]);
-  useMemo(() => props.autoFocus !== state.autoFocus && dispatch({ autoFocus: props.autoFocus }), [props.autoFocus]);
-  useMemo(() => props.fullscreen !== state.fullscreen && dispatch({ fullscreen: props.fullscreen }), [
-    props.fullscreen,
-  ]);
+  useMemo(() => propsValue !== state.markdown && dispatch({ markdown: propsValue }), [propsValue]);
+  useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType]);
+  useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
+  useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize: tabSize }), [tabSize]);
+  useMemo(() => autoFocus !== state.autoFocus && dispatch({ autoFocus: autoFocus }), [autoFocus]);
+  useMemo(() => fullscreen !== state.fullscreen && dispatch({ fullscreen: fullscreen }), [fullscreen]);
 
   const textareaDomRef = useRef<HTMLDivElement>();
   const previewDomRef = useRef<HTMLDivElement>();
