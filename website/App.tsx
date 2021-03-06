@@ -32,7 +32,7 @@ export default function App() {
           <Github.Social type="watchers" href="https://github.com/uiwjs/react-md-editor/watchers" />
         </Github>
       </div>
-      {/* <Exmaple mdStr={mdStr} /> */}
+      <Exmaple mdStr={mdStr} />
       <div className="page-title">
         Custom toolbar.{' '}
         <a
@@ -52,7 +52,7 @@ export default function App() {
           Example Code
         </a>
       </div>
-      {/* <ExmapleKaTeX /> */}
+      <ExmapleKaTeX />
       <div className="page-title">
         Support Custom Mermaid Preview.{' '}
         <a
@@ -62,7 +62,7 @@ export default function App() {
           Example Code
         </a>
       </div>
-      {/* <ExampleMermaid /> */}
+      <ExampleMermaid />
       <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
     </div>
   );

@@ -7,6 +7,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
   const [state, setVisiable] = React.useState<MDEditorProps>({
     visiableDragbar: true,
     hideToolbar: true,
+    highlightEnable: true,
     value: props.mdStr || '',
     preview: 'live',
   });
@@ -25,6 +26,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         autoFocus
         value={state.value}
         height={400}
+        highlightEnable={state.highlightEnable}
         hideToolbar={!state.hideToolbar}
         visiableDragbar={state.visiableDragbar}
         preview={state.preview}
@@ -37,12 +39,30 @@ const Exmaple = (props = {} as { mdStr: string }) => {
           <input
             type="checkbox"
             checked={state.visiableDragbar}
-            onChange={(e) => upDataVisiable('visiableDragbar', e)}
+            onChange={(e) => {
+              setVisiable({ ...state, visiableDragbar: e.target.checked });
+            }}
           />
           {state.visiableDragbar ? 'Show' : 'Hidden'} Drag Bar
         </label>
         <label>
-          <input type="checkbox" checked={state.hideToolbar} onChange={(e) => upDataVisiable('hideToolbar', e)} />
+          <input
+            type="checkbox"
+            checked={state.highlightEnable}
+            onChange={(e) => {
+              setVisiable({ ...state, highlightEnable: e.target.checked });
+            }}
+          />
+          {state.highlightEnable ? 'Enable' : 'Unenable'} highlight
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={state.hideToolbar}
+            onChange={(e) => {
+              setVisiable({ ...state, hideToolbar: e.target.checked });
+            }}
+          />
           {state.hideToolbar ? 'Show' : 'Hidden'} ToolBar
         </label>
         <label>
