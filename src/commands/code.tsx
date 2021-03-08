@@ -9,6 +9,7 @@ import {
 export const code: ICommand = {
   name: 'code',
   keyCommand: 'code',
+  shortcuts: 'ctrlcmd+j',
   buttonProps: { 'aria-label': 'Insert code' },
   icon: (
     <svg width="12" height="12" role="img" viewBox="0 0 640 512">
@@ -22,7 +23,6 @@ export const code: ICommand = {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: tate.text, selection: tate.selection });
     const state1 = api.setSelectionRange(newSelectionRange);
-
     // when there's no breaking line
     if (state1.selectedText.indexOf('\n') === -1) {
       api.replaceSelection(`\`${state1.selectedText}\``);
@@ -37,6 +37,33 @@ export const code: ICommand = {
       });
       return;
     }
+
+    const breaksBeforeCount = getBreaksNeededForEmptyLineBefore(state1.text, state1.selection.start);
+    const breaksBefore = Array(breaksBeforeCount + 1).join('\n');
+
+    const breaksAfterCount = getBreaksNeededForEmptyLineAfter(state1.text, state1.selection.end);
+    const breaksAfter = Array(breaksAfterCount + 1).join('\n');
+
+    api.replaceSelection(`${breaksBefore}\`\`\`\n${state1.selectedText}\n\`\`\`${breaksAfter}`);
+
+    const selectionStart = state1.selection.start + breaksBeforeCount + 4;
+    const selectionEnd = selectionStart + state1.selectedText.length;
+
+    api.setSelectionRange({
+      start: selectionStart,
+      end: selectionEnd,
+    });
+  },
+};
+
+export const codeBlock: ICommand = {
+  name: 'codeBlock',
+  keyCommand: 'codeBlock',
+  shortcuts: 'ctrlcmd+shift+j',
+  execute: (tate: TextState, api: TextApi) => {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    const newSelectionRange = selectWord({ text: tate.text, selection: tate.selection });
+    const state1 = api.setSelectionRange(newSelectionRange);
 
     const breaksBeforeCount = getBreaksNeededForEmptyLineBefore(state1.text, state1.selection.start);
     const breaksBefore = Array(breaksBeforeCount + 1).join('\n');
