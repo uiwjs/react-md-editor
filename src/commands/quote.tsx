@@ -9,7 +9,7 @@ import {
 export const quote: ICommand = {
   name: 'quote',
   keyCommand: 'quote',
-  shortcuts: 'ctrl+q',
+  shortcuts: 'ctrlcmd+q',
   buttonProps: { 'aria-label': 'Insert a quote' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
