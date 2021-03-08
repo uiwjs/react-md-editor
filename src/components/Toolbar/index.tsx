@@ -32,6 +32,10 @@ export default function Toolbar(props: IToolbarProps = {}) {
           state.barPopup![item.groupName!] = false;
         }
       });
+    } else if (name) {
+      Object.keys(state.barPopup || {}).forEach((keyName) => {
+        state.barPopup![keyName] = false;
+      });
     }
 
     if (Object.keys(state).length) {
@@ -53,6 +57,8 @@ export default function Toolbar(props: IToolbarProps = {}) {
           const childNode =
             typeof item.children === 'function'
               ? item.children({
+                  getState: () => commandOrchestrator!.getState(),
+                  textApi: commandOrchestrator ? commandOrchestrator!.textApi : undefined,
                   close: () => handleClick({}, item.groupName),
                   execute: () => handleClick({ execute: item.execute }),
                 })
