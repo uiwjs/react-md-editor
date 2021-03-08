@@ -4,6 +4,7 @@ import { ICommand, TextState, TextApi } from './';
 export const hr: ICommand = {
   name: 'hr',
   keyCommand: 'hr',
+  shortcuts: 'ctrl+h',
   buttonProps: { 'aria-label': 'Insert HR' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 175 175">

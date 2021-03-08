@@ -5,6 +5,7 @@ import { selectWord } from '../utils/markdownUtils';
 export const bold: ICommand = {
   name: 'bold',
   keyCommand: 'bold',
+  shortcuts: 'ctrlcmd+b',
   buttonProps: { 'aria-label': 'Add bold text' },
   icon: (
     <svg role="img" width="12" height="12" viewBox="0 0 384 512">
@@ -15,7 +16,6 @@ export const bold: ICommand = {
     </svg>
   ),
   execute: (state: TextState, api: TextApi) => {
-    console.log('>>>newSelectionRange', state);
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
     const state1 = api.setSelectionRange(newSelectionRange);

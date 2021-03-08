@@ -1,5 +1,5 @@
 import { bold } from './bold';
-import { code } from './code';
+import { code, codeBlock } from './code';
 import { italic } from './italic';
 import { link } from './link';
 import { unorderedListCommand, orderedListCommand, checkedListCommand } from './list';
@@ -12,6 +12,7 @@ import { title3 } from './title3';
 import { title4 } from './title4';
 import { title5 } from './title5';
 import { title6 } from './title6';
+import { comment } from './comment';
 import { group } from './group';
 import { divider } from './divider';
 import { codePreview, codeEdit, codeLive } from './preview';
@@ -37,6 +38,7 @@ export type ICommandChildCommands<T = string> = {
 export type ICommand<T = string> = {
   keyCommand?: string;
   name?: string;
+  shortcuts?: string;
   groupName?: string;
   icon?: React.ReactElement;
   value?: T;
@@ -74,6 +76,7 @@ export interface TextApi {
 }
 
 const getCommands: () => ICommand[] = () => [
+  comment,
   bold,
   italic,
   strikethrough,
@@ -83,6 +86,7 @@ const getCommands: () => ICommand[] = () => [
   link,
   quote,
   code,
+  codeBlock,
   image,
   divider,
   unorderedListCommand,

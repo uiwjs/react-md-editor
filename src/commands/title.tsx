@@ -1,10 +1,9 @@
-import * as React from 'react';
-import { ICommand, TextState, TextApi } from './';
+import React from 'react';
+import { ICommand } from './';
+import { title2 } from './title2';
 
 export const title: ICommand = {
-  name: 'title',
-  keyCommand: 'title',
-  buttonProps: { 'aria-label': 'Insert title' },
+  ...title2,
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <path
@@ -13,11 +12,4 @@ export const title: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
-    let modifyText = `## ${state.selectedText}\n`;
-    if (!state.selectedText) {
-      modifyText = `## `;
-    }
-    api.replaceSelection(modifyText);
-  },
 };
