@@ -11,9 +11,6 @@ const Exmaple = (props = {} as { mdStr: string }) => {
     value: props.mdStr || '',
     preview: 'live',
   });
-  const upDataVisiable = (keyName: string, e: React.ChangeEvent<HTMLInputElement>) => {
-    setVisiable({ ...state, [keyName]: e.target.checked });
-  };
   const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVisiable({ ...state, preview: e.target.value as MDEditorProps['preview'] });
   };
