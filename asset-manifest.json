@@ -2,9 +2,9 @@
   "files": {
     "prismjs-vendor.js": "/react-md-editor/static/js/prismjs-vendor.4f8146e5.chunk.js",
     "prismjs-vendor.js.map": "/react-md-editor/static/js/prismjs-vendor.4f8146e5.chunk.js.map",
-    "main.css": "/react-md-editor/static/css/main.14b47e80.chunk.css",
-    "main.js": "/react-md-editor/static/js/main.f1c07c24.chunk.js",
-    "main.js.map": "/react-md-editor/static/js/main.f1c07c24.chunk.js.map",
+    "main.css": "/react-md-editor/static/css/main.e809954a.chunk.css",
+    "main.js": "/react-md-editor/static/js/main.cac91b6d.chunk.js",
+    "main.js.map": "/react-md-editor/static/js/main.cac91b6d.chunk.js.map",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.447d2f92.chunk.js",
     "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.447d2f92.chunk.js.map",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.f11d9fb6.chunk.js",
@@ -12,8 +12,8 @@
     "runtime-main.js": "/react-md-editor/static/js/runtime-main.4cd675e8.js",
     "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.4cd675e8.js.map",
     "index.html": "/react-md-editor/index.html",
-    "static/css/main.14b47e80.chunk.css.map": "/react-md-editor/static/css/main.14b47e80.chunk.css.map",
-    "static/js/main.f1c07c24.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.f1c07c24.chunk.js.LICENSE.txt",
+    "static/css/main.e809954a.chunk.css.map": "/react-md-editor/static/css/main.e809954a.chunk.css.map",
+    "static/js/main.cac91b6d.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.cac91b6d.chunk.js.LICENSE.txt",
     "static/js/prismjs-vendor.4f8146e5.chunk.js.LICENSE.txt": "/react-md-editor/static/js/prismjs-vendor.4f8146e5.chunk.js.LICENSE.txt",
     "static/js/react-vendor.f11d9fb6.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.f11d9fb6.chunk.js.LICENSE.txt",
     "static/media/katex.css": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.ea67dc3c.ttf"
@@ -22,7 +22,7 @@
     "static/js/runtime-main.4cd675e8.js",
     "static/js/micromark-vendor.447d2f92.chunk.js",
     "static/js/react-vendor.f11d9fb6.chunk.js",
-    "static/css/main.14b47e80.chunk.css",
-    "static/js/main.f1c07c24.chunk.js"
+    "static/css/main.e809954a.chunk.css",
+    "static/js/main.cac91b6d.chunk.js"
   ]
 }
