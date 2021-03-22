@@ -62,9 +62,9 @@
     "kkt": "6.8.1",
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-test-renderer": "17.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-test-renderer": "17.0.2",
     "source-map-explorer": "2.5.2",
     "tsbb": "2.1.2"
   },
