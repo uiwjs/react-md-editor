@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "6.7.2",
-    "@kkt/raw-modules": "6.7.2",
+    "@kkt/raw-modules": "6.8.1",
     "@kkt/scope-plugin-options": "6.7.2",
     "@types/classnames": "2.2.11",
     "@types/katex": "0.11.0",
