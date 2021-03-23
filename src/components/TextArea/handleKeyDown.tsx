@@ -20,7 +20,7 @@ export default (e: React.KeyboardEvent<HTMLTextAreaElement>, tabSize: number = 2
   /**
    * `9` - `Tab`
    */
-  if (e.code.toLowerCase() === 'tab') {
+  if (e.code && e.code.toLowerCase() === 'tab') {
     stopPropagation(e);
     const space = new Array(tabSize + 1).join('  ');
     if (target.selectionStart !== target.selectionEnd) {
@@ -62,7 +62,11 @@ export default (e: React.KeyboardEvent<HTMLTextAreaElement>, tabSize: number = 2
     } else {
       return insertText(target, space);
     }
-  } else if (e.code.toLowerCase() === 'enter' && (/^(-|\*)\s/.test(currentLineStr) || /^\d+.\s/.test(currentLineStr))) {
+  } else if (
+    e.code &&
+    e.code.toLowerCase() === 'enter' &&
+    (/^(-|\*)\s/.test(currentLineStr) || /^\d+.\s/.test(currentLineStr))
+  ) {
     /**
      * `13` - `Enter`
      */
