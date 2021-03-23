@@ -1,8 +1,7 @@
 import React, { useEffect, useReducer, useMemo, useRef } from 'react';
-import classnames from 'classnames';
 import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
-import TextArea, { ITextAreaProps, TextAreaRef } from './components/TextArea';
+import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, ICommand } from './commands';
@@ -134,10 +133,16 @@ const InternalMDEditor = (
     }
   }, []);
 
-  const cls = classnames(className, prefixCls, {
-    [`${prefixCls}-show-${state.preview}`]: state.preview,
-    [`${prefixCls}-fullscreen`]: state.fullscreen,
-  });
+  const cls = [
+    className,
+    prefixCls,
+    state.preview ? `${prefixCls}-show-${state.preview}` : null,
+    state.fullscreen ? `${prefixCls}-fullscreen` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+
   useMemo(() => propsValue !== state.markdown && dispatch({ markdown: propsValue }), [propsValue]);
   useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType]);
   useMemo(() => height !== state.height && dispatch({ height: height }), [height]);

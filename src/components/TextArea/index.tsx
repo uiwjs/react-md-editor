@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useContext } from 'react';
-import classnames from 'classnames';
 import 'prismjs/components/prism-markdown.js';
 import { IProps } from '../../utils';
 import './index.less';
@@ -36,8 +35,8 @@ export default (props: ITextAreaProps) => {
   }, []);
   return useMemo(
     () => (
-      <div ref={warp} className={classnames(`${prefixCls}-aree`, className)} onScroll={onScroll}>
-        <div className={classnames(`${prefixCls}-text`)}>
+      <div ref={warp} className={`${prefixCls}-aree ${className || ''}`} onScroll={onScroll}>
+        <div className={`${prefixCls}-text`}>
           <Markdown prefixCls={prefixCls} />
           <Textarea prefixCls={prefixCls} />
         </div>

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import classnames from 'classnames';
 import { IProps } from '../../utils';
 import { EditorContext, PreviewType, ContextStore } from '../../Context';
 import { ICommand } from '../../commands';
@@ -66,7 +65,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
           const disabled =
             barPopup && preview && preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand);
           return (
-            <li key={idx} {...item.liProps} className={classnames({ active: activeBtn })}>
+            <li key={idx} {...item.liProps} className={activeBtn ? `active` : ''}>
               {!item.buttonProps && item.icon}
               {item.buttonProps &&
                 React.createElement(
