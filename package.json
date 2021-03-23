@@ -52,7 +52,7 @@
     "@types/node": "14.14.20",
     "@types/prismjs": "1.16.2",
     "@types/react": "17.0.3",
-    "@types/react-dom": "17.0.0",
+    "@types/react-dom": "17.0.3",
     "@types/react-test-renderer": "17.0.0",
     "@uiw/react-github-corners": "1.2.0",
     "@uiw/react-codesandbox": "1.1.0",
