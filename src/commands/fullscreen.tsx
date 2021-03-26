@@ -4,7 +4,7 @@ import { ICommand } from './';
 export const fullscreen: ICommand = {
   name: 'fullscreen',
   keyCommand: 'fullscreen',
-  buttonProps: { 'aria-label': 'fullscreen' },
+  buttonProps: { 'aria-label': 'fullscreen', title: 'fullscreen' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <path

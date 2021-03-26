@@ -6,7 +6,7 @@ export const link: ICommand = {
   name: 'link',
   keyCommand: 'link',
   shortcuts: 'ctrlcmd+k',
-  buttonProps: { 'aria-label': 'Add a link' },
+  buttonProps: { 'aria-label': 'Add a link', title: 'Add a link' },
   icon: (
     <svg data-name="italic" width="12" height="12" role="img" viewBox="0 0 520 520">
       <path
