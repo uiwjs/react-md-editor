@@ -1,5 +1,4 @@
 import React, { useContext, useMemo } from 'react';
-import './Child.less';
 import Toolbar, { IToolbarProps } from './';
 import { EditorContext } from '../../Context';
 

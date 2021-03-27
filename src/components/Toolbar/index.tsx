@@ -3,7 +3,6 @@ import { IProps } from '../../utils';
 import { EditorContext, PreviewType, ContextStore } from '../../Context';
 import { ICommand } from '../../commands';
 import Child from './Child';
-import './index.less';
 
 export interface IToolbarProps extends IProps {
   onCommand?: (command: ICommand<string>, groupName?: string) => void;

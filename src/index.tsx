@@ -1,12 +1,15 @@
+import './index.less';
+import './style/index.less';
+import './components/DragBar/index.less';
+import './components/TextArea/index.less';
+import './components/Toolbar/Child.less';
+import './components/Toolbar/index.less';
+
+// We didn't import stylings in Editor.tsx.
+import '@uiw/react-markdown-preview';
+
+export * from './unstyled';
+
 import MDEditor from './Editor';
-import * as commands from './commands';
-import * as MarkdownUtil from './utils/markdownUtils';
-
-export type { ICommand, CommandOrchestrator, TextRange, TextState, TextApi } from './commands';
-export type { TextSection } from './utils/markdownUtils';
-
-export * from './Editor';
-
-export { MarkdownUtil, commands };
 
 export default MDEditor;

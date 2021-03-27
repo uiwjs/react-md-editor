@@ -4,7 +4,6 @@ import { EditorContext } from '../../Context';
 import { TextAreaCommandOrchestrator } from '../../commands';
 import handleKeyDown from './handleKeyDown';
 import shortcuts from './shortcuts';
-import './index.less';
 
 export interface TextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>,

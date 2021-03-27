@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { IProps } from '../../utils';
 import Prism from 'prismjs';
 import { EditorContext } from '../../Context';
-import './index.less';
 
 export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreElement> {}
 
