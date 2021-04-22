@@ -2,7 +2,7 @@
   "files": {
     "prismjs-vendor.js": "/react-md-editor/static/js/prismjs-vendor.f4902e67.chunk.js",
     "prismjs-vendor.js.map": "/react-md-editor/static/js/prismjs-vendor.f4902e67.chunk.js.map",
-    "main.css": "/react-md-editor/static/css/main.29fe5a0b.chunk.css",
+    "main.css": "/react-md-editor/static/css/main.2f4905c4.chunk.css",
     "main.js": "/react-md-editor/static/js/main.b2cb0662.chunk.js",
     "main.js.map": "/react-md-editor/static/js/main.b2cb0662.chunk.js.map",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.647a236d.chunk.js",
@@ -12,7 +12,7 @@
     "runtime-main.js": "/react-md-editor/static/js/runtime-main.38b92f17.js",
     "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.38b92f17.js.map",
     "index.html": "/react-md-editor/index.html",
-    "static/css/main.29fe5a0b.chunk.css.map": "/react-md-editor/static/css/main.29fe5a0b.chunk.css.map",
+    "static/css/main.2f4905c4.chunk.css.map": "/react-md-editor/static/css/main.2f4905c4.chunk.css.map",
     "static/js/main.b2cb0662.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.b2cb0662.chunk.js.LICENSE.txt",
     "static/js/prismjs-vendor.f4902e67.chunk.js.LICENSE.txt": "/react-md-editor/static/js/prismjs-vendor.f4902e67.chunk.js.LICENSE.txt",
     "static/js/react-vendor.987d6fcd.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.987d6fcd.chunk.js.LICENSE.txt",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.38b92f17.js",
     "static/js/micromark-vendor.647a236d.chunk.js",
     "static/js/react-vendor.987d6fcd.chunk.js",
-    "static/css/main.29fe5a0b.chunk.css",
+    "static/css/main.2f4905c4.chunk.css",
     "static/js/main.b2cb0662.chunk.js"
   ]
 }
