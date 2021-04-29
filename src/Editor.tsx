@@ -131,6 +131,7 @@ const InternalMDEditor = (
     if (dispatch) {
       dispatch({ ...state, ...stateInit });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cls = [
@@ -158,7 +159,7 @@ const InternalMDEditor = (
     if (previewRef.current) {
       previewDomRef.current = previewRef.current.mdp.current || undefined;
     }
-  }, [previewRef.current]);
+  }, []);
 
   useMemo(() => {
     textareaDomRef.current = state.textareaWarp;
@@ -244,12 +245,12 @@ const InternalMDEditor = (
   );
 };
 
-const MDEditor = React.forwardRef<HTMLDivElement, MDEditorProps>(InternalMDEditor);
+const mdEditor = React.forwardRef<HTMLDivElement, MDEditorProps>(InternalMDEditor);
 
-type MDEditor = typeof MDEditor & {
+type MDEditor = typeof mdEditor & {
   Markdown: typeof MarkdownPreview;
 };
 
-(MDEditor as MDEditor).Markdown = MarkdownPreview;
+(mdEditor as MDEditor).Markdown = MarkdownPreview;
 
-export default MDEditor as MDEditor;
+export default mdEditor as MDEditor;

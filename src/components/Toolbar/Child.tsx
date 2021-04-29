@@ -20,6 +20,7 @@ export default function Child(props: ChildProps) {
         {Array.isArray(commands) ? <Toolbar commands={commands} {...props} /> : children}
       </div>
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [commands, barPopup, groupName, prefixCls],
   );
 }

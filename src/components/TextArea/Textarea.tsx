@@ -14,7 +14,7 @@ export interface TextAreaProps
 
 export default function Textarea(props: TextAreaProps) {
   const { prefixCls, ...other } = props;
-  const { markdown, commands, commandOrchestrator, tabSize, onChange, dispatch } = useContext(EditorContext);
+  const { markdown, commands, tabSize, onChange, dispatch } = useContext(EditorContext);
   const textRef = React.createRef<HTMLTextAreaElement>();
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   useEffect(() => {
@@ -23,6 +23,7 @@ export default function Textarea(props: TextAreaProps) {
       executeRef.current = commandOrchestrator;
       dispatch({ textarea: textRef.current, commandOrchestrator });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return useMemo(
     () => (
@@ -42,6 +43,7 @@ export default function Textarea(props: TextAreaProps) {
         }}
       />
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [markdown],
   );
 }

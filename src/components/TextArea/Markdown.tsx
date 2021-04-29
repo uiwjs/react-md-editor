@@ -14,6 +14,7 @@ export default function Markdown(props: MarkdownProps) {
     if (preRef.current && dispatch) {
       dispatch({ textareaPre: preRef.current });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const highlight = () => {
     if (!preRef.current) return;
@@ -26,6 +27,7 @@ export default function Markdown(props: MarkdownProps) {
   };
   useEffect(() => {
     highlight();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [markdown, preRef.current, highlightEnable]);
 
   return useMemo(() => <pre {...other} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />, [
