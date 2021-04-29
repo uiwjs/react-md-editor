@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { IProps } from '../../utils';
 import { EditorContext, PreviewType, ContextStore } from '../../Context';
 import { ICommand } from '../../commands';
@@ -49,7 +49,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
           if (item.keyCommand === 'divider') {
             return <li key={idx} {...item.liProps} className={`${prefixCls}-toolbar-divider`} />;
           }
-          if (!item.keyCommand) return;
+          if (!item.keyCommand) return <Fragment />;
           const activeBtn =
             (fullscreen && item.keyCommand === 'fullscreen') ||
             (item.keyCommand === 'preview' && preview === item.value);

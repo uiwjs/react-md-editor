@@ -11,7 +11,7 @@ function stopPropagation(e: React.KeyboardEvent<HTMLTextAreaElement>) {
   e.preventDefault();
 }
 
-export default (e: React.KeyboardEvent<HTMLTextAreaElement>, tabSize: number = 2) => {
+export default function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>, tabSize: number = 2) {
   const target = e.target as HTMLTextAreaElement;
   const starVal = target.value.substr(0, target.selectionStart);
   const valArr = starVal.split('\n');
@@ -80,4 +80,4 @@ export default (e: React.KeyboardEvent<HTMLTextAreaElement>, tabSize: number = 2
     }
     return insertText(target, startStr);
   }
-};
+}

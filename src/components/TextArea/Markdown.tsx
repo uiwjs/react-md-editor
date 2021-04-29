@@ -30,6 +30,7 @@ export default function Markdown(props: MarkdownProps) {
 
   return useMemo(() => <pre {...other} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />, [
     other,
-    markdown,
+    preRef,
+    prefixCls,
   ]);
 }

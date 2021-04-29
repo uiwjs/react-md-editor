@@ -19,7 +19,7 @@ export type TextAreaRef = {
   warp?: HTMLDivElement;
 };
 
-export default (props: ITextAreaProps) => {
+export default function TextArea(props: ITextAreaProps) {
   const { prefixCls, className, onScroll } = props || {};
   const { scrollTop, dispatch } = useContext(EditorContext);
   const warp = React.createRef<HTMLDivElement>();
@@ -44,4 +44,4 @@ export default (props: ITextAreaProps) => {
     ),
     [],
   );
-};
+}

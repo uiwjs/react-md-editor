@@ -11,11 +11,11 @@ function getCommands(data: ICommand[] = [], resulte: Record<string, ICommand> = 
   return resulte;
 }
 
-export default (
+export default function shortcutsHandle(
   e: React.KeyboardEvent<HTMLTextAreaElement>,
   commands: ICommand[] = [],
   commandOrchestrator?: TextAreaCommandOrchestrator,
-) => {
+) {
   const data = getCommands(commands || []);
   const shortcuts: (string | number)[] = [];
   if (e.altKey) {
@@ -57,4 +57,4 @@ export default (
     commandOrchestrator.executeCommand(command);
     return;
   }
-};
+}
