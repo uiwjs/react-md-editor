@@ -31,7 +31,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
           state.barPopup![item.groupName!] = false;
         }
       });
-    } else if (name) {
+    } else if (name || command.parent) {
       Object.keys(state.barPopup || {}).forEach((keyName) => {
         state.barPopup![keyName] = false;
       });

@@ -36,6 +36,7 @@ export type ICommandChildCommands<T = string> = {
 };
 
 export type ICommand<T = string> = {
+  parent?: ICommand;
   keyCommand?: string;
   name?: string;
   shortcuts?: string;

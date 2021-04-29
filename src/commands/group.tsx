@@ -6,7 +6,7 @@ export type GroupOptions = Omit<ICommand<string>, 'children'> & {
 };
 
 export const group = (arr: ICommandChildCommands['children'], options?: GroupOptions): ICommand<string> => {
-  return {
+  let data = {
     children: arr as any,
     icon: (
       <svg width="12" height="12" viewBox="0 0 520 520">
@@ -20,4 +20,11 @@ export const group = (arr: ICommandChildCommands['children'], options?: GroupOpt
     ...options,
     keyCommand: 'group',
   };
+  if (Array.isArray(data.children)) {
+    data.children = data.children.map(({ ...item }: ICommand) => {
+      item.parent = data;
+      return { ...item };
+    });
+  }
+  return data;
 };
