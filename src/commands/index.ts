@@ -160,6 +160,7 @@ export {
   title5,
   title6,
   bold,
+  codeBlock,
   italic,
   strikethrough,
   hr,
