@@ -12,6 +12,9 @@ const ExampleCustomToolbar = () => {
   return (
     <MDEditor
       value="Hello Markdown!"
+      textareaProps={{
+        placeholder: 'Please enter Markdown text',
+      }}
       commands={[
         title,
         commands.group(
