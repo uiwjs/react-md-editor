@@ -34,17 +34,17 @@ export default function App() {
       </div>
       <Exmaple mdStr={mdStr} />
       <div className="page-title">
-        Custom toolbar.{' '}
+        Custom toolbar.
         <a
           target="__blank"
-          href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExampleCustomToolbar.tsx#L1-L55"
+          href="https://github.com/uiwjs/react-md-editor/blob/0bf21785b5748c33add999e478a9d804e0505b4c/website/ExampleCustomToolbar.tsx#L4-L67"
         >
           Example Code
         </a>
       </div>
       <ExampleCustomToolbar />
       <div className="page-title">
-        Support Custom KaTeX Preview.{' '}
+        Support Custom KaTeX Preview.
         <a
           target="__blank"
           href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExmapleKaTeX.tsx#L1-L62"
@@ -54,7 +54,7 @@ export default function App() {
       </div>
       <ExmapleKaTeX />
       <div className="page-title">
-        Support Custom Mermaid Preview.{' '}
+        Support Custom Mermaid Preview.
         <a
           target="__blank"
           href="https://github.com/uiwjs/react-md-editor/blob/194b47965004ba92df6d691f45b01a8849e006ab/website/ExampleMermaid.tsx#L1-L87"
