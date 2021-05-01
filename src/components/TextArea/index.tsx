@@ -20,7 +20,7 @@ export type TextAreaRef = {
 };
 
 export default function TextArea(props: ITextAreaProps) {
-  const { prefixCls, className, onScroll } = props || {};
+  const { prefixCls, className, onScroll, ...otherProps } = props || {};
   const { scrollTop, dispatch } = useContext(EditorContext);
   const warp = React.createRef<HTMLDivElement>();
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function TextArea(props: ITextAreaProps) {
       <div ref={warp} className={`${prefixCls}-aree ${className || ''}`} onScroll={onScroll}>
         <div className={`${prefixCls}-text`}>
           <Markdown prefixCls={prefixCls} />
-          <Textarea prefixCls={prefixCls} />
+          <Textarea prefixCls={prefixCls} {...otherProps} />
         </div>
       </div>
     ),
