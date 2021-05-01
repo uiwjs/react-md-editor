@@ -22,6 +22,9 @@ const ExmapleKaTeX = () => {
   return (
     <MDEditor
       value={mdKaTeX}
+      textareaProps={{
+        placeholder: 'Please enter Markdown text',
+      }}
       previewOptions={{
         renderers: {
           inlineCode: ({ children }) => {

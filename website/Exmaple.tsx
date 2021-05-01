@@ -26,6 +26,9 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         highlightEnable={state.highlightEnable}
         hideToolbar={!state.hideToolbar}
         visiableDragbar={state.visiableDragbar}
+        textareaProps={{
+          placeholder: 'Please enter Markdown text',
+        }}
         preview={state.preview}
         onChange={(newValue) => {
           setVisiable({ ...state, value: newValue || '' });

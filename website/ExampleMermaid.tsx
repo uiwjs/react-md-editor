@@ -47,6 +47,9 @@ const renderers = {
 export default function App() {
   return (
     <MDEditor
+      textareaProps={{
+        placeholder: 'Please enter Markdown text',
+      }}
       height={500}
       value={mdMermaid || ""}
       previewOptions={{ renderers: renderers }}
