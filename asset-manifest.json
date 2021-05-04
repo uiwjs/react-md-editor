@@ -1,28 +1,28 @@
 {
   "files": {
-    "prismjs-vendor.js": "/react-md-editor/static/js/prismjs-vendor.7a430e8c.chunk.js",
-    "prismjs-vendor.js.map": "/react-md-editor/static/js/prismjs-vendor.7a430e8c.chunk.js.map",
-    "main.css": "/react-md-editor/static/css/main.2f4905c4.chunk.css",
-    "main.js": "/react-md-editor/static/js/main.4893e52d.chunk.js",
-    "main.js.map": "/react-md-editor/static/js/main.4893e52d.chunk.js.map",
-    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.2c63e1d7.chunk.js",
-    "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.2c63e1d7.chunk.js.map",
-    "react-vendor.js": "/react-md-editor/static/js/react-vendor.55c58f10.chunk.js",
-    "react-vendor.js.map": "/react-md-editor/static/js/react-vendor.55c58f10.chunk.js.map",
-    "runtime-main.js": "/react-md-editor/static/js/runtime-main.d03e0a80.js",
-    "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.d03e0a80.js.map",
+    "prismjs-vendor.js": "/react-md-editor/static/js/prismjs-vendor.63bd139c.chunk.js",
+    "prismjs-vendor.js.map": "/react-md-editor/static/js/prismjs-vendor.63bd139c.chunk.js.map",
+    "main.css": "/react-md-editor/static/css/main.6ee40133.chunk.css",
+    "main.js": "/react-md-editor/static/js/main.b2697c42.chunk.js",
+    "main.js.map": "/react-md-editor/static/js/main.b2697c42.chunk.js.map",
+    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.87bf74d1.chunk.js",
+    "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.87bf74d1.chunk.js.map",
+    "react-vendor.js": "/react-md-editor/static/js/react-vendor.601b6a62.chunk.js",
+    "react-vendor.js.map": "/react-md-editor/static/js/react-vendor.601b6a62.chunk.js.map",
+    "runtime-main.js": "/react-md-editor/static/js/runtime-main.62122a13.js",
+    "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.62122a13.js.map",
     "index.html": "/react-md-editor/index.html",
-    "static/css/main.2f4905c4.chunk.css.map": "/react-md-editor/static/css/main.2f4905c4.chunk.css.map",
-    "static/js/main.4893e52d.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.4893e52d.chunk.js.LICENSE.txt",
-    "static/js/prismjs-vendor.7a430e8c.chunk.js.LICENSE.txt": "/react-md-editor/static/js/prismjs-vendor.7a430e8c.chunk.js.LICENSE.txt",
-    "static/js/react-vendor.55c58f10.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.55c58f10.chunk.js.LICENSE.txt",
+    "static/css/main.6ee40133.chunk.css.map": "/react-md-editor/static/css/main.6ee40133.chunk.css.map",
+    "static/js/main.b2697c42.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.b2697c42.chunk.js.LICENSE.txt",
+    "static/js/prismjs-vendor.63bd139c.chunk.js.LICENSE.txt": "/react-md-editor/static/js/prismjs-vendor.63bd139c.chunk.js.LICENSE.txt",
+    "static/js/react-vendor.601b6a62.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.601b6a62.chunk.js.LICENSE.txt",
     "static/media/katex.css": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.ea67dc3c.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.d03e0a80.js",
-    "static/js/micromark-vendor.2c63e1d7.chunk.js",
-    "static/js/react-vendor.55c58f10.chunk.js",
-    "static/css/main.2f4905c4.chunk.css",
-    "static/js/main.4893e52d.chunk.js"
+    "static/js/runtime-main.62122a13.js",
+    "static/js/micromark-vendor.87bf74d1.chunk.js",
+    "static/js/react-vendor.601b6a62.chunk.js",
+    "static/css/main.6ee40133.chunk.css",
+    "static/js/main.b2697c42.chunk.js"
   ]
 }
