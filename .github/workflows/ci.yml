@@ -59,7 +59,7 @@ jobs:
           [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor@${{steps.create_tag.outputs.versionNumber}}/file/README.md)
 
           ```bash
-          npm i compile-less-cli@${{steps.create_tag.outputs.versionNumber}}
+          npm i @uiw/react-md-editor@${{steps.create_tag.outputs.versionNumber}}
           ```
 
           ${{ steps.changelog.outputs.compareurl }}
