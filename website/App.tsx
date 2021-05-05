@@ -57,7 +57,7 @@ export default function App() {
         Support Custom Mermaid Preview.
         <a
           target="__blank"
-          href="https://github.com/uiwjs/react-md-editor/blob/194b47965004ba92df6d691f45b01a8849e006ab/website/ExampleMermaid.tsx#L1-L87"
+          href="https://github.com/uiwjs/react-md-editor/blob/355795b47a7693d1a030ac09e9893b9a1601a84f/website/ExampleMermaid.tsx#L3-L62"
         >
           Example Code
         </a>
