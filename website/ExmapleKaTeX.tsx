@@ -26,35 +26,30 @@ const ExmapleKaTeX = () => {
         placeholder: 'Please enter Markdown text',
       }}
       previewOptions={{
-        renderers: {
-          inlineCode: ({ children }) => {
-            if (/^\$\$(.*)\$\$/.test(children)) {
-              const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
+        components: {
+          code: ({ inline, children, className, ...props }) => {
+            const txt = children[0] || '';
+            if (inline) {
+              if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {
+                const html = katex.renderToString(txt.replace(/^\$\$(.*)\$\$/, '$1'), {
+                  throwOnError: false,
+                });
+                return <code dangerouslySetInnerHTML={{ __html: html }} />;
+              }
+              return <code>{txt}</code>;
+            }
+            if (
+              typeof txt === 'string' &&
+              typeof className === 'string' &&
+              /^language-katex/.test(className.toLocaleLowerCase())
+            ) {
+              const html = katex.renderToString(txt, {
                 throwOnError: false,
               });
+              console.log('props', txt, className, props);
               return <code dangerouslySetInnerHTML={{ __html: html }} />;
             }
-            return children;
-          },
-          code: ({ language, value, children }) => {
-            if (language && language.toLocaleLowerCase() === 'katex') {
-              const html = katex.renderToString(value, {
-                throwOnError: false,
-              });
-              return (
-                <pre>
-                  <code dangerouslySetInnerHTML={{ __html: html }} />
-                </pre>
-              );
-            }
-            const props = {
-              className: language ? `language-${language}` : '',
-            };
-            return (
-              <pre {...props}>
-                <code {...props}>{value}</code>
-              </pre>
-            );
+            return <code className={String(className)}>{txt}</code>;
           },
         },
       }}
