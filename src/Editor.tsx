@@ -173,7 +173,7 @@ const InternalMDEditor = (
     }
   }, [state.textareaWarp]);
 
-  const handleScroll = (scroll: boolean) => (e: React.UIEvent<HTMLDivElement>) => {
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     if (!enableScrollRef.current) return;
     const textareaDom = textareaDomRef.current;
     const previewDom = previewRef.current ? previewRef.current.mdp.current : undefined;
@@ -218,14 +218,13 @@ const InternalMDEditor = (
               prefixCls={prefixCls}
               autoFocus={autoFocus}
               {...textareaProps}
-              onScroll={enableScroll ? handleScroll(enableScroll) : undefined}
+              onScroll={handleScroll}
             />
           )}
           {/(live|preview)/.test(state.preview || '') && (
             <MarkdownPreview
               {...(previewOptions as unknown)}
-              // onScroll={handleScroll}
-              onScroll={enableScroll ? handleScroll(enableScroll) : undefined}
+              onScroll={handleScroll}
               ref={previewRef}
               source={state.markdown || ''}
               className={`${prefixCls}-preview`}
