@@ -359,6 +359,7 @@ ReactDOM.render(<App />, document.getElementById("container"));
 - `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.
 - `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.
 - `hideToolbar?: boolean=false`: Option to hide the tool bar.
+- `enableScroll?: boolean=true`: Whether to enable scrolling.
 
 ### Development
 

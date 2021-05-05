@@ -73,6 +73,8 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Hide the tool bar
    */
   hideToolbar?: boolean;
+  /** Whether to enable scrolling */
+  enableScroll?: boolean;
 }
 
 function setGroupPopFalse(data: Record<string, boolean> = {}) {
@@ -92,6 +94,7 @@ const InternalMDEditor = (
     value: propsValue,
     commands = getCommands(),
     height = 200,
+    enableScroll = true,
     visiableDragbar = true,
     highlightEnable = true,
     preview: previewType = 'live',
@@ -121,6 +124,9 @@ const InternalMDEditor = (
   });
   const container = useRef<HTMLDivElement>(null);
   const previewRef = useRef<MarkdownPreviewRef>(null);
+  const enableScrollRef = useRef(enableScroll);
+
+  useMemo(() => (enableScrollRef.current = enableScroll), [enableScroll]);
   useEffect(() => {
     const stateInit: ContextStore = {};
     if (container.current) {
@@ -153,13 +159,7 @@ const InternalMDEditor = (
   useMemo(() => fullscreen !== state.fullscreen && dispatch({ fullscreen: fullscreen }), [fullscreen]);
 
   const textareaDomRef = useRef<HTMLDivElement>();
-  const previewDomRef = useRef<HTMLDivElement>();
   const active = useRef<'text' | 'preview'>();
-  useMemo(() => {
-    if (previewRef.current) {
-      previewDomRef.current = previewRef.current.mdp.current || undefined;
-    }
-  }, []);
 
   useMemo(() => {
     textareaDomRef.current = state.textareaWarp;
@@ -173,9 +173,10 @@ const InternalMDEditor = (
     }
   }, [state.textareaWarp]);
 
-  function handleScroll(e: React.UIEvent<HTMLDivElement>) {
+  const handleScroll = (scroll: boolean) => (e: React.UIEvent<HTMLDivElement>) => {
+    if (!enableScrollRef.current) return;
     const textareaDom = textareaDomRef.current;
-    const previewDom = previewDomRef.current;
+    const previewDom = previewRef.current ? previewRef.current.mdp.current : undefined;
     if (textareaDom && previewDom) {
       const scale =
         (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
@@ -193,7 +194,8 @@ const InternalMDEditor = (
       }
       dispatch({ scrollTop });
     }
-  }
+  };
+
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div
@@ -216,13 +218,14 @@ const InternalMDEditor = (
               prefixCls={prefixCls}
               autoFocus={autoFocus}
               {...textareaProps}
-              onScroll={handleScroll}
+              onScroll={enableScroll ? handleScroll(enableScroll) : undefined}
             />
           )}
           {/(live|preview)/.test(state.preview || '') && (
             <MarkdownPreview
               {...(previewOptions as unknown)}
-              onScroll={handleScroll}
+              // onScroll={handleScroll}
+              onScroll={enableScroll ? handleScroll(enableScroll) : undefined}
               ref={previewRef}
               source={state.markdown || ''}
               className={`${prefixCls}-preview`}

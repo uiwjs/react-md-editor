@@ -8,6 +8,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
     visiableDragbar: true,
     hideToolbar: true,
     highlightEnable: true,
+    enableScroll: true,
     value: props.mdStr || '',
     preview: 'live',
   });
@@ -25,6 +26,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         height={400}
         highlightEnable={state.highlightEnable}
         hideToolbar={!state.hideToolbar}
+        enableScroll={state.enableScroll}
         visiableDragbar={state.visiableDragbar}
         textareaProps={{
           placeholder: 'Please enter Markdown text',
@@ -54,6 +56,16 @@ const Exmaple = (props = {} as { mdStr: string }) => {
             }}
           />
           {state.highlightEnable ? 'Enable' : 'Unenable'} highlight
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={state.enableScroll}
+            onChange={(e) => {
+              setVisiable({ ...state, enableScroll: e.target.checked });
+            }}
+          />
+          {state.enableScroll ? 'Enable' : 'Unenable'} Scroll
         </label>
         <label>
           <input
