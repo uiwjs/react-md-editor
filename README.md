@@ -279,6 +279,10 @@ Using [mermaid](https://github.com/mermaid-js/mermaid) to generation of diagram 
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-mermaid-for-react-uvtsx?fontsize=14&hidenavigation=1&theme=dark)
 
+```bash
+npm install mermaid
+```
+
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
