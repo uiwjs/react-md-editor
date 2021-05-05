@@ -28,22 +28,6 @@ Bob-->>John: Jolly good!
 \\\`\\\`\\\`
 \`;
 
-const renderers = {
-  code: ({ children, language, value }) => {
-    if (language.toLocaleLowerCase() === "mermaid") {
-      const Elm = document.createElement("div");
-      Elm.id = "demo";
-      const svg = mermaid.render("demo", value);
-      return (
-        <pre>
-          <code dangerouslySetInnerHTML={{ __html: svg }} />
-        </pre>
-      );
-    }
-    return children;
-  }
-};
-
 export default function App() {
   return (
     <MDEditor
@@ -52,7 +36,24 @@ export default function App() {
       }}
       height={500}
       value={mdMermaid || ""}
-      previewOptions={{ renderers: renderers }}
+      previewOptions={{
+        components: {
+          code: ({ inline, children, className, ...props }) => {
+            const txt = children[0] || '';
+            if (
+              typeof txt === 'string' &&
+              typeof className === 'string' &&
+              /^language-mermaid/.test(className.toLocaleLowerCase())
+            ) {
+              const Elm = document.createElement("div");
+              Elm.id = "demo";
+              const svg = mermaid.render("demo", txt);
+              return <code dangerouslySetInnerHTML={{ __html: svg }} />
+            }
+            return <code className={String(className)}>{txt}</code>;
+          },
+        },
+      }}
     />
   );
 }

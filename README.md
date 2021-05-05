@@ -167,7 +167,9 @@ KaTeX is a fast, easy-to-use JavaScript library for TeX math rendering on the we
 
 The following example is preview in [CodeSandbox](https://codesandbox.io/s/markdown-editor-katex-for-react-7v3vl).
 
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-katex-for-react-7v3vl?fontsize=14&hidenavigation=1&theme=dark)
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/headless-frog-em8yg?fontsize=14&hidenavigation=1&theme=dark)
+
+> ⚠️ Upgrade v2 to v3 [55da020](https://github.com/uiwjs/react-md-editor/blob/55da02055420451f4a1a6dc4100add390cdf05cd/website/ExmapleKaTeX.tsx#L1-L60)
 
 ```bash
 npm install katex
@@ -189,43 +191,37 @@ c = \\pm\\sqrt{a^2 + b^2}
 \`\`\`
 `;
 
-const renderers = {
-  inlineCode: ({ children }) => {
-    if (/^\$\$(.*)\$\$/.test(children)) {
-      const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
-        throwOnError: false,
-      });
-      return <code dangerouslySetInnerHTML={{ __html: html }} />;
-    }
-    return children;
-  },
-  code: ({ language, value, children }) => {
-    if (language && language.toLocaleLowerCase() === 'katex') {
-      const html = katex.renderToString(value, {
-        throwOnError: false,
-      });
-      return (
-        <pre>
-          <code dangerouslySetInnerHTML={{ __html: html }} />
-        </pre>
-      );
-    }
-    const props = {
-      className: language ? `language-${language}` : '',
-    };
-    return (
-      <pre {...props}>
-        <code {...props}>{value}</code>
-      </pre>
-    );
-  },
-}
-
 export default function App() {
   return (
     <MDEditor
       value={mdKaTeX}
-      previewOptions={{ renderers }}
+      previewOptions={{
+        components: {
+          code: ({ inline, children, className, ...props }) => {
+            const txt = children[0] || '';
+            if (inline) {
+              if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {
+                const html = katex.renderToString(txt.replace(/^\$\$(.*)\$\$/, '$1'), {
+                  throwOnError: false,
+                });
+                return <code dangerouslySetInnerHTML={{ __html: html }} />;
+              }
+              return <code>{txt}</code>;
+            }
+            if (
+              typeof txt === 'string' &&
+              typeof className === 'string' &&
+              /^language-katex/.test(className.toLocaleLowerCase())
+            ) {
+              const html = katex.renderToString(txt, {
+                throwOnError: false,
+              });
+              return <code dangerouslySetInnerHTML={{ __html: html }} />;
+            }
+            return <code className={String(className)}>{txt}</code>;
+          },
+        },
+      }}
     />
   );
 }
@@ -312,28 +308,29 @@ Bob-->>John: Jolly good!
 \`\`\`
 `;
 
-const renderers = {
-  code: ({ children, language, value }) => {
-    if (language.toLocaleLowerCase() === "mermaid") {
-      const Elm = document.createElement("div");
-      Elm.id = "demo";
-      const svg = mermaid.render("demo", value);
-      return (
-        <pre>
-          <code dangerouslySetInnerHTML={{ __html: svg }} />
-        </pre>
-      );
-    }
-    return children;
-  }
-};
-
 export default function App() {
   return (
     <MDEditor
       height={500}
       value={mdMermaid || ""}
-      previewOptions={{ renderers: renderers }}
+      previewOptions={{
+        components: {
+          code: ({ inline, children, className, ...props }) => {
+            const txt = children[0] || '';
+            if (
+              typeof txt === 'string' &&
+              typeof className === 'string' &&
+              /^language-mermaid/.test(className.toLocaleLowerCase())
+            ) {
+              const Elm = document.createElement("div");
+              Elm.id = "demo";
+              const svg = mermaid.render("demo", txt);
+              return <code dangerouslySetInnerHTML={{ __html: svg }} />
+            }
+            return <code className={String(className)}>{txt}</code>;
+          },
+        },
+      }}
     />
   );
 }

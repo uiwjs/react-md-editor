@@ -47,7 +47,7 @@ export default function App() {
         Support Custom KaTeX Preview.
         <a
           target="__blank"
-          href="https://github.com/uiwjs/react-md-editor/blob/1f0684799c242810df290f82e79cd73121137349/website/ExmapleKaTeX.tsx#L1-L62"
+          href="https://github.com/uiwjs/react-md-editor/blob/55da02055420451f4a1a6dc4100add390cdf05cd/website/ExmapleKaTeX.tsx#L1-L60"
         >
           Example Code
         </a>
