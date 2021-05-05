@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useMemo, useRef } from 'react';
+import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
 import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import { IProps } from './utils';
 import TextArea, { ITextAreaProps } from './components/TextArea';
@@ -86,7 +86,7 @@ function setGroupPopFalse(data: Record<string, boolean> = {}) {
 
 const InternalMDEditor = (
   props: MDEditorProps,
-  ref?: ((instance: HTMLDivElement) => void) | React.RefObject<HTMLDivElement | null> | null,
+  ref?: ((instance: ContextStore) => void) | React.RefObject<ContextStore> | null,
 ) => {
   const {
     prefixCls = 'w-md-editor',
@@ -126,6 +126,7 @@ const InternalMDEditor = (
   const previewRef = useRef<MarkdownPreviewRef>(null);
   const enableScrollRef = useRef(enableScroll);
 
+  useImperativeHandle(ref, () => ({ ...state }));
   useMemo(() => (enableScrollRef.current = enableScroll), [enableScroll]);
   useEffect(() => {
     const stateInit: ContextStore = {};
@@ -247,7 +248,7 @@ const InternalMDEditor = (
   );
 };
 
-const mdEditor = React.forwardRef<HTMLDivElement, MDEditorProps>(InternalMDEditor);
+const mdEditor = React.forwardRef<ContextStore, MDEditorProps>(InternalMDEditor);
 
 type MDEditor = typeof mdEditor & {
   Markdown: typeof MarkdownPreview;
