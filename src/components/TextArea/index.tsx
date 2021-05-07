@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useContext } from 'react';
+import { EditorContext, ContextStore } from '../../Context';
 import { IProps } from '../../utils';
 import './index.less';
-import { EditorContext, ContextStore } from '../../Context';
 
 import Markdown from './Markdown';
 import Textarea from './Textarea';

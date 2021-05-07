@@ -32,6 +32,7 @@ export default function Textarea(props: TextAreaProps) {
         ref={textRef}
         className={`${prefixCls}-text-input`}
         value={markdown}
+        spellCheck={false}
         onScroll={props.onScroll}
         onKeyDown={(e) => {
           handleKeyDown(e, tabSize);

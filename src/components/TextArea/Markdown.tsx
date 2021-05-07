@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { IProps } from '../../utils';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-markdown';
 import { EditorContext } from '../../Context';
 import './index.less';
 
@@ -9,7 +7,7 @@ export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreEleme
 
 export default function Markdown(props: MarkdownProps) {
   const { prefixCls, ...other } = props;
-  const { markdown = '', highlightEnable, dispatch } = useContext(EditorContext);
+  const { markdown = '', dispatch } = useContext(EditorContext);
   const preRef = React.createRef<HTMLPreElement>();
   useEffect(() => {
     if (preRef.current && dispatch) {
@@ -17,23 +15,11 @@ export default function Markdown(props: MarkdownProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const highlight = () => {
-    if (!preRef.current) return;
-    if (highlightEnable && typeof markdown === 'string') {
-      const html = Prism.highlight(markdown as string, Prism.languages.markdown, 'markdown');
-      preRef.current.innerHTML = `${html}`;
-    } else {
-      preRef.current.innerText = `${markdown}`;
-    }
-  };
-  useEffect(() => {
-    highlight();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [markdown, preRef.current, highlightEnable]);
 
-  return useMemo(() => <pre {...other} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />, [
-    other,
-    preRef,
-    prefixCls,
-  ]);
+  return useMemo(
+    () => (
+      <pre {...other} children={markdown || ''} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />
+    ),
+    [markdown, other, preRef, prefixCls],
+  );
 }
