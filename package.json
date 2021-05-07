@@ -49,6 +49,7 @@
     "@kkt/scope-plugin-options": "6.9.0",
     "@types/katex": "0.11.0",
     "@types/node": "14.14.36",
+    "@types/prismjs": "1.16.4",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
     "@types/react-test-renderer": "17.0.1",
@@ -69,7 +70,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
-    "@uiw/react-markdown-preview": "^3.0.5"
+    "@uiw/react-markdown-preview": "^3.0.6"
   },
   "husky": {
     "hooks": {

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { IProps } from '../../utils';
 import Prism from 'prismjs';
+import 'prismjs/components/prism-markdown';
 import { EditorContext } from '../../Context';
 import './index.less';
 
