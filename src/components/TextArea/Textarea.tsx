@@ -28,11 +28,11 @@ export default function Textarea(props: TextAreaProps) {
   return useMemo(
     () => (
       <textarea
+        spellCheck={false}
         {...other}
         ref={textRef}
-        className={`${prefixCls}-text-input`}
+        className={`${prefixCls}-text-input ${other.className ? other.className : ''}`}
         value={markdown}
-        spellCheck={false}
         onScroll={props.onScroll}
         onKeyDown={(e) => {
           handleKeyDown(e, tabSize);
