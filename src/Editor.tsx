@@ -28,6 +28,11 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   height?: number;
   /**
+   * Custom toolbar heigth
+   * @default 29px
+   */
+  toolbarHeight?: number;
+  /**
    * Show drag and drop tool. Set the height of the editor.
    */
   visiableDragbar?: boolean;
@@ -95,6 +100,7 @@ const InternalMDEditor = (
     value: propsValue,
     commands = getCommands(),
     height = 200,
+    toolbarHeight = 29,
     enableScroll = true,
     visiableDragbar = true,
     highlightEnable = true,
@@ -206,13 +212,17 @@ const InternalMDEditor = (
         onClick={() => {
           dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });
         }}
-        style={{ height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - 29 : state.height }}
+        style={{
+          height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - toolbarHeight : state.height,
+        }}
         {...other}
       >
-        {!hideToolbar && <Toolbar prefixCls={prefixCls} />}
+        {!hideToolbar && <Toolbar prefixCls={prefixCls} height={toolbarHeight} />}
         <div
           className={`${prefixCls}-content`}
-          style={{ height: state.fullscreen ? 'calc(100% - 29px)' : Number(state.height) - 29 }}
+          style={{
+            height: state.fullscreen ? `calc(100% - ${toolbarHeight}px)` : Number(state.height) - toolbarHeight,
+          }}
         >
           {/(edit|live)/.test(state.preview || '') && (
             <TextArea

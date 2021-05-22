@@ -6,12 +6,13 @@ import Child from './Child';
 import './index.less';
 
 export interface IToolbarProps extends IProps {
+  height?: React.CSSProperties['height'];
   onCommand?: (command: ICommand<string>, groupName?: string) => void;
   commands?: ICommand<string>[];
 }
 
 export default function Toolbar(props: IToolbarProps = {}) {
-  const { prefixCls } = props;
+  const { prefixCls, height = 29 } = props;
   const { commands, fullscreen, preview, barPopup = {}, commandOrchestrator, dispatch } = useContext(EditorContext);
   function handleClick(command: ICommand<string>, name?: string) {
     if (!dispatch) return;
@@ -43,7 +44,7 @@ export default function Toolbar(props: IToolbarProps = {}) {
     commandOrchestrator && commandOrchestrator.executeCommand(command);
   }
   return (
-    <div className={`${prefixCls}-toolbar`}>
+    <div className={`${prefixCls}-toolbar`} style={{ height }}>
       <ul>
         {(props.commands || commands || []).map((item, idx) => {
           if (item.keyCommand === 'divider') {
