@@ -31,6 +31,7 @@ export default function TextArea(props: ITextAreaProps) {
     if (dispatch) {
       dispatch({ ...state });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return useMemo(
     () => (
@@ -41,6 +42,7 @@ export default function TextArea(props: ITextAreaProps) {
         </div>
       </div>
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 }

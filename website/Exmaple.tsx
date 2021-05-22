@@ -55,7 +55,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
               setVisiable({ ...state, highlightEnable: e.target.checked });
             }}
           />
-          <s>{state.highlightEnable ? 'Enable' : 'Unenable'} highlight</s>
+          {state.highlightEnable ? 'Enable' : 'Unenable'} highlight
         </label>
         <label>
           <input

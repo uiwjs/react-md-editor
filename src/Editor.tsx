@@ -63,7 +63,6 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
    * @default true
-   * @deprecated
    */
   highlightEnable?: boolean;
   /**

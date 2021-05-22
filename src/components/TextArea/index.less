@@ -42,6 +42,9 @@
       word-break: inherit;
       word-break: normal;
       padding: 0;
+      > code {
+        font-family: inherit;
+      }
     }
     &-pre {
       position: relative;
@@ -96,10 +99,9 @@
   }
 
   .url {
-    color: #032f62;
+    color: #032f62 !important;
     .content {
       color: #0366d6;
-      text-decoration: underline;
     }
   }
 
@@ -111,6 +113,12 @@
   }
   .title,
   .bold {
-    color: #000;
+    color: #000 !important;
+  }
+  .code.keyword {
+    color: #596394 !important;
+  }
+  .strike {
+    color: #bf4ca0;
   }
 }
