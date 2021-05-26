@@ -169,7 +169,7 @@ The following example is preview in [CodeSandbox](https://codesandbox.io/s/markd
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/headless-frog-em8yg?fontsize=14&hidenavigation=1&theme=dark)
 
-> ⚠️ Upgrade v2 to v3 [55da020](https://github.com/uiwjs/react-md-editor/blob/55da02055420451f4a1a6dc4100add390cdf05cd/website/ExmapleKaTeX.tsx#L1-L60)
+> ⚠️ Upgrade v2 to v3 [d025430](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/website/ExmapleKaTeX.tsx#L1-L59)
 
 ```bash
 npm install katex
@@ -347,7 +347,7 @@ ReactDOM.render(<App />, document.getElementById("container"));
 
 - `value: string`: The Markdown value.
 - `onChange?: (value: string)`: Event handler for the `onChange` event.
-- `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L20-L29), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/098c0b657300bfbfef83976558ee37f737e842a2/src/commands/index.ts#L111-L112) property. If no commands are specified, the default will be used. Commands are explained in more details below.
+- `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L39-L57), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L155-L180) property. If no commands are specified, the default will be used. Commands are explained in more details below.
 - `extraCommands?: ICommand[]`: Displayed on the right side of the toolbar.
 - `autoFocus?: true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview/tree/e6e8462d9a5c64a7045e25adcb4928095d74ca37#options-props) settings.
