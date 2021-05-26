@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/react-md-editor/static/css/main.6fd78c55.chunk.css",
-    "main.js": "/react-md-editor/static/js/main.a3128f15.chunk.js",
-    "main.js.map": "/react-md-editor/static/js/main.a3128f15.chunk.js.map",
+    "main.css": "/react-md-editor/static/css/main.fd978c7c.chunk.css",
+    "main.js": "/react-md-editor/static/js/main.54d8119f.chunk.js",
+    "main.js.map": "/react-md-editor/static/js/main.54d8119f.chunk.js.map",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.7d8e12f4.chunk.js",
     "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.7d8e12f4.chunk.js.map",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.e4c2cd03.chunk.js",
@@ -10,8 +10,8 @@
     "runtime-main.js": "/react-md-editor/static/js/runtime-main.9090bfaa.js",
     "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.9090bfaa.js.map",
     "index.html": "/react-md-editor/index.html",
-    "static/css/main.6fd78c55.chunk.css.map": "/react-md-editor/static/css/main.6fd78c55.chunk.css.map",
-    "static/js/main.a3128f15.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.a3128f15.chunk.js.LICENSE.txt",
+    "static/css/main.fd978c7c.chunk.css.map": "/react-md-editor/static/css/main.fd978c7c.chunk.css.map",
+    "static/js/main.54d8119f.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.54d8119f.chunk.js.LICENSE.txt",
     "static/js/react-vendor.e4c2cd03.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.e4c2cd03.chunk.js.LICENSE.txt",
     "static/media/katex.css": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.b6a56b14.woff"
   },
@@ -19,7 +19,7 @@
     "static/js/runtime-main.9090bfaa.js",
     "static/js/micromark-vendor.7d8e12f4.chunk.js",
     "static/js/react-vendor.e4c2cd03.chunk.js",
-    "static/css/main.6fd78c55.chunk.css",
-    "static/js/main.a3128f15.chunk.js"
+    "static/css/main.fd978c7c.chunk.css",
+    "static/js/main.54d8119f.chunk.js"
   ]
 }
