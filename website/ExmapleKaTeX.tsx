@@ -46,7 +46,6 @@ const ExmapleKaTeX = () => {
               const html = katex.renderToString(txt, {
                 throwOnError: false,
               });
-              console.log('props', txt, className, props);
               return <code dangerouslySetInnerHTML={{ __html: html }} />;
             }
             return <code className={String(className)}>{txt}</code>;

@@ -4,7 +4,7 @@ import { IProps } from './utils';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
-import { getCommands, ICommand } from './commands';
+import { getCommands, getExtraCommands, ICommand } from './commands';
 import { reducer, EditorContext, ContextStore, PreviewType } from './Context';
 import './index.less';
 
@@ -75,6 +75,10 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   commands?: ICommand[];
   /**
+   * You can create your own commands or reuse existing commands.
+   */
+  extraCommands?: ICommand[];
+  /**
    * Hide the tool bar
    */
   hideToolbar?: boolean;
@@ -98,6 +102,7 @@ const InternalMDEditor = (
     className,
     value: propsValue,
     commands = getCommands(),
+    extraCommands = getExtraCommands(),
     height = 200,
     toolbarHeight = 29,
     enableScroll = true,
@@ -124,6 +129,7 @@ const InternalMDEditor = (
     scrollTop: 0,
     scrollTopPreview: 0,
     commands,
+    extraCommands,
     fullscreen,
     onChange,
     barPopup: {},

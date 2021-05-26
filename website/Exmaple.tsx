@@ -23,6 +23,9 @@ const Exmaple = (props = {} as { mdStr: string }) => {
       <MDEditor
         autoFocus
         value={state.value}
+        previewOptions={{
+          linkTarget: '_blank',
+        }}
         height={400}
         highlightEnable={state.highlightEnable}
         hideToolbar={!state.hideToolbar}

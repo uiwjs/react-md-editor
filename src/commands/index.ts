@@ -93,13 +93,9 @@ const getCommands: () => ICommand[] = () => [
   unorderedListCommand,
   orderedListCommand,
   checkedListCommand,
-  divider,
-  codeEdit,
-  codeLive,
-  codePreview,
-  divider,
-  fullscreen,
 ];
+
+const getExtraCommands: () => ICommand[] = () => [codeEdit, codeLive, codePreview, divider, fullscreen];
 
 function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {
   return {
@@ -180,6 +176,7 @@ export {
   fullscreen,
   // Tool method.
   getCommands,
+  getExtraCommands,
   getStateFromTextArea,
   TextAreaCommandOrchestrator,
   TextAreaTextApi,

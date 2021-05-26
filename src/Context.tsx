@@ -5,6 +5,7 @@ export type PreviewType = 'live' | 'edit' | 'preview';
 
 export type ContextStore = {
   commands?: ICommand<string>[];
+  extraCommands?: ICommand<string>[];
   markdown?: string;
   preview?: PreviewType;
   height?: number;

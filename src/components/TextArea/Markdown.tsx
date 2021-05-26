@@ -17,10 +17,10 @@ export default function Markdown(props: MarkdownProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  function html2Escape(sHtml: any) {
+  function html2Escape(sHtml: string) {
     return sHtml.replace(
       /[<>&"]/g,
-      (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as any)[c]),
+      (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
     );
   }
 

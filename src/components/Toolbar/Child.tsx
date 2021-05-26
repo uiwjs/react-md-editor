@@ -17,7 +17,7 @@ export default function Child(props: ChildProps) {
         className={`${prefixCls}-toolbar-child ${groupName && barPopup[groupName] ? 'active' : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {Array.isArray(commands) ? <Toolbar commands={commands} {...props} height="" /> : children}
+        {Array.isArray(commands) ? <Toolbar commands={commands} {...props} height="" isChild /> : children}
       </div>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
