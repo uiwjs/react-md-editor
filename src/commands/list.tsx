@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextApi } from './';
+import { ICommand, TextState, TextAreaTextApi } from './';
 import {
   selectWord,
   getBreaksNeededForEmptyLineBefore,
@@ -35,7 +35,7 @@ export function insertBeforeEachLine(
   return { modifiedText, insertionLength };
 }
 
-export const makeList = (state: TextState, api: TextApi, insertBefore: string | AlterLineFunction) => {
+export const makeList = (state: TextState, api: TextAreaTextApi, insertBefore: string | AlterLineFunction) => {
   // Adjust the selection to encompass the whole word if the caret is inside one
   const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
   const state1 = api.setSelectionRange(newSelectionRange);
@@ -76,7 +76,7 @@ export const unorderedListCommand: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     makeList(state, api, '- ');
   },
 };
@@ -94,7 +94,7 @@ export const orderedListCommand: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     makeList(state, api, (item, index) => `${index + 1}. `);
   },
 };
@@ -112,7 +112,7 @@ export const checkedListCommand: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     makeList(state, api, (item, index) => `- [ ] `);
   },
 };

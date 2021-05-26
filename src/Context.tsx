@@ -25,6 +25,8 @@ export type ContextStore = {
   tabSize?: number;
 };
 
+export type ExecuteCommandState = Pick<ContextStore, 'fullscreen' | 'preview' | 'highlightEnable'>;
+
 export function reducer(state: ContextStore, action: ContextStore) {
   return { ...state, ...action };
 }

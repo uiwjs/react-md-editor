@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextApi } from './';
+import { ICommand, TextState, TextAreaTextApi } from './';
 
 export const hr: ICommand = {
   name: 'hr',
@@ -15,7 +15,7 @@ export const hr: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     api.replaceSelection(`${state.selectedText}\n\n----------\n\n`);
   },
 };

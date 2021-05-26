@@ -20,13 +20,14 @@ import { fullscreen } from './fullscreen';
 import { image } from './image';
 import { strikethrough } from './strikeThrough';
 import insertText from '../utils/InsertTextAtPosition';
+import { ContextStore, ExecuteCommandState } from '../Context';
 
 export interface CommandOrchestrator {
   executeCommand(command: ICommand): void;
 }
 export type ICommandChildHandleParam = {
   getState?: TextAreaCommandOrchestrator['getState'];
-  textApi?: TextApi;
+  textApi?: TextAreaTextApi;
 };
 export type ICommandChildHandle = {
   children?: (handle: { close: () => void; execute: () => void } & ICommandChildHandleParam) => React.ReactElement;
@@ -46,7 +47,12 @@ export type ICommand<T = string> = {
   position?: 'right';
   liProps?: React.LiHTMLAttributes<HTMLLIElement>;
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null;
-  execute?: (state: TextState, api: TextApi) => void;
+  execute?: (
+    state: TextState,
+    api: TextAreaTextApi,
+    dispatch?: React.Dispatch<ContextStore>,
+    executeCommandState?: ExecuteCommandState,
+  ) => void;
 } & ICommandChildCommands &
   ICommandChildHandle;
 
@@ -59,21 +65,6 @@ export interface TextState {
   text: string;
   selectedText: string;
   selection: TextRange;
-}
-
-export interface TextApi {
-  /**
-   * Replaces the current selection with the new text. This will make the new selectedText to be empty, the
-   * selection start and selection end will be the same and will both point to the end
-   * @param text Text that should replace the current selection
-   */
-  replaceSelection(text: string): TextState;
-
-  /**
-   * Selects the specified text range
-   * @param selection
-   */
-  setSelectionRange(selection: TextRange): TextState;
 }
 
 const getCommands: () => ICommand[] = () => [
@@ -108,18 +99,27 @@ function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {
   };
 }
 
-class TextAreaTextApi implements TextApi {
+class TextAreaTextApi {
   textArea: HTMLTextAreaElement;
 
   constructor(textArea: HTMLTextAreaElement) {
     this.textArea = textArea;
   }
 
+  /**
+   * Replaces the current selection with the new text. This will make the new selectedText to be empty, the
+   * selection start and selection end will be the same and will both point to the end
+   * @param text Text that should replace the current selection
+   */
   replaceSelection(text: string): TextState {
     insertText(this.textArea, text);
     return getStateFromTextArea(this.textArea);
   }
 
+  /**
+   * Selects the specified text range
+   * @param selection
+   */
   setSelectionRange(selection: TextRange): TextState {
     this.textArea.focus();
     this.textArea.selectionStart = selection.start;
@@ -130,7 +130,7 @@ class TextAreaTextApi implements TextApi {
 
 class TextAreaCommandOrchestrator implements CommandOrchestrator {
   textArea: HTMLTextAreaElement;
-  textApi: TextApi;
+  textApi: TextAreaTextApi;
 
   constructor(textArea: HTMLTextAreaElement) {
     this.textArea = textArea;
@@ -142,8 +142,12 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
     return getStateFromTextArea(this.textArea);
   }
 
-  executeCommand(command: ICommand<string>): void {
-    command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi);
+  executeCommand(
+    command: ICommand<string>,
+    dispatch?: React.Dispatch<ContextStore>,
+    state?: ExecuteCommandState,
+  ): void {
+    command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi, dispatch, state);
   }
 }
 

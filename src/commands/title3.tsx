@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextApi } from './';
+import { ICommand, TextState, TextAreaTextApi } from './';
 
 export const title3: ICommand = {
   name: 'title3',
@@ -7,7 +7,7 @@ export const title3: ICommand = {
   shortcuts: 'ctrlcmd+3',
   buttonProps: { 'aria-label': 'Insert title3', title: 'Insert title 3' },
   icon: <div style={{ fontSize: 15, textAlign: 'left' }}>Title 3</div>,
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     let modifyText = `### ${state.selectedText}\n`;
     if (!state.selectedText) {
       modifyText = `### `;

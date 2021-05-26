@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextApi } from './';
+import { ICommand, TextState, TextAreaTextApi } from './';
 import {
   getBreaksNeededForEmptyLineBefore,
   getBreaksNeededForEmptyLineAfter,
@@ -19,7 +19,7 @@ export const quote: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
     const state1 = api.setSelectionRange(newSelectionRange);

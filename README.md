@@ -78,7 +78,7 @@ export default function App() {
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import MDEditor, { commands, ICommand, TextState, TextApi } from '@uiw/react-md-editor';
+import MDEditor, { commands, ICommand, TextState, TextAreaTextApi } from '@uiw/react-md-editor';
 
 const title3: ICommand = {
   name: 'title3',
@@ -89,7 +89,7 @@ const title3: ICommand = {
       <path fill="currentColor" d="M15.7083333,468 C7.03242448,468 0,462.030833 0,454.666667 L0,421.333333 C0,413.969167 7.03242448,408 15.7083333,408 L361.291667,408 C369.967576,408 377,413.969167 377,421.333333 L377,454.666667 C377,462.030833 369.967576,468 361.291667,468 L15.7083333,468 Z M21.6666667,366 C9.69989583,366 0,359.831861 0,352.222222 L0,317.777778 C0,310.168139 9.69989583,304 21.6666667,304 L498.333333,304 C510.300104,304 520,310.168139 520,317.777778 L520,352.222222 C520,359.831861 510.300104,366 498.333333,366 L21.6666667,366 Z M136.835938,64 L136.835937,126 L107.25,126 L107.25,251 L40.75,251 L40.75,126 L-5.68434189e-14,126 L-5.68434189e-14,64 L136.835938,64 Z M212,64 L212,251 L161.648438,251 L161.648438,64 L212,64 Z M378,64 L378,126 L343.25,126 L343.25,251 L281.75,251 L281.75,126 L238,126 L238,64 L378,64 Z M449.047619,189.550781 L520,189.550781 L520,251 L405,251 L405,64 L449.047619,64 L449.047619,189.550781 Z" />
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     let modifyText = `### ${state.selectedText}\n`;
     if (!state.selectedText) {
       modifyText = `### `;
@@ -131,7 +131,7 @@ export default function App() {
                 </div>
               );
             },
-            execute: (state: commands.TextState, api: commands.TextApi)  => {
+            execute: (state: TextState, api: TextAreaTextApi)  => {
               console.log('>>>>>>update>>>>>', state)
             },
             buttonProps: { 'aria-label': 'Insert title'}
@@ -233,7 +233,7 @@ export default function App() {
 
 ```jsx
 import React from "react";
-import MDEditor, { commands, ICommand, TextState, TextApi } from "@uiw/react-md-editor";
+import MDEditor, { commands, ICommand, TextState, TextAreaTextApi } from "@uiw/react-md-editor";
 import domToImage from "dom-to-image";
 
 const textToImage: ICommand = {
@@ -245,7 +245,7 @@ const textToImage: ICommand = {
       <path fill="currentColor" d="M15 9c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4-7H1c-.55 0-1 .45-1 1v14c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 13l-6-5-2 2-4-5-4 8V4h16v11z" ></path>
     </svg>
   ),
-  execute: (state: TextState, api: TextApi) => {
+  execute: (state: TextState, api: TextAreaTextApi) => {
     const dom = document.getElementsByClassName("w-md-editor")[0];
     if (dom) {
       domToImage.toJpeg(dom, {}).then((dataUrl) => {

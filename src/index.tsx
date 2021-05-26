@@ -5,6 +5,7 @@ import * as MarkdownUtil from './utils/markdownUtils';
 export * from './commands';
 export * from './utils/markdownUtils';
 export * from './Editor';
+export * from './Context';
 
 export { MarkdownUtil, commands };
 
