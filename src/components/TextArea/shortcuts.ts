@@ -1,4 +1,5 @@
 import { ICommand, TextAreaCommandOrchestrator } from '../../commands';
+import { ContextStore, ExecuteCommandState } from '../../Context';
 
 function getCommands(data: ICommand[] = [], resulte: Record<string, ICommand> = {}): Record<string, ICommand> {
   data.forEach((item) => {
@@ -15,6 +16,8 @@ export default function shortcutsHandle(
   e: React.KeyboardEvent<HTMLTextAreaElement>,
   commands: ICommand[] = [],
   commandOrchestrator?: TextAreaCommandOrchestrator,
+  dispatch?: React.Dispatch<ContextStore>,
+  state?: ExecuteCommandState,
 ) {
   const data = getCommands(commands || []);
   const shortcuts: (string | number)[] = [];
@@ -33,7 +36,10 @@ export default function shortcutsHandle(
   if (shortcuts.length > 0 && !/(control|alt|meta|shift)/.test(e.key.toLocaleLowerCase())) {
     shortcuts.push(e.key.toLocaleLowerCase());
   }
-  if (shortcuts.length < 2) {
+  if (/escape/.test(e.key.toLocaleLowerCase())) {
+    shortcuts.push('escape');
+  }
+  if (shortcuts.length < 1) {
     return;
   }
 
@@ -54,7 +60,7 @@ export default function shortcutsHandle(
   if (command && commandOrchestrator) {
     e.stopPropagation();
     e.preventDefault();
-    commandOrchestrator.executeCommand(command);
+    commandOrchestrator.executeCommand(command, dispatch, state);
     return;
   }
 }

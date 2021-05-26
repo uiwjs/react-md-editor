@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { IProps } from '../../utils';
 import { EditorContext, PreviewType, ContextStore } from '../../Context';
 import { ICommand } from '../../commands';
@@ -23,7 +23,6 @@ export function ToolbarItems(props: IToolbarProps) {
     }
     if (command.keyCommand === 'fullscreen') {
       state.fullscreen = !fullscreen;
-      document.body.style.overflow = fullscreen ? 'initial' : 'hidden';
     }
     if (props.commands && command.keyCommand === 'group') {
       props.commands.forEach((item) => {
@@ -44,6 +43,13 @@ export function ToolbarItems(props: IToolbarProps) {
     }
     commandOrchestrator && commandOrchestrator.executeCommand(command);
   }
+
+  useEffect(() => {
+    if (document) {
+      document.body.style.overflow = !fullscreen ? 'initial' : 'hidden';
+    }
+  }, [fullscreen]);
+
   return (
     <ul>
       {(props.commands || []).map((item, idx) => {

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { IProps } from '../../utils';
-import { EditorContext } from '../../Context';
+import { EditorContext, ExecuteCommandState } from '../../Context';
 import { TextAreaCommandOrchestrator } from '../../commands';
 import handleKeyDown from './handleKeyDown';
 import shortcuts from './shortcuts';
@@ -14,9 +14,16 @@ export interface TextAreaProps
 
 export default function Textarea(props: TextAreaProps) {
   const { prefixCls, ...other } = props;
-  const { markdown, commands, tabSize, onChange, dispatch } = useContext(EditorContext);
+  const { markdown, commands, fullscreen, preview, highlightEnable, extraCommands, tabSize, onChange, dispatch } =
+    useContext(EditorContext);
   const textRef = React.createRef<HTMLTextAreaElement>();
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
+  const statesRef = React.useRef<ExecuteCommandState>({ fullscreen, preview });
+
+  useEffect(() => {
+    statesRef.current = { fullscreen, preview, highlightEnable };
+  }, [fullscreen, preview, highlightEnable]);
+
   useEffect(() => {
     if (textRef.current && dispatch) {
       const commandOrchestrator = new TextAreaCommandOrchestrator(textRef.current);
@@ -36,7 +43,13 @@ export default function Textarea(props: TextAreaProps) {
         onScroll={props.onScroll}
         onKeyDown={(e) => {
           handleKeyDown(e, tabSize);
-          shortcuts(e, commands, executeRef.current);
+          shortcuts(
+            e,
+            [...(commands || []), ...(extraCommands || [])],
+            executeRef.current,
+            dispatch,
+            statesRef.current,
+          );
         }}
         onChange={(e) => {
           dispatch && dispatch({ markdown: e.target.value });

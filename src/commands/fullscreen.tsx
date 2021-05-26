@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { ICommand } from './';
+import { ICommand, TextState, TextAreaTextApi } from './';
+import { ContextStore, ExecuteCommandState } from '../Context';
 
 export const fullscreen: ICommand = {
   name: 'fullscreen',
   keyCommand: 'fullscreen',
+  shortcuts: 'escape',
   buttonProps: { 'aria-label': 'fullscreen', title: 'fullscreen' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
@@ -13,5 +15,15 @@ export const fullscreen: ICommand = {
       />
     </svg>
   ),
-  execute: () => {},
+  execute: (
+    state: TextState,
+    api: TextAreaTextApi,
+    dispatch?: React.Dispatch<ContextStore>,
+    executeCommandState?: ExecuteCommandState,
+  ) => {
+    api.textArea.focus();
+    if (dispatch && executeCommandState && executeCommandState.fullscreen) {
+      dispatch({ fullscreen: false });
+    }
+  },
 };
