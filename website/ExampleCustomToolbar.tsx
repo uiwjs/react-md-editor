@@ -16,22 +16,21 @@ const ExampleCustomToolbar = () => {
         placeholder: 'Please enter Markdown text',
       }}
       extraCommands={[
-        commands.group(
-          [commands.title1, commands.title2, commands.title3, commands.title4, commands.title5, commands.title6],
-          {
-            name: 'title',
-            groupName: 'title',
-            buttonProps: { 'aria-label': 'Insert title' },
-          },
-        ),
-        commands.group(
-          [commands.title1, commands.title2, commands.title3, commands.title4, commands.title5, commands.title6],
-          {
-            name: 'title',
-            groupName: 'title',
-            buttonProps: { 'aria-label': 'Insert title' },
-          },
-        ),
+        commands.group([commands.title1, commands.title2], {
+          name: 'title2',
+          groupName: 'title2',
+          buttonProps: { 'aria-label': 'Insert title' },
+        }),
+        commands.group([commands.title3, commands.title4], {
+          name: 'title3',
+          groupName: 'title3',
+          buttonProps: { 'aria-label': 'Insert title' },
+        }),
+        commands.group([commands.title5, commands.title6], {
+          name: 'title4',
+          groupName: 'title4',
+          buttonProps: { 'aria-label': 'Insert title' },
+        }),
       ]}
       commands={[
         title,
@@ -71,7 +70,7 @@ const ExampleCustomToolbar = () => {
               </div>
             );
           },
-          execute: (state: commands.TextState, api: commands.TextApi) => {
+          execute: (state: commands.TextState, api: commands.TextAreaTextApi) => {
             console.log('> execute: >>>>>', state);
           },
           buttonProps: { 'aria-label': 'Insert title' },
