@@ -39,7 +39,7 @@ A simple markdown editor with preview, implemented with React.js and TypeScript.
 - 🚧 Does not depend on the [`uiw`](https://github.com/uiwjs/uiw) component library.
 - 🚘 Automatic list on new lines.
 - 😻 GitHub flavored markdown support.
-- 💡 Support [next.js](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341) [next.js](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341)
+- 💡 Support [next.js](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341), [Use examples](#support-nextjs) in [next.js].
 
 ### Quick Start
 
