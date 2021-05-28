@@ -163,7 +163,7 @@ const InternalMDEditor = (
     .join(' ')
     .trim();
 
-  useMemo(() => propsValue !== state.markdown && dispatch({ markdown: propsValue }), [propsValue]);
+  useMemo(() => propsValue !== state.markdown && dispatch({ markdown: propsValue || '' }), [propsValue]);
   useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType]);
   useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
   useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize }), [tabSize]);

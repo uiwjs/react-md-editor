@@ -108,6 +108,15 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         >
           Set Value
         </button>
+        <button
+          type="button"
+          style={{ marginLeft: 10 }}
+          onClick={() => {
+            updateHandle(undefined as any);
+          }}
+        >
+          Clear
+        </button>
       </div>
     </Fragment>
   );
