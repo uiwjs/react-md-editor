@@ -110,6 +110,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         </button>
         <button
           type="button"
+          disabled={!state.value}
           style={{ marginLeft: 10 }}
           onClick={() => {
             updateHandle(undefined as any);
