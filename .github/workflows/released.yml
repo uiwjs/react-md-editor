@@ -1,0 +1,36 @@
+on: 
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Generate Changelog
+      id: changelog
+      uses: jaywcjlove/changelog-generator@v1.3.9
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        head-ref: ${{ github.ref }}
+        filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+        filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      if: steps.create_tag.outputs.successful
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        body: |
+          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor@${{steps.changelog.outputs.version}}/file/README.md)
+
+          ```bash
+          npm i @uiw/react-md-editor@${{steps.changelog.outputs.version}}
+          ```
+          ${{ steps.changelog.outputs.compareurl }}
+          ${{ steps.changelog.outputs.changelog }}
