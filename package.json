@@ -37,7 +37,6 @@
     "lib",
     "src"
   ],
-  "keywords": [],
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -77,6 +76,20 @@
       "pre-commit": "lint-staged"
     }
   },
+  "keywords": [
+    "react",
+    "editor",
+    "md-editor",
+    "markdown",
+    "react-markdown",
+    "react-md-editor",
+    "react-markdown-editor",
+    "markdown-editor",
+    "md",
+    "uiw",
+    "uiwjs",
+    "code"
+  ],
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
