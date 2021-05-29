@@ -6,12 +6,15 @@ import { insertBeforeEachLine } from '../../commands/list';
  * - `13` - `Enter`
  * - `9` - `Tab`
  */
-function stopPropagation(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+function stopPropagation(e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) {
   e.stopPropagation();
   e.preventDefault();
 }
 
-export default function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>, tabSize: number = 2) {
+export default function handleKeyDown(
+  e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>,
+  tabSize: number = 2,
+) {
   const target = e.target as HTMLTextAreaElement;
   const starVal = target.value.substr(0, target.selectionStart);
   const valArr = starVal.split('\n');

@@ -13,7 +13,7 @@ function getCommands(data: ICommand[] = [], resulte: Record<string, ICommand> = 
 }
 
 export default function shortcutsHandle(
-  e: React.KeyboardEvent<HTMLTextAreaElement>,
+  e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>,
   commands: ICommand[] = [],
   commandOrchestrator?: TextAreaCommandOrchestrator,
   dispatch?: React.Dispatch<ContextStore>,

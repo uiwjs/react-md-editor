@@ -32,6 +32,24 @@ export default function Textarea(props: TextAreaProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onKeyDown = (e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) => {
+    handleKeyDown(e, tabSize);
+    shortcuts(e, [...(commands || []), ...(extraCommands || [])], executeRef.current, dispatch, statesRef.current);
+  };
+  useEffect(() => {
+    if (textRef.current) {
+      textRef.current.addEventListener('keydown', onKeyDown);
+    }
+    return () => {
+      if (textRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        textRef.current.removeEventListener('keydown', onKeyDown);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return useMemo(
     () => (
       <textarea
@@ -40,17 +58,6 @@ export default function Textarea(props: TextAreaProps) {
         ref={textRef}
         className={`${prefixCls}-text-input ${other.className ? other.className : ''}`}
         value={markdown}
-        onScroll={props.onScroll}
-        onKeyDown={(e) => {
-          handleKeyDown(e, tabSize);
-          shortcuts(
-            e,
-            [...(commands || []), ...(extraCommands || [])],
-            executeRef.current,
-            dispatch,
-            statesRef.current,
-          );
-        }}
         onChange={(e) => {
           dispatch && dispatch({ markdown: e.target.value });
           onChange && onChange(e.target.value);
