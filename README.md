@@ -26,6 +26,9 @@
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
     <img alt="npm version" src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
   </a>
+  <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
+    <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@uiw/react-md-editor">
+  </a>
 </p>
 
 <!--dividing-->
