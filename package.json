@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
-    "@uiw/react-markdown-preview": "3.0.6",
+    "@uiw/react-markdown-preview": "3.1.0",
     "rehype": "11.0.0"
   },
   "husky": {
