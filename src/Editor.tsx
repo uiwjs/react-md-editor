@@ -26,7 +26,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * The height of the editor.
    */
-  height?: number;
+  height?: number | string;
   /**
    * Custom toolbar heigth
    * @default 29px
