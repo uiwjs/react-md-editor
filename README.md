@@ -8,14 +8,8 @@
   <a href="https://github.com/uiwjs/react-md-editor/actions">
     <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/workflows/Build%20&%20Deploy/badge.svg">
   </a>
-  <a href="https://github.com/uiwjs/react-md-editor/issues">
-    <img alt="Issues" src="https://img.shields.io/github/issues/uiwjs/react-md-editor.svg">
-  </a>
-  <a href="https://github.com/uiwjs/react-md-editor/network">
-    <img alt="Forks" src="https://img.shields.io/github/forks/uiwjs/react-md-editor.svg">
-  </a>
-  <a href="https://github.com/uiwjs/react-md-editor/stargazers">
-    <img alt="Stars" src="https://img.shields.io/github/stars/uiwjs/react-md-editor.svg">
+  <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
+    <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat">
   </a>
   <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md">
     <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg">
