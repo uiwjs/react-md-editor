@@ -64,7 +64,7 @@
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
     "source-map-explorer": "2.5.2",
-    "tsbb": "2.1.2"
+    "tsbb": "2.2.1"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0",
