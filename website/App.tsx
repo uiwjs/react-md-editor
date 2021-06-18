@@ -44,6 +44,9 @@ export default function App() {
             <Github.Social type="stars" href="https://github.com/uiwjs/react-md-editor/stargazers" />
             <Github.Social type="watchers" href="https://github.com/uiwjs/react-md-editor/watchers" />
           </Github>
+          <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
+            <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat" />
+          </a>
         </div>
         <Exmaple mdStr={mdStr} />
         <div className="page-title">
