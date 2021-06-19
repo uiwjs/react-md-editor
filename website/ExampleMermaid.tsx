@@ -71,9 +71,9 @@ export default function ExampleMermaid() {
           'package.json': {
             content: {
               dependencies: {
-                '@uiw/react-md-editor': '3.0.7',
+                '@uiw/react-md-editor': '3.3.7',
                 react: 'latest',
-                mermaid: '8.9.3',
+                mermaid: '8.10.2',
                 'react-dom': 'latest',
               },
             },
