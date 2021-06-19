@@ -60,7 +60,7 @@ export function ToolbarItems(props: IToolbarProps) {
         const activeBtn =
           (fullscreen && item.keyCommand === 'fullscreen') || (item.keyCommand === 'preview' && preview === item.value);
         const childNode =
-          typeof item.children === 'function'
+          item.children && typeof item.children === 'function'
             ? item.children({
                 getState: () => commandOrchestrator!.getState(),
                 textApi: commandOrchestrator ? commandOrchestrator!.textApi : undefined,
@@ -92,9 +92,7 @@ export function ToolbarItems(props: IToolbarProps) {
                 groupName={item.groupName}
                 prefixCls={prefixCls}
                 children={childNode}
-                commands={
-                  Array.isArray(item.children) && typeof item.children !== 'function' ? item.children : undefined
-                }
+                commands={Array.isArray(item.children) ? item.children : undefined}
               />
             )}
           </li>

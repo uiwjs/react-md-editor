@@ -25,19 +25,22 @@ import { ContextStore, ExecuteCommandState } from '../Context';
 export interface CommandOrchestrator {
   executeCommand(command: ICommand): void;
 }
-export type ICommandChildHandleParam = {
-  getState?: TextAreaCommandOrchestrator['getState'];
-  textApi?: TextAreaTextApi;
-};
-export type ICommandChildHandle = {
-  children?: (handle: { close: () => void; execute: () => void } & ICommandChildHandleParam) => React.ReactElement;
-};
-export type ICommandChildCommands<T = string> = {
-  children?: Array<ICommand<T>>;
-};
 
-export type ICommand<T = string> = {
-  parent?: ICommand;
+export interface ICommandChildHandle<T = string> extends ICommandBase<T> {
+  children?: (handle: {
+    close: () => void;
+    execute: () => void;
+    getState?: TextAreaCommandOrchestrator['getState'];
+    textApi?: TextAreaTextApi;
+  }) => React.ReactElement;
+}
+
+export interface ICommandChildCommands<T = string> extends ICommandBase<T> {
+  children?: Array<ICommand<T>>;
+}
+
+export interface ICommandBase<T> {
+  parent?: ICommand<any>;
   keyCommand?: string;
   name?: string;
   shortcuts?: string;
@@ -53,8 +56,9 @@ export type ICommand<T = string> = {
     dispatch?: React.Dispatch<ContextStore>,
     executeCommandState?: ExecuteCommandState,
   ) => void;
-} & ICommandChildCommands &
-  ICommandChildHandle;
+}
+
+export type ICommand<T = string> = ICommandChildCommands<T> | ICommandChildHandle<T>;
 
 export interface TextRange {
   start: number;
