@@ -8,7 +8,7 @@
   "module": "lib/esm/index.js",
   "typings": "lib/cjs/index.d.ts",
   "scripts": {
-    "prepare": "npm run build",
+    "prepare": "husky install && npm run build",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
     "released": "npm run build && npm run doc",
@@ -43,38 +43,33 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.9.0",
-    "@kkt/raw-modules": "6.9.0",
-    "@kkt/scope-plugin-options": "6.9.0",
+    "@kkt/less-modules": "6.10.4",
+    "@kkt/raw-modules": "6.10.4",
+    "@kkt/scope-plugin-options": "6.10.4",
     "@types/katex": "0.11.0",
     "@types/node": "14.14.36",
-    "@types/react": "17.0.8",
-    "@types/react-dom": "17.0.5",
+    "@types/react": "17.0.11",
+    "@types/react-dom": "17.0.8",
     "@types/react-test-renderer": "17.0.1",
-    "@uiw/react-github-corners": "1.2.0",
+    "@uiw/react-github-corners": "1.4.0",
     "@uiw/react-codesandbox": "1.1.0",
     "@uiw/react-shields": "1.1.1",
-    "compile-less-cli": "1.7.0",
+    "compile-less-cli": "1.8.0",
     "katex": "0.13.11",
-    "husky": "4.3.8",
-    "kkt": "6.9.0",
+    "husky": "6.0.0",
+    "kkt": "6.10.4",
     "lint-staged": "11.0.0",
-    "prettier": "2.3.0",
+    "prettier": "2.3.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
     "source-map-explorer": "2.5.2",
-    "tsbb": "2.1.2"
+    "tsbb": "2.2.1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.0",
+    "@babel/runtime": "^7.14.6",
     "@uiw/react-markdown-preview": "3.1.1",
     "rehype": "11.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "keywords": [
     "react",
