@@ -1,22 +1,31 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { IProps } from '../../utils';
-import { EditorContext, ExecuteCommandState } from '../../Context';
+import { EditorContext, ExecuteCommandState, ContextStore } from '../../Context';
 import { TextAreaCommandOrchestrator } from '../../commands';
 import handleKeyDown from './handleKeyDown';
 import shortcuts from './shortcuts';
+import { MDEditorProps } from '../../Editor';
 import './index.less';
 
-export interface TextAreaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>,
-    IProps {
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+type RenderTextareaHandle = {
+  dispatch: ContextStore['dispatch'];
+  onChange?: MDEditorProps['onChange'];
+};
+
+export interface ReRenderTextAreaProps {
+  renderTextarea?: (
+    props: React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    opts: RenderTextareaHandle,
+  ) => JSX.Element;
 }
 
-export default function Textarea(props: TextAreaProps) {
-  const { prefixCls, ...other } = props;
+export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'>, IProps {}
+
+export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
+  const { prefixCls, renderTextarea, ...other } = props;
   const { markdown, commands, fullscreen, preview, highlightEnable, extraCommands, tabSize, onChange, dispatch } =
     useContext(EditorContext);
-  const textRef = React.createRef<HTMLTextAreaElement>();
+  const textRef = React.useRef<HTMLTextAreaElement>(null);
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   const statesRef = React.useRef<ExecuteCommandState>({ fullscreen, preview });
 
@@ -50,21 +59,34 @@ export default function Textarea(props: TextAreaProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return useMemo(
-    () => (
-      <textarea
-        spellCheck={false}
-        {...other}
-        ref={textRef}
-        className={`${prefixCls}-text-input ${other.className ? other.className : ''}`}
-        value={markdown}
-        onChange={(e) => {
-          dispatch && dispatch({ markdown: e.target.value });
-          onChange && onChange(e.target.value);
-        }}
-      />
-    ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [markdown],
+  if (renderTextarea) {
+    return React.cloneElement(
+      renderTextarea(
+        {
+          ...other,
+          spellCheck: false,
+          className: `${prefixCls}-text-input ${other.className ? other.className : ''}`,
+          value: markdown || '',
+        },
+        { dispatch, onChange },
+      ),
+      {
+        ref: textRef,
+      },
+    );
+  }
+
+  return (
+    <textarea
+      spellCheck={false}
+      {...other}
+      ref={textRef}
+      className={`${prefixCls}-text-input ${other.className ? other.className : ''}`}
+      value={markdown}
+      onChange={(e) => {
+        dispatch && dispatch({ markdown: e.target.value });
+        onChange && onChange(e.target.value);
+      }}
+    />
   );
 }

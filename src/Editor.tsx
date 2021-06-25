@@ -6,6 +6,7 @@ import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, getExtraCommands, ICommand } from './commands';
 import { reducer, EditorContext, ContextStore, PreviewType } from './Context';
+import { ReRenderTextAreaProps } from './components/TextArea/Textarea';
 import './index.less';
 
 export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
@@ -60,6 +61,8 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Set the `textarea` related props.
    */
   textareaProps?: ITextAreaProps;
+  /** Use div to replace TextArea or re-render TextArea */
+  renderTextarea?: ReRenderTextAreaProps['renderTextarea'];
   /**
    * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
    * @default true
@@ -118,6 +121,7 @@ const InternalMDEditor = (
     tabSize = 2,
     onChange,
     hideToolbar,
+    renderTextarea,
     ...other
   } = props || {};
   let [state, dispatch] = useReducer(reducer, {
@@ -235,6 +239,7 @@ const InternalMDEditor = (
               prefixCls={prefixCls}
               autoFocus={autoFocus}
               {...textareaProps}
+              renderTextarea={renderTextarea}
               onScroll={handleScroll}
             />
           )}

@@ -4,13 +4,14 @@ import { IProps } from '../../utils';
 import './index.less';
 
 import Markdown from './Markdown';
-import Textarea from './Textarea';
+import Textarea, { ReRenderTextAreaProps } from './Textarea';
 
 export interface ITextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>,
     IProps {
-  onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   value?: string;
+  onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
+  renderTextarea?: ReRenderTextAreaProps['renderTextarea'];
 }
 
 export type TextAreaRef = {
