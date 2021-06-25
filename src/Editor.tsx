@@ -222,6 +222,7 @@ const InternalMDEditor = (
           dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });
         }}
         style={{
+          ...other.style,
           height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - toolbarHeight : state.height,
         }}
         {...other}
