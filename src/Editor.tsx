@@ -218,6 +218,7 @@ const InternalMDEditor = (
       <div
         ref={container}
         className={cls}
+        {...other}
         onClick={() => {
           dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });
         }}
@@ -225,7 +226,6 @@ const InternalMDEditor = (
           ...other.style,
           height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - toolbarHeight : state.height,
         }}
-        {...other}
       >
         {!hideToolbar && <Toolbar prefixCls={prefixCls} height={toolbarHeight} />}
         <div
