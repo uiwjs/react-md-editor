@@ -47,11 +47,11 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
     shortcuts(e, [...(commands || []), ...(extraCommands || [])], executeRef.current, dispatch, statesRef.current);
   };
   useEffect(() => {
-    if (textRef.current) {
+    if (textRef.current && !renderTextarea) {
       textRef.current.addEventListener('keydown', onKeyDown);
     }
     return () => {
-      if (textRef.current) {
+      if (textRef.current && !renderTextarea) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         textRef.current.removeEventListener('keydown', onKeyDown);
       }
