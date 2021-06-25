@@ -38,7 +38,6 @@ export default function TextArea(props: ITextAreaProps) {
     () => (
       <div ref={warp} className={`${prefixCls}-aree ${className || ''}`} onScroll={onScroll}>
         <div className={`${prefixCls}-text`}>
-          <Markdown prefixCls={prefixCls} />
           <Textarea prefixCls={prefixCls} {...otherProps} />
         </div>
       </div>
