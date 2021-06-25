@@ -8,8 +8,7 @@ import { MDEditorProps } from '../../Editor';
 import './index.less';
 
 type RenderTextareaHandle = {
-  dispatch: ContextStore['dispatch'];
-  onChange?: MDEditorProps['onChange'];
+  handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export interface ReRenderTextAreaProps {
@@ -59,6 +58,11 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch && dispatch({ markdown: e.target.value });
+    onChange && onChange(e.target.value);
+  };
+
   if (renderTextarea) {
     return React.cloneElement(
       renderTextarea(
@@ -68,7 +72,7 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
           className: `${prefixCls}-text-input ${other.className ? other.className : ''}`,
           value: markdown || '',
         },
-        { dispatch, onChange },
+        { handleChange },
       ),
       {
         ref: textRef,
@@ -83,10 +87,7 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
       ref={textRef}
       className={`${prefixCls}-text-input ${other.className ? other.className : ''}`}
       value={markdown}
-      onChange={(e) => {
-        dispatch && dispatch({ markdown: e.target.value });
-        onChange && onChange(e.target.value);
-      }}
+      onChange={handleChange}
     />
   );
 }
