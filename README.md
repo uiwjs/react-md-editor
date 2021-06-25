@@ -386,7 +386,7 @@ export default function Home() {
 - `autoFocus?: true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview/tree/e6e8462d9a5c64a7045e25adcb4928095d74ca37#options-props) settings.
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
-- `renderTextarea?: (props, opts) => JSX.Element;`: Use div to replace TextArea or re-render TextArea.
+- `renderTextarea?: (props, opts) => JSX.Element;`: Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)
 - `height?: number=200`: The height of the editor.
 - `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
