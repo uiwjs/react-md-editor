@@ -3,7 +3,6 @@ import { EditorContext, ContextStore } from '../../Context';
 import { IProps } from '../../utils';
 import './index.less';
 
-import Markdown from './Markdown';
 import Textarea, { ReRenderTextAreaProps } from './Textarea';
 
 export interface ITextAreaProps
