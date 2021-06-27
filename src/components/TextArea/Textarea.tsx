@@ -1,28 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import { IProps } from '../../utils';
-import { EditorContext, ExecuteCommandState, ContextStore } from '../../Context';
+import { EditorContext, ExecuteCommandState } from '../../Context';
 import { TextAreaCommandOrchestrator } from '../../commands';
 import handleKeyDown from './handleKeyDown';
 import shortcuts from './shortcuts';
-import { MDEditorProps } from '../../Editor';
 import './index.less';
-
-type RenderTextareaHandle = {
-  dispatch: ContextStore['dispatch'];
-  onChange?: MDEditorProps['onChange'];
-};
-
-export interface ReRenderTextAreaProps {
-  renderTextarea?: (
-    props: React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    opts: RenderTextareaHandle,
-  ) => JSX.Element;
-}
 
 export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'>, IProps {}
 
-export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
-  const { prefixCls, renderTextarea, ...other } = props;
+export default function Textarea(props: TextAreaProps) {
+  const { prefixCls, ...other } = props;
   const { markdown, commands, fullscreen, preview, highlightEnable, extraCommands, tabSize, onChange, dispatch } =
     useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
@@ -47,11 +34,11 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
     shortcuts(e, [...(commands || []), ...(extraCommands || [])], executeRef.current, dispatch, statesRef.current);
   };
   useEffect(() => {
-    if (textRef.current && !renderTextarea) {
+    if (textRef.current) {
       textRef.current.addEventListener('keydown', onKeyDown);
     }
     return () => {
-      if (textRef.current && !renderTextarea) {
+      if (textRef.current) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         textRef.current.removeEventListener('keydown', onKeyDown);
       }
@@ -59,25 +46,11 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (renderTextarea) {
-    return React.cloneElement(
-      renderTextarea(
-        {
-          ...other,
-          spellCheck: false,
-          className: `${prefixCls}-text-input ${other.className ? other.className : ''}`,
-          value: markdown || '',
-        },
-        { dispatch, onChange },
-      ),
-      {
-        ref: textRef,
-      },
-    );
-  }
-
   return (
     <textarea
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
       spellCheck={false}
       {...other}
       ref={textRef}

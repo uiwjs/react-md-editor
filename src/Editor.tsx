@@ -6,7 +6,6 @@ import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, getExtraCommands, ICommand } from './commands';
 import { reducer, EditorContext, ContextStore, PreviewType } from './Context';
-import { ReRenderTextAreaProps } from './components/TextArea/Textarea';
 import './index.less';
 
 export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
@@ -62,7 +61,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   textareaProps?: ITextAreaProps;
   /** Use div to replace TextArea or re-render TextArea */
-  renderTextarea?: ReRenderTextAreaProps['renderTextarea'];
+  renderTextarea?: ITextAreaProps['renderTextarea'];
   /**
    * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
    * @default true
@@ -167,13 +166,22 @@ const InternalMDEditor = (
     .join(' ')
     .trim();
 
-  useMemo(() => propsValue !== state.markdown && dispatch({ markdown: propsValue || '' }), [propsValue]);
-  useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType]);
-  useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
-  useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize }), [tabSize]);
-  useMemo(() => highlightEnable !== state.highlightEnable && dispatch({ highlightEnable }), [highlightEnable]);
-  useMemo(() => autoFocus !== state.autoFocus && dispatch({ autoFocus: autoFocus }), [autoFocus]);
-  useMemo(() => fullscreen !== state.fullscreen && dispatch({ fullscreen: fullscreen }), [fullscreen]);
+  useMemo(
+    () => propsValue !== state.markdown && dispatch({ markdown: propsValue || '' }),
+    [propsValue, state.markdown],
+  );
+  useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType, state.preview]);
+  useMemo(() => height !== state.height && dispatch({ height: height }), [height, state.height]);
+  useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize }), [state.tabSize, tabSize]);
+  useMemo(
+    () => highlightEnable !== state.highlightEnable && dispatch({ highlightEnable }),
+    [highlightEnable, state.highlightEnable],
+  );
+  useMemo(() => autoFocus !== state.autoFocus && dispatch({ autoFocus: autoFocus }), [autoFocus, state.autoFocus]);
+  useMemo(
+    () => fullscreen !== state.fullscreen && dispatch({ fullscreen: fullscreen }),
+    [fullscreen, state.fullscreen],
+  );
 
   const textareaDomRef = useRef<HTMLDivElement>();
   const active = useRef<'text' | 'preview'>();
