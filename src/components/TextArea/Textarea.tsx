@@ -8,7 +8,7 @@ import { MDEditorProps } from '../../Editor';
 import './index.less';
 
 type RenderTextareaHandle = {
-  handleChange: (text: string) => void;
+  handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export interface ReRenderTextAreaProps {
@@ -58,9 +58,9 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChange = (text: string) => {
-    dispatch && dispatch({ markdown: text });
-    onChange && onChange(text);
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    dispatch && dispatch({ markdown: e.target.value });
+    onChange && onChange(e.target.value);
   };
 
   if (renderTextarea) {
@@ -87,7 +87,7 @@ export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
       ref={textRef}
       className={`${prefixCls}-text-input ${other.className ? other.className : ''}`}
       value={markdown}
-      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChange(e.target.value)}
+      onChange={handleChange}
     />
   );
 }
