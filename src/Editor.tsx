@@ -185,6 +185,7 @@ const InternalMDEditor = (
 
   const textareaDomRef = useRef<HTMLDivElement>();
   const active = useRef<'text' | 'preview'>('preview');
+  const initScroll = useRef(false);
 
   useMemo(() => {
     textareaDomRef.current = state.textareaWarp;
@@ -198,10 +199,14 @@ const InternalMDEditor = (
     }
   }, [state.textareaWarp]);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>, type: 'text' | 'preview') => {
     if (!enableScrollRef.current) return;
     const textareaDom = textareaDomRef.current;
     const previewDom = previewRef.current ? previewRef.current.mdp.current : undefined;
+    if (!initScroll.current) {
+      active.current = type;
+      initScroll.current = true;
+    }
     if (textareaDom && previewDom) {
       const scale =
         (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
@@ -249,13 +254,13 @@ const InternalMDEditor = (
               autoFocus={autoFocus}
               {...textareaProps}
               renderTextarea={renderTextarea}
-              onScroll={handleScroll}
+              onScroll={(e) => handleScroll(e, 'text')}
             />
           )}
           {/(live|preview)/.test(state.preview || '') && (
             <MarkdownPreview
               {...(previewOptions as unknown)}
-              onScroll={handleScroll}
+              onScroll={(e) => handleScroll(e, 'preview')}
               ref={previewRef}
               source={state.markdown || ''}
               className={`${prefixCls}-preview`}
