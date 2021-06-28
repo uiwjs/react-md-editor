@@ -49,9 +49,6 @@
     &-pre {
       position: relative;
       margin: 0px;
-      word-wrap: pre;
-      word-break: break-word;
-      white-space: pre-wrap;
       pointer-events: none;
     }
     &-input {
@@ -65,14 +62,17 @@
       overflow: hidden;
       outline: 0;
       padding: inherit;
-      word-wrap: pre;
-      word-break: break-word;
-      white-space: pre-wrap;
       -webkit-font-smoothing: antialiased;
       -webkit-text-fill-color: transparent;
       &:empty {
         -webkit-text-fill-color: inherit !important;
       }
+    }
+    &-pre,
+    &-input {
+      word-wrap: pre;
+      word-break: break-word;
+      white-space: pre-wrap;
     }
   }
 }
