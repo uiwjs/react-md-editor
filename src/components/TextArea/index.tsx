@@ -1,47 +1,93 @@
-import React, { useEffect, useMemo, useContext } from 'react';
-import { EditorContext, ContextStore } from '../../Context';
+import React, { useContext, useEffect } from 'react';
 import { IProps } from '../../utils';
+import { EditorContext, ExecuteCommandState, ContextStore } from '../../Context';
+import { TextAreaCommandOrchestrator } from '../../commands';
+import handleKeyDown from './handleKeyDown';
+import shortcuts from './shortcuts';
+import { MDEditorProps } from '../../Editor';
 import './index.less';
 
-import Textarea, { ReRenderTextAreaProps } from './Textarea';
-
-export interface ITextAreaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>,
-    IProps {
-  value?: string;
-  onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
-  renderTextarea?: ReRenderTextAreaProps['renderTextarea'];
-}
-
-export type TextAreaRef = {
-  text?: HTMLTextAreaElement;
-  warp?: HTMLDivElement;
+type RenderTextareaHandle = {
+  handleChange: (text: string) => void;
 };
 
-export default function TextArea(props: ITextAreaProps) {
-  const { prefixCls, className, onScroll, ...otherProps } = props || {};
-  const { scrollTop, dispatch } = useContext(EditorContext);
-  const warp = React.createRef<HTMLDivElement>();
+export interface ReRenderTextAreaProps {
+  renderTextarea?: (
+    props: React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    opts: RenderTextareaHandle,
+  ) => JSX.Element;
+}
+
+export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'>, IProps {}
+
+export default function Textarea(props: TextAreaProps & ReRenderTextAreaProps) {
+  const { prefixCls, renderTextarea, ...other } = props;
+  const { markdown, commands, fullscreen, preview, highlightEnable, extraCommands, tabSize, onChange, dispatch } =
+    useContext(EditorContext);
+  const textRef = React.useRef<HTMLTextAreaElement>(null);
+  const executeRef = React.useRef<TextAreaCommandOrchestrator>();
+  const statesRef = React.useRef<ExecuteCommandState>({ fullscreen, preview });
+
   useEffect(() => {
-    const state: ContextStore = {};
-    if (warp.current) {
-      state.textareaWarp = warp.current || undefined;
-      warp.current.scrollTop = scrollTop || 0;
-    }
-    if (dispatch) {
-      dispatch({ ...state });
+    statesRef.current = { fullscreen, preview, highlightEnable };
+  }, [fullscreen, preview, highlightEnable]);
+
+  useEffect(() => {
+    if (textRef.current && dispatch) {
+      const commandOrchestrator = new TextAreaCommandOrchestrator(textRef.current);
+      executeRef.current = commandOrchestrator;
+      dispatch({ textarea: textRef.current, commandOrchestrator });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return useMemo(
-    () => (
-      <div ref={warp} className={`${prefixCls}-aree ${className || ''}`} onScroll={onScroll}>
-        <div className={`${prefixCls}-text`}>
-          <Textarea prefixCls={prefixCls} {...otherProps} />
-        </div>
-      </div>
-    ),
+
+  const onKeyDown = (e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) => {
+    handleKeyDown(e, tabSize);
+    shortcuts(e, [...(commands || []), ...(extraCommands || [])], executeRef.current, dispatch, statesRef.current);
+  };
+  useEffect(() => {
+    if (textRef.current && !renderTextarea) {
+      textRef.current.addEventListener('keydown', onKeyDown);
+    }
+    return () => {
+      if (textRef.current && !renderTextarea) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        textRef.current.removeEventListener('keydown', onKeyDown);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+  }, []);
+
+  const handleChange = (text: string) => {
+    dispatch && dispatch({ markdown: text });
+    onChange && onChange(text);
+  };
+
+  if (renderTextarea) {
+    return React.cloneElement(
+      renderTextarea(
+        {
+          ...other,
+          spellCheck: false,
+          className: `${prefixCls}-text-input ${other.className ? other.className : ''}`,
+          value: markdown || '',
+        },
+        { handleChange },
+      ),
+      {
+        ref: textRef,
+      },
+    );
+  }
+
+  return (
+    <textarea
+      spellCheck={false}
+      {...other}
+      ref={textRef}
+      className={`${prefixCls}-text-input ${other.className ? other.className : ''}`}
+      value={markdown}
+      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChange(e.target.value)}
+    />
   );
 }
