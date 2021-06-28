@@ -184,7 +184,7 @@ const InternalMDEditor = (
   );
 
   const textareaDomRef = useRef<HTMLDivElement>();
-  const active = useRef<'text' | 'preview'>();
+  const active = useRef<'text' | 'preview'>('preview');
 
   useMemo(() => {
     textareaDomRef.current = state.textareaWarp;

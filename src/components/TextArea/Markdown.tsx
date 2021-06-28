@@ -35,6 +35,9 @@ export default function Markdown(props: MarkdownProps) {
           markdown || '',
         )}</code></pre>`,
       );
-    return <div className="wmde-markdown-color" dangerouslySetInnerHTML={{ __html: str.contents as any }} />;
+    return React.createElement('div', {
+      className: 'wmde-markdown-color',
+      dangerouslySetInnerHTML: { __html: str.contents as string },
+    });
   }, [highlightEnable, markdown, preRef, prefixCls]);
 }
