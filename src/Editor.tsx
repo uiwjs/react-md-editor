@@ -170,17 +170,23 @@ const InternalMDEditor = (
     () => propsValue !== state.markdown && dispatch({ markdown: propsValue || '' }),
     [propsValue, state.markdown],
   );
-  useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType, state.preview]);
-  useMemo(() => height !== state.height && dispatch({ height: height }), [height, state.height]);
-  useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize }), [state.tabSize, tabSize]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize }), [tabSize]);
   useMemo(
     () => highlightEnable !== state.highlightEnable && dispatch({ highlightEnable }),
-    [highlightEnable, state.highlightEnable],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [highlightEnable],
   );
-  useMemo(() => autoFocus !== state.autoFocus && dispatch({ autoFocus: autoFocus }), [autoFocus, state.autoFocus]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => autoFocus !== state.autoFocus && dispatch({ autoFocus: autoFocus }), [autoFocus]);
   useMemo(
     () => fullscreen !== state.fullscreen && dispatch({ fullscreen: fullscreen }),
-    [fullscreen, state.fullscreen],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [fullscreen],
   );
 
   const textareaDomRef = useRef<HTMLDivElement>();
