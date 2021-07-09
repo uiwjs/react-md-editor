@@ -19,6 +19,8 @@ jobs:
     - run: npm run build
     - run: npm run doc
     - run: npm run map
+    - run: npm run bundle
+    - run: npm run bundle:min
 
     - name: Create Tag
       id: create_tag
