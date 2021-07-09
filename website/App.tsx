@@ -47,6 +47,12 @@ export default function App() {
           <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
             <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat" />
           </a>
+          <a href="https://coveralls.io/github/uiwjs/react-md-editor?branch=master" target="__blank">
+            <img
+              alt="Coverage Status"
+              src="https://coveralls.io/repos/github/uiwjs/react-md-editor/badge.svg?branch=master"
+            />
+          </a>
         </div>
         <Exmaple mdStr={mdStr} />
         <div className="page-title">

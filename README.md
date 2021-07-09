@@ -5,23 +5,26 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/uiwjs/react-md-editor/actions">
+  <a href="https://github.com/uiwjs/react-md-editor/actions" target="__blank">
     <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/workflows/Build%20&%20Deploy/badge.svg">
   </a>
-  <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
+  <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat">
   </a>
-  <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md">
+  <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md" target="__blank">
     <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg">
   </a>
-  <a href="https://gitee.com/uiw/react-md-editor">
+  <a href="https://gitee.com/uiw/react-md-editor" target="__blank">
     <img alt="Release" src="https://jaywcjlove.github.io/sb/ico/gitee.svg">
   </a>
-  <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
+  <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm version" src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
   </a>
-  <a href="https://www.npmjs.com/package/@uiw/react-md-editor">
+  <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@uiw/react-md-editor">
+  </a>
+  <a href="https://coveralls.io/github/uiwjs/react-md-editor?branch=master" target="__blank">
+    <img alt="Coverage Status" src="https://coveralls.io/repos/github/uiwjs/react-md-editor/badge.svg?branch=master" />
   </a>
 </p>
 
