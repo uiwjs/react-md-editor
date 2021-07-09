@@ -12,6 +12,8 @@
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --env=jsdom --coverage",
     "released": "npm run build && npm run doc",
+    "bundle": "kkt build --bundle",
+    "bundle:min": "kkt build --bundle --mini --no-emptyDir",
     "doc": "kkt build --app-src ./website",
     "start": "kkt start --app-src ./website",
     "build": "npm run ts:build && npm run types:esm && npm run types:cjs && npm run css:build && npm run css:build:dist",
@@ -45,6 +47,7 @@
   "devDependencies": {
     "@kkt/less-modules": "6.10.4",
     "@kkt/raw-modules": "6.10.4",
+    "@kkt/react-library": "6.10.4",
     "@kkt/scope-plugin-options": "6.10.4",
     "@types/katex": "0.11.0",
     "@types/node": "14.14.36",

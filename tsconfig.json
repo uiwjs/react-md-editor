@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "baseUrl": "website",
+    "baseUrl": ".",
     "jsx": "react-jsx",
     "typeRoots": ["node_modules/@types"],
     "noFallthroughCasesInSwitch": true,
