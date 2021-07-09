@@ -15,9 +15,9 @@
     "declaration": true,
     "baseUrl": ".",
     "jsx": "react-jsx",
-    "typeRoots": ["node_modules/@types"],
     "noFallthroughCasesInSwitch": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": ["jest", "node"]
   },
-  "include": ["website", "src", ".kktrc.ts"]
+  "include": ["website", "src", ".kktrc.ts", "test"]
 }

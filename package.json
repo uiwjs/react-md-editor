@@ -50,7 +50,6 @@
     "@kkt/react-library": "6.10.4",
     "@kkt/scope-plugin-options": "6.10.4",
     "@types/katex": "0.11.0",
-    "@types/node": "14.14.36",
     "@types/react": "17.0.11",
     "@types/react-dom": "17.0.8",
     "@types/react-test-renderer": "17.0.1",
@@ -60,6 +59,7 @@
     "compile-less-cli": "1.8.0",
     "katex": "0.13.11",
     "husky": "6.0.0",
+    "jest-environment-jsdom": "27.0.6",
     "kkt": "6.10.4",
     "lint-staged": "11.0.0",
     "prettier": "2.3.1",
@@ -88,6 +88,21 @@
     "uiwjs",
     "code"
   ],
+  "jest": {
+    "testMatch": [
+      "<rootDir>/test/*.{ts,tsx}",
+      "<rootDir>/test/**/*.{ts,tsx}"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{tsx,ts}",
+      "!.kktrc.ts",
+      "!**/*.{js,d.ts}",
+      "!**/node_modules/**",
+      "!<rootDir>/coverage/**",
+      "!**/website/**",
+      "!**/vendor/**"
+    ]
+  },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"

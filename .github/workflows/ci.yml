@@ -21,6 +21,7 @@ jobs:
     - run: npm run map
     - run: npm run bundle
     - run: npm run bundle:min
+    - run: npm run coverage
 
     - name: Create Tag
       id: create_tag
