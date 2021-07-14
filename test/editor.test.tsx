@@ -9,7 +9,6 @@ import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom';
 import MDEditor from '../src';
 
-
 it('MDEditor', () => {
   const component = TestRenderer.create(<MDEditor value="**Hello world!!!**" />);
   let tree = component.toJSON();
@@ -59,23 +58,20 @@ it('MDEditor onChange', async () => {
 
 
 it('MDEditor KeyboardEvent onChange', async () => {
-  const MyComponent = () => {
-    const [value, setValue] = React.useState("");
-    return (
-      <MDEditor
-        value={value}
-        textareaProps={{
-          title: 'test'
-        }}
-        onChange={(value) => {
-          setValue(value || '');
-        }}
-      />
-    );
-  };
-  const { getByTitle } = render(<MyComponent />);
-  const inputNode = getByTitle('test');
-  userEvent.type(inputNode, 'Hello,{enter}World!');
-  expect(inputNode).toHaveValue('Hello,\nWorld!');
+  const handleChange = jest.fn((value) => value);
+  const { getByTitle } = render(
+    <MDEditor
+      value=""
+      textareaProps={{
+        title: 'test'
+      }}
+      onChange={handleChange}
+    />
+  );
+  const input = getByTitle('test');
+  userEvent.type(input, 'Hello,{enter}World!');
+  expect(handleChange).toHaveLength(1);
+  expect(handleChange).lastReturnedWith('!');
+  expect(handleChange).nthCalledWith(7, '\n');
 });
 
