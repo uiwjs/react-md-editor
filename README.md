@@ -20,7 +20,7 @@
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm version" src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
   </a>
-  <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
+  <a href="https://bundlephobia.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@uiw/react-md-editor">
   </a>
   <a href="https://coveralls.io/github/uiwjs/react-md-editor?branch=master" target="__blank">
