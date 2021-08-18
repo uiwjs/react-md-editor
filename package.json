@@ -93,6 +93,9 @@
       "<rootDir>/test/*.{ts,tsx}",
       "<rootDir>/test/**/*.{ts,tsx}"
     ],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/?!(.*)"
+    ],
     "collectCoverageFrom": [
       "**/*.{tsx,ts}",
       "!.kktrc.ts",
