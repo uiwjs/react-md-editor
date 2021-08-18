@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "emitDeclarationOnly": true,
-    "noEmit": false
+    "noEmit": false,
+    "typeRoots": ["./react-app-env.d.ts"]
   }
 }

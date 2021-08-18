@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo } from 'react';
-import rehype from 'rehype';
+import { rehype } from 'rehype';
 // @ts-ignore
 import rehypePrism from '@mapbox/rehype-prism';
 import { IProps } from '../../utils';
@@ -20,24 +20,25 @@ export default function Markdown(props: MarkdownProps) {
   function html2Escape(sHtml: string) {
     return sHtml.replace(
       /[<>&"]/g,
-      (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
+      (c: string) => (({ '<': '&amp;lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
     );
   }
 
   return useMemo(() => {
-    if (!highlightEnable || !markdown)
+    if (!highlightEnable || !markdown) {
       return <pre children={markdown || ''} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />;
+    }
     const str = rehype()
       .data('settings', { fragment: false })
       .use(rehypePrism, { ignoreMissing: true })
       .processSync(
         `<pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"><code class="language-markdown">${html2Escape(
-          markdown || '',
+          markdown,
         )}</code></pre>`,
       );
     return React.createElement('div', {
       className: 'wmde-markdown-color',
-      dangerouslySetInnerHTML: { __html: str.contents as string },
+      dangerouslySetInnerHTML: { __html: str.value as string },
     });
   }, [highlightEnable, markdown, preRef, prefixCls]);
 }
