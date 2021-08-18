@@ -11,13 +11,6 @@ object-assign
  * @license  MIT
  */
 
-/*!
- * repeat-string <https://github.com/jonschlinkert/repeat-string>
- *
- * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT License.
- */
-
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
  *
