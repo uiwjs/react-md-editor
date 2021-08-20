@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/react-md-editor/static/css/main.79253add.chunk.css",
-    "main.js": "/react-md-editor/static/js/main.6e38007d.chunk.js",
-    "main.js.map": "/react-md-editor/static/js/main.6e38007d.chunk.js.map",
-    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.7bf28c61.chunk.js",
-    "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.7bf28c61.chunk.js.map",
+    "main.js": "/react-md-editor/static/js/main.030fac67.chunk.js",
+    "main.js.map": "/react-md-editor/static/js/main.030fac67.chunk.js.map",
+    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.f05afdbe.chunk.js",
+    "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.f05afdbe.chunk.js.map",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.368662bb.chunk.js",
     "react-vendor.js.map": "/react-md-editor/static/js/react-vendor.368662bb.chunk.js.map",
     "runtime-main.js": "/react-md-editor/static/js/runtime-main.040f4534.js",
     "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.040f4534.js.map",
     "index.html": "/react-md-editor/index.html",
     "static/css/main.79253add.chunk.css.map": "/react-md-editor/static/css/main.79253add.chunk.css.map",
-    "static/js/main.6e38007d.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.6e38007d.chunk.js.LICENSE.txt",
+    "static/js/main.030fac67.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.030fac67.chunk.js.LICENSE.txt",
     "static/js/react-vendor.368662bb.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.368662bb.chunk.js.LICENSE.txt",
     "static/media/katex.css": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.b6a56b14.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.040f4534.js",
-    "static/js/micromark-vendor.7bf28c61.chunk.js",
+    "static/js/micromark-vendor.f05afdbe.chunk.js",
     "static/js/react-vendor.368662bb.chunk.js",
     "static/css/main.79253add.chunk.css",
-    "static/js/main.6e38007d.chunk.js"
+    "static/js/main.030fac67.chunk.js"
   ]
 }
