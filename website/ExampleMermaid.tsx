@@ -1,6 +1,6 @@
 import Codesandbox from '@uiw/react-codesandbox';
 
-const code = `import React from "react";
+const code = `import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import MDEditor from "@uiw/react-md-editor";
 import mermaid from "mermaid";
@@ -29,13 +29,15 @@ Bob-->>John: Jolly good!
 \`;
 
 export default function App() {
+  const [value, setValue] = useState(mdMermaid)
   return (
     <MDEditor
+      onChange={(newValue) => setValue(newValue)}
       textareaProps={{
         placeholder: 'Please enter Markdown text',
       }}
       height={500}
-      value={mdMermaid || ""}
+      value={value}
       previewOptions={{
         components: {
           code: ({ inline, children, className, ...props }) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MDEditor, { commands, ICommand } from '../';
 
 const ExampleCustomToolbar = () => {
@@ -8,10 +8,12 @@ const ExampleCustomToolbar = () => {
     buttonProps: null,
     icon: <span style={{ padding: '0 5px' }}>Custom Toolbar</span>,
   };
+  const [value, setValue] = useState('Hello Markdown!');
 
   return (
     <MDEditor
-      value="Hello Markdown!"
+      value={value}
+      onChange={(newValue) => setValue(newValue)}
       textareaProps={{
         placeholder: 'Please enter Markdown text',
       }}

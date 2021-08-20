@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'katex/dist/katex.css';
 import katex from 'katex';
 import MDEditor from '../';
@@ -19,9 +19,11 @@ c = \\pm\\sqrt{a^2 + b^2}
 `;
 
 const ExmapleKaTeX = () => {
+  const [value, setValue] = useState(mdKaTeX);
   return (
     <MDEditor
-      value={mdKaTeX}
+      value={value}
+      onChange={(newValue) => setValue(newValue)}
       textareaProps={{
         placeholder: 'Please enter Markdown text',
       }}
