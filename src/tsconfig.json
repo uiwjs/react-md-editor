@@ -1,8 +1,7 @@
 {
   "extends": "../tsconfig",
-  "include": ["../src"],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "../cjs",
     "emitDeclarationOnly": true,
     "noEmit": false
   }
