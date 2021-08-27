@@ -105,6 +105,9 @@ export default function App() {
     <div className="container">
       <MDEditor
         value="Hello Markdown!"
+        onChange={(val) => {
+          setValue(val!);
+        }}
         commands={[
           // Custom Toolbars
           title3,
