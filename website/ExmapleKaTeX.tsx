@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import 'katex/dist/katex.css';
 import katex from 'katex';
 import MDEditor from '../';
@@ -23,7 +23,7 @@ const ExmapleKaTeX = () => {
   return (
     <MDEditor
       value={value}
-      onChange={(newValue) => setValue(newValue)}
+      onChange={(newValue) => setValue(newValue!)}
       textareaProps={{
         placeholder: 'Please enter Markdown text',
       }}
