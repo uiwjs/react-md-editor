@@ -6,6 +6,7 @@ esm
 dist
 build
 doc
+markdown-editor.css
 package-lock.json
 __snapshots__
 

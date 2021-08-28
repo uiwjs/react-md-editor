@@ -15,7 +15,7 @@
     "start": "kkt start --app-src ./website",
     "css:build": "compile-less -d src -o esm",
     "css:watch": "compile-less -d src -o esm --watch",
-    "css:build:dist": "compile-less -d src --combine dist/markdown-editor.css --rm-global",
+    "css:build:dist": "compile-less -d src --combine markdown-editor.css --rm-global",
     "watch": "tsbb watch & npm run css:watch",
     "build": "tsbb build && npm run css:build && npm run css:build:dist",
     "test": "tsbb test --env=jsdom",
