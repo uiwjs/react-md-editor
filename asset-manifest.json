@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/react-md-editor/static/css/main.5a31ba19.chunk.css",
-    "main.js": "/react-md-editor/static/js/main.87708adf.chunk.js",
-    "main.js.map": "/react-md-editor/static/js/main.87708adf.chunk.js.map",
-    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.e6c1064d.chunk.js",
-    "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.e6c1064d.chunk.js.map",
-    "react-vendor.js": "/react-md-editor/static/js/react-vendor.a523feb4.chunk.js",
-    "react-vendor.js.map": "/react-md-editor/static/js/react-vendor.a523feb4.chunk.js.map",
+    "main.css": "/react-md-editor/static/css/main.ae53d011.chunk.css",
+    "main.js": "/react-md-editor/static/js/main.95a7e2d0.chunk.js",
+    "main.js.map": "/react-md-editor/static/js/main.95a7e2d0.chunk.js.map",
+    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.1074ee21.chunk.js",
+    "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.1074ee21.chunk.js.map",
+    "react-vendor.js": "/react-md-editor/static/js/react-vendor.e8dee00e.chunk.js",
+    "react-vendor.js.map": "/react-md-editor/static/js/react-vendor.e8dee00e.chunk.js.map",
     "runtime-main.js": "/react-md-editor/static/js/runtime-main.f07b44ec.js",
     "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.f07b44ec.js.map",
     "index.html": "/react-md-editor/index.html",
-    "static/css/main.5a31ba19.chunk.css.map": "/react-md-editor/static/css/main.5a31ba19.chunk.css.map",
-    "static/js/main.87708adf.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.87708adf.chunk.js.LICENSE.txt",
-    "static/js/react-vendor.a523feb4.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.a523feb4.chunk.js.LICENSE.txt",
+    "static/css/main.ae53d011.chunk.css.map": "/react-md-editor/static/css/main.ae53d011.chunk.css.map",
+    "static/js/main.95a7e2d0.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.95a7e2d0.chunk.js.LICENSE.txt",
+    "static/js/react-vendor.e8dee00e.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.e8dee00e.chunk.js.LICENSE.txt",
     "static/media/katex.css": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.b6a56b14.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.f07b44ec.js",
-    "static/js/micromark-vendor.e6c1064d.chunk.js",
-    "static/js/react-vendor.a523feb4.chunk.js",
-    "static/css/main.5a31ba19.chunk.css",
-    "static/js/main.87708adf.chunk.js"
+    "static/js/micromark-vendor.1074ee21.chunk.js",
+    "static/js/react-vendor.e8dee00e.chunk.js",
+    "static/css/main.ae53d011.chunk.css",
+    "static/js/main.95a7e2d0.chunk.js"
   ]
 }
