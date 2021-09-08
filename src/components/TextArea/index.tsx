@@ -3,8 +3,7 @@ import { EditorContext, ContextStore, ExecuteCommandState } from '../../Context'
 import shortcuts from './shortcuts';
 import Markdown from './Markdown';
 import Textarea from './Textarea';
-import { IProps } from '../../utils';
-import { MDEditorProps } from '../../Editor';
+import { MDEditorProps, IProps } from '../../Editor';
 import { TextAreaCommandOrchestrator, ICommand } from '../../commands';
 import './index.less';
 

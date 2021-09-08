@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { rehype } from 'rehype';
 // @ts-ignore
 import rehypePrism from '@mapbox/rehype-prism';
-import { IProps } from '../../utils';
+import { IProps } from '../../Editor';
 import { EditorContext } from '../../Context';
 
 export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreElement> {}

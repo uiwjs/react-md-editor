@@ -1,12 +1,16 @@
 import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
 import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
-import { IProps } from './utils';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, getExtraCommands, ICommand } from './commands';
 import { reducer, EditorContext, ContextStore, PreviewType } from './Context';
 import './index.less';
+
+export interface IProps {
+  prefixCls?: string;
+  className?: string;
+}
 
 export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
   /**

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { IProps } from '../../utils';
+import { IProps } from '../../Editor';
 import './index.less';
 
 export interface IDragBarProps extends IProps {
@@ -41,6 +41,7 @@ const DragBar: React.FC<IDragBarProps> = (props) => {
         document.removeEventListener('mouseup', handleMouseUp);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const svg = useMemo(
     () => (

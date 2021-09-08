@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { IProps } from '../../utils';
+import { IProps } from '../../Editor';
 import { EditorContext, ExecuteCommandState } from '../../Context';
 import { TextAreaCommandOrchestrator } from '../../commands';
 import handleKeyDown from './handleKeyDown';

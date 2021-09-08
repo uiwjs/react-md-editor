@@ -1,4 +1,4 @@
-import { insertTextAtPosition } from '../../utils';
+import { insertTextAtPosition } from '../../utils/InsertTextAtPosition';
 import { TextAreaTextApi } from '../../commands';
 import { insertBeforeEachLine } from '../../commands/list';
 
