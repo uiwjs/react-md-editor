@@ -19,7 +19,7 @@ import { codePreview, codeEdit, codeLive } from './preview';
 import { fullscreen } from './fullscreen';
 import { image } from './image';
 import { strikethrough } from './strikeThrough';
-import insertText from '../utils/InsertTextAtPosition';
+import { insertTextAtPosition } from '../utils/InsertTextAtPosition';
 import { ContextStore, ExecuteCommandState } from '../Context';
 
 export interface CommandOrchestrator {
@@ -116,7 +116,7 @@ class TextAreaTextApi {
    * @param text Text that should replace the current selection
    */
   replaceSelection(text: string): TextState {
-    insertText(this.textArea, text);
+    insertTextAtPosition(this.textArea, text);
     return getStateFromTextArea(this.textArea);
   }
 

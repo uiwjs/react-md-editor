@@ -1,6 +1,6 @@
 import { TextRange } from '../commands';
 
-export default function getSurroundingWord(text: string, position: number): TextRange {
+export function getSurroundingWord(text: string, position: number): TextRange {
   if (!text) throw Error("Argument 'text' should be truthy");
 
   const isWordDelimiter = (c: string) => c === ' ' || c.charCodeAt(0) === 10;

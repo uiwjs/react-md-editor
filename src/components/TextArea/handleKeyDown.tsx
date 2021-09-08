@@ -1,4 +1,4 @@
-import insertText from '../../utils/InsertTextAtPosition';
+import { insertTextAtPosition } from '../../utils';
 import { TextAreaTextApi } from '../../commands';
 import { insertBeforeEachLine } from '../../commands/list';
 
@@ -63,7 +63,7 @@ export default function handleKeyDown(
         end: newStarNum + oldSelectText.length + endTabSize,
       });
     } else {
-      return insertText(target, space);
+      return insertTextAtPosition(target, space);
     }
   } else if (
     e.code &&
@@ -81,6 +81,6 @@ export default function handleKeyDown(
     if (/^\d+.\s/.test(currentLineStr)) {
       startStr = `\n${parseInt(currentLineStr) + 1}. `;
     }
-    return insertText(target, startStr);
+    return insertTextAtPosition(target, startStr);
   }
 }

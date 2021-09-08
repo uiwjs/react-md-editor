@@ -27,7 +27,7 @@ function canManipulateViaTextNodes(input: HTMLTextAreaElement | HTMLInputElement
  * @param {string} text
  * @returns {void}
  */
-export default function insertTextAtPosition(input: HTMLTextAreaElement | HTMLInputElement, text: string) {
+export function insertTextAtPosition(input: HTMLTextAreaElement | HTMLInputElement, text: string) {
   // Most of the used APIs only work with the field selected
   input.focus();
 
