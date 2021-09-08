@@ -47,7 +47,7 @@
     "@types/react": "17.0.20",
     "@types/react-dom": "17.0.9",
     "@types/react-test-renderer": "17.0.1",
-    "@uiw/react-github-corners": "1.4.0",
+    "@uiw/react-github-corners": "1.5.1",
     "@uiw/react-codesandbox": "1.1.0",
     "@uiw/react-shields": "1.1.1",
     "compile-less-cli": "1.8.8",
