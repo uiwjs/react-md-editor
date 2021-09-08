@@ -3,7 +3,7 @@
  */
 /* eslint-disable jest/no-conditional-expect */
 import '@testing-library/jest-dom';
-import { getSurroundingWord } from '../../src/utils';
+import { getSurroundingWord } from '../../src/utils/markdownUtils';
 
 it('getSurroundingWord', () => {
   expect(getSurroundingWord('hello world', 0)).toMatchObject({
