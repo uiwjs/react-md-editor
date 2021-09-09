@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import GithubCorner from '@uiw/react-github-corners';
-import Github from '@uiw/react-shields/lib/esm/github';
-import Npm from '@uiw/react-shields/lib/esm/npm';
+import Github from '@uiw/react-shields/esm/github';
+import Npm from '@uiw/react-shields/esm/npm';
 import MDEditor from '../';
 import ReadmeStr from '../README.md';
 import Exmaple from './Exmaple';
