@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@uiw/react-markdown-preview": "3.3.2",
+    "@uiw/react-markdown-preview": "3.3.3",
     "rehype": "12.0.0"
   },
   "keywords": [
