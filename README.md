@@ -23,8 +23,8 @@
   <a href="https://bundlephobia.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@uiw/react-md-editor">
   </a>
-  <a href="https://coveralls.io/github/uiwjs/react-md-editor?branch=master" target="__blank">
-    <img alt="Coverage Status" src="https://coveralls.io/repos/github/uiwjs/react-md-editor/badge.svg?branch=master" />
+  <a href="https://uiwjs.github.io/react-md-editor/coverage/lcov-report" target="__blank">
+    <img alt="Coverage Status" src="https://uiwjs.github.io/react-md-editor/coverage/badges.svg" />
   </a>
 </p>
 

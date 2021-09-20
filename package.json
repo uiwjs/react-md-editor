@@ -87,6 +87,10 @@
       "<rootDir>/test/*.{ts,tsx}",
       "<rootDir>/test/**/*.{ts,tsx}"
     ],
+    "coverageReporters": [
+      "lcov",
+      "json-summary"
+    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ],
