@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-md-editor/static/css/main.afd1d5d2.chunk.css",
-    "main.js": "/react-md-editor/static/js/main.bd25060f.chunk.js",
-    "main.js.map": "/react-md-editor/static/js/main.bd25060f.chunk.js.map",
+    "main.js": "/react-md-editor/static/js/main.737a95f0.chunk.js",
+    "main.js.map": "/react-md-editor/static/js/main.737a95f0.chunk.js.map",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.96582622.chunk.js",
     "micromark-vendor.js.map": "/react-md-editor/static/js/micromark-vendor.96582622.chunk.js.map",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.80b12a6e.chunk.js",
@@ -11,7 +11,7 @@
     "runtime-main.js.map": "/react-md-editor/static/js/runtime-main.db452dd1.js.map",
     "index.html": "/react-md-editor/index.html",
     "static/css/main.afd1d5d2.chunk.css.map": "/react-md-editor/static/css/main.afd1d5d2.chunk.css.map",
-    "static/js/main.bd25060f.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.bd25060f.chunk.js.LICENSE.txt",
+    "static/js/main.737a95f0.chunk.js.LICENSE.txt": "/react-md-editor/static/js/main.737a95f0.chunk.js.LICENSE.txt",
     "static/js/react-vendor.80b12a6e.chunk.js.LICENSE.txt": "/react-md-editor/static/js/react-vendor.80b12a6e.chunk.js.LICENSE.txt",
     "static/media/katex.css": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.9f1a86cb.woff"
   },
@@ -20,6 +20,6 @@
     "static/js/micromark-vendor.96582622.chunk.js",
     "static/js/react-vendor.80b12a6e.chunk.js",
     "static/css/main.afd1d5d2.chunk.css",
-    "static/js/main.bd25060f.chunk.js"
+    "static/js/main.737a95f0.chunk.js"
   ]
 }
