@@ -60,13 +60,13 @@ jobs:
         body: |
           [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor@${{steps.changelog.outputs.version}}/file/README.md)
 
-          ```bash
-          npm i @uiw/react-md-editor@${{steps.changelog.outputs.version}}
-          ```
-          
           ${{ steps.changelog.outputs.compareurl }}
           
           ${{ steps.changelog.outputs.changelog }}
+
+          ```bash
+          npm i @uiw/react-md-editor@${{steps.changelog.outputs.version}}
+          ```
 
     - run: npm install @jsdevtools/npm-publish -g
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
