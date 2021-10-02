@@ -87,21 +87,8 @@
       "<rootDir>/test/*.{ts,tsx}",
       "<rootDir>/test/**/*.{ts,tsx}"
     ],
-    "coverageReporters": [
-      "lcov",
-      "json-summary"
-    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
-    ],
-    "collectCoverageFrom": [
-      "**/*.{tsx,ts}",
-      "!.kktrc.ts",
-      "!**/*.{js,d.ts}",
-      "!**/node_modules/**",
-      "!<rootDir>/coverage/**",
-      "!**/website/**",
-      "!**/vendor/**"
     ]
   },
   "lint-staged": {
