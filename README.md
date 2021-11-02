@@ -370,7 +370,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 
 const MDEditor = dynamic(
-  () => import("@uiw/react-md-editor").then((mod) => mod.default),
+  () => import("@uiw/react-md-editor"),
   { ssr: false }
 );
 
