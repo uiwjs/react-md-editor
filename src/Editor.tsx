@@ -269,11 +269,11 @@ const InternalMDEditor = (
           )}
           {/(live|preview)/.test(state.preview || '') && (
             <MarkdownPreview
-              {...(previewOptions as unknown)}
+              {...previewOptions}
               onScroll={(e) => handleScroll(e, 'preview')}
               ref={previewRef}
               source={state.markdown || ''}
-              className={`${prefixCls}-preview`}
+              className={`${prefixCls}-preview ${previewOptions.className || ''}`}
             />
           )}
         </div>
