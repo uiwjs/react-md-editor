@@ -51,7 +51,7 @@
     "@uiw/react-codesandbox": "1.1.0",
     "@uiw/react-shields": "1.1.2",
     "compile-less-cli": "1.8.9",
-    "katex": "0.13.18",
+    "katex": "0.15.1",
     "husky": "7.0.4",
     "jest-environment-jsdom": "27.3.1",
     "kkt": "6.11.0",
