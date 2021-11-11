@@ -9,7 +9,7 @@ import './index.less';
 export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'>, IProps {}
 
 export default function Textarea(props: TextAreaProps) {
-  const { prefixCls, ...other } = props;
+  const { prefixCls, onChange: onChangeFromProps, ...other } = props;
   const { markdown, commands, fullscreen, preview, highlightEnable, extraCommands, tabSize, onChange, dispatch } =
     useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
@@ -59,6 +59,7 @@ export default function Textarea(props: TextAreaProps) {
       onChange={(e) => {
         dispatch && dispatch({ markdown: e.target.value });
         onChange && onChange(e.target.value);
+        onChangeFromProps && onChangeFromProps(e);
       }}
     />
   );
