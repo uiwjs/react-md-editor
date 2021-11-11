@@ -36,11 +36,11 @@ jobs:
 
     - name: Generate Changelog
       id: changelog
-      uses: jaywcjlove/changelog-generator@v1.4.6
+      uses: jaywcjlove/changelog-generator@v1.4.8
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         head-ref: ${{steps.create_tag.outputs.version}}
-        filter-author: (小弟调调™|Renovate Bot)
+        filter-author: (renovate-bot|Renovate Bot)
         filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
 
     - name: Deploy
@@ -68,6 +68,9 @@ jobs:
           npm i @uiw/react-md-editor@${{steps.changelog.outputs.version}}
           ```
 
-    - run: npm install @jsdevtools/npm-publish -g
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
+    - name: 📦 @uiw/react-amap publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./package.json
 
