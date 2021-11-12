@@ -856,8 +856,9 @@ DA:43,0
 DA:49,87
 DA:60,35
 DA:61,35
-LF:24
-LH:23
+DA:62,35
+LF:25
+LH:24
 BRDA:24,0,0,24
 BRDA:24,0,1,0
 BRDA:24,1,0,24
@@ -876,8 +877,10 @@ BRDA:60,7,0,35
 BRDA:60,7,1,35
 BRDA:61,8,0,35
 BRDA:61,8,1,35
-BRF:18
-BRH:12
+BRDA:62,9,0,35
+BRDA:62,9,1,0
+BRF:20
+BRH:13
 end_of_record
 TN:
 SF:src/components/TextArea/handleKeyDown.tsx
