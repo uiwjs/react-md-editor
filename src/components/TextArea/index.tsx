@@ -25,7 +25,7 @@ type RenderTextareaHandle = {
 };
 
 export interface ITextAreaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'onScroll'>,
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onScroll'>,
     IProps {
   value?: string;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
