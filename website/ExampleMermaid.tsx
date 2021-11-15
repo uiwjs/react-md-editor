@@ -28,6 +28,15 @@ Bob-->>John: Jolly good!
 \\\`\\\`\\\`
 \`;
 
+const getCode = (arr = []) => arr.map(dt => {
+  if (typeof dt === 'string') {
+    return dt;
+  }
+  if (dt.props && dt.props.children) {
+    return getCode(dt.props.children);
+  }
+}).filter(Boolean).join('');
+
 export default function App() {
   const [value, setValue] = useState(mdMermaid)
   return (
@@ -41,18 +50,18 @@ export default function App() {
       previewOptions={{
         components: {
           code: ({ inline, children = [], className, ...props }) => {
-            const txt = children[0] || '';
+            const code = getCode(children);
             if (
-              typeof txt === 'string' &&
+              typeof code === 'string' &&
               typeof className === 'string' &&
               /^language-mermaid/.test(className.toLocaleLowerCase())
             ) {
               const Elm = document.createElement("div");
               Elm.id = "demo";
-              const svg = mermaid.render("demo", txt);
+              const svg = mermaid.render("demo", code);
               return <code dangerouslySetInnerHTML={{ __html: svg }} />
             }
-            return <code className={String(className)}>{txt}</code>;
+            return <code className={String(className)}>{children}</code>;
           },
         },
       }}
@@ -74,9 +83,9 @@ export default function ExampleMermaid() {
             content: {
               dependencies: {
                 '@uiw/react-md-editor': 'latest',
-                react: 'latest',
-                mermaid: '8.10.2',
-                'react-dom': 'latest',
+                react: '17.0.2',
+                mermaid: '8.13.3',
+                'react-dom': '17.0.2',
               },
             },
           },
