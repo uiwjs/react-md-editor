@@ -29,7 +29,7 @@ const ExmapleKaTeX = () => {
       }}
       previewOptions={{
         components: {
-          code: ({ inline, children, className, ...props }) => {
+          code: ({ inline, children = [], className, ...props }) => {
             const txt = children[0] || '';
             if (inline) {
               if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {

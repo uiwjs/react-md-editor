@@ -201,7 +201,7 @@ export default function App() {
       value={mdKaTeX}
       previewOptions={{
         components: {
-          code: ({ inline, children, className, ...props }) => {
+          code: ({ inline, children = [], className, ...props }) => {
             const txt = children[0] || '';
             if (inline) {
               if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {
@@ -323,7 +323,7 @@ export default function App() {
       value={mdMermaid || ""}
       previewOptions={{
         components: {
-          code: ({ inline, children, className, ...props }) => {
+          code: ({ inline, children = [], className, ...props }) => {
             const txt = children[0] || '';
             if (
               typeof txt === 'string' &&
