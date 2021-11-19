@@ -231,7 +231,7 @@ export default function App() {
 }
 ```
 
-### Markdown text to Imgage
+### Markdown text to Image
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-text-to-images-ijqmx?fontsize=14&hidenavigation=1&theme=dark)
 
