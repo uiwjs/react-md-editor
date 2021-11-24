@@ -55,7 +55,6 @@ npm i @uiw/react-md-editor
 
 ```jsx
 import React from "react";
-import ReactDOM from "react-dom";
 import MDEditor from '@uiw/react-md-editor';
 
 export default function App() {
@@ -400,6 +399,7 @@ export default HomePage;
 - `value: string`: The Markdown value.
 - `onChange?: (value: string)`: Event handler for the `onChange` event.
 - `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L39-L57), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L155-L180) property. If no commands are specified, the default will be used. Commands are explained in more details below.
+- `commandsFilter?: (command: ICommand) => boolean | ICommand`: Filter or modify your commands.
 - `extraCommands?: ICommand[]`: Displayed on the right side of the toolbar.
 - `autoFocus?: true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview/tree/e6e8462d9a5c64a7045e25adcb4928095d74ca37#options-props) settings.
