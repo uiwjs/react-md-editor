@@ -84,7 +84,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Filter or modify your commands.
    * https://github.com/uiwjs/react-md-editor/issues/296
    */
-  commandsFilter?: (command: ICommand) => boolean | ICommand;
+  commandsFilter?: (command: ICommand) => false | ICommand;
   /**
    * You can create your own commands or reuse existing commands.
    */
