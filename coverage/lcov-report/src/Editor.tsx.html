@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.75% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>48/73</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">57.29% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>55/96</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
                 <span class="strong">66.66% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>14/21</span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>50/75</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.15% </span>
+                <span class="strong">57.14% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>56/98</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">68.18% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>15/22</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">65.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>43/66</span>
+                <span class='fraction'>44/67</span>
             </div>
         
             
@@ -361,7 +361,20 @@
 <a name='L302'></a><a href='#L302'>302</a>
 <a name='L303'></a><a href='#L303'>303</a>
 <a name='L304'></a><a href='#L304'>304</a>
-<a name='L305'></a><a href='#L305'>305</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L305'></a><a href='#L305'>305</a>
+<a name='L306'></a><a href='#L306'>306</a>
+<a name='L307'></a><a href='#L307'>307</a>
+<a name='L308'></a><a href='#L308'>308</a>
+<a name='L309'></a><a href='#L309'>309</a>
+<a name='L310'></a><a href='#L310'>310</a>
+<a name='L311'></a><a href='#L311'>311</a>
+<a name='L312'></a><a href='#L312'>312</a>
+<a name='L313'></a><a href='#L313'>313</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -489,7 +502,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">123x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1428x</span>
 <span class="cline-any cline-yes">123x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -748,6 +764,11 @@ export interface MDEditorProps extends Omit&lt;React.HTMLAttributes&lt;HTMLDivEl
    */
   commands?: ICommand[];
   /**
+   * Filter or modify your commands.
+   * https://github.com/uiwjs/react-md-editor/issues/296
+   */
+  commandsFilter?: (command: ICommand) =&gt; boolean | ICommand;
+  /**
    * You can create your own commands or reuse existing commands.
    */
   extraCommands?: ICommand[];
@@ -775,6 +796,7 @@ const InternalMDEditor = (
     className,
     value: propsValue,
     commands = getCommands(),
+    commandsFilter,
     extraCommands = getExtraCommands(),
     height = 200,
     toolbarHeight = 29,
@@ -794,6 +816,8 @@ const InternalMDEditor = (
     renderTextarea,
     ...other
   } = props || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+&nbsp;
+  const cmds = commands.map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item) </span>: item)).filter(Boolean) as ICommand[];
   let [state, dispatch] = useReducer(reducer, {
     markdown: propsValue,
     preview: previewType,
@@ -802,7 +826,7 @@ const InternalMDEditor = (
     tabSize,
     scrollTop: 0,
     scrollTopPreview: 0,
-    commands,
+    commands: cmds,
     extraCommands,
     fullscreen,
     onChange,
@@ -976,7 +1000,7 @@ export default mdEditor as MDEditor;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Nov 19 2021 00:55:01 GMT+0000 (Coordinated Universal Time)
+                at Wed Nov 24 2021 06:39:03 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
