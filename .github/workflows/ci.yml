@@ -29,9 +29,8 @@ jobs:
 
     - name: Create Tag
       id: create_tag
-      uses: jaywcjlove/create-tag-action@v1.2.1
+      uses: jaywcjlove/create-tag-action@v1.3.4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         package-path: ./package.json
 
     - name: Generate Changelog
@@ -53,12 +52,10 @@ jobs:
         user_email: 'github-actions[bot]@users.noreply.github.com'
 
     - name: Create Release
-      uses: ncipollo/release-action@v1
-      if: steps.create_tag.outputs.successful
+      uses: jaywcjlove/create-tag-action@v1.3.4
       with:
-        name: ${{ steps.create_tag.outputs.version }}
-        tag: ${{ steps.create_tag.outputs.version }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        package-path: ./package.json
+        release: true
         body: |
           [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor@${{steps.changelog.outputs.version}}/file/README.md)
 
