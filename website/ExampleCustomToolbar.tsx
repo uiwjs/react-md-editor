@@ -13,7 +13,7 @@ const ExampleCustomToolbar = () => {
   return (
     <MDEditor
       value={value}
-      onChange={(newValue) => setValue(newValue!)}
+      onChange={(newValue = '') => setValue(newValue)}
       textareaProps={{
         placeholder: 'Please enter Markdown text',
       }}

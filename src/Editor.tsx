@@ -146,7 +146,6 @@ const InternalMDEditor = (
     commands: cmds,
     extraCommands,
     fullscreen,
-    onChange,
     barPopup: {},
   });
   const container = useRef<HTMLDivElement>(null);
@@ -271,6 +270,12 @@ const InternalMDEditor = (
               prefixCls={prefixCls}
               autoFocus={autoFocus}
               {...textareaProps}
+              onChange={(evn) => {
+                onChange && onChange(evn.target.value);
+                if (textareaProps && textareaProps.onChange) {
+                  textareaProps.onChange(evn);
+                }
+              }}
               renderTextarea={renderTextarea}
               onScroll={(e) => handleScroll(e, 'text')}
             />

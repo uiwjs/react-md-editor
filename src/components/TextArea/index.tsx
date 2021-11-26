@@ -2,14 +2,14 @@ import React, { useEffect, Fragment, useContext } from 'react';
 import { EditorContext, ContextStore, ExecuteCommandState } from '../../Context';
 import shortcuts from './shortcuts';
 import Markdown from './Markdown';
-import Textarea from './Textarea';
-import { MDEditorProps, IProps } from '../../Editor';
+import Textarea, { TextAreaProps } from './Textarea';
+import { IProps } from '../../Editor';
 import { TextAreaCommandOrchestrator, ICommand } from '../../commands';
 import './index.less';
 
 type RenderTextareaHandle = {
   dispatch: ContextStore['dispatch'];
-  onChange?: MDEditorProps['onChange'];
+  onChange?: TextAreaProps['onChange'];
   useContext?: {
     commands: ContextStore['commands'];
     extraCommands: ContextStore['extraCommands'];
@@ -42,7 +42,7 @@ export type TextAreaRef = {
 
 export default function TextArea(props: ITextAreaProps) {
   const { prefixCls, className, onScroll, renderTextarea, ...otherProps } = props || {};
-  const { markdown, scrollTop, commands, extraCommands, onChange, dispatch } = useContext(EditorContext);
+  const { markdown, scrollTop, commands, extraCommands, dispatch } = useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   const warp = React.createRef<HTMLDivElement>();
@@ -88,7 +88,7 @@ export default function TextArea(props: ITextAreaProps) {
               },
               {
                 dispatch,
-                onChange,
+                onChange: otherProps.onChange,
                 shortcuts,
                 useContext: { commands, extraCommands, commandOrchestrator: executeRef.current },
               },

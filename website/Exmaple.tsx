@@ -35,8 +35,8 @@ const Exmaple = (props = {} as { mdStr: string }) => {
           placeholder: 'Please enter Markdown text',
         }}
         preview={state.preview}
-        onChange={(newValue) => {
-          setVisiable({ ...state, value: newValue || '' });
+        onChange={(newValue = '') => {
+          setVisiable({ ...state, value: newValue });
         }}
       />
       <div className="doc-tools">

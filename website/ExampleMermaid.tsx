@@ -41,7 +41,7 @@ export default function App() {
   const [value, setValue] = useState(mdMermaid)
   return (
     <MDEditor
-      onChange={(newValue) => setValue(newValue)}
+      onChange={(newValue = '') => setValue(newValue)}
       textareaProps={{
         placeholder: 'Please enter Markdown text',
       }}

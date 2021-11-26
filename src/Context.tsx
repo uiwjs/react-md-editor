@@ -12,7 +12,6 @@ export type ContextStore = {
   fullscreen?: boolean;
   highlightEnable?: boolean;
   autoFocus?: boolean;
-  onChange?: (value?: string) => void;
   textarea?: HTMLTextAreaElement;
   commandOrchestrator?: TextAreaCommandOrchestrator;
   textareaWarp?: HTMLDivElement;
