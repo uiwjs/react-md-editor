@@ -84,7 +84,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Filter or modify your commands.
    * https://github.com/uiwjs/react-md-editor/issues/296
    */
-  commandsFilter?: (command: ICommand) => false | ICommand;
+  commandsFilter?: (command: ICommand, isExtra: boolean) => false | ICommand;
   /**
    * You can create your own commands or reuse existing commands.
    */
@@ -134,7 +134,12 @@ const InternalMDEditor = (
     ...other
   } = props || {};
 
-  const cmds = commands.map((item) => (commandsFilter ? commandsFilter(item) : item)).filter(Boolean) as ICommand[];
+  const cmds = commands
+    .map((item) => (commandsFilter ? commandsFilter(item, false) : item))
+    .filter(Boolean) as ICommand[];
+  const extraCmds = extraCommands
+    .map((item) => (commandsFilter ? commandsFilter(item, true) : item))
+    .filter(Boolean) as ICommand[];
   let [state, dispatch] = useReducer(reducer, {
     markdown: propsValue,
     preview: previewType,
@@ -144,7 +149,7 @@ const InternalMDEditor = (
     scrollTop: 0,
     scrollTopPreview: 0,
     commands: cmds,
-    extraCommands,
+    extraCommands: extraCmds,
     fullscreen,
     barPopup: {},
   });

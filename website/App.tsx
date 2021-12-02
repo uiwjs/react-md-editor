@@ -59,7 +59,7 @@ export default function App() {
           Custom toolbar.
           <a
             target="__blank"
-            href="https://github.com/uiwjs/react-md-editor/blob/0bf21785b5748c33add999e478a9d804e0505b4c/website/ExampleCustomToolbar.tsx#L4-L67"
+            href="https://github.com/uiwjs/react-md-editor/blob/961ff62cec2e76a4252b23dbebdef3b71b754b3a/website/ExampleCustomToolbar.tsx#L1-L87"
           >
             Example Code
           </a>
@@ -69,7 +69,7 @@ export default function App() {
           Support Custom KaTeX Preview.
           <a
             target="__blank"
-            href="https://github.com/uiwjs/react-md-editor/blob/55da02055420451f4a1a6dc4100add390cdf05cd/website/ExmapleKaTeX.tsx#L1-L60"
+            href="https://github.com/uiwjs/react-md-editor/blob/961ff62cec2e76a4252b23dbebdef3b71b754b3a/website/ExmapleKaTeX.tsx#L1-L61"
           >
             Example Code
           </a>
@@ -79,7 +79,7 @@ export default function App() {
           Support Custom Mermaid Preview.
           <a
             target="__blank"
-            href="https://github.com/uiwjs/react-md-editor/blob/355795b47a7693d1a030ac09e9893b9a1601a84f/website/ExampleMermaid.tsx#L3-L62"
+            href="https://github.com/uiwjs/react-md-editor/blob/961ff62cec2e76a4252b23dbebdef3b71b754b3a/website/ExampleMermaid.tsx#L1-L102"
           >
             Example Code
           </a>

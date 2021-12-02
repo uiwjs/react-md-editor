@@ -44,7 +44,7 @@
     "@kkt/react-library": "6.11.0",
     "@kkt/scope-plugin-options": "6.11.0",
     "@types/katex": "0.11.1",
-    "@types/react": "17.0.34",
+    "@types/react": "17.0.37",
     "@types/react-dom": "17.0.11",
     "@types/react-test-renderer": "17.0.1",
     "@uiw/react-github-corners": "1.5.3",
@@ -53,15 +53,15 @@
     "compile-less-cli": "1.8.9",
     "katex": "0.15.1",
     "husky": "7.0.4",
-    "jest-environment-jsdom": "27.3.1",
+    "jest-environment-jsdom": "27.4.3",
     "kkt": "6.11.0",
-    "lint-staged": "11.2.6",
-    "prettier": "2.4.1",
+    "lint-staged": "12.1.2",
+    "prettier": "2.5.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
     "source-map-explorer": "2.5.2",
-    "tsbb": "3.4.4"
+    "tsbb": "3.5.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
