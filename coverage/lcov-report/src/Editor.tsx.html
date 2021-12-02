@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">67.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>52/78</span>
+                <span class='fraction'>54/80</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.65% </span>
+                <span class="strong">58.49% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>61/104</span>
+                <span class='fraction'>62/106</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.56% </span>
+                <span class="strong">70.83% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>16/23</span>
+                <span class='fraction'>17/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.71% </span>
+                <span class="strong">67.12% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>46/70</span>
+                <span class='fraction'>49/73</span>
             </div>
         
             
@@ -54,6 +54,12 @@
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
     </div>
     <div class='status-line medium'></div>
     <pre><table class="coverage">
@@ -374,7 +380,12 @@
 <a name='L315'></a><a href='#L315'>315</a>
 <a name='L316'></a><a href='#L316'>316</a>
 <a name='L317'></a><a href='#L317'>317</a>
-<a name='L318'></a><a href='#L318'>318</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L318'></a><a href='#L318'>318</a>
+<a name='L319'></a><a href='#L319'>319</a>
+<a name='L320'></a><a href='#L320'>320</a>
+<a name='L321'></a><a href='#L321'>321</a>
+<a name='L322'></a><a href='#L322'>322</a>
+<a name='L323'></a><a href='#L323'>323</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -510,7 +521,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">123x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123x</span>
 <span class="cline-any cline-yes">1428x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123x</span>
+<span class="cline-any cline-yes">615x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">123x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -777,7 +793,7 @@ export interface MDEditorProps extends Omit&lt;React.HTMLAttributes&lt;HTMLDivEl
    * Filter or modify your commands.
    * https://github.com/uiwjs/react-md-editor/issues/296
    */
-  commandsFilter?: (command: ICommand) =&gt; false | ICommand;
+  commandsFilter?: (command: ICommand, isExtra: boolean) =&gt; false | ICommand;
   /**
    * You can create your own commands or reuse existing commands.
    */
@@ -827,7 +843,12 @@ const InternalMDEditor = (
     ...other
   } = props || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
 &nbsp;
-  const cmds = commands.map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item) </span>: item)).filter(Boolean) as ICommand[];
+  const cmds = commands
+    .map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item, false) </span>: item))
+    .filter(Boolean) as ICommand[];
+  const extraCmds = extraCommands
+    .map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item, true) </span>: item))
+    .filter(Boolean) as ICommand[];
   let [state, dispatch] = useReducer(reducer, {
     markdown: propsValue,
     preview: previewType,
@@ -837,7 +858,7 @@ const InternalMDEditor = (
     scrollTop: 0,
     scrollTopPreview: 0,
     commands: cmds,
-    extraCommands,
+    extraCommands: extraCmds,
     fullscreen,
     barPopup: {},
   });
@@ -1014,8 +1035,8 @@ export default mdEditor as MDEditor;
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Nov 26 2021 13:33:06 GMT+0000 (Coordinated Universal Time)
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
+                at Thu Dec 02 2021 01:39:46 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
