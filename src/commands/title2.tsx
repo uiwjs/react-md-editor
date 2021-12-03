@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { insertAtLineStart } from '../utils/InsertTextAtPosition';
 import { ICommand, TextState, TextAreaTextApi } from './';
 
 export const title2: ICommand = {
@@ -8,10 +9,6 @@ export const title2: ICommand = {
   buttonProps: { 'aria-label': 'Insert title2', title: 'Insert title 2' },
   icon: <div style={{ fontSize: 16, textAlign: 'left' }}>Title 2</div>,
   execute: (state: TextState, api: TextAreaTextApi) => {
-    let modifyText = `## ${state.selectedText}\n`;
-    if (!state.selectedText) {
-      modifyText = `## `;
-    }
-    api.replaceSelection(modifyText);
+    insertAtLineStart('## ', state.selection.start, api.textArea);
   },
 };

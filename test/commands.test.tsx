@@ -396,6 +396,19 @@ it('MDEditor commands title1 value === undefined', async () => {
   expect(handleChange).toHaveReturnedWith('# ');
 });
 
+it('MDEditor commands title1 value === test', async () => {
+  const handleChange = jest.fn((value) => value);
+  const { getByLabelText, getByTitle } = render(
+    <MDEditor value='test' textareaProps={{ title: 'textarea' }} onChange={handleChange} commands={[ commands.title1 ]} />
+  );
+  const btn = getByLabelText('Insert title 1');
+  const input = getByTitle('textarea');
+  (input as HTMLTextAreaElement).setSelectionRange(2, 2);
+  
+  fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
+  expect(handleChange).toHaveReturnedWith('# test');
+});
+
 it('MDEditor commands title2 value === undefined', async () => {
   const handleChange = jest.fn((value) => value);
   const { getByLabelText,getByTitle } = render(
@@ -409,6 +422,18 @@ it('MDEditor commands title2 value === undefined', async () => {
   expect(handleChange).toHaveReturnedWith('## ');
 });
 
+it('MDEditor commands title2 value === test', async () => {
+  const handleChange = jest.fn((value) => value);
+  const { getByLabelText,getByTitle } = render(
+    <MDEditor value='test' onChange={handleChange} textareaProps={{ title: 'test' }} commands={[ commands.title2 ]} />
+  );
+  const input = getByTitle('test');
+  (input as any).setSelectionRange(2, 2)
+  const btn = getByLabelText('Insert title2');
+  fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
+  expect(handleChange).toHaveReturnedWith('## test');
+});
+
 
 it('MDEditor commands title3 value === undefined', async () => {
   const handleChange = jest.fn((value) => value);
@@ -420,6 +445,18 @@ it('MDEditor commands title3 value === undefined', async () => {
   expect(handleChange).toHaveReturnedWith('### ');
 });
 
+it('MDEditor commands title3 value === test', async () => {
+  const handleChange = jest.fn((value) => value);
+  const { getByLabelText, getByTitle } = render(
+    <MDEditor value='test' textareaProps={{ title: 'textarea' }} onChange={handleChange} commands={[ commands.title3 ]} />
+  );
+  const btn = getByLabelText('Insert title3');
+  const input = getByTitle('textarea');
+  (input as any).setSelectionRange(2, 2);
+  fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
+  expect(handleChange).toHaveReturnedWith('### test');
+});
+
 
 it('MDEditor commands title4 value === undefined', async () => {
   const handleChange = jest.fn((value) => value);
@@ -429,6 +466,18 @@ it('MDEditor commands title4 value === undefined', async () => {
   const btn = getByLabelText('Insert title4');
   fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
   expect(handleChange).toHaveReturnedWith('#### ');
+});
+
+it('MDEditor commands title4 value === test', async () => {
+  const handleChange = jest.fn((value) => value);
+  const { getByLabelText, getByTitle } = render(
+    <MDEditor value='test' textareaProps={{title: 'textarea'}} onChange={handleChange} commands={[ commands.title4 ]} />
+  );
+  const btn = getByLabelText('Insert title4');
+  const input = getByTitle('textarea');
+  (input as any).setSelectionRange(2, 2);
+  fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
+  expect(handleChange).toHaveReturnedWith('#### test');
 });
 
 
@@ -443,6 +492,19 @@ it('MDEditor commands title5 value === undefined', async () => {
 });
 
 
+it('MDEditor commands title5 value === test', async () => {
+  const handleChange = jest.fn((value) => value);
+  const { getByLabelText, getByTitle } = render(
+    <MDEditor value='test' textareaProps={{title: 'textarea'}} onChange={handleChange} commands={[ commands.title5 ]} />
+  );
+  const btn = getByLabelText('Insert title5');
+  const input = getByTitle('textarea');
+  (input as any).setSelectionRange(2, 2);
+  fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
+  expect(handleChange).toHaveReturnedWith('##### test');
+});
+
+
 it('MDEditor commands title6 value === undefined', async () => {
   const handleChange = jest.fn((value) => value);
   const { getByLabelText } = render(
@@ -451,4 +513,16 @@ it('MDEditor commands title6 value === undefined', async () => {
   const btn = getByLabelText('Insert title6');
   fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
   expect(handleChange).toHaveReturnedWith('###### ');
+});
+
+it('MDEditor commands title6 value === test', async () => {
+  const handleChange = jest.fn((value) => value);
+  const { getByLabelText, getByTitle } = render(
+    <MDEditor value='test' textareaProps={{title: 'textarea'}} onChange={handleChange} commands={[ commands.title6 ]} />
+  );
+  const btn = getByLabelText('Insert title6');
+  const input = getByTitle('textarea');
+  (input as any).setSelectionRange(2, 2);
+  fireEvent(btn, new MouseEvent('click', { bubbles: true, cancelable: true }));
+  expect(handleChange).toHaveReturnedWith('###### test');
 });
