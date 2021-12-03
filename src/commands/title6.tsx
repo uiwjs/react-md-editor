@@ -9,6 +9,10 @@ export const title6: ICommand = {
   buttonProps: { 'aria-label': 'Insert title6', title: 'Insert title 6' },
   icon: <div style={{ fontSize: 12, textAlign: 'left' }}>Title 6</div>,
   execute: (state: TextState, api: TextAreaTextApi) => {
-    insertAtLineStart('###### ', state.selection.start, api.textArea);
+    if (state.selection.start === 0 || /\n$/.test(state.text)) {
+      api.replaceSelection('###### ');
+    } else {
+      insertAtLineStart('###### ', state.selection.start, api.textArea);
+    }
   },
 };
