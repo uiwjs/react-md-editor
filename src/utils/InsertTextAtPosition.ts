@@ -47,11 +47,6 @@ export const insertAtLineStart = (
   input.focus();
   input.setRangeText(val, startIdx, startIdx);
   input.dispatchEvent(new Event('input', { bubbles: true }));
-
-  const ss = input.selectionStart;
-  if (ss !== null && ss !== undefined) {
-    input.setSelectionRange(ss + val.length, ss + val.length);
-  }
 };
 
 /**
