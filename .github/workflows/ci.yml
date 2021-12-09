@@ -67,7 +67,7 @@ jobs:
           npm i @uiw/react-md-editor@${{steps.changelog.outputs.version}}
           ```
 
-    - name: 📦 @uiw/react-amap publish to NPM
+    - name: 📦 @uiw/react-md-editor publish to NPM
       uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ secrets.NPM_TOKEN }}
