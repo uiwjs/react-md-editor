@@ -10,10 +10,16 @@ import ExampleMermaid from './ExampleMermaid';
 import ExampleCustomToolbar from './ExampleCustomToolbar';
 import Logo from './Logo';
 import './App.less';
+import pkg from '../package.json';
 
 const mdStr = ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '').replace(/^\s+/, '');
 
 export default function App() {
+  const openVersionWebsite = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target && e.target.value) {
+      window.location.href = e.target.value;
+    }
+  };
   return (
     <Fragment>
       <a
@@ -28,6 +34,11 @@ export default function App() {
           height="38"
         />
       </a>
+      <select className="version" onChange={openVersionWebsite}>
+        <option value="https://raw.githack.com/uiwjs/react-md-editor/gh-pages/index.html">v{pkg.version}</option>
+        <option value="https://raw.githack.com/uiwjs/react-md-editor/a7491b9/index.html">v2.1.11</option>
+        <option value="https://raw.githack.com/uiwjs/react-md-editor/bbe10be/index.html">v1.14.7</option>
+      </select>
       <div className="warpper">
         <GithubCorner fixed target="__blank" zIndex={99999} href="https://github.com/uiwjs/react-md-editor" />
         <header className="header">
