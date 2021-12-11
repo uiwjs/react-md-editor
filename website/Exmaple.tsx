@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import rehypeSanitize from 'rehype-sanitize';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import MDEditor, { MDEditorProps } from '../';
 
 let count = 1;
@@ -26,7 +26,24 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         value={state.value}
         previewOptions={{
           linkTarget: '_blank',
-          rehypePlugins: [rehypeSanitize],
+          rehypePlugins: [
+            [
+              rehypeSanitize,
+              {
+                ...defaultSchema,
+                attributes: {
+                  ...defaultSchema.attributes,
+                  span: [
+                    // @ts-ignore
+                    ...(defaultSchema.attributes.span || []),
+                    // List of all allowed tokens:
+                    ['className'],
+                  ],
+                  code: [['className']],
+                },
+              },
+            ],
+          ],
         }}
         height={400}
         highlightEnable={state.highlightEnable}
