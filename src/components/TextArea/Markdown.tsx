@@ -41,7 +41,7 @@ export default function Markdown(props: MarkdownProps) {
       .processSync(
         `<pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"><code class="language-markdown">${html2Escape(
           markdown,
-        )}</code></pre>`,
+        )}\n</code></pre>`,
       );
     return React.createElement('div', {
       className: 'wmde-markdown-color',
