@@ -14,16 +14,18 @@ function stopPropagation(e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElem
 export default function handleKeyDown(
   e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>,
   tabSize: number = 2,
+  defaultTabEnable: boolean = false,
 ) {
   const target = e.target as HTMLTextAreaElement;
   const starVal = target.value.substr(0, target.selectionStart);
   const valArr = starVal.split('\n');
   const currentLineStr = valArr[valArr.length - 1];
   const textArea = new TextAreaTextApi(target);
+
   /**
    * `9` - `Tab`
    */
-  if (e.code && e.code.toLowerCase() === 'tab') {
+  if (!defaultTabEnable && e.code && e.code.toLowerCase() === 'tab') {
     stopPropagation(e);
     const space = new Array(tabSize + 1).join('  ');
     if (target.selectionStart !== target.selectionEnd) {

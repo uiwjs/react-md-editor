@@ -413,6 +413,7 @@ export default HomePage;
 - `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.
 - `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.
 - `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.
+- `defaultTabEnable?: boolean=false`: If `false`, the `tab` key insert a tab character into the textarea. If `true`, the `tab` key executes default behavior e.g. focus shifts to next element. 
 - `hideToolbar?: boolean=false`: Option to hide the tool bar.
 - `enableScroll?: boolean=true`: Whether to enable scrolling.
 

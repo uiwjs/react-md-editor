@@ -10,8 +10,17 @@ export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTex
 
 export default function Textarea(props: TextAreaProps) {
   const { prefixCls, onChange, ...other } = props;
-  const { markdown, commands, fullscreen, preview, highlightEnable, extraCommands, tabSize, dispatch } =
-    useContext(EditorContext);
+  const {
+    markdown,
+    commands,
+    fullscreen,
+    preview,
+    highlightEnable,
+    extraCommands,
+    tabSize,
+    defaultTabEnable,
+    dispatch,
+  } = useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   const statesRef = React.useRef<ExecuteCommandState>({ fullscreen, preview });
@@ -30,7 +39,7 @@ export default function Textarea(props: TextAreaProps) {
   }, []);
 
   const onKeyDown = (e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) => {
-    handleKeyDown(e, tabSize);
+    handleKeyDown(e, tabSize, defaultTabEnable);
     shortcuts(e, [...(commands || []), ...(extraCommands || [])], executeRef.current, dispatch, statesRef.current);
   };
   useEffect(() => {

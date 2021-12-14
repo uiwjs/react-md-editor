@@ -77,6 +77,10 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   tabSize?: number;
   /**
+   * If `false`, the `tab` key insert a tab character into the textarea. If `true`, the `tab` key executes default behavior e.g. focus shifts to next element.
+   */
+  defaultTabEnable?: boolean;
+  /**
    * You can create your own commands or reuse existing commands.
    */
   commands?: ICommand[];
@@ -128,12 +132,12 @@ const InternalMDEditor = (
     minHeight = 100,
     autoFocus,
     tabSize = 2,
+    defaultTabEnable = false,
     onChange,
     hideToolbar,
     renderTextarea,
     ...other
   } = props || {};
-
   const cmds = commands
     .map((item) => (commandsFilter ? commandsFilter(item, false) : item))
     .filter(Boolean) as ICommand[];
@@ -146,6 +150,7 @@ const InternalMDEditor = (
     height,
     highlightEnable,
     tabSize,
+    defaultTabEnable,
     scrollTop: 0,
     scrollTopPreview: 0,
     commands: cmds,
