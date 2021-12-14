@@ -77,7 +77,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   tabSize?: number;
   /**
-   * If `false`, the `tab` key insert a tab character into the textarea. If `true`, the `tab` key executes default behavior e.g. focus shifts to next element.
+   * If `false`, the `tab` key inserts a tab character into the textarea. If `true`, the `tab` key executes default behavior e.g. focus shifts to next element.
    */
   defaultTabEnable?: boolean;
   /**
