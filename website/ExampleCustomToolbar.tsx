@@ -8,10 +8,11 @@ const ExampleCustomToolbar = () => {
     buttonProps: null,
     icon: <span style={{ padding: '0 5px' }}>Custom Toolbar</span>,
   };
-  const [value, setValue] = useState('Hello Markdown!');
+  const [value, setValue] = useState('Hello Markdown! `Tab` key uses default behavior');
 
   return (
     <MDEditor
+      defaultTabEnable={true}
       value={value}
       onChange={(newValue = '') => setValue(newValue)}
       textareaProps={{

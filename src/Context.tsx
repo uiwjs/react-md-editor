@@ -22,6 +22,7 @@ export type ContextStore = {
   scrollTop?: number;
   scrollTopPreview?: number;
   tabSize?: number;
+  defaultTabEnable?: boolean;
 };
 
 export type ExecuteCommandState = Pick<ContextStore, 'fullscreen' | 'preview' | 'highlightEnable'>;
