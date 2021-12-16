@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md">
-    <img alt="react-md-editor logo" src="https://raw.githubusercontent.com/uiwjs/react-markdown-editor/4884f29f2aad59bf7f512184ba3726d76bbd7170/website/logo.svg?sanitize=true">
+    <img alt="react-md-editor logo" src="https://user-images.githubusercontent.com/1680273/146292033-0e5e57fc-6f3e-4032-9fa6-0de05f239e36.png">
   </a>
 </p>
 
