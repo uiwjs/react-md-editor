@@ -46,7 +46,7 @@ export function ToolbarItems(props: IToolbarProps) {
 
   useEffect(() => {
     if (document) {
-      document.body.style.overflow = !fullscreen ? 'initial' : 'hidden';
+      document.body.style.overflow = !fullscreen ? '' : 'hidden';
     }
   }, [fullscreen]);
 
