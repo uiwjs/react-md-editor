@@ -77,9 +77,17 @@ export default function handleKeyDown(
      */
     stopPropagation(e);
     let startStr = '\n- ';
+
     if (currentLineStr.startsWith('*')) {
       startStr = '\n* ';
     }
+
+    if (currentLineStr.startsWith('- [ ]')) {
+      startStr = '\n- [ ] ';
+    } else if (currentLineStr.startsWith('- [X]')) {
+      startStr = '\n- [X] ';
+    }
+
     if (/^\d+.\s/.test(currentLineStr)) {
       startStr = `\n${parseInt(currentLineStr) + 1}. `;
     }
