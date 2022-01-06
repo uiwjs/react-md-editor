@@ -71,6 +71,35 @@ export default function App() {
 }
 ```
 
+### Security
+Please note markdown needs to be sanitized if you do not **completely trust** your authors.
+Otherwise, your app is vulnerable to XSS. This can be achieved by adding [rehype-sanitize](https://github.com/rehypejs/rehype-sanitize) as a plugin.
+
+```jsx
+import React from "react";
+import MDEditor from '@uiw/react-md-editor';
+import rehypeSanitize from "rehype-sanitize";
+
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!** <IFRAME SRC="javascript:javascript:alert(window.origin);"></IFRAME>");
+  return (
+    <div className="container">
+      <MDEditor
+        value={value}
+        onChange={setValue}
+        previewOptions={{
+          rehypePlugins: [[rehypeSanitize]],
+        }}
+      />
+      <MDEditor.Markdown 
+        source={value} 
+        rehypePlugins={[[rehypeSanitize]]}
+      />
+    </div>
+  );
+}
+```
+
 ### Custom Toolbars
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-m2n10?fontsize=14&hidenavigation=1&theme=dark)
