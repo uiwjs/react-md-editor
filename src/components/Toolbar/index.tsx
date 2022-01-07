@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useRef } from 'react';
 import { IProps } from '../../Editor';
 import { EditorContext, PreviewType, ContextStore } from '../../Context';
 import { ICommand } from '../../commands';
@@ -15,6 +15,8 @@ export interface IToolbarProps extends IProps {
 export function ToolbarItems(props: IToolbarProps) {
   const { prefixCls } = props;
   const { fullscreen, preview, barPopup = {}, commandOrchestrator, dispatch } = useContext(EditorContext);
+  const originalOverflow = useRef('');
+
   function handleClick(command: ICommand<string>, name?: string) {
     if (!dispatch) return;
     const state: ContextStore = { barPopup: { ...barPopup } };
@@ -46,9 +48,19 @@ export function ToolbarItems(props: IToolbarProps) {
 
   useEffect(() => {
     if (document) {
-      document.body.style.overflow = !fullscreen ? '' : 'hidden';
+      if (fullscreen) {
+        // prevent scroll on fullscreen
+        document.body.style.overflow = 'hidden';
+      } else {
+        // get the original overflow only the first time
+        if (!originalOverflow.current) {
+          originalOverflow.current = window.getComputedStyle(document.body, null).overflow;
+        }
+        // reset to the original overflow
+        document.body.style.overflow = originalOverflow.current;
+      }
     }
-  }, [fullscreen]);
+  }, [fullscreen, originalOverflow]);
 
   return (
     <ul>
