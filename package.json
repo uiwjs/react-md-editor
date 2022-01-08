@@ -19,7 +19,7 @@
     "watch": "tsbb watch & npm run css:watch",
     "build": "tsbb build && npm run css:build && npm run css:build:dist",
     "test": "tsbb test --env=jsdom",
-    "coverage": "tsbb test --env=jsdom --coverage",
+    "coverage": "tsbb test --env=jsdom --coverage --bail",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "map": "source-map-explorer build/static/js/*.js --html build/website-result.html"
   },
