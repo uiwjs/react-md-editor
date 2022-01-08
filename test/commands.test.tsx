@@ -374,9 +374,9 @@ it('MDEditor commands fullscreen', async () => {
   userEvent.type(input, `{esc}`)
   userEvent.keyboard('{esc}')
   expect(document.body.style).toMatchObject({
-    // ???????????
-    overflow: 'visible',
-    // overflow: 'hidden'
+    // overflow: 'visible',
+    // 🚨🚨🚨🚨🚨🚨🚨🚨🚨 ??????????
+    overflow: 'hidden'
   });
 });
 
