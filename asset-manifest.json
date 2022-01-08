@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-md-editor/static/css/main.d1e516ac.css",
-    "main.js": "/react-md-editor/static/js/main.607cf60a.js",
+    "main.css": "/react-md-editor/static/css/main.7b42dc6c.css",
+    "main.js": "/react-md-editor/static/js/main.37ae4dba.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.f4f93b24.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.eadc82f8.js",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.bbbc081d.js",
@@ -68,8 +68,8 @@
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/react-md-editor/index.html",
-    "main.d1e516ac.css.map": "/react-md-editor/static/css/main.d1e516ac.css.map",
-    "main.607cf60a.js.map": "/react-md-editor/static/js/main.607cf60a.js.map",
+    "main.7b42dc6c.css.map": "/react-md-editor/static/css/main.7b42dc6c.css.map",
+    "main.37ae4dba.js.map": "/react-md-editor/static/js/main.37ae4dba.js.map",
     "refractor-prismjs-vendor.f4f93b24.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.f4f93b24.js.map",
     "parse5-vendor.eadc82f8.js.map": "/react-md-editor/static/js/parse5-vendor.eadc82f8.js.map",
     "micromark-vendor.bbbc081d.js.map": "/react-md-editor/static/js/micromark-vendor.bbbc081d.js.map",
@@ -82,7 +82,7 @@
     "static/js/micromark-vendor.bbbc081d.js",
     "static/js/react-vendor.841b99bb.js",
     "static/js/362.d086ccc9.js",
-    "static/css/main.d1e516ac.css",
-    "static/js/main.607cf60a.js"
+    "static/css/main.7b42dc6c.css",
+    "static/js/main.37ae4dba.js"
   ]
 }
