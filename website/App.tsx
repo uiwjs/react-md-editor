@@ -54,16 +54,16 @@ export default function App() {
             <Github.Social type="forks" href="https://github.com/uiwjs/react-md-editor" />
             <Github.Social type="stars" href="https://github.com/uiwjs/react-md-editor/stargazers" />
             <Github.Social type="watchers" href="https://github.com/uiwjs/react-md-editor/watchers" />
+            <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
+              <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat" />
+            </a>
+            <a href="https://coveralls.io/github/uiwjs/react-md-editor?branch=master" target="__blank">
+              <img
+                alt="Coverage Status"
+                src="https://coveralls.io/repos/github/uiwjs/react-md-editor/badge.svg?branch=master"
+              />
+            </a>
           </Github>
-          <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
-            <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat" />
-          </a>
-          <a href="https://coveralls.io/github/uiwjs/react-md-editor?branch=master" target="__blank">
-            <img
-              alt="Coverage Status"
-              src="https://coveralls.io/repos/github/uiwjs/react-md-editor/badge.svg?branch=master"
-            />
-          </a>
         </div>
         <Exmaple mdStr={mdStr} />
         <div className="page-title">
