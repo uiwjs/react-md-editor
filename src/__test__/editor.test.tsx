@@ -5,9 +5,9 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { render, fireEvent, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import MDEditor from '../src';
+import MDEditor from '../';
 
 it('MDEditor', () => {
   const component = TestRenderer.create(<MDEditor value="**Hello world!!!**" />);
@@ -21,30 +21,28 @@ it('MDEditor', () => {
   }
 });
 
-
 it('MDEditor onChange', async () => {
   const MyComponent = () => {
-    const [value, setValue] = React.useState("**Hello world!!!**");
+    const [value, setValue] = React.useState('**Hello world!!!**');
     return (
       <MDEditor
         value={value}
         textareaProps={{
-          title: 'test'
+          title: 'test',
         }}
         onChange={(value) => {
-          expect(value).toEqual('# title')
+          expect(value).toEqual('# title');
           setValue(value || '');
         }}
       />
     );
   };
   render(<MyComponent />);
-  const inputNode = screen.getByTitle('test')
+  const inputNode = screen.getByTitle('test');
   inputNode.focus();
   fireEvent.change(inputNode, { target: { value: '# title' } });
   inputNode.blur();
 });
-
 
 it('MDEditor KeyboardEvent onChange', async () => {
   const handleChange = jest.fn((value) => value);
@@ -52,10 +50,10 @@ it('MDEditor KeyboardEvent onChange', async () => {
     <MDEditor
       value=""
       textareaProps={{
-        title: 'test'
+        title: 'test',
       }}
       onChange={handleChange}
-    />
+    />,
   );
   const input = screen.getByTitle('test');
   userEvent.type(input, 'Hello,{enter}World!');
@@ -63,4 +61,3 @@ it('MDEditor KeyboardEvent onChange', async () => {
   expect(handleChange).lastReturnedWith('!');
   expect(handleChange).nthCalledWith(7, '\n');
 });
-

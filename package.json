@@ -84,10 +84,6 @@
     "code"
   ],
   "jest": {
-    "testMatch": [
-      "<rootDir>/test/*.{ts,tsx}",
-      "<rootDir>/test/**/*.{ts,tsx}"
-    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
