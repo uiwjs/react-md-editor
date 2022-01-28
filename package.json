@@ -30,6 +30,7 @@
   "files": [
     "markdown-editor.css",
     "lib",
+    "dist",
     "esm",
     "src"
   ],
