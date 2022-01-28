@@ -39,10 +39,10 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "7.0.4",
-    "@kkt/raw-modules": "7.0.4",
-    "@kkt/react-library": "7.0.4",
-    "@kkt/scope-plugin-options": "7.0.4",
+    "@kkt/less-modules": "7.0.7",
+    "@kkt/raw-modules": "7.0.7",
+    "@kkt/react-library": "7.0.7",
+    "@kkt/scope-plugin-options": "7.0.7",
     "@types/katex": "0.11.1",
     "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
@@ -51,16 +51,16 @@
     "@uiw/react-codesandbox": "1.1.4",
     "@uiw/react-shields": "1.1.2",
     "compile-less-cli": "1.8.11",
-    "katex": "0.15.1",
+    "katex": "0.15.2",
     "husky": "7.0.4",
-    "kkt": "7.0.4",
-    "lint-staged": "12.1.5",
+    "kkt": "7.0.7",
+    "lint-staged": "12.3.2",
     "prettier": "2.5.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
     "source-map-explorer": "2.5.2",
-    "tsbb": "3.5.4"
+    "tsbb": "3.5.5"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
