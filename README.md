@@ -463,6 +463,12 @@ npm run start  # Preview code example.
 - [@uiw/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor): A markdown editor with preview, implemented with React.js and TypeScript.
 - [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview): React component preview markdown text in web browser. 
 
+## Contributors
+
+<a href="https://github.com/uiwjs/react-md-editor/graphs/contributors">
+  <img src="https://uiwjs.github.io/react-md-editor/CONTRIBUTORS.svg" />
+</a>
+
 ### License
 
 Licensed under the MIT License.
