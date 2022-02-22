@@ -42,7 +42,7 @@
   "devDependencies": {
     "@kkt/less-modules": "7.0.7",
     "@kkt/raw-modules": "7.0.7",
-    "@kkt/react-library": "7.0.7",
+    "@kkt/react-library": "7.1.1",
     "@kkt/scope-plugin-options": "7.0.7",
     "@types/katex": "0.11.1",
     "@types/react": "17.0.38",
