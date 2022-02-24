@@ -1,23 +1,20 @@
-
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="108" height="20" role="img" aria-label="coverage: 71.4%">
-  <title>coverage: 71.4%</title>
-  <linearGradient id="s" x2="0" y2="100%">
-    <stop offset="0" stop-color="#bbb" stop-opacity=".1" />
-    <stop offset="1" stop-opacity=".1" />
+<svg width="107.3" height="20" viewBox="0 0 1073 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="coverage: 71.5%">
+  <title>coverage: 71.5%</title>
+  <linearGradient id="a" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#EEE"/>
+    <stop offset="1" stop-opacity=".1"/>
   </linearGradient>
-  <clipPath id="r">
-    <rect width="108" height="20" rx="3" fill="#fff" />
-  </clipPath>
-  <g clip-path="url(#r)">
-    <rect width="61" height="20" fill="#555"/>
-    <rect x="61" width="143" height="20" fill="#cba317"/>
-    <rect width="108" height="20" fill="url(#s)"/>
+  <mask id="m"><rect width="1073" height="200" rx="30" fill="#FFF"/></mask>
+  <g mask="url(#m)">
+    <rect width="603" height="200" fill="#555"/>
+    <rect width="470" height="200" fill="#cba317" x="603"/>
+    <rect width="1073" height="200" fill="url(#a)"/>
   </g>
-  <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110">
-    <text aria-hidden="true" x="315" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="510">coverage</text>
-    <text x="315" y="140" transform="scale(.1)" fill="#fff" textLength="510">coverage</text>
-    <text aria-hidden="true" x="835" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" >71.4%</text>
-    <text x="835" y="140" transform="scale(.1)" fill="#fff" >71.4%</text>
+  <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
+    <text x="60" y="148" textLength="503" fill="#000" opacity="0.25">coverage</text>
+    <text x="50" y="138" textLength="503">coverage</text>
+    <text x="658" y="148" textLength="370" fill="#000" opacity="0.25">71.5%</text>
+    <text x="648" y="138" textLength="370">71.5%</text>
   </g>
-</svg>
   
+</svg>

@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/react-md-editor/static/css/main.cc77298c.css",
-    "main.js": "/react-md-editor/static/js/main.a566756a.js",
+    "main.js": "/react-md-editor/static/js/main.4db3f169.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.f4f93b24.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.eadc82f8.js",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.bbbc081d.js",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.841b99bb.js",
-    "static/js/722.54a6a4a9.js": "/react-md-editor/static/js/722.54a6a4a9.js",
+    "static/js/722.25d4a7ab.js": "/react-md-editor/static/js/722.25d4a7ab.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/react-md-editor/static/media/KaTeX_AMS-Regular.853be92419a6c3766b9a.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/react-md-editor/static/media/KaTeX_Main-Regular.9eba1d77abcf2aa6e94e.ttf",
     "static/media/KaTeX_Main-Bold.ttf": "/react-md-editor/static/media/KaTeX_Main-Bold.8169508bf58f8bd92ad8.ttf",
@@ -69,20 +69,20 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/react-md-editor/index.html",
     "main.cc77298c.css.map": "/react-md-editor/static/css/main.cc77298c.css.map",
-    "main.a566756a.js.map": "/react-md-editor/static/js/main.a566756a.js.map",
+    "main.4db3f169.js.map": "/react-md-editor/static/js/main.4db3f169.js.map",
     "refractor-prismjs-vendor.f4f93b24.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.f4f93b24.js.map",
     "parse5-vendor.eadc82f8.js.map": "/react-md-editor/static/js/parse5-vendor.eadc82f8.js.map",
     "micromark-vendor.bbbc081d.js.map": "/react-md-editor/static/js/micromark-vendor.bbbc081d.js.map",
     "react-vendor.841b99bb.js.map": "/react-md-editor/static/js/react-vendor.841b99bb.js.map",
-    "722.54a6a4a9.js.map": "/react-md-editor/static/js/722.54a6a4a9.js.map"
+    "722.25d4a7ab.js.map": "/react-md-editor/static/js/722.25d4a7ab.js.map"
   },
   "entrypoints": [
     "static/js/refractor-prismjs-vendor.f4f93b24.js",
     "static/js/parse5-vendor.eadc82f8.js",
     "static/js/micromark-vendor.bbbc081d.js",
     "static/js/react-vendor.841b99bb.js",
-    "static/js/722.54a6a4a9.js",
+    "static/js/722.25d4a7ab.js",
     "static/css/main.cc77298c.css",
-    "static/js/main.a566756a.js"
+    "static/js/main.4db3f169.js"
   ]
 }

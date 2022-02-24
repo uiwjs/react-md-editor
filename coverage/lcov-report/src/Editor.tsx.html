@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.5% </span>
+                <span class="strong">68.29% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>54/80</span>
+                <span class='fraction'>56/82</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.83% </span>
+                <span class="strong">72% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>17/24</span>
+                <span class='fraction'>18/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.12% </span>
+                <span class="strong">68% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/73</span>
+                <span class='fraction'>51/75</span>
             </div>
         
             
@@ -390,7 +390,12 @@
 <a name='L325'></a><a href='#L325'>325</a>
 <a name='L326'></a><a href='#L326'>326</a>
 <a name='L327'></a><a href='#L327'>327</a>
-<a name='L328'></a><a href='#L328'>328</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L328'></a><a href='#L328'>328</a>
+<a name='L329'></a><a href='#L329'>329</a>
+<a name='L330'></a><a href='#L330'>330</a>
+<a name='L331'></a><a href='#L331'>331</a>
+<a name='L332'></a><a href='#L332'>332</a>
+<a name='L333'></a><a href='#L333'>333</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -647,6 +652,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -680,14 +698,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -972,6 +982,19 @@ const InternalMDEditor = (
     }
   };
 &nbsp;
+  const mdPreview = useMemo(
+    () =&gt; (
+      &lt;MarkdownPreview
+        {...previewOptions}
+        onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'preview')}</span>
+        ref={previewRef}
+        source={state.markdown || ''}
+        className={`${prefixCls}-preview ${previewOptions.className || ''}`}
+      /&gt;
+    ),
+    [prefixCls, previewOptions, state.markdown],
+  );
+&nbsp;
   return (
     &lt;EditorContext.Provider value={{ ...state, dispatch }}&gt;
       &lt;div
@@ -1009,15 +1032,7 @@ const InternalMDEditor = (
               onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'text')}</span>
             /&gt;
           )}
-          {/(live|preview)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; (
-            &lt;MarkdownPreview
-              {...previewOptions}
-              onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'preview')}</span>
-              ref={previewRef}
-              source={state.markdown || ''}
-              className={`${prefixCls}-preview ${previewOptions.className || ''}`}
-            /&gt;
-          )}
+          {/(live|preview)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; mdPreview}
         &lt;/div&gt;
         {visiableDragbar &amp;&amp; !state.fullscreen &amp;&amp; (
           &lt;DragBar
@@ -1051,7 +1066,7 @@ export default mdEditor as MDEditor;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Feb 16 2022 16:34:07 GMT+0000 (Coordinated Universal Time)
+                at Thu Feb 24 2022 03:07:36 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
