@@ -253,6 +253,19 @@ const InternalMDEditor = (
     }
   };
 
+  const mdPreview = useMemo(
+    () => (
+      <MarkdownPreview
+        {...previewOptions}
+        onScroll={(e) => handleScroll(e, 'preview')}
+        ref={previewRef}
+        source={state.markdown || ''}
+        className={`${prefixCls}-preview ${previewOptions.className || ''}`}
+      />
+    ),
+    [prefixCls, previewOptions, state.markdown],
+  );
+
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div
@@ -290,15 +303,7 @@ const InternalMDEditor = (
               onScroll={(e) => handleScroll(e, 'text')}
             />
           )}
-          {/(live|preview)/.test(state.preview || '') && (
-            <MarkdownPreview
-              {...previewOptions}
-              onScroll={(e) => handleScroll(e, 'preview')}
-              ref={previewRef}
-              source={state.markdown || ''}
-              className={`${prefixCls}-preview ${previewOptions.className || ''}`}
-            />
-          )}
+          {/(live|preview)/.test(state.preview || '') && mdPreview}
         </div>
         {visiableDragbar && !state.fullscreen && (
           <DragBar
