@@ -1,6 +1,6 @@
 import Codesandbox from '@uiw/react-codesandbox';
 
-const code = `import React, { useState } from "react";
+const code = `import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import MDEditor from "@uiw/react-md-editor";
 import mermaid from "mermaid";
@@ -28,42 +28,72 @@ Bob-->>John: Jolly good!
 \\\`\\\`\\\`
 \`;
 
-const getCode = (arr = []) => arr.map(dt => {
-  if (typeof dt === 'string') {
-    return dt;
+const randomid = () => parseInt(String(Math.random() * 1e15), 10).toString(36);
+
+const Code = ({ inline, children = [], className, ...props }: any) => {
+  const demoid = useRef(\`dome\${randomid()}\`);
+  const code = getCode(children);
+  const demo = useRef(null);
+  useEffect(() => {
+    if (demo.current) {
+      try {
+        const str = mermaid.render(
+          demoid.current,
+          code,
+          () => null,
+          demo.current
+        );
+        // @ts-ignore
+        demo.current.innerHTML = str;
+      } catch (error) {
+        // @ts-ignore
+        demo.current.innerHTML = error;
+      }
+    }
+  }, [code, demo]);
+
+  if (
+    typeof code === "string" &&
+    typeof className === "string" &&
+    /^language-mermaid/.test(className.toLocaleLowerCase())
+  ) {
+    return (
+      <code ref={demo}>
+        <code id={demoid.current} style={{ display: "none" }} />
+      </code>
+    );
   }
-  if (dt.props && dt.props.children) {
-    return getCode(dt.props.children);
-  }
-}).filter(Boolean).join('');
+  return <code className={String(className)}>{children}</code>;
+};
+
+const getCode = (arr = []) =>
+  arr
+    .map((dt) => {
+      if (typeof dt === "string") {
+        return dt;
+      }
+      if (dt.props && dt.props.children) {
+        return getCode(dt.props.children);
+      }
+      return false;
+    })
+    .filter(Boolean)
+    .join("");
 
 export default function App() {
-  const [value, setValue] = useState(mdMermaid)
+  const [value, setValue] = useState(mdMermaid);
   return (
     <MDEditor
-      onChange={(newValue = '') => setValue(newValue)}
+      onChange={(newValue = "") => setValue(newValue)}
       textareaProps={{
-        placeholder: 'Please enter Markdown text',
+        placeholder: "Please enter Markdown text"
       }}
       height={500}
       value={value}
       previewOptions={{
         components: {
-          code: ({ inline, children = [], className, ...props }) => {
-            const code = getCode(children);
-            if (
-              typeof code === 'string' &&
-              typeof className === 'string' &&
-              /^language-mermaid/.test(className.toLocaleLowerCase())
-            ) {
-              const Elm = document.createElement("div");
-              Elm.id = "demo";
-              const svg = mermaid.render("demo", code);
-              return <code dangerouslySetInnerHTML={{ __html: svg }} />
-            }
-            return <code className={String(className)}>{children}</code>;
-          },
-        },
+          code: Code
+        }
       }}
     />
   );
