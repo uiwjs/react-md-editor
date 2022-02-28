@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/uiwjs/react-md-editor/actions" target="__blank">
-    <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/workflows/Build%20&%20Deploy/badge.svg">
+    <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/actions/workflows/ci.yml/badge.svg">
   </a>
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat">
@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg">
   </a>
   <a href="https://gitee.com/uiw/react-md-editor" target="__blank">
-    <img alt="Release" src="https://jaywcjlove.github.io/sb/ico/gitee.svg">
+    <img alt="Gitee" src="https://jaywcjlove.github.io/sb/ico/gitee.svg">
   </a>
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm version" src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
@@ -72,6 +72,7 @@ export default function App() {
 ```
 
 ### Security
+
 Please note markdown needs to be sanitized if you do not **completely trust** your authors.
 Otherwise, your app is vulnerable to XSS. This can be achieved by adding [rehype-sanitize](https://github.com/rehypejs/rehype-sanitize) as a plugin.
 
