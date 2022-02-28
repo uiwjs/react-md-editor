@@ -68,7 +68,7 @@ export function ToolbarItems(props: IToolbarProps) {
         if (item.keyCommand === 'divider') {
           return <li key={idx} {...item.liProps} className={`${prefixCls}-toolbar-divider`} />;
         }
-        if (!item.keyCommand) return <Fragment />;
+        if (!item.keyCommand) return <Fragment key={idx} />;
         const activeBtn =
           (fullscreen && item.keyCommand === 'fullscreen') || (item.keyCommand === 'preview' && preview === item.value);
         const childNode =
