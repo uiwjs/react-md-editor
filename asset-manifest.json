@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/react-md-editor/static/css/main.cc77298c.css",
-    "main.js": "/react-md-editor/static/js/main.92a94a07.js",
+    "main.js": "/react-md-editor/static/js/main.c287e6de.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.82c0caf6.js",
-    "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.82bf3563.js",
+    "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.36cc5fca.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.bb4042d8.js",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.bbbc081d.js",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.841b99bb.js",
@@ -38,8 +38,8 @@
     "static/media/KaTeX_Typewriter-Regular.woff": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.4c6b94fd1d07f8beff7c.woff",
     "static/media/KaTeX_SansSerif-Bold.woff": "/react-md-editor/static/media/KaTeX_SansSerif-Bold.b9cd458ac6d5889ff9c3.woff",
     "static/media/KaTeX_SansSerif-Italic.woff": "/react-md-editor/static/media/KaTeX_SansSerif-Italic.8d593cfaa96238d5e2f8.woff",
-    "index.html": "/react-md-editor/index.html",
     "static/media/KaTeX_Typewriter-Regular.woff2": "/react-md-editor/static/media/KaTeX_Typewriter-Regular.c295e7f71970f03c0549.woff2",
+    "index.html": "/react-md-editor/index.html",
     "static/media/KaTeX_Fraktur-Bold.woff": "/react-md-editor/static/media/KaTeX_Fraktur-Bold.354501bac435c3264834.woff",
     "static/media/KaTeX_Fraktur-Regular.woff": "/react-md-editor/static/media/KaTeX_Fraktur-Regular.6fdf0ac577be0ba82a4c.woff",
     "static/media/KaTeX_Caligraphic-Bold.ttf": "/react-md-editor/static/media/KaTeX_Caligraphic-Bold.7489a2fbfb9bfe704420.ttf",
@@ -69,20 +69,20 @@
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "main.cc77298c.css.map": "/react-md-editor/static/css/main.cc77298c.css.map",
-    "main.92a94a07.js.map": "/react-md-editor/static/js/main.92a94a07.js.map",
+    "main.c287e6de.js.map": "/react-md-editor/static/js/main.c287e6de.js.map",
     "refractor-prismjs-vendor.82c0caf6.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.82c0caf6.js.map",
-    "babel-runtime-vendor.82bf3563.js.map": "/react-md-editor/static/js/babel-runtime-vendor.82bf3563.js.map",
+    "babel-runtime-vendor.36cc5fca.js.map": "/react-md-editor/static/js/babel-runtime-vendor.36cc5fca.js.map",
     "parse5-vendor.bb4042d8.js.map": "/react-md-editor/static/js/parse5-vendor.bb4042d8.js.map",
     "micromark-vendor.bbbc081d.js.map": "/react-md-editor/static/js/micromark-vendor.bbbc081d.js.map",
     "react-vendor.841b99bb.js.map": "/react-md-editor/static/js/react-vendor.841b99bb.js.map"
   },
   "entrypoints": [
     "static/js/refractor-prismjs-vendor.82c0caf6.js",
-    "static/js/babel-runtime-vendor.82bf3563.js",
+    "static/js/babel-runtime-vendor.36cc5fca.js",
     "static/js/parse5-vendor.bb4042d8.js",
     "static/js/micromark-vendor.bbbc081d.js",
     "static/js/react-vendor.841b99bb.js",
     "static/css/main.cc77298c.css",
-    "static/js/main.92a94a07.js"
+    "static/js/main.c287e6de.js"
   ]
 }
