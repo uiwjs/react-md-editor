@@ -1,11 +1,9 @@
-name: Build & Deploy
+name: CI
 on:
   push:
     branches:
       - master
 
-env:
-  SKIP_PREFLIGHT_CHECK: true
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
@@ -22,8 +20,9 @@ jobs:
     - run: npm run bundle:min
     - run: npm run coverage
 
-    - run: npm i coverage-badges-cli -g
-    - run: coverage-badges
+    - name: Create Coverage Badges
+      uses: jaywcjlove/coverage-badges-cli@main
+
     - run: npm run doc
     - run: cp -rp coverage build
 
