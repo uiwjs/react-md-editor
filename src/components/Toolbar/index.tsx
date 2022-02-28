@@ -89,6 +89,7 @@ export function ToolbarItems(props: IToolbarProps) {
                 'button',
                 {
                   type: 'button',
+                  key: idx,
                   disabled,
                   'data-name': item.name,
                   ...item.buttonProps,
