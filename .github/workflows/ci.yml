@@ -35,7 +35,7 @@ jobs:
 
     - name: Create Tag
       id: create_tag
-      uses: jaywcjlove/create-tag-action@v1.3.5
+      uses: jaywcjlove/create-tag-action@v1.3.6
       with:
         package-path: ./package.json
 
@@ -62,7 +62,7 @@ jobs:
         filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
 
     - name: Create Release
-      uses: jaywcjlove/create-tag-action@v1.3.5
+      uses: jaywcjlove/create-tag-action@v1.3.6
       with:
         package-path: ./package.json
         release: true
