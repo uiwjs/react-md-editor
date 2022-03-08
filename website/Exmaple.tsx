@@ -8,6 +8,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
   const [state, setVisiable] = React.useState<MDEditorProps>({
     visiableDragbar: true,
     hideToolbar: true,
+    overflow: true,
     highlightEnable: true,
     enableScroll: true,
     value: props.mdStr || '',
@@ -24,6 +25,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
       <MDEditor
         autoFocus
         value={state.value}
+        overflow={state.overflow}
         previewOptions={{
           linkTarget: '_blank',
           rehypePlugins: [
@@ -98,6 +100,16 @@ const Exmaple = (props = {} as { mdStr: string }) => {
             }}
           />
           {state.hideToolbar ? 'Show' : 'Hidden'} ToolBar
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={state.overflow}
+            onChange={(e) => {
+              setVisiable({ ...state, overflow: e.target.checked });
+            }}
+          />
+          overflow
         </label>
         <label>
           <input type="radio" name="preview" value="edit" checked={state.preview === 'edit'} onChange={upPreview} />

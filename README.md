@@ -463,6 +463,7 @@ export default HomePage;
 - `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
 - `fullscreen?: boolean=false`: Show markdown preview.
+- `overflow?: boolean=true`: Disable `fullscreen` setting body styles
 - `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.
 - `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.
 - `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.

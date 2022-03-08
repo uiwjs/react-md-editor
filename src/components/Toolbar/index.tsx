@@ -6,6 +6,7 @@ import Child from './Child';
 import './index.less';
 
 export interface IToolbarProps extends IProps {
+  overflow?: boolean;
   height?: React.CSSProperties['height'];
   onCommand?: (command: ICommand<string>, groupName?: string) => void;
   commands?: ICommand<string>[];
@@ -13,7 +14,7 @@ export interface IToolbarProps extends IProps {
 }
 
 export function ToolbarItems(props: IToolbarProps) {
-  const { prefixCls } = props;
+  const { prefixCls, overflow } = props;
   const { fullscreen, preview, barPopup = {}, commandOrchestrator, dispatch } = useContext(EditorContext);
   const originalOverflow = useRef('');
 
@@ -47,7 +48,8 @@ export function ToolbarItems(props: IToolbarProps) {
   }
 
   useEffect(() => {
-    if (document) {
+    console.log(overflow);
+    if (document && overflow) {
       if (fullscreen) {
         // prevent scroll on fullscreen
         document.body.style.overflow = 'hidden';
@@ -60,7 +62,7 @@ export function ToolbarItems(props: IToolbarProps) {
         document.body.style.overflow = originalOverflow.current;
       }
     }
-  }, [fullscreen, originalOverflow]);
+  }, [fullscreen, originalOverflow, overflow]);
 
   return (
     <ul>
@@ -102,6 +104,7 @@ export function ToolbarItems(props: IToolbarProps) {
               )}
             {item.children && (
               <Child
+                overflow={overflow}
                 groupName={item.groupName}
                 prefixCls={prefixCls}
                 children={childNode}

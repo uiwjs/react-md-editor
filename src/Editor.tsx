@@ -49,6 +49,10 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   fullscreen?: boolean;
   /**
+   * Disable `fullscreen` setting body styles
+   */
+  overflow?: boolean;
+  /**
    * Maximum drag height. `visiableDragbar=true`
    */
   maxHeight?: number;
@@ -126,6 +130,7 @@ const InternalMDEditor = (
     highlightEnable = true,
     preview: previewType = 'live',
     fullscreen = false,
+    overflow = true,
     previewOptions = {},
     textareaProps,
     maxHeight = 1200,
@@ -280,7 +285,7 @@ const InternalMDEditor = (
           height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - toolbarHeight : state.height,
         }}
       >
-        {!hideToolbar && <Toolbar prefixCls={prefixCls} height={toolbarHeight} />}
+        {!hideToolbar && <Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} />}
         <div
           className={`${prefixCls}-content`}
           style={{
