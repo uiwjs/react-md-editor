@@ -48,7 +48,6 @@ export function ToolbarItems(props: IToolbarProps) {
   }
 
   useEffect(() => {
-    console.log(overflow);
     if (document && overflow) {
       if (fullscreen) {
         // prevent scroll on fullscreen
