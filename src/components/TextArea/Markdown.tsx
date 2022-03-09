@@ -9,7 +9,7 @@ export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreEleme
 
 export default function Markdown(props: MarkdownProps) {
   const { prefixCls } = props;
-  const { markdown = '', highlightEnable, dispatch } = useContext(EditorContext);
+  const { markdown = '', dispatch } = useContext(EditorContext);
   const preRef = React.createRef<HTMLPreElement>();
   useEffect(() => {
     if (preRef.current && dispatch) {
@@ -32,7 +32,7 @@ export default function Markdown(props: MarkdownProps) {
   }
 
   return useMemo(() => {
-    if (!highlightEnable || !markdown) {
+    if (!markdown) {
       return <pre children={markdown || ''} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />;
     }
     const str = rehype()
@@ -47,5 +47,5 @@ export default function Markdown(props: MarkdownProps) {
       className: 'wmde-markdown-color',
       dangerouslySetInnerHTML: { __html: str.value as string },
     });
-  }, [highlightEnable, markdown, preRef, prefixCls]);
+  }, [markdown, preRef, prefixCls]);
 }
