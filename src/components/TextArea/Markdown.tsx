@@ -19,14 +19,14 @@ export default function Markdown(props: MarkdownProps) {
   }, []);
   function html2Escape(sHtml: string) {
     return sHtml
-      .replace(/```(.*)\s+([\s\S]*?)(\s.+)?```/g, (str: string) => {
+      .replace(/```(tsx?|jsx?|html|xml)(.*)\s+([\s\S]*?)(\s.+)?```/g, (str: string) => {
         return str.replace(
-          /[<>&"]/g,
+          /[<&"]/g,
           (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
         );
       })
       .replace(
-        /[<>&"]/g,
+        /[<&"]/g,
         (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
       );
   }
