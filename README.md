@@ -5,11 +5,21 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/uiwjs/react-md-editor/actions" target="__blank">
-    <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/actions/workflows/ci.yml/badge.svg">
-  </a>
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat">
+  </a>
+  <a href="https://www.jsdelivr.com/package/npm/@uiw/react-md-editor" target="__blank">
+    <img alt="jsDelivr CDN" src="https://data.jsdelivr.com/v1/package/npm/@uiw/react-md-editor/badge?style=rounded" />
+  </a>
+  <a href="https://bundlephobia.com/package/@uiw/react-md-editor" target="__blank">
+    <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@uiw/react-md-editor">
+  </a>
+  <a href="https://uiwjs.github.io/react-md-editor/coverage/lcov-report" target="__blank">
+    <img alt="Coverage Status" src="https://uiwjs.github.io/react-md-editor/coverage/badges.svg" />
+  </a>
+  <br />
+  <a href="https://github.com/uiwjs/react-md-editor/actions" target="__blank">
+    <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/actions/workflows/ci.yml/badge.svg">
   </a>
   <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md" target="__blank">
     <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg">
@@ -19,12 +29,6 @@
   </a>
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm version" src="https://img.shields.io/npm/v/@uiw/react-md-editor.svg">
-  </a>
-  <a href="https://bundlephobia.com/package/@uiw/react-md-editor" target="__blank">
-    <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@uiw/react-md-editor">
-  </a>
-  <a href="https://uiwjs.github.io/react-md-editor/coverage/lcov-report" target="__blank">
-    <img alt="Coverage Status" src="https://uiwjs.github.io/react-md-editor/coverage/badges.svg" />
   </a>
 </p>
 
