@@ -95,42 +95,32 @@
 }
 
 .@{md-editor}-text-pre {
-  color: #333;
-  .table {
-    .punctuation {
-      color: #c3c3c3;
-    }
-    .table-header {
-      color: #000;
-    }
+  .punctuation {
+    color: var(--color-prettylights-syntax-comment) !important;
   }
-
-  .url {
-    color: #032f62 !important;
-    .content {
-      color: #0366d6;
-    }
+  .token.url,
+  .token.content {
+    color: var(--color-prettylights-syntax-constant) !important;
   }
-
-  .hr {
-    color: #999;
+  .token.title.important {
+    color: var(--color-prettylights-syntax-markup-bold);
   }
-  .blockquote {
-    color: #a6a6a6;
+  .token.code-block .function {
+    color: var(--color-prettylights-syntax-entity);
   }
-  .title,
-  .bold {
-    color: #000 !important;
+  .token.bold {
+    font-weight: unset !important;
   }
-  .title {
+  .token.title {
     line-height: unset !important;
     font-size: unset !important;
     font-weight: unset !important;
   }
-  .code.keyword {
-    color: #596394 !important;
+  .token.code.keyword {
+    color: var(--color-prettylights-syntax-constant) !important;
   }
-  .strike {
-    color: #bf4ca0;
+  .token.strike,
+  .token.strike .content {
+    color: var(--color-prettylights-syntax-markup-deleted-text) !important;
   }
 }

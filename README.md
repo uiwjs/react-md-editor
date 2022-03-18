@@ -19,7 +19,7 @@
   </a>
   <br />
   <a href="https://github.com/uiwjs/react-md-editor/actions" target="__blank">
-    <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/actions/workflows/ci.yml/badge.svg">
+    <img alt="Build & Deploy" src="https://github.com/uiwjs/react-md-editor/actions/workflows/ci.yml/badge.svg" />
   </a>
   <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md" target="__blank">
     <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg">

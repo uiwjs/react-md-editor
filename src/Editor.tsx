@@ -184,6 +184,7 @@ const InternalMDEditor = (
 
   const cls = [
     className,
+    'wmde-markdown-var',
     prefixCls,
     state.preview ? `${prefixCls}-show-${state.preview}` : null,
     state.fullscreen ? `${prefixCls}-fullscreen` : null,

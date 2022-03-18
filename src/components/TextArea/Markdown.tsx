@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { rehype } from 'rehype';
-// @ts-ignore
-import rehypePrism from '@mapbox/rehype-prism';
+import rehypePrism from 'rehype-prism-plus';
 import { IProps } from '../../Editor';
 import { EditorContext } from '../../Context';
 

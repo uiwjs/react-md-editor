@@ -2,8 +2,8 @@
 
 .@{md-editor} {
   &-toolbar {
-    border-bottom: 1px solid #dfdfe0;
-    background-color: #fbfbfb;
+    border-bottom: 1px solid var(--color-border-default);
+    background-color: var(--color-canvas-default);
     padding: 0 5px 0 5px;
     display: flex;
     justify-content: space-between;
@@ -24,7 +24,6 @@
         height: 20px;
         line-height: 14px;
         background: none;
-        color: #586069;
         padding: 4px;
         margin: 0 1px;
         border-radius: 2px;
@@ -35,27 +34,28 @@
         cursor: pointer;
         transition: all 0.3s;
         white-space: nowrap;
+        color: var(--color-fg-default);
         &:hover,
         &:focus {
-          color: #06c;
-          background-color: #dcdcdc;
+          background-color: var(--color-neutral-muted);
+          color: var(--color-accent-fg);
         }
         &:active {
-          color: #6a57ff;
-          background-color: #dcdcdc;
+          background-color: var(--color-neutral-muted);
+          color: var(--color-danger-fg);
         }
         &:disabled {
-          color: #ccc;
+          color: var(--color-border-default);
           cursor: not-allowed;
           &:hover {
             background-color: transparent;
-            color: #ccc;
+            color: var(--color-border-default);
           }
         }
       }
       &.active > button {
-        color: #06c;
-        background-color: #e8e8e8;
+        color: var(--color-accent-fg);
+        background-color: var(--color-neutral-muted);
       }
     }
     &-divider {
@@ -63,7 +63,7 @@
       width: 1px;
       margin: -3px 3px 0 3px !important;
       vertical-align: middle;
-      background-color: #ccc;
+      background-color: var(--color-border-default);
     }
   }
 }
