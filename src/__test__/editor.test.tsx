@@ -14,7 +14,7 @@ it('MDEditor', () => {
   let tree = component.toJSON();
   if (tree && !Array.isArray(tree)) {
     expect(tree.type).toEqual('div');
-    expect(tree.props.className).toEqual('wmde-markdown-var w-md-editor w-md-editor-show-liv');
+    expect(tree.props.className).toEqual('wmde-markdown-var w-md-editor w-md-editor-show-live');
     expect(tree.props.style).toMatchObject({
       height: 200,
     });
