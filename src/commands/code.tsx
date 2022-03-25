@@ -60,6 +60,8 @@ export const codeBlock: ICommand = {
   name: 'codeBlock',
   keyCommand: 'codeBlock',
   shortcuts: 'ctrlcmd+shift+j',
+  icon: code['icon'],
+  buttonProps: { 'aria-label': 'Insert Code Block' },
   execute: (tate: TextState, api: TextAreaTextApi) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: tate.text, selection: tate.selection });
