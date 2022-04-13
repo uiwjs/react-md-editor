@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.29% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>56/82</span>
+                <span class='fraction'>56/84</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">59.25% </span>
+                <span class="strong">58.18% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>64/108</span>
+                <span class='fraction'>64/110</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>51/75</span>
+                <span class='fraction'>52/78</span>
             </div>
         
             
@@ -401,7 +401,21 @@
 <a name='L336'></a><a href='#L336'>336</a>
 <a name='L337'></a><a href='#L337'>337</a>
 <a name='L338'></a><a href='#L338'>338</a>
-<a name='L339'></a><a href='#L339'>339</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a>
+<a name='L341'></a><a href='#L341'>341</a>
+<a name='L342'></a><a href='#L342'>342</a>
+<a name='L343'></a><a href='#L343'>343</a>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -545,6 +559,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-yes">1468x</span>
@@ -604,8 +619,6 @@
 <span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">148x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -615,6 +628,13 @@
 <span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-yes">148x</span>
 <span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -763,6 +783,10 @@ export interface MDEditorProps extends Omit&lt;React.HTMLAttributes&lt;HTMLDivEl
    */
   onChange?: (value?: string) =&gt; void;
   /**
+   * editor height change listener
+   */
+  onHeightChange?: (value?: number, oldValue?: number, state?: ContextStore) =&gt; void;
+  /**
    * Can be used to make `Markdown Editor` focus itself on initialization. Defaults to on.
    * it will be set to true when either the source `textarea` is focused,
    * or it has an `autofocus` attribute and no other element is focused.
@@ -880,6 +904,7 @@ const InternalMDEditor = (
     tabSize = 2,
     defaultTabEnable = false,
     onChange,
+    onHeightChange,
     hideToolbar,
     renderTextarea,
     ...other
@@ -941,8 +966,6 @@ const InternalMDEditor = (
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(() =&gt; previewType !== state.preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ preview: previewType }),</span> [previewType]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() =&gt; height !== state.height &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ height: height }),</span> [height]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(() =&gt; tabSize !== state.tabSize &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ tabSize }),</span> [tabSize]);
   useMemo(
     () =&gt; highlightEnable !== state.highlightEnable &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ highlightEnable }),</span>
@@ -956,6 +979,13 @@ const InternalMDEditor = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [fullscreen],
   );
+  useMemo(() =&gt; {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (height !== state.height) {
+<span class="cstat-no" title="statement not covered" >      dispatch({ height: height });</span>
+<span class="cstat-no" title="statement not covered" >      onHeightChange &amp;&amp; onHeightChange(state.height, height, state);</span>
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [height, state.height]);
 &nbsp;
   const textareaDomRef = useRef&lt;HTMLDivElement&gt;();
   const active = useRef&lt;'text' | 'preview'&gt;('preview');
@@ -1084,7 +1114,7 @@ export default mdEditor as MDEditor;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Apr 08 2022 12:16:33 GMT+0000 (Coordinated Universal Time)
+                at Wed Apr 13 2022 03:09:16 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
