@@ -45,7 +45,7 @@ it('MDEditor onChange', async () => {
 });
 
 it('MDEditor KeyboardEvent onChange', async () => {
-  const handleChange = jest.fn((value) => value);
+  const handleChange = jest.fn((value, evn, state) => value);
   render(
     <MDEditor
       value=""
@@ -57,7 +57,32 @@ it('MDEditor KeyboardEvent onChange', async () => {
   );
   const input = screen.getByTitle('test');
   userEvent.type(input, 'Hello,{enter}World!');
-  expect(handleChange).toHaveLength(1);
+  expect(handleChange).toHaveLength(3);
   expect(handleChange).lastReturnedWith('!');
-  expect(handleChange).nthCalledWith(7, '\n');
+  // expect(handleChange).nthCalledWith(7, '\n');
+});
+
+it('MDEditor KeyboardEvent onHeightChange', async () => {
+  const handleChange = jest.fn((value, propsValue, state) => {
+    return propsValue;
+  });
+  const MyComponent = () => {
+    const [height, setHeight] = React.useState(300);
+    React.useEffect(() => {
+      setHeight(500);
+    }, []);
+    return (
+      <MDEditor
+        value=""
+        height={height}
+        textareaProps={{
+          title: 'test',
+        }}
+        onHeightChange={handleChange}
+      />
+    );
+  };
+  render(<MyComponent />);
+  expect(handleChange).lastReturnedWith(500);
+  expect(handleChange).toHaveLength(3);
 });
