@@ -218,13 +218,13 @@ const InternalMDEditor = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [fullscreen],
   );
-  useMemo(() => {
-    if (height !== state.height) {
-      dispatch({ height: height });
-      onHeightChange && onHeightChange(state.height, height, state);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [height, state.height]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(
+    () => height !== state.height && onHeightChange && onHeightChange(state.height, height, state),
+    [height, state.height],
+  );
 
   const textareaDomRef = useRef<HTMLDivElement>();
   const active = useRef<'text' | 'preview'>('preview');
