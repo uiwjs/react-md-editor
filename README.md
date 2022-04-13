@@ -479,6 +479,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 
 - `value: string`: The Markdown value.
 - `onChange?: (value: string)`: Event handler for the `onChange` event.
+- `onHeightChange?: (value?: number, oldValue?: number, state?: ContextStore)`: editor height change listener.
 - `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L39-L57), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L155-L180) property. If no commands are specified, the default will be used. Commands are explained in more details below.
 - `commandsFilter?: (command: ICommand, isExtra: boolean) => false | ICommand`: Filter or modify your commands.
 - `extraCommands?: ICommand[]`: Displayed on the right side of the toolbar.
