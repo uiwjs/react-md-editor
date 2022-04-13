@@ -20,7 +20,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * Event handler for the `onChange` event.
    */
-  onChange?: (value?: string) => void;
+  onChange?: (value?: string, event?: React.ChangeEvent<HTMLTextAreaElement>, state?: ContextStore) => void;
   /**
    * editor height change listener
    */
@@ -310,7 +310,7 @@ const InternalMDEditor = (
               autoFocus={autoFocus}
               {...textareaProps}
               onChange={(evn) => {
-                onChange && onChange(evn.target.value);
+                onChange && onChange(evn.target.value, evn, state);
                 if (textareaProps && textareaProps.onChange) {
                   textareaProps.onChange(evn);
                 }
