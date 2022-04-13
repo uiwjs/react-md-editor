@@ -22,6 +22,10 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   onChange?: (value?: string) => void;
   /**
+   * editor height change listener
+   */
+  onHeightChange?: (value?: number, oldValue?: number, state?: ContextStore) => void;
+  /**
    * Can be used to make `Markdown Editor` focus itself on initialization. Defaults to on.
    * it will be set to true when either the source `textarea` is focused,
    * or it has an `autofocus` attribute and no other element is focused.
@@ -139,6 +143,7 @@ const InternalMDEditor = (
     tabSize = 2,
     defaultTabEnable = false,
     onChange,
+    onHeightChange,
     hideToolbar,
     renderTextarea,
     ...other
@@ -200,8 +205,6 @@ const InternalMDEditor = (
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(() => previewType !== state.preview && dispatch({ preview: previewType }), [previewType]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(() => tabSize !== state.tabSize && dispatch({ tabSize }), [tabSize]);
   useMemo(
     () => highlightEnable !== state.highlightEnable && dispatch({ highlightEnable }),
@@ -215,6 +218,13 @@ const InternalMDEditor = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [fullscreen],
   );
+  useMemo(() => {
+    if (height !== state.height) {
+      dispatch({ height: height });
+      onHeightChange && onHeightChange(state.height, height, state);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [height, state.height]);
 
   const textareaDomRef = useRef<HTMLDivElement>();
   const active = useRef<'text' | 'preview'>('preview');
