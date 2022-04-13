@@ -220,10 +220,9 @@ const InternalMDEditor = (
   );
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(() => height !== state.height && dispatch({ height: height }), [height]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useMemo(
     () => height !== state.height && onHeightChange && onHeightChange(state.height, height, state),
-    [height, state.height],
+    [height, onHeightChange, state],
   );
 
   const textareaDomRef = useRef<HTMLDivElement>();
