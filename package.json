@@ -56,7 +56,7 @@
     "katex": "~0.15.2",
     "husky": "~8.0.0",
     "kkt": "~7.1.5",
-    "lint-staged": "~12.3.4",
+    "lint-staged": "~12.4.0",
     "mermaid": "~8.14.0",
     "prettier": "~2.6.0",
     "react": "~18.1.0",
