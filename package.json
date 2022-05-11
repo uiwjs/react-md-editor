@@ -54,7 +54,7 @@
     "@wcj/dark-mode": "~1.0.9",
     "compile-less-cli": "~1.8.13",
     "katex": "~0.15.2",
-    "husky": "~7.0.4",
+    "husky": "~8.0.0",
     "kkt": "~7.1.5",
     "lint-staged": "~12.3.4",
     "mermaid": "~8.14.0",
