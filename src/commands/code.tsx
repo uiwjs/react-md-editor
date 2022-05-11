@@ -10,7 +10,7 @@ export const code: ICommand = {
   name: 'code',
   keyCommand: 'code',
   shortcuts: 'ctrlcmd+j',
-  buttonProps: { 'aria-label': 'Insert code' },
+  buttonProps: { 'aria-label': 'Insert code', title: 'Insert code' },
   icon: (
     <svg width="12" height="12" role="img" viewBox="0 0 640 512">
       <path
@@ -68,7 +68,7 @@ export const codeBlock: ICommand = {
       />
     </svg>
   ),
-  buttonProps: { 'aria-label': 'Insert Code Block' },
+  buttonProps: { 'aria-label': 'Insert Code Block', title: 'Insert Code Block' },
   execute: (tate: TextState, api: TextAreaTextApi) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: tate.text, selection: tate.selection });
