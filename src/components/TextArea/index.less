@@ -48,8 +48,15 @@
     }
     &-pre {
       position: relative;
-      margin: 0px;
+      margin: 0px !important;
       pointer-events: none;
+      background-color: transparent !important;
+      > code {
+        padding: 0 !important;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-size: 14px !important;
+        line-height: 18px !important;
+      }
     }
     &-input {
       position: absolute;
