@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,7 +98,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,13 +113,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,7 +129,7 @@
 import { ICommand, TextState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 &nbsp;
-export const image: ICommand = {
+export const image: ICommand = <span class="cstat-no" title="statement not covered" >{</span>
   name: 'image',
   keyCommand: 'image',
   shortcuts: 'ctrlcmd+i',
@@ -142,15 +142,15 @@ export const image: ICommand = {
       /&gt;
     &lt;/svg&gt;
   ),
-  execute: (state: TextState, api: TextAreaTextApi) =&gt; {
+  execute: <span class="fstat-no" title="function not covered" >(s</span>tate: TextState, api: TextAreaTextApi) =&gt; {
     // Select everything
-    const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
-    const state1 = api.setSelectionRange(newSelectionRange);
+    const newSelectionRange = <span class="cstat-no" title="statement not covered" >selectWord({ text: state.text, selection: state.selection });</span>
+    const state1 = <span class="cstat-no" title="statement not covered" >api.setSelectionRange(newSelectionRange);</span>
     // Replaces the current selection with the image
-    const imageTemplate = state1.selectedText || 'https://example.com/your-image.png';
-    api.replaceSelection(`![](${imageTemplate})`);
+    const imageTemplate = <span class="cstat-no" title="statement not covered" >state1.selectedText || 'https://example.com/your-image.png';</span>
+<span class="cstat-no" title="statement not covered" >    api.replaceSelection(`![](${imageTemplate})`);</span>
     // Adjust the selection to not contain the **
-    api.setSelectionRange({
+<span class="cstat-no" title="statement not covered" >    api.setSelectionRange({</span>
       start: 4 + state1.selection.start,
       end: 4 + state1.selection.start + imageTemplate.length,
     });
@@ -163,7 +163,7 @@ export const image: ICommand = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Apr 13 2022 10:30:53 GMT+0000 (Coordinated Universal Time)
+                at Wed May 11 2022 05:11:41 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
