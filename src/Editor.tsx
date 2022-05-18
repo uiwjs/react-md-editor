@@ -107,6 +107,8 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   hideToolbar?: boolean;
   /** Whether to enable scrolling */
   enableScroll?: boolean;
+  /** Toolbar on bottom */
+  toolbarBottom?: boolean;
 }
 
 function setGroupPopFalse(data: Record<string, boolean> = {}) {
@@ -145,6 +147,7 @@ const InternalMDEditor = (
     onChange,
     onHeightChange,
     hideToolbar,
+    toolbarBottom = false,
     renderTextarea,
     ...other
   } = props || {};
@@ -295,7 +298,9 @@ const InternalMDEditor = (
           height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - toolbarHeight : state.height,
         }}
       >
-        {!hideToolbar && <Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} />}
+        {!hideToolbar && !toolbarBottom && (
+          <Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} toolbarBottom={toolbarBottom} />
+        )}
         <div
           className={`${prefixCls}-content`}
           style={{
@@ -330,6 +335,9 @@ const InternalMDEditor = (
               dispatch({ height: newHeight });
             }}
           />
+        )}
+        {!hideToolbar && toolbarBottom && (
+          <Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} toolbarBottom={toolbarBottom} />
         )}
       </div>
     </EditorContext.Provider>

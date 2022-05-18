@@ -13,6 +13,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
     enableScroll: true,
     value: props.mdStr || '',
     preview: 'live',
+    toolbarBottom: false,
   });
   const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVisiable({ ...state, preview: e.target.value as MDEditorProps['preview'] });
@@ -51,6 +52,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         highlightEnable={state.highlightEnable}
         hideToolbar={!state.hideToolbar}
         enableScroll={state.enableScroll}
+        toolbarBottom={state.toolbarBottom}
         visiableDragbar={state.visiableDragbar}
         textareaProps={{
           placeholder: 'Please enter Markdown text',
@@ -100,6 +102,16 @@ const Exmaple = (props = {} as { mdStr: string }) => {
             }}
           />
           {state.hideToolbar ? 'Show' : 'Hidden'} ToolBar
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={!state.toolbarBottom}
+            onChange={(e) => {
+              setVisiable({ ...state, toolbarBottom: !e.target.checked });
+            }}
+          />
+          {!state.toolbarBottom ? 'Top' : 'Bottom'} ToolBar
         </label>
         <label>
           <input
