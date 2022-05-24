@@ -217,6 +217,7 @@ npm install katex
 import React from "react";
 import ReactDOM from "react-dom";
 import MDEditor from '@uiw/react-md-editor';
+import { getCodeString } from 'rehype-rewrite';
 import katex from 'katex';
 import 'katex/dist/katex.css';
 
@@ -246,15 +247,16 @@ export default function App() {
               }
               return <code>{txt}</code>;
             }
+            const code = props.node && props.node.children ? getCodeString(props.node.children) : txt;
             if (
-              typeof txt === 'string' &&
+              typeof code === 'string' &&
               typeof className === 'string' &&
               /^language-katex/.test(className.toLocaleLowerCase())
             ) {
-              const html = katex.renderToString(txt, {
+              const html = katex.renderToString(code, {
                 throwOnError: false,
               });
-              return <code dangerouslySetInnerHTML={{ __html: html }} />;
+              return <code style={{ fontSize: '150%' }} dangerouslySetInnerHTML={{ __html: html }} />;
             }
             return <code className={String(className)}>{txt}</code>;
           },
