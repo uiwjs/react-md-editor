@@ -207,7 +207,7 @@ The following example is preview in [CodeSandbox](https://codesandbox.io/s/markd
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/headless-frog-em8yg?fontsize=14&hidenavigation=1&theme=dark)
 
-> ⚠️ Upgrade v2 to v3 [d025430](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/website/ExmapleKaTeX.tsx#L1-L59)
+> ⚠️ Upgrade v2 to v3 [d025430](https://github.com/uiwjs/react-md-editor/blob/7b9f11ab689a7ea288df3e82c26f4f0e9a53d271/website/ExmapleKaTeX.tsx#L1-L63)
 
 ```bash
 npm install katex
