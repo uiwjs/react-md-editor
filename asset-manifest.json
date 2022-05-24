@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/react-md-editor/static/css/main.8ccc42df.css",
-    "main.js": "/react-md-editor/static/js/main.c75c52bc.js",
+    "main.css": "/react-md-editor/static/css/main.fdf04e5f.css",
+    "main.js": "/react-md-editor/static/js/main.02d5cda1.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.d9a0451a.js",
-    "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.95b38336.js",
+    "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.2a715957.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.bb4042d8.js",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.1ac75dfd.js",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.ffafdad4.js",
@@ -23,6 +23,7 @@
     "static/media/KaTeX_Main-Regular.woff2": "/react-md-editor/static/media/KaTeX_Main-Regular.f650f111a3b890d116f1.woff2",
     "static/media/KaTeX_Main-Bold.woff2": "/react-md-editor/static/media/KaTeX_Main-Bold.39890742bc957b368704.woff2",
     "static/media/KaTeX_SansSerif-Bold.ttf": "/react-md-editor/static/media/KaTeX_SansSerif-Bold.5b49f4993ae22d7975b4.ttf",
+    "index.html": "/react-md-editor/index.html",
     "static/media/KaTeX_SansSerif-Italic.ttf": "/react-md-editor/static/media/KaTeX_SansSerif-Italic.b257a18c016f37ee4543.ttf",
     "static/media/KaTeX_Main-Italic.woff": "/react-md-editor/static/media/KaTeX_Main-Italic.fd947498bc16392e76c2.woff",
     "static/media/KaTeX_Fraktur-Bold.ttf": "/react-md-editor/static/media/KaTeX_Fraktur-Bold.4c761b3711973ab04edf.ttf",
@@ -33,7 +34,6 @@
     "static/media/KaTeX_Math-BoldItalic.woff": "/react-md-editor/static/media/KaTeX_Math-BoldItalic.3f07ed67f06c720120ce.woff",
     "static/media/KaTeX_Main-Italic.woff2": "/react-md-editor/static/media/KaTeX_Main-Italic.fe2176f79edaa716e621.woff2",
     "static/media/KaTeX_Main-BoldItalic.woff2": "/react-md-editor/static/media/KaTeX_Main-BoldItalic.20f389c4120be058d80a.woff2",
-    "index.html": "/react-md-editor/index.html",
     "static/media/KaTeX_Script-Regular.ttf": "/react-md-editor/static/media/KaTeX_Script-Regular.fc9ba5249878cd8f8d88.ttf",
     "static/media/KaTeX_Math-Italic.woff2": "/react-md-editor/static/media/KaTeX_Math-Italic.6d3d25f4820d0da8f01f.woff2",
     "static/media/KaTeX_Math-BoldItalic.woff2": "/react-md-editor/static/media/KaTeX_Math-BoldItalic.dcbcbd93bac0470b462d.woff2",
@@ -69,21 +69,21 @@
     "static/media/KaTeX_Size4-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.8ccc42df.css.map": "/react-md-editor/static/css/main.8ccc42df.css.map",
-    "main.c75c52bc.js.map": "/react-md-editor/static/js/main.c75c52bc.js.map",
+    "main.fdf04e5f.css.map": "/react-md-editor/static/css/main.fdf04e5f.css.map",
+    "main.02d5cda1.js.map": "/react-md-editor/static/js/main.02d5cda1.js.map",
     "refractor-prismjs-vendor.d9a0451a.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.d9a0451a.js.map",
-    "babel-runtime-vendor.95b38336.js.map": "/react-md-editor/static/js/babel-runtime-vendor.95b38336.js.map",
+    "babel-runtime-vendor.2a715957.js.map": "/react-md-editor/static/js/babel-runtime-vendor.2a715957.js.map",
     "parse5-vendor.bb4042d8.js.map": "/react-md-editor/static/js/parse5-vendor.bb4042d8.js.map",
     "micromark-vendor.1ac75dfd.js.map": "/react-md-editor/static/js/micromark-vendor.1ac75dfd.js.map",
     "react-vendor.ffafdad4.js.map": "/react-md-editor/static/js/react-vendor.ffafdad4.js.map"
   },
   "entrypoints": [
     "static/js/refractor-prismjs-vendor.d9a0451a.js",
-    "static/js/babel-runtime-vendor.95b38336.js",
+    "static/js/babel-runtime-vendor.2a715957.js",
     "static/js/parse5-vendor.bb4042d8.js",
     "static/js/micromark-vendor.1ac75dfd.js",
     "static/js/react-vendor.ffafdad4.js",
-    "static/css/main.8ccc42df.css",
-    "static/js/main.c75c52bc.js"
+    "static/css/main.fdf04e5f.css",
+    "static/js/main.02d5cda1.js"
   ]
 }
