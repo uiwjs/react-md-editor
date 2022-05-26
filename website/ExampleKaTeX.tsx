@@ -19,7 +19,7 @@ c = \\pm\\sqrt{a^2 + b^2}
 \`\`\`
 `;
 
-const ExmapleKaTeX = () => {
+const ExampleKaTeX = () => {
   const [value, setValue] = useState(mdKaTeX);
   return (
     <MDEditor
@@ -60,4 +60,4 @@ const ExmapleKaTeX = () => {
   );
 };
 
-export default ExmapleKaTeX;
+export default ExampleKaTeX;

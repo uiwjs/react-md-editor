@@ -43,7 +43,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * Show drag and drop tool. Set the height of the editor.
    */
-  visiableDragbar?: boolean;
+  visibleDragbar?: boolean;
   /**
    * Show markdown preview.
    */
@@ -57,11 +57,11 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   overflow?: boolean;
   /**
-   * Maximum drag height. `visiableDragbar=true`
+   * Maximum drag height. `visibleDragbar=true`
    */
   maxHeight?: number;
   /**
-   * Minimum drag height. `visiableDragbar=true`
+   * Minimum drag height. `visibleDragbar=true`
    */
   minHeight?: number;
   /**
@@ -132,7 +132,7 @@ const InternalMDEditor = (
     height = 200,
     toolbarHeight = 29,
     enableScroll = true,
-    visiableDragbar = true,
+    visibleDragbar = true,
     highlightEnable = true,
     preview: previewType = 'live',
     fullscreen = false,
@@ -325,7 +325,7 @@ const InternalMDEditor = (
           )}
           {/(live|preview)/.test(state.preview || '') && mdPreview}
         </div>
-        {visiableDragbar && !state.fullscreen && (
+        {visibleDragbar && !state.fullscreen && (
           <DragBar
             prefixCls={prefixCls}
             height={state.height as number}

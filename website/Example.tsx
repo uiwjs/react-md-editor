@@ -4,9 +4,9 @@ import MDEditor, { MDEditorProps } from '../';
 
 let count = 1;
 
-const Exmaple = (props = {} as { mdStr: string }) => {
-  const [state, setVisiable] = React.useState<MDEditorProps>({
-    visiableDragbar: true,
+const Example = (props = {} as { mdStr: string }) => {
+  const [state, setVisible] = React.useState<MDEditorProps>({
+    visibleDragbar: true,
     hideToolbar: true,
     overflow: true,
     highlightEnable: true,
@@ -16,10 +16,10 @@ const Exmaple = (props = {} as { mdStr: string }) => {
     toolbarBottom: false,
   });
   const upPreview = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVisiable({ ...state, preview: e.target.value as MDEditorProps['preview'] });
+    setVisible({ ...state, preview: e.target.value as MDEditorProps['preview'] });
   };
   const updateHandle = (str: string) => {
-    setVisiable({ ...state, value: str });
+    setVisible({ ...state, value: str });
   };
   return (
     <Fragment>
@@ -53,32 +53,32 @@ const Exmaple = (props = {} as { mdStr: string }) => {
         hideToolbar={!state.hideToolbar}
         enableScroll={state.enableScroll}
         toolbarBottom={state.toolbarBottom}
-        visiableDragbar={state.visiableDragbar}
+        visibleDragbar={state.visibleDragbar}
         textareaProps={{
           placeholder: 'Please enter Markdown text',
         }}
         preview={state.preview}
         onChange={(newValue = '') => {
-          setVisiable({ ...state, value: newValue });
+          setVisible({ ...state, value: newValue });
         }}
       />
       <div className="doc-tools">
         <label>
           <input
             type="checkbox"
-            checked={state.visiableDragbar}
+            checked={state.visibleDragbar}
             onChange={(e) => {
-              setVisiable({ ...state, visiableDragbar: e.target.checked });
+              setVisible({ ...state, visibleDragbar: e.target.checked });
             }}
           />
-          {state.visiableDragbar ? 'Show' : 'Hidden'} Drag Bar
+          {state.visibleDragbar ? 'Show' : 'Hidden'} Drag Bar
         </label>
         <label>
           <input
             type="checkbox"
             checked={state.highlightEnable}
             onChange={(e) => {
-              setVisiable({ ...state, highlightEnable: e.target.checked });
+              setVisible({ ...state, highlightEnable: e.target.checked });
             }}
           />
           {state.highlightEnable ? 'Enable' : 'Unenable'} highlight
@@ -88,7 +88,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
             type="checkbox"
             checked={state.enableScroll}
             onChange={(e) => {
-              setVisiable({ ...state, enableScroll: e.target.checked });
+              setVisible({ ...state, enableScroll: e.target.checked });
             }}
           />
           {state.enableScroll ? 'Enable' : 'Unenable'} Scroll
@@ -98,7 +98,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
             type="checkbox"
             checked={state.hideToolbar}
             onChange={(e) => {
-              setVisiable({ ...state, hideToolbar: e.target.checked });
+              setVisible({ ...state, hideToolbar: e.target.checked });
             }}
           />
           {state.hideToolbar ? 'Show' : 'Hidden'} ToolBar
@@ -108,7 +108,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
             type="checkbox"
             checked={!state.toolbarBottom}
             onChange={(e) => {
-              setVisiable({ ...state, toolbarBottom: !e.target.checked });
+              setVisible({ ...state, toolbarBottom: !e.target.checked });
             }}
           />
           {!state.toolbarBottom ? 'Top' : 'Bottom'} ToolBar
@@ -118,7 +118,7 @@ const Exmaple = (props = {} as { mdStr: string }) => {
             type="checkbox"
             checked={state.overflow}
             onChange={(e) => {
-              setVisiable({ ...state, overflow: e.target.checked });
+              setVisible({ ...state, overflow: e.target.checked });
             }}
           />
           overflow
@@ -166,4 +166,4 @@ const Exmaple = (props = {} as { mdStr: string }) => {
   );
 };
 
-export default Exmaple;
+export default Example;

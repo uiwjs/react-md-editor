@@ -490,13 +490,13 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
 - `renderTextarea?: (props, opts) => JSX.Element;`: Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)
 - `height?: number=200`: The height of the editor.
-- `visiableDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
+- `visibleDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
 - `fullscreen?: boolean=false`: Show markdown preview.
 - `overflow?: boolean=true`: Disable `fullscreen` setting body styles
 - `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.
-- `maxHeight?: number=1200`: Maximum drag height. The `visiableDragbar=true` value is valid.
-- `minHeights?: number=100`: Minimum drag height. The `visiableDragbar=true` value is valid.
+- `maxHeight?: number=1200`: Maximum drag height. The `visibleDragbar=true` value is valid.
+- `minHeights?: number=100`: Minimum drag height. The `visibleDragbar=true` value is valid.
 - `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.
 - `defaultTabEnable?: boolean=false`: If `false`, the `tab` key inserts a tab character into the textarea. If `true`, the `tab` key executes default behavior e.g. focus shifts to next element. 
 - `hideToolbar?: boolean=false`: Option to hide the tool bar.
