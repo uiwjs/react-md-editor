@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/react-md-editor/static/css/main.8c4d7877.css",
-    "main.js": "/react-md-editor/static/js/main.02d5cda1.js",
+    "main.js": "/react-md-editor/static/js/main.27b4c066.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.d9a0451a.js",
-    "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.2a715957.js",
+    "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.b7656b80.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.bb4042d8.js",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.1ac75dfd.js",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.ffafdad4.js",
@@ -70,20 +70,20 @@
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "main.8c4d7877.css.map": "/react-md-editor/static/css/main.8c4d7877.css.map",
-    "main.02d5cda1.js.map": "/react-md-editor/static/js/main.02d5cda1.js.map",
+    "main.27b4c066.js.map": "/react-md-editor/static/js/main.27b4c066.js.map",
     "refractor-prismjs-vendor.d9a0451a.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.d9a0451a.js.map",
-    "babel-runtime-vendor.2a715957.js.map": "/react-md-editor/static/js/babel-runtime-vendor.2a715957.js.map",
+    "babel-runtime-vendor.b7656b80.js.map": "/react-md-editor/static/js/babel-runtime-vendor.b7656b80.js.map",
     "parse5-vendor.bb4042d8.js.map": "/react-md-editor/static/js/parse5-vendor.bb4042d8.js.map",
     "micromark-vendor.1ac75dfd.js.map": "/react-md-editor/static/js/micromark-vendor.1ac75dfd.js.map",
     "react-vendor.ffafdad4.js.map": "/react-md-editor/static/js/react-vendor.ffafdad4.js.map"
   },
   "entrypoints": [
     "static/js/refractor-prismjs-vendor.d9a0451a.js",
-    "static/js/babel-runtime-vendor.2a715957.js",
+    "static/js/babel-runtime-vendor.b7656b80.js",
     "static/js/parse5-vendor.bb4042d8.js",
     "static/js/micromark-vendor.1ac75dfd.js",
     "static/js/react-vendor.ffafdad4.js",
     "static/css/main.8c4d7877.css",
-    "static/js/main.02d5cda1.js"
+    "static/js/main.27b4c066.js"
   ]
 }
