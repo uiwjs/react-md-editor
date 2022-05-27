@@ -45,6 +45,10 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   visibleDragbar?: boolean;
   /**
+   * @deprecated use `visibleDragbar`
+   */
+  visiableDragbar?: boolean;
+  /**
    * Show markdown preview.
    */
   preview?: PreviewType;
@@ -132,7 +136,7 @@ const InternalMDEditor = (
     height = 200,
     toolbarHeight = 29,
     enableScroll = true,
-    visibleDragbar = true,
+    visibleDragbar = typeof props.visiableDragbar === 'boolean' ? props.visiableDragbar : true,
     highlightEnable = true,
     preview: previewType = 'live',
     fullscreen = false,
