@@ -3,8 +3,8 @@ import GithubCorner from '@uiw/react-github-corners';
 import '@wcj/dark-mode';
 import MDEditor from '../';
 import ReadmeStr from '../README.md';
-import Exmaple from './Exmaple';
-import ExmapleKaTeX from './ExmapleKaTeX';
+import Example from './Example';
+import ExampleKaTeX from './ExampleKaTeX';
 import ExampleMermaid from './ExampleMermaid';
 import ExampleCustomToolbar from './ExampleCustomToolbar';
 import { ReactComponent as Banner } from './banner.svg';
@@ -77,7 +77,7 @@ export default function App() {
             <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg" />
           </a>
         </div>
-        <Exmaple mdStr={mdStr} />
+        <Example mdStr={mdStr} />
         <div className="page-title">
           Custom toolbar.
           <a
@@ -97,7 +97,7 @@ export default function App() {
             Example Code
           </a>
         </div>
-        <ExmapleKaTeX />
+        <ExampleKaTeX />
         <div className="page-title">
           Support Custom Mermaid Preview.
           <a
