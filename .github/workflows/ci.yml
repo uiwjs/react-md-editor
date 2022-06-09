@@ -8,22 +8,30 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: 16
 
     - run: npm install
-    - run: npm run doc
-    - run: npm run map
-    - run: npm run bundle
-    - run: npm run bundle:min
-    - run: npm run coverage
+    - working-directory: core
+      run: |
+        npm run build
+        npm run bundle
+        npm run bundle:min
+        npm run coverage
+
+    - working-directory: www
+      run: |
+        npm run build
+        npm run map
+    
+    - run: cp -rp core/coverage ./
 
     - name: Create Coverage Badges
       uses: jaywcjlove/coverage-badges-cli@main
 
-    - run: npm run doc
+    - run: cp -rp www/build ./
     - run: cp -rp coverage build
 
     - name: Generate Contributors Images
@@ -37,11 +45,11 @@ jobs:
       id: create_tag
       uses: jaywcjlove/create-tag-action@v1.3.6
       with:
-        package-path: ./package.json
+        package-path: ./core/package.json
 
     - name: get tag version
       id: tag_version
-      uses: jaywcjlove/changelog-generator@v1.5.0
+      uses: jaywcjlove/changelog-generator@v1.5.3
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
@@ -55,7 +63,7 @@ jobs:
 
     - name: Generate Changelog
       id: changelog
-      uses: jaywcjlove/changelog-generator@v1.5.0
+      uses: jaywcjlove/changelog-generator@v1.5.3
       with:
         head-ref: ${{steps.create_tag.outputs.version}}
         filter-author: (renovate-bot|Renovate Bot)
@@ -64,7 +72,7 @@ jobs:
     - name: Create Release
       uses: jaywcjlove/create-tag-action@v1.3.6
       with:
-        package-path: ./package.json
+        package-path: ./core/package.json
         release: true
         body: |
           [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor@${{steps.changelog.outputs.version}}/file/README.md)
@@ -82,5 +90,5 @@ jobs:
       uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ secrets.NPM_TOKEN }}
-        package: ./package.json
+        package: ./core/package.json
 

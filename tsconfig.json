@@ -18,6 +18,5 @@
     "noFallthroughCasesInSwitch": true,
     "noEmit": true,
     "types": ["jest", "node"]
-  },
-  "include": ["website", "src", ".kktrc.ts", "test"]
+  }
 }

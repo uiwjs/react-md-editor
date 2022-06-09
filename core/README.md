@@ -58,7 +58,7 @@ npm i @uiw/react-md-editor
 [![Open in Github gh-pages](https://img.shields.io/badge/Open%20In-Github%20gh--pages-blue?logo=github)](https://uiwjs.github.io/react-md-editor/)
 [![Open in Gitee gh-pages](https://img.shields.io/badge/Open%20In-Gitee%20gh--pages-blue?logo=web)](https://uiw.gitee.io/react-md-editor/)
 
-```jsx
+```jsx mdx:preview
 import React from "react";
 import MDEditor from '@uiw/react-md-editor';
 
@@ -70,7 +70,7 @@ export default function App() {
         value={value}
         onChange={setValue}
       />
-      <MDEditor.Markdown source={value} />
+      <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
     </div>
   );
 }
@@ -81,13 +81,13 @@ export default function App() {
 Please note markdown needs to be sanitized if you do not **completely trust** your authors.
 Otherwise, your app is vulnerable to XSS. This can be achieved by adding [rehype-sanitize](https://github.com/rehypejs/rehype-sanitize) as a plugin.
 
-```jsx
+```jsx mdx:preview
 import React from "react";
 import MDEditor from '@uiw/react-md-editor';
 import rehypeSanitize from "rehype-sanitize";
 
 export default function App() {
-  const [value, setValue] = React.useState("**Hello world!!!** <IFRAME SRC="javascript:javascript:alert(window.origin);"></IFRAME>");
+  const [value, setValue] = React.useState(`**Hello world!!!** <IFRAME SRC=\"javascript:javascript:alert(window.origin);\"></IFRAME>`);
   return (
     <div className="container">
       <MDEditor
@@ -96,10 +96,6 @@ export default function App() {
         previewOptions={{
           rehypePlugins: [[rehypeSanitize]],
         }}
-      />
-      <MDEditor.Markdown 
-        source={value} 
-        rehypePlugins={[[rehypeSanitize]]}
       />
     </div>
   );
@@ -110,12 +106,11 @@ export default function App() {
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-m2n10?fontsize=14&hidenavigation=1&theme=dark)
 
-```tsx
+```jsx mdx:preview
 import React from "react";
-import ReactDOM from "react-dom";
-import MDEditor, { commands, ICommand, TextState, TextAreaTextApi } from '@uiw/react-md-editor';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 
-const title3: ICommand = {
+const title3 = {
   name: 'title3',
   keyCommand: 'title3',
   buttonProps: { 'aria-label': 'Insert title3' },
@@ -124,7 +119,7 @@ const title3: ICommand = {
       <path fill="currentColor" d="M15.7083333,468 C7.03242448,468 0,462.030833 0,454.666667 L0,421.333333 C0,413.969167 7.03242448,408 15.7083333,408 L361.291667,408 C369.967576,408 377,413.969167 377,421.333333 L377,454.666667 C377,462.030833 369.967576,468 361.291667,468 L15.7083333,468 Z M21.6666667,366 C9.69989583,366 0,359.831861 0,352.222222 L0,317.777778 C0,310.168139 9.69989583,304 21.6666667,304 L498.333333,304 C510.300104,304 520,310.168139 520,317.777778 L520,352.222222 C520,359.831861 510.300104,366 498.333333,366 L21.6666667,366 Z M136.835938,64 L136.835937,126 L107.25,126 L107.25,251 L40.75,251 L40.75,126 L-5.68434189e-14,126 L-5.68434189e-14,64 L136.835938,64 Z M212,64 L212,251 L161.648438,251 L161.648438,64 L212,64 Z M378,64 L378,126 L343.25,126 L343.25,251 L281.75,251 L281.75,126 L238,126 L238,64 L378,64 Z M449.047619,189.550781 L520,189.550781 L520,251 L405,251 L405,64 L449.047619,64 L449.047619,189.550781 Z" />
     </svg>
   ),
-  execute: (state: TextState, api: TextAreaTextApi) => {
+  execute: (state, api) => {
     let modifyText = `### ${state.selectedText}\n`;
     if (!state.selectedText) {
       modifyText = `### `;
@@ -134,14 +129,12 @@ const title3: ICommand = {
 };
 
 export default function App() {
-  const [value, setValue] = React.useState("**Hello world!!!**");
+  const [value, setValue] = React.useState("Hello Markdown! `Tab` key uses default behavior");
   return (
     <div className="container">
       <MDEditor
-        value="Hello Markdown!"
-        onChange={(val) => {
-          setValue(val!);
-        }}
+        value={value}
+        onChange={setValue}
         commands={[
           // Custom Toolbars
           title3,
@@ -163,13 +156,13 @@ export default function App() {
               return (
                 <div style={{ width: 120, padding: 10 }}>
                   <div>My Custom Toolbar</div>
-                  <button type="button" onClick={() => console.log('> execute: >>>>>', getState!())}>State</button>
+                  <button type="button" onClick={() => console.log('> execute: >>>>>', getState())}>State</button>
                   <button type="button" onClick={() => close()}>Close</button>
                   <button type="button" onClick={() => execute()}>Execute</button>
                 </div>
               );
             },
-            execute: (state: TextState, api: TextAreaTextApi)  => {
+            execute: (state, api)  => {
               console.log('>>>>>>update>>>>>', state)
             },
             buttonProps: { 'aria-label': 'Insert title'}
@@ -185,7 +178,7 @@ export default function App() {
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-preview-markdown-vrucl?fontsize=14&hidenavigation=1&theme=dark)
 
-```jsx
+```jsx mdx:preview
 import React from "react";
 import ReactDOM from "react-dom";
 import MDEditor from '@uiw/react-md-editor';
@@ -213,7 +206,7 @@ The following example is preview in [CodeSandbox](https://codesandbox.io/s/markd
 npm install katex
 ```
 
-```jsx
+```jsx mdx:preview
 import React from "react";
 import ReactDOM from "react-dom";
 import MDEditor from '@uiw/react-md-editor';
@@ -271,7 +264,7 @@ export default function App() {
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-text-to-images-ijqmx?fontsize=14&hidenavigation=1&theme=dark)
 
-```jsx
+```tsx mdx:preview
 import React from "react";
 import MDEditor, { commands, ICommand, TextState, TextAreaTextApi } from "@uiw/react-md-editor";
 import domToImage from "dom-to-image";
@@ -286,7 +279,7 @@ const textToImage: ICommand = {
     </svg>
   ),
   execute: (state: TextState, api: TextAreaTextApi) => {
-    const dom = document.getElementsByClassName("w-md-editor")[0];
+    const dom = document.getElementsByClassName("gooooooooo")[0];
     if (dom) {
       domToImage.toJpeg(dom, {}).then((dataUrl) => {
         const link = document.createElement("a");
@@ -302,6 +295,7 @@ export default function App() {
   return (
     <div className="container">
       <MDEditor
+        className="gooooooooo"
         value="**Hello world!!!**"
         commands={[
           textToImage,
@@ -323,7 +317,7 @@ Using [mermaid](https://github.com/mermaid-js/mermaid) to generation of diagram 
 npm install mermaid
 ```
 
-```jsx
+```jsx mdx:preview
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import MDEditor from "@uiw/react-md-editor";
@@ -353,7 +347,7 @@ Bob-->>John: Jolly good!
 `;
 
 const randomid = () => parseInt(String(Math.random() * 1e15), 10).toString(36);
-const Code = ({ inline, children = [], className, ...props }: any) => {
+const Code = ({ inline, children = [], className, ...props }) => {
   const demoid = useRef(`dome${randomid()}`);
   const code = getCode(children);
   const demo = useRef(null);

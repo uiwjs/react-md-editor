@@ -1,17 +1,12 @@
 import React from 'react';
 import GithubCorner from '@uiw/react-github-corners';
 import '@wcj/dark-mode';
-import MDEditor from '../';
-import ReadmeStr from '../README.md';
+import ReadmeStr from '@uiw/react-md-editor/README.md';
 import Example from './Example';
-import ExampleKaTeX from './ExampleKaTeX';
-import ExampleMermaid from './ExampleMermaid';
-import ExampleCustomToolbar from './ExampleCustomToolbar';
 import { ReactComponent as Banner } from './banner.svg';
 import './App.less';
 import pkg from '../package.json';
-
-const mdStr = ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '').replace(/^\s+/, '');
+import Markdown from './Markdown';
 
 export default function App() {
   const openVersionWebsite = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -77,38 +72,8 @@ export default function App() {
             <img src="https://img.shields.io/badge/Open%20in-unpkg-blue" alt="Open in unpkg" />
           </a>
         </div>
-        <Example mdStr={mdStr} />
-        <div className="page-title">
-          Custom toolbar.
-          <a
-            target="__blank"
-            href="https://github.com/uiwjs/react-md-editor/blob/961ff62cec2e76a4252b23dbebdef3b71b754b3a/website/ExampleCustomToolbar.tsx#L1-L87"
-          >
-            Example Code
-          </a>
-        </div>
-        <ExampleCustomToolbar />
-        <div className="page-title">
-          Support Custom KaTeX Preview.
-          <a
-            target="__blank"
-            href="https://github.com/uiwjs/react-md-editor/blob/961ff62cec2e76a4252b23dbebdef3b71b754b3a/website/ExmapleKaTeX.tsx#L1-L61"
-          >
-            Example Code
-          </a>
-        </div>
-        <ExampleKaTeX />
-        <div className="page-title">
-          Support Custom Mermaid Preview.
-          <a
-            target="__blank"
-            href="https://github.com/uiwjs/react-md-editor/blob/ec1d1f970824d0b70b68b8ab87313c10a771cd1c/website/ExampleMermaid.tsx#L1-L90"
-          >
-            Example Code
-          </a>
-        </div>
-        <ExampleMermaid />
-        <MDEditor.Markdown style={{ paddingTop: 30 }} source={ReadmeStr.replace(/([\s\S]*)<!--dividing-->/, '')} />
+        <Example mdStr={ReadmeStr.source} />
+        <Markdown />
       </div>
     </div>
   );

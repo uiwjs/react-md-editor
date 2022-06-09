@@ -22,6 +22,10 @@
     width: 50%;
     height: 100%;
   }
+  &-text-pre > code {
+    word-break: break-word !important;
+    white-space: pre-wrap !important;
+  }
   &-preview {
     width: 50%;
     box-sizing: border-box;
@@ -35,6 +39,8 @@
     border-radius: 0 0 5px 0;
     display: flex;
     flex-direction: column;
+    // word-break: break-word !important;
+    // white-space: pre-wrap !important;
     .anchor {
       display: none;
     }

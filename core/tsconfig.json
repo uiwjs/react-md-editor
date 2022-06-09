@@ -1,10 +1,9 @@
 {
   "extends": "../tsconfig",
-  "include": ["../src"],
+  "include": ["src", ".kktrc.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "emitDeclarationOnly": true,
-    "noEmit": false,
-    "typeRoots": ["./react-app-env.d.ts"]
+    "noEmit": false
   }
 }

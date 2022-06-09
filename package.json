@@ -1,75 +1,49 @@
 {
-  "name": "@uiw/react-md-editor",
-  "version": "3.14.1",
-  "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
-  "homepage": "https://uiwjs.github.io/react-md-editor/",
-  "author": "kenny wang <wowohoo@qq.com>",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
+  "private": true,
   "scripts": {
-    "prepare": "husky install && npm run build",
-    "released": "npm run build && npm run doc",
-    "doc": "kkt build --app-src ./website",
-    "start": "kkt start --app-src ./website",
-    "css:build": "compile-less -d src -o esm",
-    "css:watch": "compile-less -d src -o esm --watch",
-    "css:build:dist": "compile-less -d src --combine markdown-editor.css --rm-global",
-    "bundle": "ncc build src/index.tsx --target web --filename mdeditor",
-    "bundle:watch": "ncc watch src/index.tsx --target web --filename mdeditor",
-    "bundle:min": "ncc build src/index.tsx --target web --filename mdeditor --minify",
-    "watch": "tsbb watch & npm run css:watch",
-    "build": "tsbb build && npm run css:build && npm run css:build:dist",
-    "test": "tsbb test --env=jsdom",
-    "coverage": "tsbb test --env=jsdom --coverage --bail",
+    "⬇️⬇️⬇️⬇️⬇️ package ⬇️⬇️⬇️⬇️⬇️": "▼▼▼▼▼ package ▼▼▼▼▼",
+    "watch": "npm run-script watch --workspace @uiw/react-md-editor",
+    "build": "npm run-script build --workspace @uiw/react-md-editor",
+    "doc": "npm run-script build --workspace www",
+    "start": "npm run-script start --workspace www",
+    "⬆️⬆️⬆️⬆️⬆️ package ⬆️⬆️⬆️⬆️⬆️": "▲▲▲▲▲ package ▲▲▲▲▲",
+    "prepare": "husky install",
+    "version": "lerna version --exact --force-publish --no-push --no-git-tag-version",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "map": "source-map-explorer build/static/js/*.js --html build/website-result.html"
+    "remove": "npm run clean && lerna exec \"rm -rf package-lock.json\" --scope react-code-preview-layout --scope website",
+    "clean": "lerna clean --yes"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/react-md-editor"
   },
-  "files": [
-    "markdown-editor.css",
-    "lib",
-    "dist",
-    "esm",
-    "src"
-  ],
   "license": "MIT",
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
-  },
   "devDependencies": {
     "@kkt/less-modules": "~7.1.1",
     "@kkt/ncc": "~1.0.9",
-    "@kkt/raw-modules": "~7.1.1",
-    "@kkt/scope-plugin-options": "~7.1.1",
-    "@types/katex": "~0.14.0",
-    "@types/react": "~18.0.9",
-    "@types/react-dom": "~18.0.3",
     "@types/react-test-renderer": "~18.0.0",
-    "@uiw/react-github-corners": "~1.5.3",
-    "@uiw/react-shields": "~1.1.2",
-    "@wcj/dark-mode": "~1.0.9",
     "compile-less-cli": "~1.8.13",
-    "katex": "~0.15.2",
     "husky": "~8.0.0",
     "kkt": "~7.1.5",
     "lint-staged": "~12.4.0",
-    "mermaid": "~8.14.0",
     "prettier": "~2.6.0",
-    "react": "~18.1.0",
-    "react-dom": "~18.1.0",
     "react-test-renderer": "~18.1.0",
-    "source-map-explorer": "~2.5.2",
     "tsbb": "~3.7.0"
   },
-  "dependencies": {
-    "@babel/runtime": "^7.14.6",
-    "@uiw/react-markdown-preview": "^4.0.10",
-    "rehype-sanitize": "~5.0.1",
-    "rehype": "~12.0.1"
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "workspaces": [
+    "core",
+    "www"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
   },
   "keywords": [
     "react",
@@ -84,36 +58,5 @@
     "uiw",
     "uiwjs",
     "code"
-  ],
-  "jest": {
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/?!(.*)"
-    ]
-  },
-  "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  ]
 }

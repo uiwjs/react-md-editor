@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
-import MDEditor, { MDEditorProps } from '../';
+import MDEditor, { MDEditorProps } from '@uiw/react-md-editor';
 
 let count = 1;
 
