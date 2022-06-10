@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import CodeLayout from 'react-code-preview-layout';
 import { getMetaId, isMeta, getURLParameters } from 'markdown-react-code-preview-loader';
 import MDEditor from '@uiw/react-md-editor';
+import rehypeIgnore from 'rehype-ignore';
 import data from '@uiw/react-md-editor/README.md';
 import { CodeComponent, ReactMarkdownNames } from 'react-markdown/lib/ast-to-react';
 
@@ -28,7 +29,7 @@ const CodePreview: CodeComponent | ReactMarkdownNames = ({ inline, node, ...prop
     const code = data.data[metaId].value || '';
     const param = getURLParameters(meta);
     return (
-      <CodeLayout ref={$dom} toolbar={param.title || 'Example'} code={<code {...rest} />} text={code}>
+      <CodeLayout ref={$dom} toolbar={param.title || 'Example'} code={<pre {...rest} />} text={code}>
         <Child />
       </CodeLayout>
     );
@@ -41,6 +42,7 @@ export default function Markdown() {
     <MDEditor.Markdown
       style={{ paddingTop: 30 }}
       disableCopy={true}
+      rehypePlugins={[rehypeIgnore]}
       source={data.source}
       components={{
         code: CodePreview,

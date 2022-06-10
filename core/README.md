@@ -1,3 +1,4 @@
+<!--rehype:ignore:start-->
 <p align="center">
   <a href="https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor/file/README.md">
     <img alt="react-md-editor logo" src="https://user-images.githubusercontent.com/1680273/146292033-0e5e57fc-6f3e-4032-9fa6-0de05f239e36.png">
@@ -32,7 +33,7 @@
   </a>
 </p>
 
-<!--dividing-->
+<!--rehype:ignore:end-->
 
 A simple markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc.
 

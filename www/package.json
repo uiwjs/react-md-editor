@@ -35,7 +35,8 @@
     "react": "~18.1.0",
     "react-code-preview-layout": "^2.0.4",
     "react-dom": "~18.1.0",
-    "rehype-sanitize": "~5.0.1"
+    "rehype-sanitize": "~5.0.1",
+    "rehype-ignore": "^1.0.1"
   },
   "eslintConfig": {
     "extends": [
