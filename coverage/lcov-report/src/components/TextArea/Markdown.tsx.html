@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/17</span>
+                <span class='fraction'>15/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/11</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/17</span>
+                <span class='fraction'>15/18</span>
             </div>
         
             
@@ -112,9 +112,31 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,19 +153,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">68x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">92x</span>
 <span class="cline-any cline-yes">92x</span>
 <span class="cline-any cline-yes">24x</span>
@@ -151,8 +160,15 @@
 <span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">68x</span>
@@ -167,6 +183,20 @@ import rehypePrism from 'rehype-prism-plus';
 import { IProps } from '../../Editor';
 import { EditorContext } from '../../Context';
 &nbsp;
+function html2Escape(sHtml: string) {
+  return sHtml
+    .replace(/```(tsx?|jsx?|html|xml)(.*)\s+([\s\S]*?)(\s.+)?```/g, <span class="fstat-no" title="function not covered" >(s</span>tr: string) =&gt; {
+<span class="cstat-no" title="statement not covered" >      return str.replace(</span>
+        /[&lt;&amp;"]/g,
+<span class="fstat-no" title="function not covered" >        (c</span>: string) =&gt; (<span class="cstat-no" title="statement not covered" >({ '&lt;': '&amp;lt;', '&gt;': '&amp;gt;', '&amp;': '&amp;amp;', '"': '&amp;quot;' } as Record&lt;string, string&gt;)[c])</span>,
+      );
+    })
+    .replace(
+      /[&lt;&amp;"]/g,
+<span class="fstat-no" title="function not covered" >      (c</span>: string) =&gt; (<span class="cstat-no" title="statement not covered" >({ '&lt;': '&amp;lt;', '&gt;': '&amp;gt;', '&amp;': '&amp;amp;', '"': '&amp;quot;' } as Record&lt;string, string&gt;)[c])</span>,
+    );
+}
+&nbsp;
 export interface MarkdownProps extends IProps, React.HTMLAttributes&lt;HTMLPreElement&gt; {}
 &nbsp;
 export default function Markdown(props: MarkdownProps) {
@@ -179,34 +209,28 @@ export default function Markdown(props: MarkdownProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  function html2Escape(sHtml: string) {
-    return sHtml
-      .replace(/```(tsx?|jsx?|html|xml)(.*)\s+([\s\S]*?)(\s.+)?```/g, <span class="fstat-no" title="function not covered" >(s</span>tr: string) =&gt; {
-<span class="cstat-no" title="statement not covered" >        return str.replace(</span>
-          /[&lt;&amp;"]/g,
-<span class="fstat-no" title="function not covered" >          (c</span>: string) =&gt; (<span class="cstat-no" title="statement not covered" >({ '&lt;': '&amp;lt;', '&gt;': '&amp;gt;', '&amp;': '&amp;amp;', '"': '&amp;quot;' } as Record&lt;string, string&gt;)[c])</span>,
-        );
-      })
-      .replace(
-        /[&lt;&amp;"]/g,
-<span class="fstat-no" title="function not covered" >        (c</span>: string) =&gt; (<span class="cstat-no" title="statement not covered" >({ '&lt;': '&amp;lt;', '&gt;': '&amp;gt;', '&amp;': '&amp;amp;', '"': '&amp;quot;' } as Record&lt;string, string&gt;)[c])</span>,
-      );
-  }
 &nbsp;
   return useMemo(() =&gt; {
     if (!markdown) {
-      return &lt;pre children={markdown || ''} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} /&gt;;
+      return &lt;pre ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} /&gt;;
     }
     let mdStr = `&lt;pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"&gt;&lt;code class="language-markdown"&gt;${html2Escape(
       markdown,
     )}\n&lt;/code&gt;&lt;/pre&gt;`;
+&nbsp;
     <span class="missing-if-branch" title="else path not taken" >E</span>if (highlightEnable) {
-      mdStr = rehype().data('settings', { fragment: true }).use(rehypePrism, { ignoreMissing: true }).processSync(mdStr)
-        .value as string;
+      try {
+        mdStr = rehype()
+          .data('settings', { fragment: true })
+          .use(rehypePrism, { ignoreMissing: false })
+          .processSync(mdStr)
+          .toString();
+      } catch (error) {}
     }
+&nbsp;
     return React.createElement('div', {
       className: 'wmde-markdown-color',
-      dangerouslySetInnerHTML: { __html: mdStr },
+      dangerouslySetInnerHTML: { __html: mdStr || <span class="branch-1 cbranch-no" title="branch not covered" >'' </span>},
     });
   }, [markdown, preRef, prefixCls]);
 }
@@ -217,7 +241,7 @@ export default function Markdown(props: MarkdownProps) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Jun 13 2022 12:43:54 GMT+0000 (Coordinated Universal Time)
+                at Mon Jun 13 2022 14:47:19 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>
