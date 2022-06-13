@@ -4,6 +4,20 @@ import rehypePrism from 'rehype-prism-plus';
 import { IProps } from '../../Editor';
 import { EditorContext } from '../../Context';
 
+function html2Escape(sHtml: string) {
+  return sHtml
+    .replace(/```(tsx?|jsx?|html|xml)(.*)\s+([\s\S]*?)(\s.+)?```/g, (str: string) => {
+      return str.replace(
+        /[<&"]/g,
+        (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
+      );
+    })
+    .replace(
+      /[<&"]/g,
+      (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
+    );
+}
+
 export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreElement> {}
 
 export default function Markdown(props: MarkdownProps) {
@@ -16,34 +30,28 @@ export default function Markdown(props: MarkdownProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  function html2Escape(sHtml: string) {
-    return sHtml
-      .replace(/```(tsx?|jsx?|html|xml)(.*)\s+([\s\S]*?)(\s.+)?```/g, (str: string) => {
-        return str.replace(
-          /[<&"]/g,
-          (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
-        );
-      })
-      .replace(
-        /[<&"]/g,
-        (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
-      );
-  }
 
   return useMemo(() => {
     if (!markdown) {
-      return <pre children={markdown || ''} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />;
+      return <pre ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />;
     }
     let mdStr = `<pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"><code class="language-markdown">${html2Escape(
       markdown,
     )}\n</code></pre>`;
+
     if (highlightEnable) {
-      mdStr = rehype().data('settings', { fragment: true }).use(rehypePrism, { ignoreMissing: true }).processSync(mdStr)
-        .value as string;
+      try {
+        mdStr = rehype()
+          .data('settings', { fragment: true })
+          .use(rehypePrism, { ignoreMissing: false })
+          .processSync(mdStr)
+          .toString();
+      } catch (error) {}
     }
+
     return React.createElement('div', {
       className: 'wmde-markdown-color',
-      dangerouslySetInnerHTML: { __html: mdStr },
+      dangerouslySetInnerHTML: { __html: mdStr || '' },
     });
   }, [markdown, preRef, prefixCls]);
 }
