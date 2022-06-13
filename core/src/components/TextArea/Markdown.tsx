@@ -43,7 +43,7 @@ export default function Markdown(props: MarkdownProps) {
       try {
         mdStr = rehype()
           .data('settings', { fragment: true })
-          .use(rehypePrism, { ignoreMissing: false })
+          .use(rehypePrism, { ignoreMissing: true })
           .processSync(mdStr)
           .toString();
       } catch (error) {}
