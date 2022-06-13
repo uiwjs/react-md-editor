@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-md-editor/static/css/main.0c61fb9c.css",
-    "main.js": "/react-md-editor/static/js/main.11cf3064.js",
+    "main.js": "/react-md-editor/static/js/main.b2dcbea6.js",
     "momentlodash-vendor.js": "/react-md-editor/static/js/momentlodash-vendor.4805c497.js",
     "dagre-d3-vendor.js": "/react-md-editor/static/js/dagre-d3-vendor.2baeb983.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.ae04a0e8.js",
@@ -76,7 +76,7 @@
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "main.0c61fb9c.css.map": "/react-md-editor/static/css/main.0c61fb9c.css.map",
-    "main.11cf3064.js.map": "/react-md-editor/static/js/main.11cf3064.js.map",
+    "main.b2dcbea6.js.map": "/react-md-editor/static/js/main.b2dcbea6.js.map",
     "momentlodash-vendor.4805c497.js.map": "/react-md-editor/static/js/momentlodash-vendor.4805c497.js.map",
     "dagre-d3-vendor.2baeb983.js.map": "/react-md-editor/static/js/dagre-d3-vendor.2baeb983.js.map",
     "refractor-prismjs-vendor.ae04a0e8.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.ae04a0e8.js.map",
@@ -102,6 +102,6 @@
     "static/js/mermaid-vendor.db6a92ce.js",
     "static/js/d3-vendor.5451daf5.js",
     "static/css/main.0c61fb9c.css",
-    "static/js/main.11cf3064.js"
+    "static/js/main.b2dcbea6.js"
   ]
 }
