@@ -42,7 +42,7 @@ export type TextAreaRef = {
 
 export default function TextArea(props: ITextAreaProps) {
   const { prefixCls, className, onScroll, renderTextarea, ...otherProps } = props || {};
-  const { markdown, scrollTop, commands, extraCommands, dispatch } = useContext(EditorContext);
+  const { markdown, scrollTop, commands, highlightEnable, extraCommands, dispatch } = useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   const warp = React.createRef<HTMLDivElement>();
@@ -67,8 +67,7 @@ export default function TextArea(props: ITextAreaProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // @ts-ignore
-  // const textStyle: React.CSSProperties = highlightEnable ? { WebkitTextFillColor: 'transparent' } : { };
+  const textStyle: React.CSSProperties = highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
 
   return (
     <div ref={warp} className={`${prefixCls}-aree ${className || ''}`} onScroll={onScroll}>
@@ -102,8 +101,8 @@ export default function TextArea(props: ITextAreaProps) {
           )
         ) : (
           <Fragment>
-            <Markdown prefixCls={prefixCls} />
-            <Textarea prefixCls={prefixCls} {...otherProps} />
+            {highlightEnable && <Markdown prefixCls={prefixCls} />}
+            <Textarea prefixCls={prefixCls} {...otherProps} style={textStyle} />
           </Fragment>
         )}
       </div>
