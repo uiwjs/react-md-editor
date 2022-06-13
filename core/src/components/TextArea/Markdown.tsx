@@ -8,7 +8,7 @@ export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreEleme
 
 export default function Markdown(props: MarkdownProps) {
   const { prefixCls } = props;
-  const { markdown = '', dispatch } = useContext(EditorContext);
+  const { markdown = '', highlightEnable, dispatch } = useContext(EditorContext);
   const preRef = React.createRef<HTMLPreElement>();
   useEffect(() => {
     if (preRef.current && dispatch) {
@@ -34,17 +34,16 @@ export default function Markdown(props: MarkdownProps) {
     if (!markdown) {
       return <pre children={markdown || ''} ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} />;
     }
-    const str = rehype()
-      .data('settings', { fragment: true })
-      .use(rehypePrism, { ignoreMissing: true })
-      .processSync(
-        `<pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"><code class="language-markdown">${html2Escape(
-          markdown,
-        )}\n</code></pre>`,
-      );
+    let mdStr = `<pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"><code class="language-markdown">${html2Escape(
+      markdown,
+    )}\n</code></pre>`;
+    if (highlightEnable) {
+      mdStr = rehype().data('settings', { fragment: true }).use(rehypePrism, { ignoreMissing: true }).processSync(mdStr)
+        .value as string;
+    }
     return React.createElement('div', {
       className: 'wmde-markdown-color',
-      dangerouslySetInnerHTML: { __html: str.value as string },
+      dangerouslySetInnerHTML: { __html: mdStr },
     });
   }, [markdown, preRef, prefixCls]);
 }
