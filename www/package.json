@@ -32,9 +32,9 @@
     "dom-to-image": "^2.6.0",
     "katex": "~0.16.0",
     "mermaid": "~9.1.0",
-    "react": "~18.1.0",
+    "react": "~18.2.0",
     "react-code-preview-layout": "^2.0.4",
-    "react-dom": "~18.1.0",
+    "react-dom": "~18.2.0",
     "rehype-ignore": "^1.0.1",
     "rehype-sanitize": "~5.0.1"
   },
