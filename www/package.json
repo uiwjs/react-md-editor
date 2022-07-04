@@ -5,8 +5,6 @@
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "homepage": "https://uiwjs.github.io/react-md-editor/",
   "author": "kenny wang <wowohoo@qq.com>",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
   "scripts": {
     "build": "kkt build",
     "start": "kkt start",
