@@ -12,13 +12,13 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@kkt/less-modules": "~7.1.1",
-    "@kkt/raw-modules": "~7.1.1",
-    "@kkt/scope-plugin-options": "~7.1.1",
+    "@kkt/less-modules": "^7.2.0",
+    "@kkt/raw-modules": "^7.2.0",
+    "@kkt/scope-plugin-options": "^7.2.0",
     "@types/katex": "~0.14.0",
     "@types/react": "~18.0.9",
     "@types/react-dom": "~18.0.3",
-    "kkt": "~7.1.5",
+    "kkt": "^7.2.0",
     "markdown-react-code-preview-loader": "^2.1.2",
     "source-map-explorer": "~2.5.2"
   },
