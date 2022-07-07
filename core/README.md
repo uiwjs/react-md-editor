@@ -77,6 +77,39 @@ export default function App() {
 }
 ```
 
+### Special Markdown syntax
+
+**Supports for CSS Style**
+
+Use HTML comments `<!--rehype:xxx-->`<!--rehype:style=color: red; font-weight: bold;--> to let Markdown support style customization.
+
+```markdown
+## Title
+<!--rehype:style=display: flex; height: 230px; align-items: center; justify-content: center; font-size: 38px;-->
+
+Markdown Supports **Style**<!--rehype:style=color: red;-->
+```
+
+**Ignore content display via HTML comments**
+
+Shown in GitHub readme, excluded in HTML.
+
+```markdown
+# Hello World
+
+<!--rehype:ignore:start-->Hello World<!--rehype:ignore:end-->
+
+Good!
+```
+
+Output:
+
+```html
+<h1>Hello World</h1>
+
+<p>Good!</p>
+```
+
 ### Security
 
 Please note markdown needs to be sanitized if you do not **completely trust** your authors.
