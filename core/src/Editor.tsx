@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
+import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, CSSProperties } from 'react';
 import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
@@ -24,7 +24,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * editor height change listener
    */
-  onHeightChange?: (value?: number, oldValue?: number, state?: ContextStore) => void;
+  onHeightChange?: (value?: CSSProperties['height'], oldValue?: CSSProperties['height'], state?: ContextStore) => void;
   /**
    * Can be used to make `Markdown Editor` focus itself on initialization. Defaults to on.
    * it will be set to true when either the source `textarea` is focused,
@@ -33,8 +33,9 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   autoFocus?: ITextAreaProps['autoFocus'];
   /**
    * The height of the editor.
+   * ⚠️ `Dragbar` is invalid when **`height`** parameter percentage.
    */
-  height?: number;
+  height?: CSSProperties['height'];
   /**
    * Custom toolbar heigth
    * @default 29px
@@ -287,7 +288,6 @@ const InternalMDEditor = (
     ),
     [prefixCls, previewOptions, state.markdown],
   );
-
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div
@@ -299,7 +299,7 @@ const InternalMDEditor = (
         }}
         style={{
           ...other.style,
-          height: state.fullscreen ? '100%' : hideToolbar ? Number(state.height) - toolbarHeight : state.height,
+          height: state.height || '100%',
         }}
       >
         {!hideToolbar && !toolbarBottom && (
@@ -308,7 +308,7 @@ const InternalMDEditor = (
         <div
           className={`${prefixCls}-content`}
           style={{
-            height: state.fullscreen ? `calc(100% - ${toolbarHeight}px)` : Number(state.height) - toolbarHeight,
+            height: `calc(100% - ${toolbarHeight}px)`,
           }}
         >
           {/(edit|live)/.test(state.preview || '') && (

@@ -8,7 +8,7 @@ export type ContextStore = {
   extraCommands?: ICommand<string>[];
   markdown?: string;
   preview?: PreviewType;
-  height?: number;
+  height?: React.CSSProperties['height'];
   fullscreen?: boolean;
   highlightEnable?: boolean;
   autoFocus?: boolean;

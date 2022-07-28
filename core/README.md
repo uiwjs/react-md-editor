@@ -564,7 +564,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 
 - `value: string`: The Markdown value.
 - `onChange?: (value?: string, event?: React.ChangeEvent<HTMLTextAreaElement>, state?: ContextStore)`: Event handler for the `onChange` event.
-- `onHeightChange?: (value?: number, oldValue?: number, state?: ContextStore)`: editor height change listener.
+- `onHeightChange?: ((value?: CSSProperties['height'], oldValue?: CSSProperties['height'], state?: ContextStore)`: editor height change listener.
 - `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L39-L57), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L155-L180) property. If no commands are specified, the default will be used. Commands are explained in more details below.
 - `commandsFilter?: (command: ICommand, isExtra: boolean) => false | ICommand`: Filter or modify your commands.
 - `extraCommands?: ICommand[]`: Displayed on the right side of the toolbar.
@@ -572,7 +572,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview/tree/e6e8462d9a5c64a7045e25adcb4928095d74ca37#options-props) settings.
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
 - `renderTextarea?: (props, opts) => JSX.Element;`: Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)
-- `height?: number=200`: The height of the editor.
+- `height?: number=200`: The height of the editor. ️⚠️ `Dragbar` is invalid when **`height`** parameter percentage.
 - `visibleDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
 - `fullscreen?: boolean=false`: Show markdown preview.
