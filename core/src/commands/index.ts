@@ -1,3 +1,4 @@
+import React from 'react';
 import { bold } from './bold';
 import { code, codeBlock } from './code';
 import { italic } from './italic';
@@ -50,6 +51,12 @@ export interface ICommandBase<T> {
   position?: 'right';
   liProps?: React.LiHTMLAttributes<HTMLLIElement>;
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null;
+  render?: (
+    command: ICommand<T>,
+    disabled: boolean,
+    executeCommand: (command: ICommand<T>, name?: string) => void,
+    index: number,
+  ) => React.ReactElement;
   execute?: (
     state: TextState,
     api: TextAreaTextApi,

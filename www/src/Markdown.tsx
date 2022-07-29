@@ -29,7 +29,13 @@ const CodePreview: CodeComponent | ReactMarkdownNames = ({ inline, node, ...prop
     const code = data.data[metaId].value || '';
     const param = getURLParameters(meta);
     return (
-      <CodeLayout ref={$dom} toolbar={param.title || 'Example'} code={<pre {...rest} />} text={code}>
+      <CodeLayout
+        ref={$dom}
+        style={{ marginBottom: 10 }}
+        toolbar={param.title || 'Example'}
+        code={<pre {...rest} />}
+        text={code}
+      >
         <Child />
       </CodeLayout>
     );

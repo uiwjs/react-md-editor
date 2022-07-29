@@ -85,8 +85,10 @@ export function ToolbarItems(props: IToolbarProps) {
         const disabled = barPopup && preview && preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand);
         return (
           <li key={idx} {...item.liProps} className={activeBtn ? `active` : ''}>
-            {!item.buttonProps && item.icon}
-            {item.buttonProps &&
+            {item.render && typeof item.render === 'function' && item.render(item, !!disabled, handleClick, idx)}
+            {!item.render && !item.buttonProps && item.icon}
+            {!item.render &&
+              item.buttonProps &&
               React.createElement(
                 'button',
                 {
