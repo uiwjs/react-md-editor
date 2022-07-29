@@ -77,8 +77,23 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Set the `textarea` related props.
    */
   textareaProps?: ITextAreaProps;
-  /** Use div to replace TextArea or re-render TextArea */
+  /**
+   * Use div to replace TextArea or re-render TextArea
+   * @deprecated Please use ~~`renderTextarea`~~ -> `components`
+   */
   renderTextarea?: ITextAreaProps['renderTextarea'];
+  /**
+   * re-render element
+   */
+  components?: {
+    /** Use div to replace TextArea or re-render TextArea */
+    textarea?: ITextAreaProps['renderTextarea'];
+    /**
+     * Override the default command element
+     * _`toolbar`_ < _`command[].render`_
+     */
+    toolbar?: ICommand['render'];
+  };
   /**
    * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
    * @default true
@@ -153,6 +168,7 @@ const InternalMDEditor = (
     onHeightChange,
     hideToolbar,
     toolbarBottom = false,
+    components,
     renderTextarea,
     ...other
   } = props || {};
@@ -165,6 +181,7 @@ const InternalMDEditor = (
   let [state, dispatch] = useReducer(reducer, {
     markdown: propsValue,
     preview: previewType,
+    components,
     height,
     highlightEnable,
     tabSize,
@@ -323,7 +340,7 @@ const InternalMDEditor = (
                   textareaProps.onChange(evn);
                 }
               }}
-              renderTextarea={renderTextarea}
+              renderTextarea={components?.textarea || renderTextarea}
               onScroll={(e) => handleScroll(e, 'text')}
             />
           )}

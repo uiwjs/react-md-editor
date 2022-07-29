@@ -291,6 +291,44 @@ export default function App() {
 }
 ```
 
+re-render `toolbar` element.
+
+```jsx mdx:preview
+import React from "react";
+import MDEditor, { commands } from '@uiw/react-md-editor';
+
+export default function App() {
+  const [value, setValue] = React.useState("Hello Markdown! `Tab` key uses default behavior");
+  return (
+    <div className="container">
+      <MDEditor
+        value={value}
+        onChange={setValue}
+        preview="edit"
+        components={{
+          toolbar: (command, disabled, executeCommand) => {
+            if (command.keyCommand === 'code') {
+              return (
+                <button 
+                  aria-label="Insert code"
+                  disabled={disabled}
+                  onClick={(evn) => {
+                    evn.stopPropagation();
+                    executeCommand(command, command.groupName)
+                  }}
+                >
+                  Code
+                </button>
+              )
+            }
+          }
+        }}
+      />
+    </div>
+  );
+}
+```
+
 ### Preview Markdown
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-preview-markdown-vrucl?fontsize=14&hidenavigation=1&theme=dark)
@@ -599,7 +637,8 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `autoFocus?: true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview/tree/e6e8462d9a5c64a7045e25adcb4928095d74ca37#options-props) settings.
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
-- `renderTextarea?: (props, opts) => JSX.Element;`: Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)
+- ~~`renderTextarea?: (props, opts) => JSX.Element;`~~: `@deprecated` Please use ~~`renderTextarea`~~ -> `components`. Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)
+- `components`: re-render textarea/toolbar element. [#419](https://github.com/uiwjs/react-md-editor/issues/419)
 - `height?: number=200`: The height of the editor. ️⚠️ `Dragbar` is invalid when **`height`** parameter percentage.
 - `visibleDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.

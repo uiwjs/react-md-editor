@@ -56,7 +56,7 @@ export interface ICommandBase<T> {
     disabled: boolean,
     executeCommand: (command: ICommand<T>, name?: string) => void,
     index: number,
-  ) => React.ReactElement;
+  ) => void | undefined | null | React.ReactElement;
   execute?: (
     state: TextState,
     api: TextAreaTextApi,

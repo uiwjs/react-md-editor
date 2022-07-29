@@ -1,9 +1,11 @@
 import React from 'react';
 import { ICommand, TextAreaCommandOrchestrator } from './commands';
+import { MDEditorProps } from './Editor';
 
 export type PreviewType = 'live' | 'edit' | 'preview';
 
 export type ContextStore = {
+  components?: MDEditorProps['components'];
   commands?: ICommand<string>[];
   extraCommands?: ICommand<string>[];
   markdown?: string;

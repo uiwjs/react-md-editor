@@ -27,6 +27,24 @@ const Example = (props = {} as { mdStr: string }) => {
         autoFocus
         value={state.value}
         overflow={state.overflow}
+        components={{
+          toolbar: (command, disabled, executeCommand) => {
+            if (command.keyCommand === 'code') {
+              return (
+                <button
+                  aria-label="Insert title3"
+                  disabled={disabled}
+                  onClick={(evn) => {
+                    evn.stopPropagation();
+                    executeCommand(command, command.groupName);
+                  }}
+                >
+                  btn
+                </button>
+              );
+            }
+          },
+        }}
         previewOptions={{
           linkTarget: '_blank',
           rehypePlugins: [

@@ -16,7 +16,7 @@ export interface IToolbarProps extends IProps {
 
 export function ToolbarItems(props: IToolbarProps) {
   const { prefixCls, overflow } = props;
-  const { fullscreen, preview, barPopup = {}, commandOrchestrator, dispatch } = useContext(EditorContext);
+  const { fullscreen, preview, barPopup = {}, components, commandOrchestrator, dispatch } = useContext(EditorContext);
   const originalOverflow = useRef('');
 
   function handleClick(command: ICommand<string>, name?: string) {
@@ -83,11 +83,15 @@ export function ToolbarItems(props: IToolbarProps) {
               })
             : undefined;
         const disabled = barPopup && preview && preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand);
+        const render = components?.toolbar || item.render;
+        const com = (
+          render && typeof render === 'function' ? render(item, !!disabled, handleClick, idx) : null
+        ) as React.ReactElement;
         return (
           <li key={idx} {...item.liProps} className={activeBtn ? `active` : ''}>
-            {item.render && typeof item.render === 'function' && item.render(item, !!disabled, handleClick, idx)}
-            {!item.render && !item.buttonProps && item.icon}
-            {!item.render &&
+            {com && React.isValidElement(com) && com}
+            {!com && !item.buttonProps && item.icon}
+            {!com &&
               item.buttonProps &&
               React.createElement(
                 'button',
