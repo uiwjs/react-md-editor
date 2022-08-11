@@ -4,7 +4,7 @@
   &-toolbar {
     border-bottom: 1px solid var(--color-border-default);
     background-color: var(--color-canvas-default);
-    padding: 5px;
+    padding: 5px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,10 +21,14 @@
       margin: 0;
       padding: 0;
       list-style: none;
+      line-height: initial;
     }
     li {
       display: inline-block;
       font-size: 14px;
+      & + li {
+        margin: 0;
+      }
       > button {
         border: none;
         height: 20px;
