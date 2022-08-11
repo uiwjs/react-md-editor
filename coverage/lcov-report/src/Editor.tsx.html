@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.47% </span>
+                <span class="strong">64.28% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>55/84</span>
+                <span class='fraction'>54/84</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.2% </span>
+                <span class="strong">60.86% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>71/116</span>
+                <span class='fraction'>70/115</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.38% </span>
+                <span class="strong">61.53% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>17/26</span>
+                <span class='fraction'>16/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.93% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>50/77</span>
+                <span class='fraction'>49/77</span>
             </div>
         
             
@@ -436,10 +436,10 @@
 <a name='L371'></a><a href='#L371'>371</a>
 <a name='L372'></a><a href='#L372'>372</a>
 <a name='L373'></a><a href='#L373'>373</a>
-<a name='L374'></a><a href='#L374'>374</a>
-<a name='L375'></a><a href='#L375'>375</a>
-<a name='L376'></a><a href='#L376'>376</a>
-<a name='L377'></a><a href='#L377'>377</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L374'></a><a href='#L374'>374</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -580,7 +580,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -699,7 +698,7 @@
 <span class="cline-any cline-yes">63x</span>
 <span class="cline-any cline-yes">63x</span>
 <span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -754,11 +753,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -856,6 +850,9 @@ export interface MDEditorProps extends Omit&lt;React.HTMLAttributes&lt;HTMLDivEl
   /**
    * Custom toolbar heigth
    * @default 29px
+   *
+   * @deprecated toolbar height adaptive: https://github.com/uiwjs/react-md-editor/issues/427
+   *
    */
   toolbarHeight?: number;
   /**
@@ -967,7 +964,6 @@ const InternalMDEditor = (
     commandsFilter,
     extraCommands = getExtraCommands(),
     height = 200,
-    toolbarHeight = 29,
     enableScroll = true,
     visibleDragbar = typeof props.visiableDragbar === 'boolean' ? <span class="branch-0 cbranch-no" title="branch not covered" >props.visiableDragbar </span>: true,
     highlightEnable = true,
@@ -1074,8 +1070,8 @@ const InternalMDEditor = (
   useMemo(() =&gt; {
     textareaDomRef.current = state.textareaWarp;
     if (state.textareaWarp) {
-      state.textareaWarp.addEventListener('mouseover', () =&gt; {
-        active.current = 'text';
+      state.textareaWarp.addEventListener('mouseover', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        active.current = 'text';</span>
       });
       state.textareaWarp.addEventListener('mouseleave', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >        active.current = 'preview';</span>
@@ -1137,14 +1133,9 @@ const InternalMDEditor = (
         }}
       &gt;
         {!hideToolbar &amp;&amp; !toolbarBottom &amp;&amp; (
-          &lt;Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;
+          &lt;Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;
         )}
-        &lt;div
-          className={`${prefixCls}-content`}
-          style={{
-            height: `calc(100% - ${toolbarHeight}px)`,
-          }}
-        &gt;
+        &lt;div className={`${prefixCls}-content`}&gt;
           {/(edit|live)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; (
             &lt;TextArea
               className={`${prefixCls}-input`}
@@ -1175,7 +1166,7 @@ const InternalMDEditor = (
           /&gt;
         )}
         {!hideToolbar &amp;&amp; toolbarBottom &amp;&amp; (
-<span class="branch-2 cbranch-no" title="branch not covered" >          &lt;Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >          &lt;Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;</span>
         )}
       &lt;/div&gt;
     &lt;/EditorContext.Provider&gt;
@@ -1198,7 +1189,7 @@ export default mdEditor as MDEditor;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-29T10:32:35.441Z
+                at 2022-08-11T07:55:56.497Z
             </div>
         <script src="../prettify.js"></script>
         <script>
