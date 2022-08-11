@@ -39,6 +39,9 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   /**
    * Custom toolbar heigth
    * @default 29px
+   *
+   * @deprecated toolbar height adaptive: https://github.com/uiwjs/react-md-editor/issues/427
+   *
    */
   toolbarHeight?: number;
   /**
@@ -150,7 +153,6 @@ const InternalMDEditor = (
     commandsFilter,
     extraCommands = getExtraCommands(),
     height = 200,
-    toolbarHeight = 29,
     enableScroll = true,
     visibleDragbar = typeof props.visiableDragbar === 'boolean' ? props.visiableDragbar : true,
     highlightEnable = true,
@@ -320,14 +322,9 @@ const InternalMDEditor = (
         }}
       >
         {!hideToolbar && !toolbarBottom && (
-          <Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} toolbarBottom={toolbarBottom} />
+          <Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} />
         )}
-        <div
-          className={`${prefixCls}-content`}
-          style={{
-            height: `calc(100% - ${toolbarHeight}px)`,
-          }}
-        >
+        <div className={`${prefixCls}-content`}>
           {/(edit|live)/.test(state.preview || '') && (
             <TextArea
               className={`${prefixCls}-input`}
@@ -358,7 +355,7 @@ const InternalMDEditor = (
           />
         )}
         {!hideToolbar && toolbarBottom && (
-          <Toolbar prefixCls={prefixCls} height={toolbarHeight} overflow={overflow} toolbarBottom={toolbarBottom} />
+          <Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} />
         )}
       </div>
     </EditorContext.Provider>

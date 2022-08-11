@@ -10,13 +10,19 @@
     0 1px 1px var(--color-border-default);
   background-color: var(--color-canvas-default);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  .copied {
-    display: none !important;
+  display: flex;
+  flex-direction: column;
+  &-toolbar {
+    height: fit-content;
   }
   &-content {
+    height: 100%;
+    overflow: auto;
     position: relative;
     border-radius: 0 0 3px 0;
-    height: calc(100% - 39.1px);
+  }
+  .copied {
+    display: none !important;
   }
   &-input {
     width: 50%;

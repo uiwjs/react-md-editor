@@ -7,7 +7,6 @@ import './index.less';
 
 export interface IToolbarProps extends IProps {
   overflow?: boolean;
-  height?: React.CSSProperties['height'];
   toolbarBottom?: boolean;
   onCommand?: (command: ICommand<string>, groupName?: string) => void;
   commands?: ICommand<string>[];
@@ -125,11 +124,11 @@ export function ToolbarItems(props: IToolbarProps) {
 }
 
 export default function Toolbar(props: IToolbarProps = {}) {
-  const { prefixCls, height = 29, toolbarBottom, isChild } = props;
+  const { prefixCls, toolbarBottom, isChild } = props;
   const { commands, extraCommands } = useContext(EditorContext);
   const bottomClassName = toolbarBottom ? 'bottom' : '';
   return (
-    <div className={`${prefixCls}-toolbar ${bottomClassName}`} style={{ height }}>
+    <div className={`${prefixCls}-toolbar ${bottomClassName}`}>
       <ToolbarItems {...props} commands={props.commands || commands || []} />
       {!isChild && <ToolbarItems {...props} commands={extraCommands || []} />}
     </div>
