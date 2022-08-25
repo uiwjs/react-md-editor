@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.28% </span>
+                <span class="strong">64.04% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>54/84</span>
+                <span class='fraction'>57/89</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.86% </span>
+                <span class="strong">59.34% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>70/115</span>
+                <span class='fraction'>73/123</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.53% </span>
+                <span class="strong">59.25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>16/26</span>
+                <span class='fraction'>16/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">63.41% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/77</span>
+                <span class='fraction'>52/82</span>
             </div>
         
             
@@ -436,7 +436,21 @@
 <a name='L371'></a><a href='#L371'>371</a>
 <a name='L372'></a><a href='#L372'>372</a>
 <a name='L373'></a><a href='#L373'>373</a>
-<a name='L374'></a><a href='#L374'>374</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L374'></a><a href='#L374'>374</a>
+<a name='L375'></a><a href='#L375'>375</a>
+<a name='L376'></a><a href='#L376'>376</a>
+<a name='L377'></a><a href='#L377'>377</a>
+<a name='L378'></a><a href='#L378'>378</a>
+<a name='L379'></a><a href='#L379'>379</a>
+<a name='L380'></a><a href='#L380'>380</a>
+<a name='L381'></a><a href='#L381'>381</a>
+<a name='L382'></a><a href='#L382'>382</a>
+<a name='L383'></a><a href='#L383'>383</a>
+<a name='L384'></a><a href='#L384'>384</a>
+<a name='L385'></a><a href='#L385'>385</a>
+<a name='L386'></a><a href='#L386'>386</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -734,12 +748,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">122x</span>
+<span class="cline-any cline-yes">122x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">122x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">122x</span>
+<span class="cline-any cline-yes">122x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -810,7 +834,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, CSSProperties } from 'react';
-import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
+import MarkdownPreview, { MarkdownPreviewProps } from '@uiw/react-markdown-preview';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
@@ -907,6 +931,8 @@ export interface MDEditorProps extends Omit&lt;React.HTMLAttributes&lt;HTMLDivEl
      * _`toolbar`_ &lt; _`command[].render`_
      */
     toolbar?: ICommand['render'];
+    /** Custom markdown preview */
+    preview?: (source: string, state: ContextStore, dispath: React.Dispatch&lt;ContextStore&gt;) =&gt; JSX.Element;
   };
   /**
    * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
@@ -1007,7 +1033,7 @@ const InternalMDEditor = (
     barPopup: {},
   });
   const container = useRef&lt;HTMLDivElement&gt;(null);
-  const previewRef = useRef&lt;MarkdownPreviewRef&gt;(null);
+  const previewRef = useRef&lt;HTMLDivElement&gt;(null);
   const enableScrollRef = useRef(enableScroll);
 &nbsp;
   useImperativeHandle(ref, <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ ...state })</span>);
@@ -1082,7 +1108,7 @@ const InternalMDEditor = (
   const handleScroll = <span class="fstat-no" title="function not covered" >(e</span>: React.UIEvent&lt;HTMLDivElement&gt;, type: 'text' | 'preview') =&gt; {
 <span class="cstat-no" title="statement not covered" >    if (!enableScrollRef.current) <span class="cstat-no" title="statement not covered" >return;</span></span>
     const textareaDom = <span class="cstat-no" title="statement not covered" >textareaDomRef.current;</span>
-    const previewDom = <span class="cstat-no" title="statement not covered" >previewRef.current ? previewRef.current.mdp.current : undefined;</span>
+    const previewDom = <span class="cstat-no" title="statement not covered" >previewRef.current ? previewRef.current : undefined;</span>
 <span class="cstat-no" title="statement not covered" >    if (!initScroll.current) {</span>
 <span class="cstat-no" title="statement not covered" >      active.current = type;</span>
 <span class="cstat-no" title="statement not covered" >      initScroll.current = true;</span>
@@ -1106,18 +1132,28 @@ const InternalMDEditor = (
     }
   };
 &nbsp;
-  const mdPreview = useMemo(
+  const previewClassName = `${prefixCls}-preview ${previewOptions.className || ''}`;
+  let mdPreview = useMemo(
     () =&gt; (
-      &lt;MarkdownPreview
-        {...previewOptions}
-        onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'preview')}</span>
-        ref={previewRef}
-        source={state.markdown || ''}
-        className={`${prefixCls}-preview ${previewOptions.className || ''}`}
-      /&gt;
+      &lt;div ref={previewRef} className={previewClassName}&gt;
+        &lt;MarkdownPreview
+          {...previewOptions}
+          onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'preview')}</span>
+          source={state.markdown || ''}
+        /&gt;
+      &lt;/div&gt;
     ),
-    [prefixCls, previewOptions, state.markdown],
+    [previewClassName, previewOptions, state.markdown],
   );
+  const preview = components?.preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >components?.preview(state.markdown || '', state, dispatch);</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >React.isValidElement(preview))</span> {
+<span class="cstat-no" title="statement not covered" >    mdPreview = (</span>
+      &lt;div className={previewClassName} ref={previewRef} onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'preview')}</span>&gt;
+        {preview}
+      &lt;/div&gt;
+    );
+  }
+&nbsp;
   return (
     &lt;EditorContext.Provider value={{ ...state, dispatch }}&gt;
       &lt;div
@@ -1189,7 +1225,7 @@ export default mdEditor as MDEditor;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-11T08:30:59.519Z
+                at 2022-08-25T01:17:31.846Z
             </div>
         <script src="../prettify.js"></script>
         <script>
