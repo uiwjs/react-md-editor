@@ -362,8 +362,9 @@ const InternalMDEditor = (
   );
 };
 
-const mdEditor: React.FC<PropsWithRef<MDEditorProps>> & { Markdown?: typeof MarkdownPreview } =
-  React.forwardRef(InternalMDEditor);
+type Editor = React.FC<PropsWithRef<MDEditorProps>> & { Markdown: typeof MarkdownPreview };
+
+const mdEditor: Editor = React.forwardRef(InternalMDEditor) as unknown as Editor;
 
 mdEditor.Markdown = MarkdownPreview;
 
