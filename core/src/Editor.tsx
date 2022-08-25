@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, CSSProperties } from 'react';
+import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, CSSProperties, PropsWithRef } from 'react';
 import MarkdownPreview, { MarkdownPreviewProps } from '@uiw/react-markdown-preview';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
@@ -298,14 +298,11 @@ const InternalMDEditor = (
   };
 
   const previewClassName = `${prefixCls}-preview ${previewOptions.className || ''}`;
+  const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => handleScroll(e, 'preview');
   let mdPreview = useMemo(
     () => (
       <div ref={previewRef} className={previewClassName}>
-        <MarkdownPreview
-          {...previewOptions}
-          onScroll={(e) => handleScroll(e, 'preview')}
-          source={state.markdown || ''}
-        />
+        <MarkdownPreview {...previewOptions} onScroll={handlePreviewScroll} source={state.markdown || ''} />
       </div>
     ),
     [previewClassName, previewOptions, state.markdown],
@@ -313,26 +310,19 @@ const InternalMDEditor = (
   const preview = components?.preview && components?.preview(state.markdown || '', state, dispatch);
   if (preview && React.isValidElement(preview)) {
     mdPreview = (
-      <div className={previewClassName} ref={previewRef} onScroll={(e) => handleScroll(e, 'preview')}>
+      <div className={previewClassName} ref={previewRef} onScroll={handlePreviewScroll}>
         {preview}
       </div>
     );
   }
 
+  const containerStyle = { ...other.style, height: state.height || '100%' };
+  const containerClick = () => dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });
+  const dragBarChange = (newHeight: number) => dispatch({ height: newHeight });
+
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
-      <div
-        ref={container}
-        className={cls}
-        {...other}
-        onClick={() => {
-          dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });
-        }}
-        style={{
-          ...other.style,
-          height: state.height || '100%',
-        }}
-      >
+      <div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}>
         {!hideToolbar && !toolbarBottom && (
           <Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} />
         )}
@@ -361,9 +351,7 @@ const InternalMDEditor = (
             height={state.height as number}
             maxHeight={maxHeight!}
             minHeight={minHeight!}
-            onChange={(newHeight) => {
-              dispatch({ height: newHeight });
-            }}
+            onChange={dragBarChange}
           />
         )}
         {!hideToolbar && toolbarBottom && (
@@ -374,12 +362,9 @@ const InternalMDEditor = (
   );
 };
 
-const mdEditor = React.forwardRef<ContextStore, MDEditorProps>(InternalMDEditor);
+const mdEditor: React.FC<PropsWithRef<MDEditorProps>> & { Markdown?: typeof MarkdownPreview } =
+  React.forwardRef(InternalMDEditor);
 
-type MDEditor = typeof mdEditor & {
-  Markdown: typeof MarkdownPreview;
-};
+mdEditor.Markdown = MarkdownPreview;
 
-(mdEditor as MDEditor).Markdown = MarkdownPreview;
-
-export default mdEditor as MDEditor;
+export default mdEditor;
