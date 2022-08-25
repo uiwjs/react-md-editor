@@ -654,6 +654,9 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
 - ~~`renderTextarea?: (props, opts) => JSX.Element;`~~: `@deprecated` Please use ~~`renderTextarea`~~ -> `components`. Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)
 - `components`: re-render textarea/toolbar element. [#419](https://github.com/uiwjs/react-md-editor/issues/419)
+    - `textarea` Use div to replace TextArea or re-render TextArea
+    - `toolbar` Override the default command element. _`toolbar`_ < _`command[].render`_
+    - `preview` Custom markdown preview. [#429](https://github.com/uiwjs/react-md-editor/issues/429)
 - `height?: number=200`: The height of the editor. ️⚠️ `Dragbar` is invalid when **`height`** parameter percentage.
 - `visibleDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
