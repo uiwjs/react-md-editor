@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, CSSProperties } from 'react';
-import MarkdownPreview, { MarkdownPreviewProps, MarkdownPreviewRef } from '@uiw/react-markdown-preview';
+import MarkdownPreview, { MarkdownPreviewProps } from '@uiw/react-markdown-preview';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
@@ -96,6 +96,8 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
      * _`toolbar`_ < _`command[].render`_
      */
     toolbar?: ICommand['render'];
+    /** Custom markdown preview */
+    preview?: (source: string, state: ContextStore, dispath: React.Dispatch<ContextStore>) => JSX.Element;
   };
   /**
    * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
@@ -196,7 +198,7 @@ const InternalMDEditor = (
     barPopup: {},
   });
   const container = useRef<HTMLDivElement>(null);
-  const previewRef = useRef<MarkdownPreviewRef>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
   const enableScrollRef = useRef(enableScroll);
 
   useImperativeHandle(ref, () => ({ ...state }));
@@ -271,7 +273,7 @@ const InternalMDEditor = (
   const handleScroll = (e: React.UIEvent<HTMLDivElement>, type: 'text' | 'preview') => {
     if (!enableScrollRef.current) return;
     const textareaDom = textareaDomRef.current;
-    const previewDom = previewRef.current ? previewRef.current.mdp.current : undefined;
+    const previewDom = previewRef.current ? previewRef.current : undefined;
     if (!initScroll.current) {
       active.current = type;
       initScroll.current = true;
@@ -295,18 +297,28 @@ const InternalMDEditor = (
     }
   };
 
-  const mdPreview = useMemo(
+  const previewClassName = `${prefixCls}-preview ${previewOptions.className || ''}`;
+  let mdPreview = useMemo(
     () => (
-      <MarkdownPreview
-        {...previewOptions}
-        onScroll={(e) => handleScroll(e, 'preview')}
-        ref={previewRef}
-        source={state.markdown || ''}
-        className={`${prefixCls}-preview ${previewOptions.className || ''}`}
-      />
+      <div ref={previewRef} className={previewClassName}>
+        <MarkdownPreview
+          {...previewOptions}
+          onScroll={(e) => handleScroll(e, 'preview')}
+          source={state.markdown || ''}
+        />
+      </div>
     ),
-    [prefixCls, previewOptions, state.markdown],
+    [previewClassName, previewOptions, state.markdown],
   );
+  const preview = components?.preview && components?.preview(state.markdown || '', state, dispatch);
+  if (preview && React.isValidElement(preview)) {
+    mdPreview = (
+      <div className={previewClassName} ref={previewRef} onScroll={(e) => handleScroll(e, 'preview')}>
+        {preview}
+      </div>
+    );
+  }
+
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div
