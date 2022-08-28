@@ -1,5 +1,6 @@
 import React from 'react';
 import GithubCorner from '@uiw/react-github-corners';
+import BackToUp from '@uiw/react-back-to-top';
 import '@wcj/dark-mode';
 import ReadmeStr from '@uiw/react-md-editor/README.md';
 import Example from './Example';
@@ -16,6 +17,7 @@ export default function App() {
   };
   return (
     <div className="wmde-markdown-var">
+      <BackToUp>Top</BackToUp>
       <dark-mode permanent style={{ position: 'fixed', top: 8, left: 10, zIndex: 10 }}></dark-mode>
       <a
         className="product-hunt"
