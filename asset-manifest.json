@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-md-editor/static/css/main.aff1c410.css",
-    "main.js": "/react-md-editor/static/js/main.f8116dcb.js",
+    "main.css": "/react-md-editor/static/css/main.60d541b0.css",
+    "main.js": "/react-md-editor/static/js/main.eba45800.js",
     "momentlodash-vendor.js": "/react-md-editor/static/js/momentlodash-vendor.946bc284.js",
     "dagre-d3-vendor.js": "/react-md-editor/static/js/dagre-d3-vendor.2baeb983.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.81cbab2b.js",
@@ -9,8 +9,8 @@
     "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.a9903922.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.9dbdd004.js",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.19f1ce78.js",
-    "katex-vendor.css": "/react-md-editor/static/css/katex-vendor.fd1082da.css",
-    "katex-vendor.js": "/react-md-editor/static/js/katex-vendor.103f1ab0.js",
+    "katex-vendor.css": "/react-md-editor/static/css/katex-vendor.9088db87.css",
+    "katex-vendor.js": "/react-md-editor/static/js/katex-vendor.79d09a5a.js",
     "mermaid-vendor.js": "/react-md-editor/static/js/mermaid-vendor.ca5adc7c.js",
     "d3-vendor.js": "/react-md-editor/static/js/d3-vendor.83e1ceb6.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/react-md-editor/static/media/KaTeX_AMS-Regular.853be92419a6c3766b9a.ttf",
@@ -75,8 +75,8 @@
     "static/media/KaTeX_Size4-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.aff1c410.css.map": "/react-md-editor/static/css/main.aff1c410.css.map",
-    "main.f8116dcb.js.map": "/react-md-editor/static/js/main.f8116dcb.js.map",
+    "main.60d541b0.css.map": "/react-md-editor/static/css/main.60d541b0.css.map",
+    "main.eba45800.js.map": "/react-md-editor/static/js/main.eba45800.js.map",
     "momentlodash-vendor.946bc284.js.map": "/react-md-editor/static/js/momentlodash-vendor.946bc284.js.map",
     "dagre-d3-vendor.2baeb983.js.map": "/react-md-editor/static/js/dagre-d3-vendor.2baeb983.js.map",
     "refractor-prismjs-vendor.81cbab2b.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.81cbab2b.js.map",
@@ -84,8 +84,8 @@
     "babel-runtime-vendor.a9903922.js.map": "/react-md-editor/static/js/babel-runtime-vendor.a9903922.js.map",
     "parse5-vendor.9dbdd004.js.map": "/react-md-editor/static/js/parse5-vendor.9dbdd004.js.map",
     "react-vendor.19f1ce78.js.map": "/react-md-editor/static/js/react-vendor.19f1ce78.js.map",
-    "katex-vendor.fd1082da.css.map": "/react-md-editor/static/css/katex-vendor.fd1082da.css.map",
-    "katex-vendor.103f1ab0.js.map": "/react-md-editor/static/js/katex-vendor.103f1ab0.js.map",
+    "katex-vendor.9088db87.css.map": "/react-md-editor/static/css/katex-vendor.9088db87.css.map",
+    "katex-vendor.79d09a5a.js.map": "/react-md-editor/static/js/katex-vendor.79d09a5a.js.map",
     "mermaid-vendor.ca5adc7c.js.map": "/react-md-editor/static/js/mermaid-vendor.ca5adc7c.js.map",
     "d3-vendor.83e1ceb6.js.map": "/react-md-editor/static/js/d3-vendor.83e1ceb6.js.map"
   },
@@ -97,11 +97,11 @@
     "static/js/babel-runtime-vendor.a9903922.js",
     "static/js/parse5-vendor.9dbdd004.js",
     "static/js/react-vendor.19f1ce78.js",
-    "static/css/katex-vendor.fd1082da.css",
-    "static/js/katex-vendor.103f1ab0.js",
+    "static/css/katex-vendor.9088db87.css",
+    "static/js/katex-vendor.79d09a5a.js",
     "static/js/mermaid-vendor.ca5adc7c.js",
     "static/js/d3-vendor.83e1ceb6.js",
-    "static/css/main.aff1c410.css",
-    "static/js/main.f8116dcb.js"
+    "static/css/main.60d541b0.css",
+    "static/js/main.eba45800.js"
   ]
 }
