@@ -329,6 +329,72 @@ export default function App() {
 }
 ```
 
+Custom Preview Command Tool
+
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-https-github-com-uiwjs-react-md-editor-issues-433-9mwuob?fontsize=14&hidenavigation=1&theme=dark)
+
+```jsx mdx:preview
+import React, { useContext } from "react";
+import MDEditor, { commands, EditorContext } from "@uiw/react-md-editor";
+
+const Button = () => {
+  const { preview, dispatch } = useContext(EditorContext);
+  const click = () => {
+    dispatch({
+      preview: preview === "edit" ? "preview" : "edit"
+    });
+  };
+  if (preview === "edit") {
+    return (
+      <svg width="12" height="12" viewBox="0 0 520 520" onClick={click}>
+        <polygon
+          fill="currentColor"
+          points="0 71.293 0 122 319 122 319 397 0 397 0 449.707 372 449.413 372 71.293"
+        />
+        <polygon
+          fill="currentColor"
+          points="429 71.293 520 71.293 520 122 481 123 481 396 520 396 520 449.707 429 449.413"
+        />
+      </svg>
+    );
+  }
+  return (
+    <svg width="12" height="12" viewBox="0 0 520 520" onClick={click}>
+      <polygon
+        fill="currentColor"
+        points="0 71.293 0 122 38.023 123 38.023 398 0 397 0 449.707 91.023 450.413 91.023 72.293"
+      />
+      <polygon
+        fill="currentColor"
+        points="148.023 72.293 520 71.293 520 122 200.023 124 200.023 397 520 396 520 449.707 148.023 450.413"
+      />
+    </svg>
+  );
+};
+
+const codePreview = {
+  name: "preview",
+  keyCommand: "preview",
+  value: "preview",
+  icon: <Button />
+};
+
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!**");
+  return (
+    <div className="container">
+      <div>The system automatically sets the theme</div>
+      <MDEditor
+        value={value}
+        preview="edit"
+        extraCommands={[codePreview, commands.fullscreen]}
+        onChange={(val) => setValue(val)}
+      />
+    </div>
+  );
+}
+```
+
 ### Editor Font Size
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-for-react-uiwjs-react-md-editor-issues-425-2epmgh?fontsize=14&hidenavigation=1&theme=dark)
