@@ -163,15 +163,14 @@ const title3 = {
 };
 
 const title2 = {
-  name: 'title3',
-  keyCommand: 'title3',
+  name: 'title2',
+  keyCommand: 'title2',
   render: (command, disabled, executeCommand) => {
     return (
       <button 
-        aria-label="Insert title3"
+        aria-label="Insert title2"
         disabled={disabled}
         onClick={(evn) => {
-          evn.stopPropagation();
           executeCommand(command, command.groupName)
         }}
       >
@@ -499,7 +498,7 @@ export default function App() {
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-text-to-images-ijqmx?fontsize=14&hidenavigation=1&theme=dark)
 
 ```tsx mdx:preview
-import React from "react";
+import React, { useState } from "react";
 import MDEditor, { commands, ICommand, TextState, TextAreaTextApi } from "@uiw/react-md-editor";
 import domToImage from "dom-to-image";
 
@@ -526,11 +525,14 @@ const textToImage: ICommand = {
 };
 
 export default function App() {
+  const [value, setValue] = useState('**Hello world!!!**');
+  console.log('value::', value)
   return (
     <div className="container">
       <MDEditor
         className="gooooooooo"
-        value="**Hello world!!!**"
+        onChange={(newValue = "") => setValue(newValue)}
+        value={value}
         commands={[
           textToImage,
           commands.divider
@@ -639,8 +641,6 @@ export default function App() {
     />
   );
 }
-
-ReactDOM.render(<App />, document.getElementById("container"));
 ```
 
 ### Support Nextjs
