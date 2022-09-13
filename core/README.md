@@ -171,6 +171,7 @@ const title2 = {
         aria-label="Insert title2"
         disabled={disabled}
         onClick={(evn) => {
+          // evn.stopPropagation();
           executeCommand(command, command.groupName)
         }}
       >
