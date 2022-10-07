@@ -5,7 +5,8 @@ export const codePreview: ICommand = {
   name: 'preview',
   keyCommand: 'preview',
   value: 'preview',
-  buttonProps: { 'aria-label': 'Preview code', title: 'Preview code' },
+  shortcuts: 'ctrlcmd+9',
+  buttonProps: { 'aria-label': 'Preview code (ctrl + 9)', title: 'Preview code (ctrl + 9)' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <polygon
@@ -25,7 +26,8 @@ export const codeEdit: ICommand = {
   name: 'edit',
   keyCommand: 'preview',
   value: 'edit',
-  buttonProps: { 'aria-label': 'Edit code', title: 'Edit code' },
+  shortcuts: 'ctrlcmd+7',
+  buttonProps: { 'aria-label': 'Edit code (ctrl + 7)', title: 'Edit code (ctrl + 7)' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <polygon fill="currentColor" points="0 71.293 0 122 319 122 319 397 0 397 0 449.707 372 449.413 372 71.293" />
@@ -42,7 +44,8 @@ export const codeLive: ICommand = {
   name: 'live',
   keyCommand: 'preview',
   value: 'live',
-  buttonProps: { 'aria-label': 'Live code', title: 'Live code' },
+  shortcuts: 'ctrlcmd+8',
+  buttonProps: { 'aria-label': 'Live code (ctrl + 8)', title: 'Live code (ctrl + 8)' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <polygon fill="currentColor" points="0 71.293 0 122 179 122 179 397 0 397 0 449.707 232 449.413 232 71.293" />

@@ -1,9 +1,9 @@
 import React from 'react';
 import { ICommand } from './';
-import { title2 } from './title2';
+import { title1 } from './title1';
 
 export const title: ICommand = {
-  ...title2,
+  ...title1,
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <path

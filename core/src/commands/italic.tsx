@@ -6,7 +6,8 @@ export const italic: ICommand = {
   name: 'italic',
   keyCommand: 'italic',
   shortcuts: 'ctrlcmd+i',
-  buttonProps: { 'aria-label': 'Add italic text', title: 'Add italic text' },
+  value: '* *',
+  buttonProps: { 'aria-label': 'Add italic text (ctrl + i)', title: 'Add italic text (ctrl + i)' },
   icon: (
     <svg data-name="italic" width="12" height="12" role="img" viewBox="0 0 320 512">
       <path

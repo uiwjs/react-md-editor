@@ -6,7 +6,8 @@ export const bold: ICommand = {
   name: 'bold',
   keyCommand: 'bold',
   shortcuts: 'ctrlcmd+b',
-  buttonProps: { 'aria-label': 'Add bold text', title: 'Add bold text' },
+  value: '**',
+  buttonProps: { 'aria-label': 'Add bold text (ctrl + b)', title: 'Add bold text (ctrl + b)' },
   icon: (
     <svg role="img" width="12" height="12" viewBox="0 0 384 512">
       <path

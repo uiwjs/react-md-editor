@@ -66,8 +66,12 @@ export const makeList = (state: TextState, api: TextAreaTextApi, insertBefore: s
 export const unorderedListCommand: ICommand = {
   name: 'unordered-list',
   keyCommand: 'list',
-  shortcuts: 'ctrl+shift+l',
-  buttonProps: { 'aria-label': 'Add unordered list', title: 'Add unordered list' },
+  shortcuts: 'ctrl+shift+u',
+  value: '- ',
+  buttonProps: {
+    'aria-label': 'Add unordered list (ctrl + shift + u)',
+    title: 'Add unordered list (ctrl + shift + u)',
+  },
   icon: (
     <svg data-name="unordered-list" width="12" height="12" viewBox="0 0 512 512">
       <path
@@ -85,7 +89,8 @@ export const orderedListCommand: ICommand = {
   name: 'ordered-list',
   keyCommand: 'list',
   shortcuts: 'ctrl+shift+o',
-  buttonProps: { 'aria-label': 'Add ordered list', title: 'Add ordered list' },
+  value: '1. ',
+  buttonProps: { 'aria-label': 'Add ordered list (ctrl + shift + o)', title: 'Add ordered list (ctrl + shift + o)' },
   icon: (
     <svg data-name="ordered-list" width="12" height="12" role="img" viewBox="0 0 512 512">
       <path
@@ -103,7 +108,8 @@ export const checkedListCommand: ICommand = {
   name: 'checked-list',
   keyCommand: 'list',
   shortcuts: 'ctrl+shift+c',
-  buttonProps: { 'aria-label': 'Add checked list', title: 'Add checked list' },
+  value: '- [x] ',
+  buttonProps: { 'aria-label': 'Add checked list (ctrl + shift + c)', title: 'Add checked list (ctrl + shift + c)' },
   icon: (
     <svg data-name="checked-list" width="12" height="12" role="img" viewBox="0 0 512 512">
       <path

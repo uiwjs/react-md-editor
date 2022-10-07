@@ -5,6 +5,8 @@ export const comment: ICommand = {
   name: 'comment',
   keyCommand: 'comment',
   shortcuts: 'ctrlcmd+/',
+  value: '<!-- -->',
+  buttonProps: { 'aria-label': 'Insert comment (ctrl + /)', title: 'Insert comment (ctrl + /)' },
   execute: (state: TextState, api: TextAreaTextApi) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
