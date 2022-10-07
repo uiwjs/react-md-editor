@@ -5,7 +5,8 @@ export const hr: ICommand = {
   name: 'hr',
   keyCommand: 'hr',
   shortcuts: 'ctrlcmd+h',
-  buttonProps: { 'aria-label': 'Insert HR', title: 'Insert HR' },
+  value: '----------',
+  buttonProps: { 'aria-label': 'Insert HR (ctrl + h)', title: 'Insert HR (ctrl + h)' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 175 175">
       <path

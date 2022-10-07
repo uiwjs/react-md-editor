@@ -6,7 +6,11 @@ export const strikethrough: ICommand = {
   name: 'strikethrough',
   keyCommand: 'strikethrough',
   shortcuts: 'ctrl+shift+x',
-  buttonProps: { 'aria-label': 'Add strikethrough text', title: 'Add strikethrough text' },
+  buttonProps: {
+    'aria-label': 'Add strikethrough text (ctrl + shift + x)',
+    title: 'Add strikethrough text (ctrl + shift + x)',
+  },
+  value: '~~',
   icon: (
     <svg data-name="strikethrough" width="12" height="12" role="img" viewBox="0 0 512 512">
       <path

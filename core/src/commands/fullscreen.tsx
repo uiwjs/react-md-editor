@@ -5,8 +5,9 @@ import { ContextStore, ExecuteCommandState } from '../Context';
 export const fullscreen: ICommand = {
   name: 'fullscreen',
   keyCommand: 'fullscreen',
-  shortcuts: 'escape',
-  buttonProps: { 'aria-label': 'fullscreen', title: 'fullscreen' },
+  shortcuts: 'ctrlcmd+0',
+  value: 'fullscreen',
+  buttonProps: { 'aria-label': 'Toggle fullscreen (ctrl + 0)', title: 'Toggle fullscreen (ctrl+ 0)' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <path

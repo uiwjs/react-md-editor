@@ -5,8 +5,9 @@ import { selectWord } from '../utils/markdownUtils';
 export const image: ICommand = {
   name: 'image',
   keyCommand: 'image',
-  shortcuts: 'ctrlcmd+i',
-  buttonProps: { 'aria-label': 'Add image', title: 'Add image' },
+  shortcuts: 'ctrlcmd+k',
+  value: '![image]()',
+  buttonProps: { 'aria-label': 'Add image (ctrl + k)', title: 'Add image (ctrl + k)' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 20 20">
       <path
