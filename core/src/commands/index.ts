@@ -1,11 +1,20 @@
 import React from 'react';
+import { ContextStore, ExecuteCommandState } from '../Context';
+import { insertTextAtPosition } from '../utils/InsertTextAtPosition';
 import { bold } from './bold';
 import { code, codeBlock } from './code';
+import { comment } from './comment';
+import { divider } from './divider';
+import { fullscreen } from './fullscreen';
+import { group } from './group';
+import { hr } from './hr';
+import { image } from './image';
 import { italic } from './italic';
 import { link } from './link';
-import { unorderedListCommand, orderedListCommand, checkedListCommand } from './list';
+import { checkedListCommand, orderedListCommand, unorderedListCommand } from './list';
+import { codeEdit, codeLive, codePreview } from './preview';
 import { quote } from './quote';
-import { hr } from './hr';
+import { strikethrough } from './strikeThrough';
 import { title } from './title';
 import { title1 } from './title1';
 import { title2 } from './title2';
@@ -13,15 +22,6 @@ import { title3 } from './title3';
 import { title4 } from './title4';
 import { title5 } from './title5';
 import { title6 } from './title6';
-import { comment } from './comment';
-import { group } from './group';
-import { divider } from './divider';
-import { codePreview, codeEdit, codeLive } from './preview';
-import { fullscreen } from './fullscreen';
-import { image } from './image';
-import { strikethrough } from './strikeThrough';
-import { insertTextAtPosition } from '../utils/InsertTextAtPosition';
-import { ContextStore, ExecuteCommandState } from '../Context';
 
 export interface CommandOrchestrator {
   executeCommand(command: ICommand): void;
@@ -84,7 +84,11 @@ const getCommands: () => ICommand[] = () => [
   italic,
   strikethrough,
   hr,
-  title,
+  group([title1, title2, title3, title4, title5, title6], {
+			name: "title",
+			groupName: "title",
+			buttonProps: { "aria-label": "Insert title", title: "Insert title" },
+		}),
   divider,
   link,
   quote,
@@ -163,7 +167,6 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
 }
 
 export {
-  // Toolbars.
   title,
   title1,
   title2,
@@ -196,3 +199,4 @@ export {
   TextAreaCommandOrchestrator,
   TextAreaTextApi,
 };
+
