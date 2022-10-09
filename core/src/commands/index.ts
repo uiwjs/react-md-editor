@@ -79,21 +79,21 @@ export interface TextState {
 }
 
 const getCommands: () => ICommand[] = () => [
-  comment,
   bold,
   italic,
   strikethrough,
   hr,
   group([title1, title2, title3, title4, title5, title6], {
-			name: "title",
-			groupName: "title",
-			buttonProps: { "aria-label": "Insert title", title: "Insert title" },
-		}),
+    name: 'title',
+    groupName: 'title',
+    buttonProps: { 'aria-label': 'Insert title', title: 'Insert title' },
+  }),
   divider,
   link,
   quote,
   code,
   codeBlock,
+  comment,
   image,
   divider,
   unorderedListCommand,
@@ -199,4 +199,3 @@ export {
   TextAreaCommandOrchestrator,
   TextAreaTextApi,
 };
-
