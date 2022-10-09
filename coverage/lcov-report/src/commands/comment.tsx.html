@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -85,10 +85,16 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,12 +102,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,24 +122,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ICommand, TextState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 &nbsp;
-export const comment: ICommand = {
+export const comment: ICommand = <span class="cstat-no" title="statement not covered" >{</span>
   name: 'comment',
   keyCommand: 'comment',
   shortcuts: 'ctrlcmd+/',
   value: '&lt;!-- --&gt;',
   buttonProps: { 'aria-label': 'Insert comment (ctrl + /)', title: 'Insert comment (ctrl + /)' },
-  execute: (state: TextState, api: TextAreaTextApi) =&gt; {
+  execute: <span class="fstat-no" title="function not covered" >(s</span>tate: TextState, api: TextAreaTextApi) =&gt; {
     // Adjust the selection to encompass the whole word if the caret is inside one
-    const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
-    const state1 = api.setSelectionRange(newSelectionRange);
+    const newSelectionRange = <span class="cstat-no" title="statement not covered" >selectWord({ text: state.text, selection: state.selection });</span>
+    const state1 = <span class="cstat-no" title="statement not covered" >api.setSelectionRange(newSelectionRange);</span>
     // Replaces the current selection with the bold mark up
-    const state2 = api.replaceSelection(`&lt;!-- ${state1.selectedText} --&gt;`);
+    const state2 = <span class="cstat-no" title="statement not covered" >api.replaceSelection(`&lt;!-- ${state1.selectedText} --&gt;`);</span>
     // Adjust the selection to not contain the **
-    api.setSelectionRange({
+<span class="cstat-no" title="statement not covered" >    api.setSelectionRange({</span>
       start: state2.selection.end - 4 - state1.selectedText.length,
       end: state2.selection.end - 4,
     });
   },
+  icon: (
+    &lt;svg role="img" viewBox="0 0 512 512" width="12" height="12"&gt;
+      &lt;path fill="currentColor" d="M281 72H231oLuLFozwYpLrBi5VTa8sg7fDqKkeyD81V172H281V72Z" /&gt;
+      &lt;path fill="currentColor" d="M287.817 501H213.333L298.667 334H438.857C438.857 334 438.857 333.021 438.857 308.308V187.875V74.6028C438.857 64.3818 438.857 67.2814 438.857 62.625C438.857 61.7594 439.31 62.625 426.667 62.625H256H73.1429C73.1429 65.4903 73.1429 77.3378 73.1429 79.8845V187.875V308.308C73.1429 311.005 73.1429 334 73.1429 334C73.1429 334 113.826 334 106.667 334H149.333H237.714V385.385H73.1429C53.7442 385.385 35.14 377.264 21.423 362.809C7.7061 348.355 0 328.75 0 308.308V77.0769C0 56.6349 7.7061 37.03 21.423 22.5753C35.14 8.12058 53.7442 0 73.1429 0H438.857C458.256 0 476.86 8.12058 490.577 22.5753C504.294 37.03 512 56.6349 512 77.0769V308.308C512 328.75 504.294 348.355 490.577 362.809C476.86 377.264 458.256 385.385 438.857 385.385H350.354L287.817 501Z" /&gt;
+    &lt;/svg&gt;
+  )
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -136,7 +154,7 @@ export const comment: ICommand = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-07T16:35:48.024Z
+                at 2022-10-09T13:38:05.551Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
