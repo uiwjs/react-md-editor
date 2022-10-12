@@ -25,7 +25,7 @@
     "compile-less-cli": "~1.8.13",
     "husky": "~8.0.0",
     "kkt": "^7.2.0",
-    "lerna": "^5.1.2",
+    "lerna": "^6.0.0",
     "lint-staged": "~13.0.0",
     "prettier": "^2.7.1",
     "react-test-renderer": "~18.2.0",
