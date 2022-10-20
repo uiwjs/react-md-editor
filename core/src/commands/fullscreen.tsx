@@ -21,10 +21,11 @@ export const fullscreen: ICommand = {
     api: TextAreaTextApi,
     dispatch?: React.Dispatch<ContextStore>,
     executeCommandState?: ExecuteCommandState,
+    shortcuts?: string[],
   ) => {
     api.textArea.focus();
-    if (dispatch && executeCommandState && executeCommandState.fullscreen) {
-      dispatch({ fullscreen: false });
+    if (shortcuts && dispatch && executeCommandState) {
+      dispatch({ fullscreen: !executeCommandState.fullscreen });
     }
   },
 };

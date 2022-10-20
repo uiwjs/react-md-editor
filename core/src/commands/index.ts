@@ -62,6 +62,7 @@ export interface ICommandBase<T> {
     api: TextAreaTextApi,
     dispatch?: React.Dispatch<ContextStore>,
     executeCommandState?: ExecuteCommandState,
+    shortcuts?: string[],
   ) => void;
 }
 
@@ -161,8 +162,9 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
     command: ICommand<string>,
     dispatch?: React.Dispatch<ContextStore>,
     state?: ExecuteCommandState,
+    shortcuts?: string[],
   ): void {
-    command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi, dispatch, state);
+    command.execute && command.execute(getStateFromTextArea(this.textArea), this.textApi, dispatch, state, shortcuts);
   }
 }
 

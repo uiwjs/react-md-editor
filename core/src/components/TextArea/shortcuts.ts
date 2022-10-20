@@ -20,7 +20,7 @@ export default function shortcutsHandle(
   state?: ExecuteCommandState,
 ) {
   const data = getCommands(commands || []);
-  const shortcuts: (string | number)[] = [];
+  const shortcuts: string[] = [];
   if (e.altKey) {
     shortcuts.push('alt');
   }
@@ -60,7 +60,7 @@ export default function shortcutsHandle(
   if (command && commandOrchestrator) {
     e.stopPropagation();
     e.preventDefault();
-    commandOrchestrator.executeCommand(command, dispatch, state);
+    commandOrchestrator.executeCommand(command, dispatch, state, shortcuts);
     return;
   }
 }

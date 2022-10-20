@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ICommand } from './';
+import { ICommand, TextState, TextAreaTextApi } from './';
+import { ContextStore, ExecuteCommandState } from '../Context';
 
 export const codePreview: ICommand = {
   name: 'preview',
@@ -19,7 +20,17 @@ export const codePreview: ICommand = {
       />
     </svg>
   ),
-  execute: () => {},
+  execute: (
+    state: TextState,
+    api: TextAreaTextApi,
+    dispatch?: React.Dispatch<ContextStore>,
+    executeCommandState?: ExecuteCommandState,
+    shortcuts?: string[],
+  ) => {
+    if (shortcuts && dispatch && executeCommandState) {
+      dispatch({ preview: 'preview' });
+    }
+  },
 };
 
 export const codeEdit: ICommand = {
@@ -37,7 +48,17 @@ export const codeEdit: ICommand = {
       />
     </svg>
   ),
-  execute: () => {},
+  execute: (
+    state: TextState,
+    api: TextAreaTextApi,
+    dispatch?: React.Dispatch<ContextStore>,
+    executeCommandState?: ExecuteCommandState,
+    shortcuts?: string[],
+  ) => {
+    if (shortcuts && dispatch && executeCommandState) {
+      dispatch({ preview: 'edit' });
+    }
+  },
 };
 
 export const codeLive: ICommand = {
@@ -55,5 +76,15 @@ export const codeLive: ICommand = {
       />
     </svg>
   ),
-  execute: () => {},
+  execute: (
+    state: TextState,
+    api: TextAreaTextApi,
+    dispatch?: React.Dispatch<ContextStore>,
+    executeCommandState?: ExecuteCommandState,
+    shortcuts?: string[],
+  ) => {
+    if (shortcuts && dispatch && executeCommandState) {
+      dispatch({ preview: 'live' });
+    }
+  },
 };
