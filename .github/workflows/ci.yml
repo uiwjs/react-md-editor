@@ -43,13 +43,13 @@ jobs:
 
       - name: Create Tag
         id: create_tag
-        uses: jaywcjlove/create-tag-action@v1.3.6
+        uses: jaywcjlove/create-tag-action@main
         with:
           package-path: ./core/package.json
 
       - name: get tag version
         id: tag_version
-        uses: jaywcjlove/changelog-generator@v1.5.3
+        uses: jaywcjlove/changelog-generator@main
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -63,14 +63,14 @@ jobs:
 
       - name: Generate Changelog
         id: changelog
-        uses: jaywcjlove/changelog-generator@v1.5.3
+        uses: jaywcjlove/changelog-generator@main
         with:
           head-ref: ${{steps.create_tag.outputs.version}}
           filter-author: (renovate-bot|Renovate Bot)
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
 
       - name: Create Release
-        uses: jaywcjlove/create-tag-action@v1.3.6
+        uses: jaywcjlove/create-tag-action@main
         with:
           package-path: ./core/package.json
           release: true
@@ -118,8 +118,7 @@ jobs:
         uses: jaywcjlove/github-action-package@main
         with:
           path: core/package.json
-          data: |
-            { "name": "@uiwjs/react-md-editor" }
+          rename: '@uiwjs/react-md-editor'
   
       - run: npm publish
         working-directory: core
