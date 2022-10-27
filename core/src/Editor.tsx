@@ -99,6 +99,8 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     /** Custom markdown preview */
     preview?: (source: string, state: ContextStore, dispath: React.Dispatch<ContextStore>) => JSX.Element;
   };
+  /** Theme configuration */
+  'data-color-mode'?: 'light' | 'dark';
   /**
    * Disable editing area code highlighting. The value is `false`, which increases the editing speed.
    * @default true
