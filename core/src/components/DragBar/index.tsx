@@ -11,34 +11,48 @@ export interface IDragBarProps extends IProps {
 
 const DragBar: React.FC<IDragBarProps> = (props) => {
   const { prefixCls, onChange } = props || {};
+  const $dom = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ height: number; dragY: number }>();
-  function handleMouseMove(event: MouseEvent) {
+  function handleMouseMove(event: Event) {
     if (dragRef.current) {
-      const newHeight = dragRef.current.height + event.clientY - dragRef.current.dragY;
+      const clientY =
+        (event as unknown as MouseEvent).clientY || (event as unknown as TouchEvent).changedTouches[0]?.clientY;
+      const newHeight = dragRef.current.height + clientY - dragRef.current.dragY;
       if (newHeight >= props.minHeight && newHeight <= props.maxHeight) {
-        onChange && onChange(dragRef.current.height + (event.clientY - dragRef.current.dragY));
+        onChange && onChange(dragRef.current.height + (clientY - dragRef.current.dragY));
       }
     }
   }
   function handleMouseUp() {
     dragRef.current = undefined;
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
+    $dom.current?.removeEventListener('touchmove', handleMouseMove);
+    $dom.current?.removeEventListener('touchend', handleMouseUp);
   }
-  function handleMouseDown(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function handleMouseDown(event: Event) {
+    event.preventDefault();
+    const clientY =
+      (event as unknown as MouseEvent).clientY || (event as unknown as TouchEvent).changedTouches[0]?.clientY;
     dragRef.current = {
       height: props.height,
-      dragY: event.clientY,
+      dragY: clientY,
     };
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    $dom.current?.addEventListener('touchmove', handleMouseMove, { passive: false });
+    $dom.current?.addEventListener('touchend', handleMouseUp, { passive: false });
   }
 
   useEffect(() => {
     if (document) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      $dom.current?.addEventListener('touchstart', handleMouseDown, { passive: false });
+      $dom.current?.addEventListener('mousedown', handleMouseDown);
     }
     return () => {
       if (document) {
+        $dom.current?.removeEventListener('touchstart', handleMouseDown);
         document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +69,7 @@ const DragBar: React.FC<IDragBarProps> = (props) => {
     [],
   );
   return (
-    <div className={`${prefixCls}-bar`} onMouseDown={handleMouseDown}>
+    <div className={`${prefixCls}-bar`} ref={$dom}>
       {svg}
     </div>
   );
