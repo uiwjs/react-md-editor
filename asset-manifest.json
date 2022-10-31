@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/react-md-editor/static/css/main.40548a2f.css",
-    "main.js": "/react-md-editor/static/js/main.1893488a.js",
-    "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.348a8a63.js",
-    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.5f5e810b.js",
+    "main.css": "/react-md-editor/static/css/main.0047b031.css",
+    "main.js": "/react-md-editor/static/js/main.384f3567.js",
+    "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.6775b2e4.js",
+    "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.3fde6f27.js",
     "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.155b4bd2.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.80e51678.js",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.fe7997f6.js",
@@ -72,10 +72,10 @@
     "static/media/KaTeX_Size4-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.40548a2f.css.map": "/react-md-editor/static/css/main.40548a2f.css.map",
-    "main.1893488a.js.map": "/react-md-editor/static/js/main.1893488a.js.map",
-    "refractor-prismjs-vendor.348a8a63.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.348a8a63.js.map",
-    "micromark-vendor.5f5e810b.js.map": "/react-md-editor/static/js/micromark-vendor.5f5e810b.js.map",
+    "main.0047b031.css.map": "/react-md-editor/static/css/main.0047b031.css.map",
+    "main.384f3567.js.map": "/react-md-editor/static/js/main.384f3567.js.map",
+    "refractor-prismjs-vendor.6775b2e4.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.6775b2e4.js.map",
+    "micromark-vendor.3fde6f27.js.map": "/react-md-editor/static/js/micromark-vendor.3fde6f27.js.map",
     "babel-runtime-vendor.155b4bd2.js.map": "/react-md-editor/static/js/babel-runtime-vendor.155b4bd2.js.map",
     "parse5-vendor.80e51678.js.map": "/react-md-editor/static/js/parse5-vendor.80e51678.js.map",
     "react-vendor.fe7997f6.js.map": "/react-md-editor/static/js/react-vendor.fe7997f6.js.map",
@@ -84,15 +84,15 @@
     "mermaid-vendor.6eaf0aaf.js.map": "/react-md-editor/static/js/mermaid-vendor.6eaf0aaf.js.map"
   },
   "entrypoints": [
-    "static/js/refractor-prismjs-vendor.348a8a63.js",
-    "static/js/micromark-vendor.5f5e810b.js",
+    "static/js/refractor-prismjs-vendor.6775b2e4.js",
+    "static/js/micromark-vendor.3fde6f27.js",
     "static/js/babel-runtime-vendor.155b4bd2.js",
     "static/js/parse5-vendor.80e51678.js",
     "static/js/react-vendor.fe7997f6.js",
     "static/css/katex-vendor.4a191775.css",
     "static/js/katex-vendor.ab125622.js",
     "static/js/mermaid-vendor.6eaf0aaf.js",
-    "static/css/main.40548a2f.css",
-    "static/js/main.1893488a.js"
+    "static/css/main.0047b031.css",
+    "static/js/main.384f3567.js"
   ]
 }
