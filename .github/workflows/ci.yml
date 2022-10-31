@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -85,6 +85,12 @@ jobs:
             ```
             
             ${{ steps.changelog.outputs.changelog }}
+
+      - name: package.json info
+        uses: jaywcjlove/github-action-package@main
+        with:
+          path: ./core/package.json
+          unset: scripts,jest,devDependencies
 
       - name: 📦 @uiw/react-md-editor publish to NPM
         uses: JS-DevTools/npm-publish@v1
