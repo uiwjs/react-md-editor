@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -127,7 +127,21 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,6 +155,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -151,12 +168,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -204,34 +232,48 @@ export interface IDragBarProps extends IProps {
 &nbsp;
 const DragBar: React.FC&lt;IDragBarProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {</span>
   const { prefixCls, onChange } = <span class="cstat-no" title="statement not covered" >props || {};</span>
+  const $dom = <span class="cstat-no" title="statement not covered" >useRef&lt;HTMLDivElement&gt;(null);</span>
   const dragRef = <span class="cstat-no" title="statement not covered" >useRef&lt;{ height: number; dragY: number }&gt;();</span>
-  function <span class="fstat-no" title="function not covered" >handleMouseMove(</span>event: MouseEvent) {
+  function <span class="fstat-no" title="function not covered" >handleMouseMove(</span>event: Event) {
 <span class="cstat-no" title="statement not covered" >    if (dragRef.current) {</span>
-      const newHeight = <span class="cstat-no" title="statement not covered" >dragRef.current.height + event.clientY - dragRef.current.dragY;</span>
+      const clientY =
+<span class="cstat-no" title="statement not covered" >        (event as unknown as MouseEvent).clientY || (event as unknown as TouchEvent).changedTouches[0]?.clientY;</span>
+      const newHeight = <span class="cstat-no" title="statement not covered" >dragRef.current.height + clientY - dragRef.current.dragY;</span>
 <span class="cstat-no" title="statement not covered" >      if (newHeight &gt;= props.minHeight &amp;&amp; newHeight &lt;= props.maxHeight) {</span>
-<span class="cstat-no" title="statement not covered" >        onChange &amp;&amp; onChange(dragRef.current.height + (event.clientY - dragRef.current.dragY));</span>
+<span class="cstat-no" title="statement not covered" >        onChange &amp;&amp; onChange(dragRef.current.height + (clientY - dragRef.current.dragY));</span>
       }
     }
   }
   function <span class="fstat-no" title="function not covered" >handleMouseUp(</span>) {
 <span class="cstat-no" title="statement not covered" >    dragRef.current = undefined;</span>
+<span class="cstat-no" title="statement not covered" >    document.removeEventListener('mousemove', handleMouseMove);</span>
+<span class="cstat-no" title="statement not covered" >    document.removeEventListener('mouseup', handleMouseUp);</span>
+<span class="cstat-no" title="statement not covered" >    $dom.current?.removeEventListener('touchmove', handleMouseMove);</span>
+<span class="cstat-no" title="statement not covered" >    $dom.current?.removeEventListener('touchend', handleMouseUp);</span>
   }
-  function <span class="fstat-no" title="function not covered" >handleMouseDown(</span>event: React.MouseEvent&lt;HTMLDivElement, MouseEvent&gt;) {
+  function <span class="fstat-no" title="function not covered" >handleMouseDown(</span>event: Event) {
+<span class="cstat-no" title="statement not covered" >    event.preventDefault();</span>
+    const clientY =
+<span class="cstat-no" title="statement not covered" >      (event as unknown as MouseEvent).clientY || (event as unknown as TouchEvent).changedTouches[0]?.clientY;</span>
 <span class="cstat-no" title="statement not covered" >    dragRef.current = {</span>
       height: props.height,
-      dragY: event.clientY,
+      dragY: clientY,
     };
+<span class="cstat-no" title="statement not covered" >    document.addEventListener('mousemove', handleMouseMove);</span>
+<span class="cstat-no" title="statement not covered" >    document.addEventListener('mouseup', handleMouseUp);</span>
+<span class="cstat-no" title="statement not covered" >    $dom.current?.addEventListener('touchmove', handleMouseMove, { passive: false });</span>
+<span class="cstat-no" title="statement not covered" >    $dom.current?.addEventListener('touchend', handleMouseUp, { passive: false });</span>
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (document) {</span>
-<span class="cstat-no" title="statement not covered" >      document.addEventListener('mousemove', handleMouseMove);</span>
-<span class="cstat-no" title="statement not covered" >      document.addEventListener('mouseup', handleMouseUp);</span>
+<span class="cstat-no" title="statement not covered" >      $dom.current?.addEventListener('touchstart', handleMouseDown, { passive: false });</span>
+<span class="cstat-no" title="statement not covered" >      $dom.current?.addEventListener('mousedown', handleMouseDown);</span>
     }
 <span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      if (document) {</span>
+<span class="cstat-no" title="statement not covered" >        $dom.current?.removeEventListener('touchstart', handleMouseDown);</span>
 <span class="cstat-no" title="statement not covered" >        document.removeEventListener('mousemove', handleMouseMove);</span>
-<span class="cstat-no" title="statement not covered" >        document.removeEventListener('mouseup', handleMouseUp);</span>
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -248,7 +290,7 @@ const DragBar: React.FC&lt;IDragBarProps&gt; = <span class="cstat-no" title="sta
     [],
   );
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className={`${prefixCls}-bar`} onMouseDown={handleMouseDown}&gt;
+    &lt;div className={`${prefixCls}-bar`} ref={$dom}&gt;
       {svg}
     &lt;/div&gt;
   );
@@ -262,7 +304,7 @@ export default DragBar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-31T13:05:28.614Z
+                at 2022-10-31T14:05:59.341Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
