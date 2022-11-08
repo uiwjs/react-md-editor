@@ -24,7 +24,7 @@ export const bold: ICommand = {
     const state2 = api.replaceSelection(`**${state1.selectedText}**`);
     // Adjust the selection to not contain the **
     api.setSelectionRange({
-      start: state2.selection.end - 2 - state1.selectedText.length,
+      start: state2.selection.end - 2 - state1.selectedText?.length,
       end: state2.selection.end - 2,
     });
   },

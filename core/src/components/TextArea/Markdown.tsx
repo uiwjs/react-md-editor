@@ -37,8 +37,6 @@ export default function Markdown(props: MarkdownProps) {
     String.raw`${markdown}`,
   )}\n</code></pre>`;
 
-  console.log('markdown::', markdown);
-
   if (highlightEnable) {
     try {
       mdStr = rehype()

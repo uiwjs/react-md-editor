@@ -111,7 +111,7 @@ function getStateFromTextArea(textArea: HTMLTextAreaElement): TextState {
       end: textArea.selectionEnd,
     },
     text: textArea.value,
-    selectedText: textArea.value.slice(textArea.selectionStart, textArea.selectionEnd),
+    selectedText: textArea.value?.slice(textArea.selectionStart, textArea.selectionEnd),
   };
 }
 
