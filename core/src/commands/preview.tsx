@@ -27,6 +27,7 @@ export const codePreview: ICommand = {
     executeCommandState?: ExecuteCommandState,
     shortcuts?: string[],
   ) => {
+    api.textArea.focus();
     if (shortcuts && dispatch && executeCommandState) {
       dispatch({ preview: 'preview' });
     }
@@ -55,6 +56,7 @@ export const codeEdit: ICommand = {
     executeCommandState?: ExecuteCommandState,
     shortcuts?: string[],
   ) => {
+    api.textArea.focus();
     if (shortcuts && dispatch && executeCommandState) {
       dispatch({ preview: 'edit' });
     }
@@ -83,6 +85,7 @@ export const codeLive: ICommand = {
     executeCommandState?: ExecuteCommandState,
     shortcuts?: string[],
   ) => {
+    api.textArea.focus();
     if (shortcuts && dispatch && executeCommandState) {
       dispatch({ preview: 'live' });
     }
