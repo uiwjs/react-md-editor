@@ -39,7 +39,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -119,8 +119,7 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,8 +151,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,6 +159,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,7 +171,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,7 +183,7 @@ import { EditorContext } from '../../Context';
 &nbsp;
 function <span class="fstat-no" title="function not covered" >html2Escape(</span>sHtml: string) {
 <span class="cstat-no" title="statement not covered" >  return sHtml</span>
-    .replace(/```(tsx?|jsx?|html|xml)(.*)\s+([\s\S]*?)(\s.+)?```/g, <span class="fstat-no" title="function not covered" >(s</span>tr: string) =&gt; {
+    .replace(/```(\w+)?([\s\S]*?)(\s.+)?```/g, <span class="fstat-no" title="function not covered" >(s</span>tr: string) =&gt; {
 <span class="cstat-no" title="statement not covered" >      return str.replace(</span>
         /[&lt;&amp;"]/g,
 <span class="fstat-no" title="function not covered" >        (c</span>: string) =&gt; (<span class="cstat-no" title="statement not covered" >({ '&lt;': '&amp;lt;', '&gt;': '&amp;gt;', '&amp;': '&amp;amp;', '"': '&amp;quot;' } as Record&lt;string, string&gt;)[c])</span>,
@@ -209,30 +207,29 @@ export default function <span class="fstat-no" title="function not covered" >Mar
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+<span class="cstat-no" title="statement not covered" >  if (!markdown) {</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;pre ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} /&gt;;</span>
+  }
+  let mdStr = <span class="cstat-no" title="statement not covered" >`&lt;pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"&gt;&lt;code class="language-markdown"&gt;${html2Escape(</span>
+    String.raw`${markdown}`,
+  )}\n&lt;/code&gt;&lt;/pre&gt;`;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return useMemo(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (!markdown) {</span>
-<span class="cstat-no" title="statement not covered" >      return &lt;pre ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} /&gt;;</span>
-    }
-    let mdStr = <span class="cstat-no" title="statement not covered" >`&lt;pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"&gt;&lt;code class="language-markdown"&gt;${html2Escape(</span>
-      markdown,
-    )}\n&lt;/code&gt;&lt;/pre&gt;`;
+<span class="cstat-no" title="statement not covered" >  console.log('markdown::', markdown);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (highlightEnable) {</span>
-<span class="cstat-no" title="statement not covered" >      try {</span>
-<span class="cstat-no" title="statement not covered" >        mdStr = rehype()</span>
-          .data('settings', { fragment: true })
-          .use(rehypePrism, { ignoreMissing: true })
-          .processSync(mdStr)
-          .toString();
-      } catch (error) {}
-    }
+<span class="cstat-no" title="statement not covered" >  if (highlightEnable) {</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      mdStr = rehype()</span>
+        .data('settings', { fragment: true })
+        .use(rehypePrism, { ignoreMissing: true })
+        .processSync(mdStr)
+        .toString();
+    } catch (error) {}
+  }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return React.createElement('div', {</span>
-      className: 'wmde-markdown-color',
-      dangerouslySetInnerHTML: { __html: mdStr || '' },
-    });
-  }, [markdown, preRef, prefixCls]);
+<span class="cstat-no" title="statement not covered" >  return React.createElement('div', {</span>
+    className: 'wmde-markdown-color',
+    dangerouslySetInnerHTML: { __html: mdStr || '' },
+  });
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -241,7 +238,7 @@ export default function <span class="fstat-no" title="function not covered" >Mar
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-31T14:07:24.632Z
+                at 2022-11-08T08:34:58.432Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
