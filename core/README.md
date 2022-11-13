@@ -758,9 +758,11 @@ npm run start  # Preview code example.
 
 As always, thanks to our amazing contributors!
 
+<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-->
 <a href="https://github.com/uiwjs/react-md-editor/graphs/contributors">
   <img src="https://uiwjs.github.io/react-md-editor/CONTRIBUTORS.svg" />
 </a>
+<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->
 
 Made with [github-action-contributors](https://github.com/jaywcjlove/github-action-contributors).
 
