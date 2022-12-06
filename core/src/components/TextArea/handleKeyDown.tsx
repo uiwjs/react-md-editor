@@ -68,7 +68,7 @@ export default function handleKeyDown(
       return insertTextAtPosition(target, space);
     }
   } else if (
-    e.code &&
+    e.keyCode === 13 &&
     e.code.toLowerCase() === 'enter' &&
     (/^(-|\*)\s/.test(currentLineStr) || /^\d+.\s/.test(currentLineStr))
   ) {

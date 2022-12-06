@@ -29,7 +29,7 @@
     "lint-staged": "~13.0.0",
     "prettier": "^2.7.1",
     "react-test-renderer": "~18.2.0",
-    "tsbb": "~3.7.0"
+    "tsbb": "~3.7.9"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [

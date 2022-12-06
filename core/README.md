@@ -741,7 +741,6 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 
 ```bash
 npm run watch     # Listen create type and .tsx files.
-npm run css:watch # listen to the component compile and output the .css file
 npm run start  # Preview code example.
 ```
 
