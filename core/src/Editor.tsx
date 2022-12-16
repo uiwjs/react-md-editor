@@ -136,6 +136,12 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   enableScroll?: boolean;
   /** Toolbar on bottom */
   toolbarBottom?: boolean;
+  /**
+   * The **`direction`** property sets the direction of text, table columns, and horizontal overflow. Use `rtl` for languages written from right to left (like Hebrew or Arabic), and `ltr` for those written from left to right (like English and most other languages).
+   *
+   * https://github.com/uiwjs/react-md-editor/issues/462
+   */
+  direction?: CSSProperties['direction'];
 }
 
 function setGroupPopFalse(data: Record<string, boolean> = {}) {
@@ -155,6 +161,7 @@ const InternalMDEditor = (
     value: propsValue,
     commands = getCommands(),
     commandsFilter,
+    direction,
     extraCommands = getExtraCommands(),
     height = 200,
     enableScroll = true,
@@ -221,6 +228,7 @@ const InternalMDEditor = (
   const cls = [
     className,
     'wmde-markdown-var',
+    direction ? `${prefixCls}-${direction}` : null,
     prefixCls,
     state.preview ? `${prefixCls}-show-${state.preview}` : null,
     state.fullscreen ? `${prefixCls}-fullscreen` : null,

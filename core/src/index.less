@@ -12,6 +12,19 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
+  &&-rtl {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+  &&-rtl &-preview {
+    right: unset !important;
+    left: 0;
+    text-align: right !important;
+    box-shadow: inset -1px 0 0 0 var(--color-border-default);
+  }
+  &&-rtl &-text {
+    text-align: right !important;
+  }
   &-toolbar {
     height: fit-content;
   }
