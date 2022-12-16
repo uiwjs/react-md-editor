@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-md-editor/static/css/main.87c703a4.css",
-    "main.js": "/react-md-editor/static/js/main.fa125ab1.js",
+    "main.js": "/react-md-editor/static/js/main.b48d5ac9.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.93cce0ea.js",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.ff2e83c6.js",
     "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.7206ef68.js",
@@ -73,7 +73,7 @@
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "main.87c703a4.css.map": "/react-md-editor/static/css/main.87c703a4.css.map",
-    "main.fa125ab1.js.map": "/react-md-editor/static/js/main.fa125ab1.js.map",
+    "main.b48d5ac9.js.map": "/react-md-editor/static/js/main.b48d5ac9.js.map",
     "refractor-prismjs-vendor.93cce0ea.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.93cce0ea.js.map",
     "micromark-vendor.ff2e83c6.js.map": "/react-md-editor/static/js/micromark-vendor.ff2e83c6.js.map",
     "babel-runtime-vendor.7206ef68.js.map": "/react-md-editor/static/js/babel-runtime-vendor.7206ef68.js.map",
@@ -93,6 +93,6 @@
     "static/js/katex-vendor.e9ef2b75.js",
     "static/js/mermaid-vendor.6eaf0aaf.js",
     "static/css/main.87c703a4.css",
-    "static/js/main.fa125ab1.js"
+    "static/js/main.b48d5ac9.js"
   ]
 }
