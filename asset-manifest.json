@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-md-editor/static/css/main.90408e67.css",
-    "main.js": "/react-md-editor/static/js/main.ebf6bfef.js",
+    "main.css": "/react-md-editor/static/css/main.87c703a4.css",
+    "main.js": "/react-md-editor/static/js/main.fa125ab1.js",
     "refractor-prismjs-vendor.js": "/react-md-editor/static/js/refractor-prismjs-vendor.93cce0ea.js",
     "micromark-vendor.js": "/react-md-editor/static/js/micromark-vendor.ff2e83c6.js",
     "babel-runtime-vendor.js": "/react-md-editor/static/js/babel-runtime-vendor.7206ef68.js",
     "parse5-vendor.js": "/react-md-editor/static/js/parse5-vendor.e75c4357.js",
     "react-vendor.js": "/react-md-editor/static/js/react-vendor.4a9e383c.js",
-    "katex-vendor.css": "/react-md-editor/static/css/katex-vendor.4a191775.css",
-    "katex-vendor.js": "/react-md-editor/static/js/katex-vendor.1c5115b0.js",
+    "katex-vendor.css": "/react-md-editor/static/css/katex-vendor.0d511821.css",
+    "katex-vendor.js": "/react-md-editor/static/js/katex-vendor.e9ef2b75.js",
     "mermaid-vendor.js": "/react-md-editor/static/js/mermaid-vendor.6eaf0aaf.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/react-md-editor/static/media/KaTeX_AMS-Regular.853be92419a6c3766b9a.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/react-md-editor/static/media/KaTeX_Main-Regular.9eba1d77abcf2aa6e94e.ttf",
@@ -72,15 +72,15 @@
     "static/media/KaTeX_Size4-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "/react-md-editor/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/react-md-editor/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.90408e67.css.map": "/react-md-editor/static/css/main.90408e67.css.map",
-    "main.ebf6bfef.js.map": "/react-md-editor/static/js/main.ebf6bfef.js.map",
+    "main.87c703a4.css.map": "/react-md-editor/static/css/main.87c703a4.css.map",
+    "main.fa125ab1.js.map": "/react-md-editor/static/js/main.fa125ab1.js.map",
     "refractor-prismjs-vendor.93cce0ea.js.map": "/react-md-editor/static/js/refractor-prismjs-vendor.93cce0ea.js.map",
     "micromark-vendor.ff2e83c6.js.map": "/react-md-editor/static/js/micromark-vendor.ff2e83c6.js.map",
     "babel-runtime-vendor.7206ef68.js.map": "/react-md-editor/static/js/babel-runtime-vendor.7206ef68.js.map",
     "parse5-vendor.e75c4357.js.map": "/react-md-editor/static/js/parse5-vendor.e75c4357.js.map",
     "react-vendor.4a9e383c.js.map": "/react-md-editor/static/js/react-vendor.4a9e383c.js.map",
-    "katex-vendor.4a191775.css.map": "/react-md-editor/static/css/katex-vendor.4a191775.css.map",
-    "katex-vendor.1c5115b0.js.map": "/react-md-editor/static/js/katex-vendor.1c5115b0.js.map",
+    "katex-vendor.0d511821.css.map": "/react-md-editor/static/css/katex-vendor.0d511821.css.map",
+    "katex-vendor.e9ef2b75.js.map": "/react-md-editor/static/js/katex-vendor.e9ef2b75.js.map",
     "mermaid-vendor.6eaf0aaf.js.map": "/react-md-editor/static/js/mermaid-vendor.6eaf0aaf.js.map"
   },
   "entrypoints": [
@@ -89,10 +89,10 @@
     "static/js/babel-runtime-vendor.7206ef68.js",
     "static/js/parse5-vendor.e75c4357.js",
     "static/js/react-vendor.4a9e383c.js",
-    "static/css/katex-vendor.4a191775.css",
-    "static/js/katex-vendor.1c5115b0.js",
+    "static/css/katex-vendor.0d511821.css",
+    "static/js/katex-vendor.e9ef2b75.js",
     "static/js/mermaid-vendor.6eaf0aaf.js",
-    "static/css/main.90408e67.css",
-    "static/js/main.ebf6bfef.js"
+    "static/css/main.87c703a4.css",
+    "static/js/main.fa125ab1.js"
   ]
 }
