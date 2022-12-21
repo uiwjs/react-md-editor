@@ -781,6 +781,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/CarleneCannon-Conner" title="Carlene Cannon-Conner">
   <img src="https://avatars.githubusercontent.com/u/1942791?v=4" width="42;" alt="Carlene Cannon-Conner"/>
 </a>
+<a href="https://github.com/MercierCorentin" title="Corentin Mercier">
+  <img src="https://avatars.githubusercontent.com/u/46066895?v=4" width="42;" alt="Corentin Mercier"/>
+</a>
 <a href="https://github.com/jnishiyama" title="James Finucane">
   <img src="https://avatars.githubusercontent.com/u/2048195?v=4" width="42;" alt="James Finucane"/>
 </a>
