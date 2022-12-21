@@ -178,6 +178,7 @@ export {
   title6,
   bold,
   codeBlock,
+  comment,
   italic,
   strikethrough,
   hr,
