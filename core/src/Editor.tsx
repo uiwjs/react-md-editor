@@ -35,7 +35,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * The height of the editor.
    * ⚠️ `Dragbar` is invalid when **`height`** parameter percentage.
    */
-  height?: CSSProperties['height'];
+  height?: number;
   /**
    * Custom toolbar heigth
    * @default 29px
