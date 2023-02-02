@@ -814,6 +814,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/juspky" title="juspky">
   <img src="https://avatars.githubusercontent.com/u/11074890?v=4" width="42;" alt="juspky"/>
 </a>
+<a href="https://github.com/ryicoh" title="ryicoh">
+  <img src="https://avatars.githubusercontent.com/u/37844673?v=4" width="42;" alt="ryicoh"/>
+</a>
 <a href="https://github.com/wj0990" title="wangjie">
   <img src="https://avatars.githubusercontent.com/u/8792016?v=4" width="42;" alt="wangjie"/>
 </a><!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->
