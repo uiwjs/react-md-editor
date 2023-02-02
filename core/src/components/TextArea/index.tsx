@@ -70,7 +70,7 @@ export default function TextArea(props: ITextAreaProps) {
   const textStyle: React.CSSProperties = highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
 
   return (
-    <div ref={warp} className={`${prefixCls}-aree ${className || ''}`} onScroll={onScroll}>
+    <div ref={warp} className={`${prefixCls}-area ${className || ''}`} onScroll={onScroll}>
       <div className={`${prefixCls}-text`}>
         {renderTextarea ? (
           React.cloneElement(
