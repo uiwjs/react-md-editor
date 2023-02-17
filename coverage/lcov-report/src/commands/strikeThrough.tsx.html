@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -97,7 +97,8 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,15 +125,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as React from 'react';
-import { ICommand, TextState, TextAreaTextApi } from './';
+import { ICommand, ExecuteState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 &nbsp;
 export const strikethrough: ICommand = <span class="cstat-no" title="statement not covered" >{</span>
@@ -143,7 +145,7 @@ export const strikethrough: ICommand = <span class="cstat-no" title="statement n
     'aria-label': 'Add strikethrough text (ctrl + shift + x)',
     title: 'Add strikethrough text (ctrl + shift + x)',
   },
-  value: '~~',
+  value: '~~{{text}}~~',
   icon: (
     &lt;svg data-name="strikethrough" width="12" height="12" role="img" viewBox="0 0 512 512"&gt;
       &lt;path
@@ -152,17 +154,18 @@ export const strikethrough: ICommand = <span class="cstat-no" title="statement n
       /&gt;
     &lt;/svg&gt;
   ),
-  execute: <span class="fstat-no" title="function not covered" >(s</span>tate: TextState, api: TextAreaTextApi) =&gt; {
+  execute: <span class="fstat-no" title="function not covered" >(s</span>tate: ExecuteState, api: TextAreaTextApi) =&gt; {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = <span class="cstat-no" title="statement not covered" >selectWord({ text: state.text, selection: state.selection });</span>
     const state1 = <span class="cstat-no" title="statement not covered" >api.setSelectionRange(newSelectionRange);</span>
-    // Replaces the current selection with the strikethrough mark up
-    const state2 = <span class="cstat-no" title="statement not covered" >api.replaceSelection(`~~${state1.selectedText}~~`);</span>
-    // Adjust the selection to not contain the ~~
-<span class="cstat-no" title="statement not covered" >    api.setSelectionRange({</span>
-      start: state2.selection.end - 2 - state1.selectedText.length,
-      end: state2.selection.end - 2,
-    });
+    // Replaces the current selection with the bold mark up
+    const val = <span class="cstat-no" title="statement not covered" >state.command.value || '';</span>
+<span class="cstat-no" title="statement not covered" >    api.replaceSelection(val.replace(/({{text}})/gi, state1.selectedText));</span>
+&nbsp;
+    const start = <span class="cstat-no" title="statement not covered" >state1.selection.start + val.indexOf('{{text}}');</span>
+    const end = <span class="cstat-no" title="statement not covered" >state1.selection.start + val.indexOf('{{text}}') + (state1.selection.end - state1.selection.start);</span>
+    // Adjust the selection to not contain the **
+<span class="cstat-no" title="statement not covered" >    api.setSelectionRange({ start, end });</span>
   },
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -172,7 +175,7 @@ export const strikethrough: ICommand = <span class="cstat-no" title="statement n
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-17T02:50:05.147Z
+                at 2023-02-17T08:45:46.250Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
