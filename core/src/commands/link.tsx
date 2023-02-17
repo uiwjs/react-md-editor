@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { ICommand, TextState, TextAreaTextApi } from './';
+import { ICommand, ExecuteState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 
 export const link: ICommand = {
   name: 'link',
   keyCommand: 'link',
   shortcuts: 'ctrlcmd+l',
-  value: '[](url)',
+  value: '[{{text}}](URL Here)',
   buttonProps: { 'aria-label': 'Add a link (ctrl + l)', title: 'Add a link (ctrl + l)' },
   icon: (
     <svg data-name="italic" width="12" height="12" role="img" viewBox="0 0 520 520">
@@ -16,16 +16,16 @@ export const link: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextAreaTextApi) => {
+  execute: (state: ExecuteState, api: TextAreaTextApi) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
     const state1 = api.setSelectionRange(newSelectionRange);
+    const val = state.command.value || '';
     // Replaces the current selection with the bold mark up
-    const state2 = api.replaceSelection(`[${state1.selectedText}](url)`);
+    api.replaceSelection(val.replace(/({{text}})/gi, state1.selectedText));
+    const start = state1.selection.start + val.indexOf('{{text}}');
+    const end = state1.selection.start + val.indexOf('{{text}}') + (state1.selection.end - state1.selection.start);
     // Adjust the selection to not contain the **
-    api.setSelectionRange({
-      start: state2.selection.end - 6 - state1.selectedText.length,
-      end: state2.selection.end - 6,
-    });
+    api.setSelectionRange({ start, end });
   },
 };

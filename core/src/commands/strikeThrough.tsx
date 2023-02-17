@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICommand, TextState, TextAreaTextApi } from './';
+import { ICommand, ExecuteState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 
 export const strikethrough: ICommand = {
@@ -10,7 +10,7 @@ export const strikethrough: ICommand = {
     'aria-label': 'Add strikethrough text (ctrl + shift + x)',
     title: 'Add strikethrough text (ctrl + shift + x)',
   },
-  value: '~~',
+  value: '~~{{text}}~~',
   icon: (
     <svg data-name="strikethrough" width="12" height="12" role="img" viewBox="0 0 512 512">
       <path
@@ -19,16 +19,17 @@ export const strikethrough: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextAreaTextApi) => {
+  execute: (state: ExecuteState, api: TextAreaTextApi) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
     const state1 = api.setSelectionRange(newSelectionRange);
-    // Replaces the current selection with the strikethrough mark up
-    const state2 = api.replaceSelection(`~~${state1.selectedText}~~`);
-    // Adjust the selection to not contain the ~~
-    api.setSelectionRange({
-      start: state2.selection.end - 2 - state1.selectedText.length,
-      end: state2.selection.end - 2,
-    });
+    // Replaces the current selection with the bold mark up
+    const val = state.command.value || '';
+    api.replaceSelection(val.replace(/({{text}})/gi, state1.selectedText));
+
+    const start = state1.selection.start + val.indexOf('{{text}}');
+    const end = state1.selection.start + val.indexOf('{{text}}') + (state1.selection.end - state1.selection.start);
+    // Adjust the selection to not contain the **
+    api.setSelectionRange({ start, end });
   },
 };

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { ICommand, TextState, TextAreaTextApi } from './';
+import { ICommand, ExecuteState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 
 export const image: ICommand = {
   name: 'image',
   keyCommand: 'image',
   shortcuts: 'ctrlcmd+k',
-  value: '![image]()',
+  value: '![image]({{text}})',
   buttonProps: { 'aria-label': 'Add image (ctrl + k)', title: 'Add image (ctrl + k)' },
   icon: (
     <svg width="13" height="13" viewBox="0 0 20 20">
@@ -16,17 +16,20 @@ export const image: ICommand = {
       />
     </svg>
   ),
-  execute: (state: TextState, api: TextAreaTextApi) => {
+  execute: (state: ExecuteState, api: TextAreaTextApi) => {
     // Select everything
     const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
     const state1 = api.setSelectionRange(newSelectionRange);
     // Replaces the current selection with the image
     const imageTemplate = state1.selectedText || 'https://example.com/your-image.png';
-    api.replaceSelection(`![](${imageTemplate})`);
-    // Adjust the selection to not contain the **
-    api.setSelectionRange({
-      start: 4 + state1.selection.start,
-      end: 4 + state1.selection.start + imageTemplate.length,
-    });
+    const val = state.command.value || '';
+    api.replaceSelection(val.replace(/({{text}})/gi, imageTemplate));
+
+    const start = state1.selection.start + val.indexOf('{{text}}');
+    let end = state1.selection.start + val.indexOf('{{text}}') + (state1.selection.end - state1.selection.start);
+    if (!state1.selectedText) {
+      end = end + imageTemplate.length;
+    }
+    api.setSelectionRange({ start, end });
   },
 };
