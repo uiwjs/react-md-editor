@@ -12,15 +12,15 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@kkt/less-modules": "^7.2.0",
-    "@kkt/raw-modules": "^7.2.0",
-    "@kkt/scope-plugin-options": "^7.2.0",
+    "@kkt/less-modules": "^7.4.1",
+    "@kkt/raw-modules": "^7.4.1",
+    "@kkt/scope-plugin-options": "^7.4.1",
     "@types/katex": "~0.14.0",
     "@types/react": "~18.0.9",
     "@types/react-dom": "~18.0.3",
-    "kkt": "^7.2.0",
-    "markdown-react-code-preview-loader": "^2.1.2",
-    "source-map-explorer": "~2.5.2"
+    "kkt": "^7.4.1",
+    "markdown-react-code-preview-loader": "^2.1.4",
+    "source-map-explorer": "~2.5.3"
   },
   "dependencies": {
     "@uiw/react-back-to-top": "^1.1.1",
@@ -32,7 +32,7 @@
     "katex": "~0.16.0",
     "mermaid": "~9.1.0",
     "react": "~18.2.0",
-    "react-code-preview-layout": "^2.0.4",
+    "react-code-preview-layout": "^2.0.7",
     "react-dom": "~18.2.0",
     "rehype-ignore": "^1.0.1",
     "rehype-sanitize": "~5.0.1"
