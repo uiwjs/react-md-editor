@@ -151,9 +151,11 @@ function setGroupPopFalse(data: Record<string, boolean> = {}) {
   return data;
 }
 
+export interface RefMDEditor extends ContextStore {}
+
 const InternalMDEditor = (
   props: MDEditorProps,
-  ref?: ((instance: ContextStore) => void) | React.RefObject<ContextStore> | null,
+  ref?: ((instance: RefMDEditor) => void) | React.RefObject<RefMDEditor> | null,
 ) => {
   const {
     prefixCls = 'w-md-editor',
@@ -210,7 +212,7 @@ const InternalMDEditor = (
   const previewRef = useRef<HTMLDivElement>(null);
   const enableScrollRef = useRef(enableScroll);
 
-  useImperativeHandle(ref, () => ({ ...state }));
+  useImperativeHandle(ref, () => ({ ...state, container: container.current, dispatch }));
   useMemo(() => (enableScrollRef.current = enableScroll), [enableScroll]);
   useEffect(() => {
     const stateInit: ContextStore = {};

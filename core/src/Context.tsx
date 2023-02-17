@@ -4,7 +4,7 @@ import { MDEditorProps } from './Editor';
 
 export type PreviewType = 'live' | 'edit' | 'preview';
 
-export type ContextStore = {
+export interface ContextStore {
   components?: MDEditorProps['components'];
   commands?: ICommand<string>[];
   extraCommands?: ICommand<string>[];
@@ -25,7 +25,7 @@ export type ContextStore = {
   scrollTopPreview?: number;
   tabSize?: number;
   defaultTabEnable?: boolean;
-};
+}
 
 export type ExecuteCommandState = Pick<ContextStore, 'fullscreen' | 'preview' | 'highlightEnable'>;
 
