@@ -58,7 +58,7 @@ export function ToolbarItems(props: IToolbarProps) {
           originalOverflow.current = window.getComputedStyle(document.body, null).overflow;
         }
         // reset to the original overflow
-        document.body.style.overflow = originalOverflow.current;
+        // document.body.style.overflow = originalOverflow.current;
       }
     }
   }, [fullscreen, originalOverflow, overflow]);
