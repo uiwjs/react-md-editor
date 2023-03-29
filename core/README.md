@@ -757,8 +757,8 @@ npm run start  # Preview code example.
 
 As always, thanks to our amazing contributors!
 
-<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT--><a href="https://github.com/jaywcjlove" title="小弟调调™">
-  <img src="https://avatars.githubusercontent.com/u/1680273?v=4" width="42;" alt="小弟调调™"/>
+<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT--><a href="https://github.com/jaywcjlove" title="小弟调调">
+  <img src="https://avatars.githubusercontent.com/u/1680273?v=4" width="42;" alt="小弟调调"/>
 </a>
 <a href="https://github.com/renovate-bot" title="Mend Renovate">
   <img src="https://avatars.githubusercontent.com/u/25180681?v=4" width="42;" alt="Mend Renovate"/>
@@ -804,6 +804,9 @@ As always, thanks to our amazing contributors!
 </a>
 <a href="https://github.com/toresbe" title="Tore Sinding Bekkedal">
   <img src="https://avatars.githubusercontent.com/u/1761606?v=4" width="42;" alt="Tore Sinding Bekkedal"/>
+</a>
+<a href="https://github.com/Exmirai" title="UniqueUlysees">
+  <img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/>
 </a>
 <a href="https://github.com/valenfv" title="Valentin">
   <img src="https://avatars.githubusercontent.com/u/34139820?v=4" width="42;" alt="Valentin"/>
