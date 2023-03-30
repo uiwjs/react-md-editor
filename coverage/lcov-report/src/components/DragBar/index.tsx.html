@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">46.87% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>15/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>3/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">46.87% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>15/32</span>
             </div>
         
             
@@ -152,10 +152,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">91x</span>
+<span class="cline-any cline-yes">91x</span>
+<span class="cline-any cline-yes">91x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,31 +187,31 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">91x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">91x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">91x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,10 +230,10 @@ export interface IDragBarProps extends IProps {
   onChange: (value: number) =&gt; void;
 }
 &nbsp;
-const DragBar: React.FC&lt;IDragBarProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; {</span>
-  const { prefixCls, onChange } = <span class="cstat-no" title="statement not covered" >props || {};</span>
-  const $dom = <span class="cstat-no" title="statement not covered" >useRef&lt;HTMLDivElement&gt;(null);</span>
-  const dragRef = <span class="cstat-no" title="statement not covered" >useRef&lt;{ height: number; dragY: number }&gt;();</span>
+const DragBar: React.FC&lt;IDragBarProps&gt; = (props) =&gt; {
+  const { prefixCls, onChange } = props || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+  const $dom = useRef&lt;HTMLDivElement&gt;(null);
+  const dragRef = useRef&lt;{ height: number; dragY: number }&gt;();
   function <span class="fstat-no" title="function not covered" >handleMouseMove(</span>event: Event) {
 <span class="cstat-no" title="statement not covered" >    if (dragRef.current) {</span>
       const clientY =
@@ -265,22 +265,22 @@ const DragBar: React.FC&lt;IDragBarProps&gt; = <span class="cstat-no" title="sta
 <span class="cstat-no" title="statement not covered" >    $dom.current?.addEventListener('touchend', handleMouseUp, { passive: false });</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (document) {</span>
-<span class="cstat-no" title="statement not covered" >      $dom.current?.addEventListener('touchstart', handleMouseDown, { passive: false });</span>
-<span class="cstat-no" title="statement not covered" >      $dom.current?.addEventListener('mousedown', handleMouseDown);</span>
+  useEffect(() =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (document) {
+      $dom.current?.addEventListener('touchstart', handleMouseDown, { passive: false });
+      $dom.current?.addEventListener('mousedown', handleMouseDown);
     }
-<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (document) {</span>
-<span class="cstat-no" title="statement not covered" >        $dom.current?.removeEventListener('touchstart', handleMouseDown);</span>
-<span class="cstat-no" title="statement not covered" >        document.removeEventListener('mousemove', handleMouseMove);</span>
+    return () =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (document) {
+        $dom.current?.removeEventListener('touchstart', handleMouseDown);
+        document.removeEventListener('mousemove', handleMouseMove);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const svg = <span class="cstat-no" title="statement not covered" >useMemo(</span>
-<span class="fstat-no" title="function not covered" >    ()</span> =&gt; (
-<span class="cstat-no" title="statement not covered" >      &lt;svg viewBox="0 0 512 512" height="100%"&gt;</span>
+  const svg = useMemo(
+    () =&gt; (
+      &lt;svg viewBox="0 0 512 512" height="100%"&gt;
         &lt;path
           fill="currentColor"
           d="M304 256c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm120-48c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48zm-336 0c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48z"
@@ -289,7 +289,7 @@ const DragBar: React.FC&lt;IDragBarProps&gt; = <span class="cstat-no" title="sta
     ),
     [],
   );
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className={`${prefixCls}-bar`} ref={$dom}&gt;
       {svg}
     &lt;/div&gt;
@@ -304,7 +304,7 @@ export default DragBar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-29T13:35:08.080Z
+                at 2023-03-30T02:20:53.939Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

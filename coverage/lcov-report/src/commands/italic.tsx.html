@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -99,7 +99,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -115,23 +115,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as React from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { ICommand, ExecuteState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 &nbsp;
-export const italic: ICommand = <span class="cstat-no" title="statement not covered" >{</span>
+export const italic: ICommand = {
   name: 'italic',
   keyCommand: 'italic',
   shortcuts: 'ctrlcmd+i',
@@ -145,18 +145,18 @@ export const italic: ICommand = <span class="cstat-no" title="statement not cove
       /&gt;
     &lt;/svg&gt;
   ),
-  execute: <span class="fstat-no" title="function not covered" >(s</span>tate: ExecuteState, api: TextAreaTextApi) =&gt; {
+  execute: (state: ExecuteState, api: TextAreaTextApi) =&gt; {
     // Adjust the selection to encompass the whole word if the caret is inside one
-    const newSelectionRange = <span class="cstat-no" title="statement not covered" >selectWord({ text: state.text, selection: state.selection });</span>
-    const state1 = <span class="cstat-no" title="statement not covered" >api.setSelectionRange(newSelectionRange);</span>
+    const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
+    const state1 = api.setSelectionRange(newSelectionRange);
     // Replaces the current selection with the bold mark up
-    const val = <span class="cstat-no" title="statement not covered" >state.command.value || '';</span>
-<span class="cstat-no" title="statement not covered" >    api.replaceSelection(val.replace(/({{text}})/gi, state1.selectedText));</span>
+    const val = state.command.value || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
+    api.replaceSelection(val.replace(/({{text}})/gi, state1.selectedText));
 &nbsp;
-    const start = <span class="cstat-no" title="statement not covered" >state1.selection.start + val.indexOf('{{text}}');</span>
-    const end = <span class="cstat-no" title="statement not covered" >state1.selection.start + val.indexOf('{{text}}') + (state1.selection.end - state1.selection.start);</span>
+    const start = state1.selection.start + val.indexOf('{{text}}');
+    const end = state1.selection.start + val.indexOf('{{text}}') + (state1.selection.end - state1.selection.start);
     // Adjust the selection to not contain the **
-<span class="cstat-no" title="statement not covered" >    api.setSelectionRange({ start, end });</span>
+    api.setSelectionRange({ start, end });
   },
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -166,7 +166,7 @@ export const italic: ICommand = <span class="cstat-no" title="statement not cove
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-29T13:35:08.080Z
+                at 2023-03-30T02:20:53.939Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

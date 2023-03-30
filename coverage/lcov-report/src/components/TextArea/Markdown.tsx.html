@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>14/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>14/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,7 +124,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,33 +140,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,8 +177,8 @@ import rehypePrism from 'rehype-prism-plus';
 import { IProps } from '../../Editor';
 import { EditorContext } from '../../Context';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >html2Escape(</span>sHtml: string) {
-<span class="cstat-no" title="statement not covered" >  return sHtml</span>
+function html2Escape(sHtml: string) {
+  return sHtml
     .replace(/```(\w+)?([\s\S]*?)(\s.+)?```/g, <span class="fstat-no" title="function not covered" >(s</span>tr: string) =&gt; {
 <span class="cstat-no" title="statement not covered" >      return str.replace(</span>
         /[&lt;&amp;"]/g,
@@ -193,26 +193,26 @@ function <span class="fstat-no" title="function not covered" >html2Escape(</span
 &nbsp;
 export interface MarkdownProps extends IProps, React.HTMLAttributes&lt;HTMLPreElement&gt; {}
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >Markdown(</span>props: MarkdownProps) {
-  const { prefixCls } = <span class="cstat-no" title="statement not covered" >props;</span>
-  const { markdown = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span> highlightEnable, dispatch } = <span class="cstat-no" title="statement not covered" >useContext(EditorContext);</span>
-  const preRef = <span class="cstat-no" title="statement not covered" >React.createRef&lt;HTMLPreElement&gt;();</span>
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (preRef.current &amp;&amp; dispatch) {</span>
-<span class="cstat-no" title="statement not covered" >      dispatch({ textareaPre: preRef.current });</span>
+export default function Markdown(props: MarkdownProps) {
+  const { prefixCls } = props;
+  const { markdown = '', highlightEnable, dispatch } = useContext(EditorContext);
+  const preRef = React.createRef&lt;HTMLPreElement&gt;();
+  useEffect(() =&gt; {
+    if (preRef.current &amp;&amp; dispatch) {
+      dispatch({ textareaPre: preRef.current });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-<span class="cstat-no" title="statement not covered" >  if (!markdown) {</span>
-<span class="cstat-no" title="statement not covered" >    return &lt;pre ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} /&gt;;</span>
+  if (!markdown) {
+    return &lt;pre ref={preRef} className={`${prefixCls}-text-pre wmde-markdown-color`} /&gt;;
   }
-  let mdStr = <span class="cstat-no" title="statement not covered" >`&lt;pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"&gt;&lt;code class="language-markdown"&gt;${html2Escape(</span>
+  let mdStr = `&lt;pre class="language-markdown ${prefixCls}-text-pre wmde-markdown-color"&gt;&lt;code class="language-markdown"&gt;${html2Escape(
     String.raw`${markdown}`,
   )}\n&lt;/code&gt;&lt;/pre&gt;`;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (highlightEnable) {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      mdStr = rehype()</span>
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (highlightEnable) {
+    try {
+      mdStr = rehype()
         .data('settings', { fragment: true })
         .use(rehypePrism, { ignoreMissing: true })
         .processSync(mdStr)
@@ -220,9 +220,9 @@ export default function <span class="fstat-no" title="function not covered" >Mar
     } catch (error) {}
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return React.createElement('div', {</span>
+  return React.createElement('div', {
     className: 'wmde-markdown-color',
-    dangerouslySetInnerHTML: { __html: mdStr || '' },
+    dangerouslySetInnerHTML: { __html: mdStr || <span class="branch-1 cbranch-no" title="branch not covered" >'' </span>},
   });
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -232,7 +232,7 @@ export default function <span class="fstat-no" title="function not covered" >Mar
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-29T13:35:08.080Z
+                at 2023-03-30T02:20:53.939Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
