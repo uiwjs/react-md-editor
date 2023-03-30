@@ -1,3 +1,4 @@
+import React from 'react';
 import { ICommand, TextState, TextAreaTextApi } from './';
 import { selectWord } from '../utils/markdownUtils';
 
