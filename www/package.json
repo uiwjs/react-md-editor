@@ -29,7 +29,7 @@
     "@wcj/dark-mode": "~1.0.9",
     "dom-to-image": "^2.6.0",
     "katex": "~0.16.0",
-    "mermaid": "~10.0.0",
+    "mermaid": "~10.0.3-alpha.1",
     "react": "~18.2.0",
     "react-code-preview-layout": "^2.0.7",
     "react-dom": "~18.2.0",
