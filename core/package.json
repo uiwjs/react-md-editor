@@ -13,10 +13,10 @@
     "bundle": "ncc build src/index.tsx --target web --filename mdeditor",
     "bundle:watch": "ncc watch src/index.tsx --target web --filename mdeditor",
     "bundle:min": "ncc build src/index.tsx --target web --filename mdeditor --minify",
-    "watch": "tsbb watch & npm run css:watch",
-    "build": "tsbb build && npm run css:build && npm run css:build:dist",
-    "test": "tsbb test --env=jsdom",
-    "coverage": "tsbb test --env=jsdom --coverage --bail"
+    "watch": "tsbb watch src/*.tsx --use-babel & npm run css:watch",
+    "build": "tsbb build src/*.tsx --use-babel && npm run css:build && npm run css:build:dist",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage --bail"
   },
   "repository": {
     "type": "git",
