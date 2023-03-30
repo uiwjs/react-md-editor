@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { insertAtLineStart } from '../utils/InsertTextAtPosition';
 import { ICommand, TextState, TextAreaTextApi } from './';
 

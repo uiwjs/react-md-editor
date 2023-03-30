@@ -152,7 +152,7 @@ it('MDEditor commands HR', async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('\n\n----------\n\ntitle');
+  expect(inputNode).toHaveValue('\n\n-----------\n\ntitle');
 });
 
 it('MDEditor commands strikethrough text', async () => {
@@ -206,7 +206,7 @@ it('MDEditor commands link', async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('[title](url)');
+  expect(inputNode).toHaveValue('[title](URL Here)');
 });
 
 it('MDEditor commands image', async () => {
@@ -233,7 +233,7 @@ it('MDEditor commands image', async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('![](title)');
+  expect(inputNode).toHaveValue('![image](title)');
 });
 
 it("MDEditor commands image === ''", async () => {
@@ -260,7 +260,7 @@ it("MDEditor commands image === ''", async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('![](https://example.com/your-image.png)');
+  expect(inputNode).toHaveValue('![image](https://example.com/your-image.png)');
 });
 
 it('MDEditor commands Add unordered list', async () => {

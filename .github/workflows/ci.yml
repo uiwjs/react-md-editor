@@ -15,11 +15,13 @@ jobs:
 
       - run: npm install
       - working-directory: core
-        run: |
-          npm run build
-          npm run bundle
-          npm run bundle:min
-          npm run coverage
+        run: npm run build
+      - working-directory: core
+        run: npm run bundle
+      - working-directory: core
+        run: npm run bundle:min
+      - working-directory: core
+        run: npm run coverage
 
       - working-directory: www
         run: |
@@ -102,11 +104,12 @@ jobs:
           path: ./core/package.json
           unset: scripts,jest,devDependencies
 
-      - name: 📦 @uiw/react-md-editor publish to NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./core/package.json
+      - run: npm publish
+        name: 📦 @uiw/react-md-editor publish to NPM
+        working-directory: core
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     outputs:
       successful: ${{steps.create_tag.outputs.successful }}
@@ -138,6 +141,7 @@ jobs:
   
       - run: npm publish
         working-directory: core
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 

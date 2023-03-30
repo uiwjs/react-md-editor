@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig",
-  "include": ["src", ".kktrc.ts"],
+  "include": ["src"],
   "compilerOptions": {
     "baseUrl": ".",
     "emitDeclarationOnly": true,
