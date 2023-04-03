@@ -110,7 +110,7 @@ jobs:
         working-directory: core
         continue-on-error: true
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
     outputs:
       successful: ${{steps.create_tag.outputs.successful }}
