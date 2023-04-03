@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.36bf611a.css",
-    "main.js": "/static/js/main.8cdfab40.js",
+    "main.js": "/static/js/main.480e28b2.js",
     "refractor-prismjs-vendor.js": "/static/js/refractor-prismjs-vendor.176dad22.js",
     "micromark-vendor.js": "/static/js/micromark-vendor.a27eb5d9.js",
     "babel-runtime-vendor.js": "/static/js/babel-runtime-vendor.60d2d84f.js",
@@ -73,7 +73,7 @@
     "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "main.36bf611a.css.map": "/static/css/main.36bf611a.css.map",
-    "main.8cdfab40.js.map": "/static/js/main.8cdfab40.js.map",
+    "main.480e28b2.js.map": "/static/js/main.480e28b2.js.map",
     "refractor-prismjs-vendor.176dad22.js.map": "/static/js/refractor-prismjs-vendor.176dad22.js.map",
     "micromark-vendor.a27eb5d9.js.map": "/static/js/micromark-vendor.a27eb5d9.js.map",
     "babel-runtime-vendor.60d2d84f.js.map": "/static/js/babel-runtime-vendor.60d2d84f.js.map",
@@ -93,6 +93,6 @@
     "static/js/katex-vendor.e9ef2b75.js",
     "static/js/mermaid-vendor.a7a2c3a9.js",
     "static/css/main.36bf611a.css",
-    "static/js/main.8cdfab40.js"
+    "static/js/main.480e28b2.js"
   ]
 }
