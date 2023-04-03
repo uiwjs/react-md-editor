@@ -772,6 +772,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/alphacoma18" title="Alpha Coma">
   <img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Coma"/>
 </a>
+<a href="https://github.com/Exmirai" title="UniqueUlysees">
+  <img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/>
+</a>
 <a href="https://github.com/nuragic" title="Andrea Puddu">
   <img src="https://avatars.githubusercontent.com/u/1586378?v=4" width="42;" alt="Andrea Puddu"/>
 </a>
@@ -804,9 +807,6 @@ As always, thanks to our amazing contributors!
 </a>
 <a href="https://github.com/toresbe" title="Tore Sinding Bekkedal">
   <img src="https://avatars.githubusercontent.com/u/1761606?v=4" width="42;" alt="Tore Sinding Bekkedal"/>
-</a>
-<a href="https://github.com/Exmirai" title="UniqueUlysees">
-  <img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/>
 </a>
 <a href="https://github.com/valenfv" title="Valentin">
   <img src="https://avatars.githubusercontent.com/u/34139820?v=4" width="42;" alt="Valentin"/>
