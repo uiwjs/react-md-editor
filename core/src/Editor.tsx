@@ -265,6 +265,10 @@ const InternalMDEditor = (
     () => height !== state.height && onHeightChange && onHeightChange(state.height, height, state),
     [height, onHeightChange, state],
   );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => commands !== state.commands && dispatch({ commands: cmds }), [props.commands]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => extraCommands !== state.extraCommands && dispatch({ extraCommands: extraCmds }), [props.extraCommands]);
 
   const textareaDomRef = useRef<HTMLDivElement>();
   const active = useRef<'text' | 'preview'>('preview');
