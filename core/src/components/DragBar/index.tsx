@@ -13,6 +13,14 @@ const DragBar: React.FC<IDragBarProps> = (props) => {
   const { prefixCls, onChange } = props || {};
   const $dom = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ height: number; dragY: number }>();
+  const heightRef = useRef(props.height);
+
+  useEffect(() => {
+    if (heightRef.current !== props.height) {
+      heightRef.current = props.height;
+    }
+  }, [props.height]);
+
   function handleMouseMove(event: Event) {
     if (dragRef.current) {
       const clientY =
@@ -35,7 +43,7 @@ const DragBar: React.FC<IDragBarProps> = (props) => {
     const clientY =
       (event as unknown as MouseEvent).clientY || (event as unknown as TouchEvent).changedTouches[0]?.clientY;
     dragRef.current = {
-      height: props.height,
+      height: heightRef.current,
       dragY: clientY,
     };
     document.addEventListener('mousemove', handleMouseMove);
