@@ -5,17 +5,19 @@ import { IProps } from '../../Editor';
 import { EditorContext } from '../../Context';
 
 function html2Escape(sHtml: string) {
-  return sHtml
-    .replace(/```(\w+)?([\s\S]*?)(\s.+)?```/g, (str: string) => {
-      return str.replace(
+  return (
+    sHtml
+      // .replace(/```(\w+)?([\s\S]*?)(\s.+)?```/g, (str: string) => {
+      //   return str.replace(
+      //     /[<&"]/g,
+      //     (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
+      //   );
+      // })
+      .replace(
         /[<&"]/g,
         (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
-      );
-    })
-    .replace(
-      /[<&"]/g,
-      (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
-    );
+      )
+  );
 }
 
 export interface MarkdownProps extends IProps, React.HTMLAttributes<HTMLPreElement> {}
