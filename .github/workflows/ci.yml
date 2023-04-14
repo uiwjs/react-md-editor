@@ -116,7 +116,7 @@ jobs:
       successful: ${{steps.create_tag.outputs.successful }}
 
   github-package:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     needs: build-deploy
     if: needs.build-deploy.outputs.successful
     steps:
