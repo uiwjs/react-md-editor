@@ -15,8 +15,8 @@
     "@kkt/raw-modules": "^7.4.9",
     "@kkt/scope-plugin-options": "^7.4.9",
     "@types/katex": "^0.16.0",
-    "@types/react": "~18.0.9",
-    "@types/react-dom": "~18.0.3",
+    "@types/react": "~18.2.0",
+    "@types/react-dom": "~18.2.0",
     "kkt": "^7.4.9",
     "markdown-react-code-preview-loader": "^2.1.4",
     "source-map-explorer": "~2.5.3"
