@@ -79,6 +79,7 @@ export function ToolbarItems(props: IToolbarProps) {
                 textApi: commandOrchestrator ? commandOrchestrator!.textApi : undefined,
                 close: () => handleClick({}, item.groupName),
                 execute: () => handleClick({ execute: item.execute }),
+                dispatch,
               })
             : undefined;
         const disabled = barPopup && preview && preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand);
