@@ -3,13 +3,20 @@ import MarkdownPreview, { MarkdownPreviewProps } from '@uiw/react-markdown-previ
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
-import { getCommands, getExtraCommands, ICommand } from './commands';
+import { getCommands, getExtraCommands, ICommand, TextState, TextAreaCommandOrchestrator } from './commands';
 import { reducer, EditorContext, ContextStore, PreviewType } from './Context';
 import './index.less';
 
 export interface IProps {
   prefixCls?: string;
   className?: string;
+}
+
+export interface Statistics extends TextState {
+  /** total length of the document */
+  length: number;
+  /** Get the number of lines in the editor. */
+  lineCount: number;
 }
 
 export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, IProps {
@@ -25,6 +32,8 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * editor height change listener
    */
   onHeightChange?: (value?: CSSProperties['height'], oldValue?: CSSProperties['height'], state?: ContextStore) => void;
+  /** Some data on the statistics editor. */
+  onStatistics?: (data: Statistics) => void;
   /**
    * Can be used to make `Markdown Editor` focus itself on initialization. Defaults to on.
    * it will be set to true when either the source `textarea` is focused,
@@ -180,6 +189,7 @@ const InternalMDEditor = (
     tabSize = 2,
     defaultTabEnable = false,
     onChange,
+    onStatistics,
     onHeightChange,
     hideToolbar,
     toolbarBottom = false,
@@ -336,6 +346,21 @@ const InternalMDEditor = (
   const containerClick = () => dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });
   const dragBarChange = (newHeight: number) => dispatch({ height: newHeight });
 
+  const changeHandle = (evn: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange && onChange(evn.target.value, evn, state);
+    if (textareaProps && textareaProps.onChange) {
+      textareaProps.onChange(evn);
+    }
+    if (state.textarea && state.textarea instanceof HTMLTextAreaElement && onStatistics) {
+      const obj = new TextAreaCommandOrchestrator(state.textarea!);
+      const objState = (obj.getState() || {}) as TextState;
+      onStatistics({
+        ...objState,
+        lineCount: evn.target.value.split('\n').length,
+        length: evn.target.value.length,
+      });
+    }
+  };
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
       <div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}>
@@ -349,12 +374,7 @@ const InternalMDEditor = (
               prefixCls={prefixCls}
               autoFocus={autoFocus}
               {...textareaProps}
-              onChange={(evn) => {
-                onChange && onChange(evn.target.value, evn, state);
-                if (textareaProps && textareaProps.onChange) {
-                  textareaProps.onChange(evn);
-                }
-              }}
+              onChange={changeHandle}
               renderTextarea={components?.textarea || renderTextarea}
               onScroll={(e) => handleScroll(e, 'text')}
             />
