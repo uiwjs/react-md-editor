@@ -41,7 +41,6 @@ export default function Textarea(props: TextAreaProps) {
 
   const onKeyDown = (e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) => {
     handleKeyDown(e, tabSize, defaultTabEnable);
-    console.log('otherStore:', otherStore);
     shortcuts(e, [...(commands || []), ...(extraCommands || [])], executeRef.current, dispatch, statesRef.current);
   };
   useEffect(() => {
