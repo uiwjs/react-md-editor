@@ -27,6 +27,7 @@
       box-sizing: inherit;
       display: inherit;
       font-family: inherit;
+      font-family: var(--md-editor-font-family) !important;
       font-size: inherit;
       font-style: inherit;
       font-variant-ligatures: inherit;
@@ -42,9 +43,6 @@
       word-break: inherit;
       word-break: normal;
       padding: 0;
-      > code {
-        font-family: inherit;
-      }
     }
     &-pre {
       position: relative;
@@ -53,7 +51,7 @@
       background-color: transparent !important;
       > code {
         padding: 0 !important;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-family: var(--md-editor-font-family) !important;
         font-size: 14px !important;
         line-height: 18px !important;
       }
@@ -103,17 +101,17 @@
 
 .@{md-editor}-text-pre {
   .punctuation {
-    color: var(--color-prettylights-syntax-comment) !important;
+    color: var(--color-prettylights-syntax-comment, #8b949e) !important;
   }
   .token.url,
   .token.content {
-    color: var(--color-prettylights-syntax-constant) !important;
+    color: var(--color-prettylights-syntax-constant, #0550ae) !important;
   }
   .token.title.important {
-    color: var(--color-prettylights-syntax-markup-bold);
+    color: var(--color-prettylights-syntax-markup-bold, #24292f);
   }
   .token.code-block .function {
-    color: var(--color-prettylights-syntax-entity);
+    color: var(--color-prettylights-syntax-entity, #8250df);
   }
   .token.bold {
     font-weight: unset !important;
@@ -124,10 +122,10 @@
     font-weight: unset !important;
   }
   .token.code.keyword {
-    color: var(--color-prettylights-syntax-constant) !important;
+    color: var(--color-prettylights-syntax-constant, #0550ae) !important;
   }
   .token.strike,
   .token.strike .content {
-    color: var(--color-prettylights-syntax-markup-deleted-text) !important;
+    color: var(--color-prettylights-syntax-markup-deleted-text, #82071e) !important;
   }
 }

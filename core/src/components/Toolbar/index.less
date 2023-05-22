@@ -2,8 +2,8 @@
 
 .@{md-editor} {
   &-toolbar {
-    border-bottom: 1px solid var(--color-border-default);
-    background-color: var(--color-canvas-default);
+    border-bottom: 1px solid var(--md-editor-box-shadow-color);
+    background-color: var(--md-editor-background-color);
     padding: 5px 5px;
     display: flex;
     justify-content: space-between;
@@ -13,7 +13,7 @@
     flex-wrap: wrap;
     &.bottom {
       border-bottom: 0px;
-      border-top: 1px solid var(--color-border-default);
+      border-top: 1px solid var(--md-editor-box-shadow-color);
       border-radius: 0 0 3px 3px;
     }
     ul,
@@ -55,11 +55,11 @@
           color: var(--color-danger-fg);
         }
         &:disabled {
-          color: var(--color-border-default);
+          color: var(--md-editor-box-shadow-color);
           cursor: not-allowed;
           &:hover {
             background-color: transparent;
-            color: var(--color-border-default);
+            color: var(--md-editor-box-shadow-color);
           }
         }
       }
@@ -73,7 +73,7 @@
       width: 1px;
       margin: -3px 3px 0 3px !important;
       vertical-align: middle;
-      background-color: var(--color-border-default);
+      background-color: var(--md-editor-box-shadow-color);
     }
   }
 }

@@ -6,9 +6,12 @@
   padding-bottom: 1px;
   position: relative;
   color: var(--color-fg-default);
-  box-shadow: 0 0 0 1px var(--color-border-default), 0 0 0 var(--color-border-default),
-    0 1px 1px var(--color-border-default);
-  background-color: var(--color-canvas-default);
+  --md-editor-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --md-editor-background-color: var(--color-canvas-default, #ffffff);
+  --md-editor-box-shadow-color: var(--color-border-default, #d0d7de);
+  box-shadow: 0 0 0 1px var(--md-editor-box-shadow-color), 0 0 0 var(--md-editor-box-shadow-color),
+    0 1px 1px var(--md-editor-box-shadow-color);
+  background-color: var(--md-editor-background-color);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -20,7 +23,7 @@
     right: unset !important;
     left: 0;
     text-align: right !important;
-    box-shadow: inset -1px 0 0 0 var(--color-border-default);
+    box-shadow: inset -1px 0 0 0 var(--md-editor-box-shadow-color);
   }
   &&-rtl &-text {
     text-align: right !important;
@@ -48,7 +51,7 @@
   &-preview {
     width: 50%;
     box-sizing: border-box;
-    box-shadow: inset 1px 0 0 0 var(--color-border-default);
+    box-shadow: inset 1px 0 0 0 var(--md-editor-box-shadow-color);
     position: absolute;
     padding: 10px 20px;
     overflow: auto;
@@ -70,7 +73,7 @@
   &-show-preview &-input {
     width: 0%;
     overflow: hidden;
-    background-color: var(--color-canvas-default);
+    background-color: var(--md-editor-background-color);
   }
   &-show-preview &-preview {
     width: 100%;
