@@ -167,7 +167,6 @@ class TextAreaCommandOrchestrator implements CommandOrchestrator {
     state?: ExecuteCommandState,
     shortcuts?: string[],
   ): void {
-    console.log('state:', state);
     command.execute &&
       command.execute({ command, ...getStateFromTextArea(this.textArea) }, this.textApi, dispatch, state, shortcuts);
   }
