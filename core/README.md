@@ -445,7 +445,7 @@ export default function App() {
     <MDEditor
       value={value}
       preview="edit"
-      extraCommands={[...commands.getCommands(), help]}
+      commands={[...commands.getCommands(), help]}
       onChange={(val) => setValue(val)}
     />
   );
