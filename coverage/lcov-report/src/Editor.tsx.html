@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.41% </span>
+                <span class="strong">67.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>60/89</span>
+                <span class='fraction'>61/90</span>
             </div>
         
             
@@ -470,7 +470,10 @@
 <a name='L405'></a><a href='#L405'>405</a>
 <a name='L406'></a><a href='#L406'>406</a>
 <a name='L407'></a><a href='#L407'>407</a>
-<a name='L408'></a><a href='#L408'>408</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L408'></a><a href='#L408'>408</a>
+<a name='L409'></a><a href='#L409'>409</a>
+<a name='L410'></a><a href='#L410'>410</a>
+<a name='L411'></a><a href='#L411'>411</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -635,8 +638,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -751,6 +752,9 @@
 <span class="cline-any cline-yes">154x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">154x</span>
 <span class="cline-any cline-yes">154x</span>
@@ -872,12 +876,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, CSSProperties, PropsWithRef } from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, CSSProperties } from 'react';
 import MarkdownPreview, { MarkdownPreviewProps } from '@uiw/react-markdown-preview';
 import TextArea, { ITextAreaProps } from './components/TextArea';
 import Toolbar from './components/Toolbar';
@@ -1041,249 +1047,252 @@ function <span class="fstat-no" title="function not covered" >setGroupPopFalse(<
 &nbsp;
 export interface RefMDEditor extends ContextStore {}
 &nbsp;
-const InternalMDEditor = (
-  props: MDEditorProps,
-  ref?: ((instance: RefMDEditor) =&gt; void) | React.RefObject&lt;RefMDEditor&gt; | null,
-) =&gt; {
-  const {
-    prefixCls = 'w-md-editor',
-    className,
-    value: propsValue,
-    commands = getCommands(),
-    commandsFilter,
-    direction,
-    extraCommands = getExtraCommands(),
-    height = 200,
-    enableScroll = true,
-    visibleDragbar = typeof props.visiableDragbar === 'boolean' ? <span class="branch-0 cbranch-no" title="branch not covered" >props.visiableDragbar </span>: true,
-    highlightEnable = true,
-    preview: previewType = 'live',
-    fullscreen = false,
-    overflow = true,
-    previewOptions = {},
-    textareaProps,
-    maxHeight = 1200,
-    minHeight = 100,
-    autoFocus,
-    tabSize = 2,
-    defaultTabEnable = false,
-    onChange,
-    onStatistics,
-    onHeightChange,
-    hideToolbar,
-    toolbarBottom = false,
-    components,
-    renderTextarea,
-    ...other
-  } = props || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  const cmds = commands
-    .map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item, false) </span>: item))
-    .filter(Boolean) as ICommand[];
-  const extraCmds = extraCommands
-    .map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item, true) </span>: item))
-    .filter(Boolean) as ICommand[];
-  let [state, dispatch] = useReducer(reducer, {
-    markdown: propsValue,
-    preview: previewType,
-    components,
-    height,
-    highlightEnable,
-    tabSize,
-    defaultTabEnable,
-    scrollTop: 0,
-    scrollTopPreview: 0,
-    commands: cmds,
-    extraCommands: extraCmds,
-    fullscreen,
-    barPopup: {},
-  });
-  const container = useRef&lt;HTMLDivElement&gt;(null);
-  const previewRef = useRef&lt;HTMLDivElement&gt;(null);
-  const enableScrollRef = useRef(enableScroll);
+const InternalMDEditor = React.forwardRef&lt;RefMDEditor, MDEditorProps&gt;(
+  (props: MDEditorProps, ref: React.ForwardedRef&lt;RefMDEditor&gt;) =&gt; {
+    const {
+      prefixCls = 'w-md-editor',
+      className,
+      value: propsValue,
+      commands = getCommands(),
+      commandsFilter,
+      direction,
+      extraCommands = getExtraCommands(),
+      height = 200,
+      enableScroll = true,
+      visibleDragbar = typeof props.visiableDragbar === 'boolean' ? <span class="branch-0 cbranch-no" title="branch not covered" >props.visiableDragbar </span>: true,
+      highlightEnable = true,
+      preview: previewType = 'live',
+      fullscreen = false,
+      overflow = true,
+      previewOptions = {},
+      textareaProps,
+      maxHeight = 1200,
+      minHeight = 100,
+      autoFocus,
+      tabSize = 2,
+      defaultTabEnable = false,
+      onChange,
+      onStatistics,
+      onHeightChange,
+      hideToolbar,
+      toolbarBottom = false,
+      components,
+      renderTextarea,
+      ...other
+    } = props || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    const cmds = commands
+      .map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item, false) </span>: item))
+      .filter(Boolean) as ICommand[];
+    const extraCmds = extraCommands
+      .map((item) =&gt; (commandsFilter ? <span class="branch-0 cbranch-no" title="branch not covered" >commandsFilter(item, true) </span>: item))
+      .filter(Boolean) as ICommand[];
+    let [state, dispatch] = useReducer(reducer, {
+      markdown: propsValue,
+      preview: previewType,
+      components,
+      height,
+      highlightEnable,
+      tabSize,
+      defaultTabEnable,
+      scrollTop: 0,
+      scrollTopPreview: 0,
+      commands: cmds,
+      extraCommands: extraCmds,
+      fullscreen,
+      barPopup: {},
+    });
+    const container = useRef&lt;HTMLDivElement&gt;(null);
+    const previewRef = useRef&lt;HTMLDivElement&gt;(null);
+    const enableScrollRef = useRef(enableScroll);
 &nbsp;
-  useImperativeHandle(ref, <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ ...state, container: container.current, dispatch })</span>);
-  useMemo(() =&gt; (enableScrollRef.current = enableScroll), [enableScroll]);
-  useEffect(() =&gt; {
-    const stateInit: ContextStore = {};
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (container.current) {
-      stateInit.container = container.current || <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
-    }
-    stateInit.markdown = propsValue || '';
-    stateInit.barPopup = {};
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (dispatch) {
-      dispatch({ ...state, ...stateInit });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-&nbsp;
-  const cls = [
-    className,
-    'wmde-markdown-var',
-    direction ? <span class="branch-0 cbranch-no" title="branch not covered" >`${prefixCls}-${direction}` </span>: null,
-    prefixCls,
-    state.preview ? `${prefixCls}-show-${state.preview}` : <span class="branch-1 cbranch-no" title="branch not covered" >null,</span>
-    state.fullscreen ? `${prefixCls}-fullscreen` : null,
-  ]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
-&nbsp;
-  useMemo(
-    () =&gt; propsValue !== state.markdown &amp;&amp; dispatch({ markdown: propsValue || '' }),
-    [propsValue, state.markdown],
-  );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() =&gt; previewType !== state.preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ preview: previewType }),</span> [previewType]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() =&gt; tabSize !== state.tabSize &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ tabSize }),</span> [tabSize]);
-  useMemo(
-    () =&gt; highlightEnable !== state.highlightEnable &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ highlightEnable }),</span>
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [highlightEnable],
-  );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() =&gt; autoFocus !== state.autoFocus &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ autoFocus: autoFocus }),</span> [autoFocus]);
-  useMemo(
-    () =&gt; fullscreen !== state.fullscreen &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ fullscreen: fullscreen }),</span>
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [fullscreen],
-  );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() =&gt; height !== state.height &amp;&amp; dispatch({ height: height }), [height]);
-  useMemo(
-    () =&gt; height !== state.height &amp;&amp; onHeightChange &amp;&amp; onHeightChange(state.height, height, state),
-    [height, onHeightChange, state],
-  );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() =&gt; commands !== state.commands &amp;&amp; dispatch({ commands: cmds }), [props.commands]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useMemo(() =&gt; extraCommands !== state.extraCommands &amp;&amp; dispatch({ extraCommands: extraCmds }), [props.extraCommands]);
-&nbsp;
-  const textareaDomRef = useRef&lt;HTMLDivElement&gt;();
-  const active = useRef&lt;'text' | 'preview'&gt;('preview');
-  const initScroll = useRef(false);
-&nbsp;
-  useMemo(() =&gt; {
-    textareaDomRef.current = state.textareaWarp;
-    if (state.textareaWarp) {
-      state.textareaWarp.addEventListener('mouseover', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >        active.current = 'text';</span>
-      });
-      state.textareaWarp.addEventListener('mouseleave', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >        active.current = 'preview';</span>
-      });
-    }
-  }, [state.textareaWarp]);
-&nbsp;
-  const handleScroll = <span class="fstat-no" title="function not covered" >(e</span>: React.UIEvent&lt;HTMLDivElement&gt;, type: 'text' | 'preview') =&gt; {
-<span class="cstat-no" title="statement not covered" >    if (!enableScrollRef.current) <span class="cstat-no" title="statement not covered" >return;</span></span>
-    const textareaDom = <span class="cstat-no" title="statement not covered" >textareaDomRef.current;</span>
-    const previewDom = <span class="cstat-no" title="statement not covered" >previewRef.current ? previewRef.current : undefined;</span>
-<span class="cstat-no" title="statement not covered" >    if (!initScroll.current) {</span>
-<span class="cstat-no" title="statement not covered" >      active.current = type;</span>
-<span class="cstat-no" title="statement not covered" >      initScroll.current = true;</span>
-    }
-<span class="cstat-no" title="statement not covered" >    if (textareaDom &amp;&amp; previewDom) {</span>
-      const scale =
-<span class="cstat-no" title="statement not covered" >        (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);</span>
-<span class="cstat-no" title="statement not covered" >      if (e.target === textareaDom &amp;&amp; active.current === 'text') {</span>
-<span class="cstat-no" title="statement not covered" >        previewDom.scrollTop = textareaDom.scrollTop / scale;</span>
+    useImperativeHandle(ref, <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ ...state, container: container.current, dispatch })</span>);
+    useMemo(() =&gt; (enableScrollRef.current = enableScroll), [enableScroll]);
+    useEffect(() =&gt; {
+      const stateInit: ContextStore = {};
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (container.current) {
+        stateInit.container = container.current || <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
       }
-<span class="cstat-no" title="statement not covered" >      if (e.target === previewDom &amp;&amp; active.current === 'preview') {</span>
-<span class="cstat-no" title="statement not covered" >        textareaDom.scrollTop = previewDom.scrollTop * scale;</span>
+      stateInit.markdown = propsValue || '';
+      stateInit.barPopup = {};
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (dispatch) {
+        dispatch({ ...state, ...stateInit });
       }
-      let scrollTop = <span class="cstat-no" title="statement not covered" >0;</span>
-<span class="cstat-no" title="statement not covered" >      if (active.current === 'text') {</span>
-<span class="cstat-no" title="statement not covered" >        scrollTop = textareaDom.scrollTop || 0;</span>
-      } else <span class="cstat-no" title="statement not covered" >if (active.current === 'preview') {</span>
-<span class="cstat-no" title="statement not covered" >        scrollTop = previewDom.scrollTop || 0;</span>
-      }
-<span class="cstat-no" title="statement not covered" >      dispatch({ scrollTop });</span>
-    }
-  };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 &nbsp;
-  const previewClassName = `${prefixCls}-preview ${previewOptions.className || ''}`;
-  const handlePreviewScroll = <span class="fstat-no" title="function not covered" >(e</span>: React.UIEvent&lt;HTMLDivElement, UIEvent&gt;) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'preview');</span>
-  let mdPreview = useMemo(
-    () =&gt; (
-      &lt;div ref={previewRef} className={previewClassName}&gt;
-        &lt;MarkdownPreview {...previewOptions} onScroll={handlePreviewScroll} source={state.markdown || ''} /&gt;
-      &lt;/div&gt;
-    ),
-    [previewClassName, previewOptions, state.markdown],
-  );
-  const preview = components?.preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >components?.preview(state.markdown || '', state, dispatch);</span>
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >React.isValidElement(preview))</span> {
-<span class="cstat-no" title="statement not covered" >    mdPreview = (</span>
-      &lt;div className={previewClassName} ref={previewRef} onScroll={handlePreviewScroll}&gt;
-        {preview}
-      &lt;/div&gt;
+    const cls = [
+      className,
+      'wmde-markdown-var',
+      direction ? <span class="branch-0 cbranch-no" title="branch not covered" >`${prefixCls}-${direction}` </span>: null,
+      prefixCls,
+      state.preview ? `${prefixCls}-show-${state.preview}` : <span class="branch-1 cbranch-no" title="branch not covered" >null,</span>
+      state.fullscreen ? `${prefixCls}-fullscreen` : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
+&nbsp;
+    useMemo(
+      () =&gt; propsValue !== state.markdown &amp;&amp; dispatch({ markdown: propsValue || '' }),
+      [propsValue, state.markdown],
     );
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useMemo(() =&gt; previewType !== state.preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ preview: previewType }),</span> [previewType]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useMemo(() =&gt; tabSize !== state.tabSize &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ tabSize }),</span> [tabSize]);
+    useMemo(
+      () =&gt; highlightEnable !== state.highlightEnable &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ highlightEnable }),</span>
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [highlightEnable],
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useMemo(() =&gt; autoFocus !== state.autoFocus &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ autoFocus: autoFocus }),</span> [autoFocus]);
+    useMemo(
+      () =&gt; fullscreen !== state.fullscreen &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >dispatch({ fullscreen: fullscreen }),</span>
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [fullscreen],
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useMemo(() =&gt; height !== state.height &amp;&amp; dispatch({ height: height }), [height]);
+    useMemo(
+      () =&gt; height !== state.height &amp;&amp; onHeightChange &amp;&amp; onHeightChange(state.height, height, state),
+      [height, onHeightChange, state],
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useMemo(() =&gt; commands !== state.commands &amp;&amp; dispatch({ commands: cmds }), [props.commands]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useMemo(
+      () =&gt; extraCommands !== state.extraCommands &amp;&amp; dispatch({ extraCommands: extraCmds }),
+      [props.extraCommands],
+    );
 &nbsp;
-  const containerStyle = { ...other.style, height: state.height || <span class="branch-1 cbranch-no" title="branch not covered" >'100%' </span>};
-  const containerClick = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });</span>
-  const dragBarChange = <span class="fstat-no" title="function not covered" >(n</span>ewHeight: number) =&gt; <span class="cstat-no" title="statement not covered" >dispatch({ height: newHeight });</span>
+    const textareaDomRef = useRef&lt;HTMLDivElement&gt;();
+    const active = useRef&lt;'text' | 'preview'&gt;('preview');
+    const initScroll = useRef(false);
 &nbsp;
-  const changeHandle = (evn: React.ChangeEvent&lt;HTMLTextAreaElement&gt;) =&gt; {
-    onChange &amp;&amp; onChange(evn.target.value, evn, state);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (textareaProps &amp;&amp; textareaProps.onChange) {
-<span class="cstat-no" title="statement not covered" >      textareaProps.onChange(evn);</span>
+    useMemo(() =&gt; {
+      textareaDomRef.current = state.textareaWarp;
+      if (state.textareaWarp) {
+        state.textareaWarp.addEventListener('mouseover', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          active.current = 'text';</span>
+        });
+        state.textareaWarp.addEventListener('mouseleave', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >          active.current = 'preview';</span>
+        });
+      }
+    }, [state.textareaWarp]);
+&nbsp;
+    const handleScroll = <span class="fstat-no" title="function not covered" >(e</span>: React.UIEvent&lt;HTMLDivElement&gt;, type: 'text' | 'preview') =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (!enableScrollRef.current) <span class="cstat-no" title="statement not covered" >return;</span></span>
+      const textareaDom = <span class="cstat-no" title="statement not covered" >textareaDomRef.current;</span>
+      const previewDom = <span class="cstat-no" title="statement not covered" >previewRef.current ? previewRef.current : undefined;</span>
+<span class="cstat-no" title="statement not covered" >      if (!initScroll.current) {</span>
+<span class="cstat-no" title="statement not covered" >        active.current = type;</span>
+<span class="cstat-no" title="statement not covered" >        initScroll.current = true;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (textareaDom &amp;&amp; previewDom) {</span>
+        const scale =
+<span class="cstat-no" title="statement not covered" >          (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);</span>
+<span class="cstat-no" title="statement not covered" >        if (e.target === textareaDom &amp;&amp; active.current === 'text') {</span>
+<span class="cstat-no" title="statement not covered" >          previewDom.scrollTop = textareaDom.scrollTop / scale;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (e.target === previewDom &amp;&amp; active.current === 'preview') {</span>
+<span class="cstat-no" title="statement not covered" >          textareaDom.scrollTop = previewDom.scrollTop * scale;</span>
+        }
+        let scrollTop = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >        if (active.current === 'text') {</span>
+<span class="cstat-no" title="statement not covered" >          scrollTop = textareaDom.scrollTop || 0;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (active.current === 'preview') {</span>
+<span class="cstat-no" title="statement not covered" >          scrollTop = previewDom.scrollTop || 0;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        dispatch({ scrollTop });</span>
+      }
+    };
+&nbsp;
+    const previewClassName = `${prefixCls}-preview ${previewOptions.className || ''}`;
+    const handlePreviewScroll = <span class="fstat-no" title="function not covered" >(e</span>: React.UIEvent&lt;HTMLDivElement, UIEvent&gt;) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'preview');</span>
+    let mdPreview = useMemo(
+      () =&gt; (
+        &lt;div ref={previewRef} className={previewClassName}&gt;
+          &lt;MarkdownPreview {...previewOptions} onScroll={handlePreviewScroll} source={state.markdown || ''} /&gt;
+        &lt;/div&gt;
+      ),
+      [previewClassName, previewOptions, state.markdown],
+    );
+    const preview = components?.preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >components?.preview(state.markdown || '', state, dispatch);</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (preview &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >React.isValidElement(preview))</span> {
+<span class="cstat-no" title="statement not covered" >      mdPreview = (</span>
+        &lt;div className={previewClassName} ref={previewRef} onScroll={handlePreviewScroll}&gt;
+          {preview}
+        &lt;/div&gt;
+      );
     }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (state.textarea &amp;&amp; state.textarea instanceof HTMLTextAreaElement &amp;&amp; onStatistics) {
-      const obj = <span class="cstat-no" title="statement not covered" >new TextAreaCommandOrchestrator(state.textarea!);</span>
-      const objState = <span class="cstat-no" title="statement not covered" >(obj.getState() || {}) as TextState;</span>
-<span class="cstat-no" title="statement not covered" >      onStatistics({</span>
-        ...objState,
-        lineCount: evn.target.value.split('\n').length,
-        length: evn.target.value.length,
-      });
-    }
-  };
-  return (
-    &lt;EditorContext.Provider value={{ ...state, dispatch }}&gt;
-      &lt;div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}&gt;
-        {!hideToolbar &amp;&amp; !toolbarBottom &amp;&amp; (
-          &lt;Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;
-        )}
-        &lt;div className={`${prefixCls}-content`}&gt;
-          {/(edit|live)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; (
-            &lt;TextArea
-              className={`${prefixCls}-input`}
+&nbsp;
+    const containerStyle = { ...other.style, height: state.height || <span class="branch-1 cbranch-no" title="branch not covered" >'100%' </span>};
+    const containerClick = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch({ barPopup: { ...setGroupPopFalse(state.barPopup) } });</span>
+    const dragBarChange = <span class="fstat-no" title="function not covered" >(n</span>ewHeight: number) =&gt; <span class="cstat-no" title="statement not covered" >dispatch({ height: newHeight });</span>
+&nbsp;
+    const changeHandle = (evn: React.ChangeEvent&lt;HTMLTextAreaElement&gt;) =&gt; {
+      onChange &amp;&amp; onChange(evn.target.value, evn, state);
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (textareaProps &amp;&amp; textareaProps.onChange) {
+<span class="cstat-no" title="statement not covered" >        textareaProps.onChange(evn);</span>
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (state.textarea &amp;&amp; state.textarea instanceof HTMLTextAreaElement &amp;&amp; onStatistics) {
+        const obj = <span class="cstat-no" title="statement not covered" >new TextAreaCommandOrchestrator(state.textarea!);</span>
+        const objState = <span class="cstat-no" title="statement not covered" >(obj.getState() || {}) as TextState;</span>
+<span class="cstat-no" title="statement not covered" >        onStatistics({</span>
+          ...objState,
+          lineCount: evn.target.value.split('\n').length,
+          length: evn.target.value.length,
+        });
+      }
+    };
+    return (
+      &lt;EditorContext.Provider value={{ ...state, dispatch }}&gt;
+        &lt;div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}&gt;
+          {!hideToolbar &amp;&amp; !toolbarBottom &amp;&amp; (
+            &lt;Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;
+          )}
+          &lt;div className={`${prefixCls}-content`}&gt;
+            {/(edit|live)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; (
+              &lt;TextArea
+                className={`${prefixCls}-input`}
+                prefixCls={prefixCls}
+                autoFocus={autoFocus}
+                {...textareaProps}
+                onChange={changeHandle}
+                renderTextarea={components?.textarea || renderTextarea}
+                onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'text')}</span>
+              /&gt;
+            )}
+            {/(live|preview)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; mdPreview}
+          &lt;/div&gt;
+          {visibleDragbar &amp;&amp; !state.fullscreen &amp;&amp; (
+            &lt;DragBar
               prefixCls={prefixCls}
-              autoFocus={autoFocus}
-              {...textareaProps}
-              onChange={changeHandle}
-              renderTextarea={components?.textarea || renderTextarea}
-              onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'text')}</span>
+              height={state.height as number}
+              maxHeight={maxHeight!}
+              minHeight={minHeight!}
+              onChange={dragBarChange}
             /&gt;
           )}
-          {/(live|preview)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; mdPreview}
+          {!hideToolbar &amp;&amp; toolbarBottom &amp;&amp; (
+<span class="branch-2 cbranch-no" title="branch not covered" >            &lt;Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;</span>
+          )}
         &lt;/div&gt;
-        {visibleDragbar &amp;&amp; !state.fullscreen &amp;&amp; (
-          &lt;DragBar
-            prefixCls={prefixCls}
-            height={state.height as number}
-            maxHeight={maxHeight!}
-            minHeight={minHeight!}
-            onChange={dragBarChange}
-          /&gt;
-        )}
-        {!hideToolbar &amp;&amp; toolbarBottom &amp;&amp; (
-<span class="branch-2 cbranch-no" title="branch not covered" >          &lt;Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} /&gt;</span>
-        )}
-      &lt;/div&gt;
-    &lt;/EditorContext.Provider&gt;
-  );
+      &lt;/EditorContext.Provider&gt;
+    );
+  },
+);
+&nbsp;
+type EditorComponent = typeof InternalMDEditor &amp; {
+  Markdown: typeof MarkdownPreview;
 };
 &nbsp;
-type Editor = React.FC&lt;PropsWithRef&lt;MDEditorProps&gt;&gt; &amp; { Markdown: typeof MarkdownPreview };
+const Editor = InternalMDEditor as EditorComponent;
+Editor.Markdown = MarkdownPreview;
 &nbsp;
-const mdEditor: Editor = React.forwardRef(InternalMDEditor) as unknown as Editor;
-&nbsp;
-mdEditor.Markdown = MarkdownPreview;
-&nbsp;
-export default mdEditor;
+export default Editor;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -1291,7 +1300,7 @@ export default mdEditor;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-01T01:39:55.580Z
+                at 2023-06-01T13:18:15.042Z
             </div>
         <script src="../prettify.js"></script>
         <script>
