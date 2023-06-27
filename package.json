@@ -45,7 +45,7 @@
   },
   "workspaces": [
     "core",
-    "example",
+    "example/**",
     "www"
   ],
   "engines": {
