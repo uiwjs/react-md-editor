@@ -31,7 +31,7 @@
     "katex": "~0.16.0",
     "mermaid": "~9.4.3",
     "react": "~18.2.0",
-    "react-code-preview-layout": "^2.0.7",
+    "react-code-preview-layout": "^3.0.1",
     "react-dom": "~18.2.0",
     "rehype-ignore": "^1.0.1",
     "rehype-sanitize": "~5.0.1"
