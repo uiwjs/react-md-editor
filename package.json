@@ -45,6 +45,7 @@
   },
   "workspaces": [
     "core",
+    "example",
     "www"
   ],
   "engines": {
