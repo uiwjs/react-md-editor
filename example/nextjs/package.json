@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@types/node": "20.3.2",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
+    "@types/react": "18.2.16",
+    "@types/react-dom": "18.2.7",
     "@uiw/react-md-editor": "3.23.3",
     "next": "13.4.7",
     "react": "18.2.0",
