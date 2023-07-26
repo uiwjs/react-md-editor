@@ -1,6 +1,12 @@
 import React, { Fragment } from 'react';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import MDEditor, { MDEditorProps } from '@uiw/react-md-editor';
+import styled from 'styled-components';
+
+const Toolbar = styled.div`
+  padding-top: 10px;
+  text-align: center;
+`;
 
 let count = 1;
 
@@ -62,7 +68,7 @@ const Example = (props = {} as { mdStr: string }) => {
           setVisible({ ...state, value: newValue });
         }}
       />
-      <div className="doc-tools">
+      <Toolbar>
         <label>
           <input
             type="checkbox"
@@ -123,6 +129,7 @@ const Example = (props = {} as { mdStr: string }) => {
           />
           overflow
         </label>
+        <br />
         <label>
           <input type="radio" name="preview" value="edit" checked={state.preview === 'edit'} onChange={upPreview} />
           Edit
@@ -161,7 +168,7 @@ const Example = (props = {} as { mdStr: string }) => {
         >
           Clear
         </button>
-      </div>
+      </Toolbar>
     </Fragment>
   );
 };
