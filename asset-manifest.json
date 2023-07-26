@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.f9e4a986.css",
-    "main.js": "/static/js/main.a42912bd.js",
+    "main.css": "/static/css/main.df99bf00.css",
+    "main.js": "/static/js/main.4997164c.js",
     "refractor-prismjs-vendor.js": "/static/js/refractor-prismjs-vendor.3bc41db2.js",
     "micromark-vendor.js": "/static/js/micromark-vendor.fe3d962e.js",
-    "babel-runtime-vendor.js": "/static/js/babel-runtime-vendor.587ad14a.js",
+    "babel-runtime-vendor.js": "/static/js/babel-runtime-vendor.7aee549e.js",
     "parse5-vendor.js": "/static/js/parse5-vendor.5363c274.js",
     "react-vendor.js": "/static/js/react-vendor.83888bb4.js",
     "katex-vendor.css": "/static/css/katex-vendor.3574229e.css",
@@ -23,8 +23,8 @@
     "static/media/banner.svg": "/static/media/banner.74a5cb5d7390248577a30db2ba8c821b.svg",
     "static/media/KaTeX_AMS-Regular.woff2": "/static/media/KaTeX_AMS-Regular.73ea273a72f4aca30ca5.woff2",
     "static/media/KaTeX_Typewriter-Regular.ttf": "/static/media/KaTeX_Typewriter-Regular.c5c02d763c89380dcb4e.ttf",
-    "static/media/KaTeX_Main-Regular.woff2": "/static/media/KaTeX_Main-Regular.f650f111a3b890d116f1.woff2",
     "index.html": "/index.html",
+    "static/media/KaTeX_Main-Regular.woff2": "/static/media/KaTeX_Main-Regular.f650f111a3b890d116f1.woff2",
     "static/media/KaTeX_Main-Bold.woff2": "/static/media/KaTeX_Main-Bold.39890742bc957b368704.woff2",
     "static/media/KaTeX_SansSerif-Bold.ttf": "/static/media/KaTeX_SansSerif-Bold.5b49f4993ae22d7975b4.ttf",
     "static/media/KaTeX_SansSerif-Italic.ttf": "/static/media/KaTeX_SansSerif-Italic.b257a18c016f37ee4543.ttf",
@@ -72,11 +72,11 @@
     "static/media/KaTeX_Size4-Regular.woff2": "/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.f9e4a986.css.map": "/static/css/main.f9e4a986.css.map",
-    "main.a42912bd.js.map": "/static/js/main.a42912bd.js.map",
+    "main.df99bf00.css.map": "/static/css/main.df99bf00.css.map",
+    "main.4997164c.js.map": "/static/js/main.4997164c.js.map",
     "refractor-prismjs-vendor.3bc41db2.js.map": "/static/js/refractor-prismjs-vendor.3bc41db2.js.map",
     "micromark-vendor.fe3d962e.js.map": "/static/js/micromark-vendor.fe3d962e.js.map",
-    "babel-runtime-vendor.587ad14a.js.map": "/static/js/babel-runtime-vendor.587ad14a.js.map",
+    "babel-runtime-vendor.7aee549e.js.map": "/static/js/babel-runtime-vendor.7aee549e.js.map",
     "parse5-vendor.5363c274.js.map": "/static/js/parse5-vendor.5363c274.js.map",
     "react-vendor.83888bb4.js.map": "/static/js/react-vendor.83888bb4.js.map",
     "katex-vendor.3574229e.css.map": "/static/css/katex-vendor.3574229e.css.map",
@@ -86,13 +86,13 @@
   "entrypoints": [
     "static/js/refractor-prismjs-vendor.3bc41db2.js",
     "static/js/micromark-vendor.fe3d962e.js",
-    "static/js/babel-runtime-vendor.587ad14a.js",
+    "static/js/babel-runtime-vendor.7aee549e.js",
     "static/js/parse5-vendor.5363c274.js",
     "static/js/react-vendor.83888bb4.js",
     "static/css/katex-vendor.3574229e.css",
     "static/js/katex-vendor.fd7c499a.js",
     "static/js/mermaid-vendor.82848c3c.js",
-    "static/css/main.f9e4a986.css",
-    "static/js/main.a42912bd.js"
+    "static/css/main.df99bf00.css",
+    "static/js/main.4997164c.js"
   ]
 }
