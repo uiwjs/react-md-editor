@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a5145fd2.css",
-    "main.js": "/static/js/main.09aa8510.js",
+    "main.css": "/static/css/main.f9e4a986.css",
+    "main.js": "/static/js/main.a42912bd.js",
     "refractor-prismjs-vendor.js": "/static/js/refractor-prismjs-vendor.3bc41db2.js",
     "micromark-vendor.js": "/static/js/micromark-vendor.fe3d962e.js",
     "babel-runtime-vendor.js": "/static/js/babel-runtime-vendor.587ad14a.js",
@@ -72,8 +72,8 @@
     "static/media/KaTeX_Size4-Regular.woff2": "/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
     "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.a5145fd2.css.map": "/static/css/main.a5145fd2.css.map",
-    "main.09aa8510.js.map": "/static/js/main.09aa8510.js.map",
+    "main.f9e4a986.css.map": "/static/css/main.f9e4a986.css.map",
+    "main.a42912bd.js.map": "/static/js/main.a42912bd.js.map",
     "refractor-prismjs-vendor.3bc41db2.js.map": "/static/js/refractor-prismjs-vendor.3bc41db2.js.map",
     "micromark-vendor.fe3d962e.js.map": "/static/js/micromark-vendor.fe3d962e.js.map",
     "babel-runtime-vendor.587ad14a.js.map": "/static/js/babel-runtime-vendor.587ad14a.js.map",
@@ -92,7 +92,7 @@
     "static/css/katex-vendor.3574229e.css",
     "static/js/katex-vendor.fd7c499a.js",
     "static/js/mermaid-vendor.82848c3c.js",
-    "static/css/main.a5145fd2.css",
-    "static/js/main.09aa8510.js"
+    "static/css/main.f9e4a986.css",
+    "static/js/main.a42912bd.js"
   ]
 }
