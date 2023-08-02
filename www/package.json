@@ -1,7 +1,7 @@
 {
   "name": "www",
   "private": true,
-  "version": "3.23.4",
+  "version": "3.23.5",
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "author": "kenny wang <wowohoo@qq.com>",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@uiw/react-markdown-preview-example": "^1.5.6",
-    "@uiw/react-md-editor": "3.23.4",
+    "@uiw/react-md-editor": "3.23.5",
     "dom-to-image": "^2.6.0",
     "katex": "~0.16.0",
     "mermaid": "~9.4.3",
