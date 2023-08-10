@@ -499,7 +499,6 @@ npm install katex
 
 ```jsx mdx:preview
 import React from "react";
-import ReactDOM from "react-dom";
 import MDEditor from '@uiw/react-md-editor';
 import { getCodeString } from 'rehype-rewrite';
 import katex from 'katex';
@@ -515,9 +514,11 @@ c = \\pm\\sqrt{a^2 + b^2}
 `;
 
 export default function App() {
+  const [value, setValue] = React.useState(mdKaTeX);
   return (
     <MDEditor
-      value={mdKaTeX}
+      value={value}
+      onChange={(val) => setValue(val)}
       previewOptions={{
         components: {
           code: ({ inline, children = [], className, ...props }) => {
@@ -611,10 +612,51 @@ Using [mermaid](https://github.com/mermaid-js/mermaid) to generation of diagram 
 npm install mermaid
 ```
 
+```jsx
+export default function App() {
+  const [value, setValue] = React.useState(mdKaTeX);
+  return (
+    <MDEditor
+      value={value}
+      onChange={(val) => setValue(val)}
+      previewOptions={{
+        components: {
+          code: ({ inline, children = [], className, ...props }) => {
+            const txt = children[0] || '';
+            if (inline) {
+              if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {
+                const html = katex.renderToString(txt.replace(/^\$\$(.*)\$\$/, '$1'), {
+                  throwOnError: false,
+                });
+                return <code dangerouslySetInnerHTML={{ __html: html }} />;
+              }
+              return <code>{txt}</code>;
+            }
+            const code = props.node && props.node.children ? getCodeString(props.node.children) : txt;
+            if (
+              typeof code === 'string' &&
+              typeof className === 'string' &&
+              /^language-katex/.test(className.toLocaleLowerCase())
+            ) {
+              const html = katex.renderToString(code, {
+                throwOnError: false,
+              });
+              return <code style={{ fontSize: '150%' }} dangerouslySetInnerHTML={{ __html: html }} />;
+            }
+            return <code className={String(className)}>{txt}</code>;
+          },
+        },
+      }}
+    />
+  );
+}
+```
+
 ```jsx mdx:preview
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Fragment, useCallback } from "react";
 import ReactDOM from "react-dom";
 import MDEditor from "@uiw/react-md-editor";
+import { getCodeString } from 'rehype-rewrite';
 import mermaid from "mermaid";
 
 const mdMermaid = `The following are some examples of the diagrams, charts and graphs that can be made using Mermaid and the Markdown-inspired text specific to it. 
@@ -643,32 +685,36 @@ Bob-->>John: Jolly good!
 const randomid = () => parseInt(String(Math.random() * 1e15), 10).toString(36);
 const Code = ({ inline, children = [], className, ...props }) => {
   const demoid = useRef(`dome${randomid()}`);
-  const code = getCode(children);
-  const demo = useRef(null);
+  const [container, setContainer] = useState(null);
+  const isMermaid = className && /^language-mermaid/.test(className.toLocaleLowerCase());
+  const txt = children[0] || '';
+  const code = props.node && props.node.children ? getCodeString(props.node.children) : txt;
   useEffect(() => {
-    if (demo.current) {
+    if (container && isMermaid) {
       try {
-        const str = mermaid.render(demoid.current, code, () => null, demo.current);
-        // @ts-ignore
-        demo.current.innerHTML = str;
+        const str = mermaid.render(demoid.current, code);
+        container.innerHTML = str;
       } catch (error) {
-        // @ts-ignore
-        demo.current.innerHTML = error;
+        container.innerHTML = error;
       }
     }
-  }, [code, demo]);
+  }, [container, isMermaid, code, demoid]);
 
-  if (
-    typeof code === "string" && typeof className === "string" &&
-    /^language-mermaid/.test(className.toLocaleLowerCase())
-  ) {
+  const refElement = useCallback((node) => {
+    if (node !== null) {
+      setContainer(node);
+    }
+  }, []);
+
+  if (isMermaid) {
     return (
-      <code ref={demo}>
+      <Fragment>
         <code id={demoid.current} style={{ display: "none" }} />
-      </code>
+        <code ref={refElement} data-name="mermaid" />
+      </Fragment>
     );
   }
-  return <code className={String(className)}>{children}</code>;
+  return <code>{children}</code>;
 };
 
 const getCode = (arr = []) => arr.map((dt) => {
