@@ -471,7 +471,6 @@ export default function App() {
 
 ```jsx mdx:preview
 import React from "react";
-import ReactDOM from "react-dom";
 import MDEditor from '@uiw/react-md-editor';
 
 export default function App() {
@@ -612,49 +611,8 @@ Using [mermaid](https://github.com/mermaid-js/mermaid) to generation of diagram 
 npm install mermaid
 ```
 
-```jsx
-export default function App() {
-  const [value, setValue] = React.useState(mdKaTeX);
-  return (
-    <MDEditor
-      value={value}
-      onChange={(val) => setValue(val)}
-      previewOptions={{
-        components: {
-          code: ({ inline, children = [], className, ...props }) => {
-            const txt = children[0] || '';
-            if (inline) {
-              if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {
-                const html = katex.renderToString(txt.replace(/^\$\$(.*)\$\$/, '$1'), {
-                  throwOnError: false,
-                });
-                return <code dangerouslySetInnerHTML={{ __html: html }} />;
-              }
-              return <code>{txt}</code>;
-            }
-            const code = props.node && props.node.children ? getCodeString(props.node.children) : txt;
-            if (
-              typeof code === 'string' &&
-              typeof className === 'string' &&
-              /^language-katex/.test(className.toLocaleLowerCase())
-            ) {
-              const html = katex.renderToString(code, {
-                throwOnError: false,
-              });
-              return <code style={{ fontSize: '150%' }} dangerouslySetInnerHTML={{ __html: html }} />;
-            }
-            return <code className={String(className)}>{txt}</code>;
-          },
-        },
-      }}
-    />
-  );
-}
-```
-
 ```jsx mdx:preview
 import React, { useState, useRef, useEffect, Fragment, useCallback } from "react";
-import ReactDOM from "react-dom";
 import MDEditor from "@uiw/react-md-editor";
 import { getCodeString } from 'rehype-rewrite';
 import mermaid from "mermaid";
