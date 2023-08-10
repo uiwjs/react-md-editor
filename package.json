@@ -24,7 +24,7 @@
     "@kkt/less-modules": "^7.4.9",
     "@kkt/ncc": "^1.0.14",
     "@types/react-test-renderer": "~18.0.0",
-    "compile-less-cli": "~1.8.13",
+    "compile-less-cli": "~1.9.0",
     "husky": "~8.0.0",
     "kkt": "^7.4.9",
     "lerna": "^7.1.0",
