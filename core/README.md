@@ -645,8 +645,7 @@ const Code = ({ inline, children = [], className, ...props }) => {
   const demoid = useRef(`dome${randomid()}`);
   const [container, setContainer] = useState(null);
   const isMermaid = className && /^language-mermaid/.test(className.toLocaleLowerCase());
-  const txt = children[0] || '';
-  const code = props.node && props.node.children ? getCodeString(props.node.children) : txt;
+  const code = props.node && props.node.children ? getCodeString(props.node.children) : children[0] || '';
   useEffect(() => {
     if (container && isMermaid) {
       try {
@@ -674,16 +673,6 @@ const Code = ({ inline, children = [], className, ...props }) => {
   }
   return <code>{children}</code>;
 };
-
-const getCode = (arr = []) => arr.map((dt) => {
-  if (typeof dt === "string") {
-    return dt;
-  }
-  if (dt.props && dt.props.children) {
-    return getCode(dt.props.children);
-  }
-  return false;
-}).filter(Boolean).join("");
 
 export default function App() {
   const [value, setValue] = useState(mdMermaid);
