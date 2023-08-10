@@ -5,7 +5,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import MDEditor, { commands } from '../';
+import MDEditor, { commands } from '../core/src';
 
 it('MDEditor commands bold', async () => {
   const MyComponent = () => {

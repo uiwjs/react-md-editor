@@ -21,23 +21,20 @@ jobs:
         run: npm run bundle
       - working-directory: core
         run: npm run bundle:min
-      - working-directory: core
-        run: npm run coverage
+      - run: npm run coverage
       - working-directory: example/nextjs
         run: npm run build
 
       - working-directory: www
-        run: |
-          npm run build
-          npm run map
-      
-      - run: cp -rp core/coverage ./
+        run: npm run build
+
+      - working-directory: www
+        run: npm run map
 
       - name: Create Coverage Badges
         uses: jaywcjlove/coverage-badges-cli@main
 
-      - run: cp -rp www/build ./
-      - run: cp -rp coverage build
+      - run: cp -rp www/build ./coverage
 
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
@@ -113,37 +110,3 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-    outputs:
-      successful: ${{steps.create_tag.outputs.successful }}
-
-  # github-package:
-  #   runs-on: ubuntu-latest
-  #   needs: build-deploy
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #         registry-url: https://npm.pkg.github.com
-  #         scope: '@uiwjs'
-
-  #     - run: npm install
-  #     - working-directory: core
-  #       run: |
-  #         npm run build
-  #         npm run bundle
-  #         npm run bundle:min
-
-  #     - name: Modify @uiw/react-md-editor => @uiwjs/react-md-editor
-  #       uses: jaywcjlove/github-action-package@main
-  #       with:
-  #         path: core/package.json
-  #         rename: '@uiwjs/react-md-editor'
-  
-  #     - run: npm publish
-  #       working-directory: core
-  #       continue-on-error: true
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-

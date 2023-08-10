@@ -7,6 +7,8 @@
     "doc": "npm run-script build --workspace www",
     "start": "npm run-script start --workspace www",
     "⬆️⬆️⬆️⬆️⬆️ package ⬆️⬆️⬆️⬆️⬆️": "▲▲▲▲▲ package ▲▲▲▲▲",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage --bail",
     "prepare": "husky install",
     "version": "lerna version --exact --force-publish --no-push --no-git-tag-version",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
@@ -41,6 +43,11 @@
     ],
     "*.ts?(x)": [
       "prettier --parser=typescript --write"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/?!(.*)"
     ]
   },
   "workspaces": [

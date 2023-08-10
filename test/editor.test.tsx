@@ -7,7 +7,11 @@ import TestRenderer from 'react-test-renderer';
 import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import MDEditor from '../';
+import MDEditor from '../core/src';
+
+// In your test setup file
+// @ts-ignore
+// globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
 it('MDEditor', () => {
   const component = TestRenderer.create(<MDEditor value="**Hello world!!!**" />);

@@ -53,10 +53,5 @@
     "uiw",
     "uiwjs",
     "code"
-  ],
-  "jest": {
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/?!(.*)"
-    ]
-  }
+  ]
 }
