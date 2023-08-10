@@ -41,7 +41,7 @@ jobs:
         id: contributors
         with:
           filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
-          output: build/CONTRIBUTORS.svg
+          output: coverage/CONTRIBUTORS.svg
           avatarSize: 42
 
 
