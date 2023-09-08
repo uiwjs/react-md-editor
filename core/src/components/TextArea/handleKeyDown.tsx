@@ -70,7 +70,8 @@ export default function handleKeyDown(
   } else if (
     e.keyCode === 13 &&
     e.code.toLowerCase() === 'enter' &&
-    (/^(-|\*)\s/.test(currentLineStr) || /^\d+.\s/.test(currentLineStr))
+    (/^(-|\*)\s/.test(currentLineStr) || /^\d+.\s/.test(currentLineStr)) &&
+    !e.shiftKey
   ) {
     /**
      * `13` - `Enter`
