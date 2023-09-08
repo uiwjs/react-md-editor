@@ -85,7 +85,7 @@ export default function handleKeyDown(
 
     if (currentLineStr.startsWith('- [ ]')) {
       startStr = '\n- [ ] ';
-    } else if (currentLineStr.startsWith('- [X]')) {
+    } else if (currentLineStr.startsWith('- [X]') || currentLineStr.startsWith('- [x]')) {
       startStr = '\n- [X] ';
     }
 
