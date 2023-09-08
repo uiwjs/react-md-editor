@@ -24,9 +24,6 @@ jobs:
         run: npm run bundle
       - working-directory: core
         run: npm run bundle:min
-      - run: npm run coverage
-      - working-directory: example/nextjs
-        run: npm run build
 
       - working-directory: www
         run: npm run build
@@ -110,7 +107,7 @@ jobs:
           unset: scripts,jest,devDependencies
 
       - run: npm publish --access public --provenance
-        name: 📦 @uiw/react-md-editor publish to NPM
+        name: 📦 @rargames/react-md-editor-enhanced publish to NPM
         working-directory: core
         continue-on-error: true
         env:

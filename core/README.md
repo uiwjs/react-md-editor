@@ -35,6 +35,9 @@
 
 <!--rehype:ignore:end-->
 
+This fork contains some enhancements to the [react-md-editor](https://github.com/uiwjs/react-md-editor):
+- 
+
 A simple markdown editor with preview, implemented with React.js and TypeScript. This React Component aims to provide a simple Markdown editor with syntax highlighting support. This is based on `textarea` encapsulation, so it does not depend on any modern code editors such as Acs, CodeMirror, Monaco etc.
 
 ### Features
