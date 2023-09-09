@@ -34,8 +34,6 @@ jobs:
       - name: Create Coverage Badges
         uses: jaywcjlove/coverage-badges-cli@main
 
-      - run: cp -rp www/build ./coverage
-
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
         id: contributors
@@ -63,6 +61,8 @@ jobs:
         id: tag_version
         uses: jaywcjlove/changelog-generator@main
 
+
+      - run: cp -rp coverage/lcov-report ./www/build/lcov-report
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/master'
