@@ -46,6 +46,9 @@
     ]
   },
   "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/core/src/**/*.{ts,tsx}"
+    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
