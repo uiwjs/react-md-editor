@@ -34,7 +34,7 @@ jobs:
       - name: Create Coverage Badges
         uses: jaywcjlove/coverage-badges-cli@main
         with:
-          output: www/build/coverage/badges.svg
+          output: www/build/badges.svg
 
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
