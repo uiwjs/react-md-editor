@@ -1,0 +1,370 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/commands/code.tsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/commands</a> code.tsx</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>28/28</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>28/28</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { ICommand, TextState, TextAreaTextApi } from './';
+import {
+  selectWord,
+  getBreaksNeededForEmptyLineBefore,
+  getBreaksNeededForEmptyLineAfter,
+} from '../utils/markdownUtils';
+&nbsp;
+export const code: ICommand = {
+  name: 'code',
+  keyCommand: 'code',
+  shortcuts: 'ctrlcmd+j',
+  value: '``',
+  buttonProps: { 'aria-label': 'Insert code (ctrl + j)', title: 'Insert code (ctrl + j)' },
+  icon: (
+    &lt;svg width="14" height="14" role="img" viewBox="0 0 640 512"&gt;
+      &lt;path
+        fill="currentColor"
+        d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"
+      /&gt;
+    &lt;/svg&gt;
+  ),
+  execute: (tate: TextState, api: TextAreaTextApi) =&gt; {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    const newSelectionRange = selectWord({ text: tate.text, selection: tate.selection });
+    const state1 = api.setSelectionRange(newSelectionRange);
+    // when there's no breaking line
+    if (state1.selectedText.indexOf('\n') === -1) {
+      api.replaceSelection(`\`${state1.selectedText}\``);
+      // Adjust the selection to not contain the **
+&nbsp;
+      const selectionStart = state1.selection.start + 1;
+      const selectionEnd = selectionStart + state1.selectedText.length;
+&nbsp;
+      api.setSelectionRange({
+        start: selectionStart,
+        end: selectionEnd,
+      });
+      return;
+    }
+&nbsp;
+    const breaksBeforeCount = getBreaksNeededForEmptyLineBefore(state1.text, state1.selection.start);
+    const breaksBefore = Array(breaksBeforeCount + 1).join('\n');
+&nbsp;
+    const breaksAfterCount = getBreaksNeededForEmptyLineAfter(state1.text, state1.selection.end);
+    const breaksAfter = Array(breaksAfterCount + 1).join('\n');
+&nbsp;
+    api.replaceSelection(`${breaksBefore}\`\`\`\n${state1.selectedText}\n\`\`\`${breaksAfter}`);
+&nbsp;
+    const selectionStart = state1.selection.start + breaksBeforeCount + 4;
+    const selectionEnd = selectionStart + state1.selectedText.length;
+&nbsp;
+    api.setSelectionRange({
+      start: selectionStart,
+      end: selectionEnd,
+    });
+  },
+};
+&nbsp;
+export const codeBlock: ICommand = {
+  name: 'codeBlock',
+  keyCommand: 'codeBlock',
+  shortcuts: 'ctrlcmd+shift+j',
+  value: '```\n```',
+  icon: (
+    &lt;svg width="13" height="13" role="img" viewBox="0 0 156 156"&gt;
+      &lt;path
+        fill="currentColor"
+        d="M110.85 120.575 43.7 120.483333 43.7083334 110.091667 110.85 110.191667 110.841667 120.583333 110.85 120.575ZM85.1333334 87.1916666 43.625 86.7083332 43.7083334 76.3166666 85.2083334 76.7916666 85.1333334 87.1916666 85.1333334 87.1916666ZM110.841667 53.4166666 43.7 53.3166666 43.7083334 42.925 110.85 43.025 110.841667 53.4166666ZM36 138C27.2916666 138 20.75 136.216667 16.4 132.666667 12.1333334 129.2 10 124.308333 10 118L10 95.3333332C10 91.0666666 9.25 88.1333332 7.7333334 86.5333332 6.3166668 84.8416666 3.7333334 84 0 84L0 72C3.7333334 72 6.3083334 71.2 7.7333334 69.6 9.2416668 67.9083334 10 64.9333334 10 60.6666666L10 38C10 31.775 12.1333334 26.8833334 16.4 23.3333332 20.7583334 19.7749998 27.2916666 18 36 18L40.6666668 18 40.6666668 30 36 30C34.0212222 29.9719277 32.1263151 30.7979128 30.8 32.2666666 29.3605875 33.8216362 28.5938182 35.8823287 28.6666668 38L28.6666668 60.6666666C28.6666668 67.5083332 26.6666668 72.4 22.6666668 75.3333332 20.9317416 76.7274684 18.8640675 77.6464347 16.6666668 78 18.8916668 78.35 20.8916668 79.2416666 22.6666668 80.6666666 26.6666668 83.95 28.6666668 88.8416666 28.6666668 95.3333332L28.6666668 118C28.6666668 120.308333 29.3750002 122.216667 30.8 123.733333 32.2166666 125.241667 33.9583334 126 36 126L40.6666668 126 40.6666668 138 36 138 36 138ZM114.116667 126 118.783333 126C120.833333 126 122.566667 125.241667 123.983333 123.733333 125.422746 122.178364 126.189515 120.117671 126.116667 118L126.116667 95.3333332C126.116667 88.8333332 128.116667 83.9499998 132.116667 80.6666666 133.9 79.2416666 135.9 78.35 138.116667 78 135.919156 77.6468047 133.851391 76.7277979 132.116667 75.3333332 128.116667 72.3999998 126.116667 67.5 126.116667 60.6666666L126.116667 38C126.189515 35.8823287 125.422746 33.8216361 123.983333 32.2666666 122.657018 30.7979128 120.762111 29.9719277 118.783333 30L114.116667 30 114.116667 18 118.783333 18C127.5 18 133.983333 19.775 138.25 23.3333332 142.608333 26.8833332 144.783333 31.7749998 144.783333 38L144.783333 60.6666666C144.783333 64.9333332 145.5 67.9083332 146.916667 69.6 148.433333 71.2 151.05 72 154.783333 72L154.783333 84C151.05 84 148.433333 84.8333334 146.916667 86.5333332 145.5 88.1333332 144.783333 91.0666666 144.783333 95.3333332L144.783333 118C144.783333 124.308333 142.616667 129.2 138.25 132.666667 133.983333 136.216667 127.5 138 118.783333 138L114.116667 138 114.116667 126 114.116667 126Z"
+      /&gt;
+    &lt;/svg&gt;
+  ),
+  buttonProps: { 'aria-label': 'Insert Code Block (ctrl + shift + j)', title: 'Insert Code Block (ctrl + shift +j)' },
+  execute: (tate: TextState, api: TextAreaTextApi) =&gt; {
+    // Adjust the selection to encompass the whole word if the caret is inside one
+    const newSelectionRange = selectWord({ text: tate.text, selection: tate.selection });
+    const state1 = api.setSelectionRange(newSelectionRange);
+&nbsp;
+    const breaksBeforeCount = getBreaksNeededForEmptyLineBefore(state1.text, state1.selection.start);
+    const breaksBefore = Array(breaksBeforeCount + 1).join('\n');
+&nbsp;
+    const breaksAfterCount = getBreaksNeededForEmptyLineAfter(state1.text, state1.selection.end);
+    const breaksAfter = Array(breaksAfterCount + 1).join('\n');
+&nbsp;
+    api.replaceSelection(`${breaksBefore}\`\`\`\n${state1.selectedText}\n\`\`\`${breaksAfter}`);
+&nbsp;
+    const selectionStart = state1.selection.start + breaksBeforeCount + 4;
+    const selectionEnd = selectionStart + state1.selectedText.length;
+&nbsp;
+    api.setSelectionRange({
+      start: selectionStart,
+      end: selectionEnd,
+    });
+  },
+};
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2023-09-09T04:17:07.710Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    
