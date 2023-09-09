@@ -33,13 +33,15 @@ jobs:
 
       - name: Create Coverage Badges
         uses: jaywcjlove/coverage-badges-cli@main
+        with:
+          output: www/build/coverage/badges.svg
 
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
         id: contributors
         with:
           filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
-          output: coverage/CONTRIBUTORS.svg
+          output: www/build/CONTRIBUTORS.svg
           avatarSize: 42
 
 
