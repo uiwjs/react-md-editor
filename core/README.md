@@ -821,8 +821,8 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/avalero" title="Alberto Valero Gómez">
   <img src="https://avatars.githubusercontent.com/u/1442682?v=4" width="42;" alt="Alberto Valero Gómez"/>
 </a>
-<a href="https://github.com/alphacoma18" title="Alpha Coma">
-  <img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Coma"/>
+<a href="https://github.com/alphacoma18" title="Alpha Romer Coma">
+  <img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Romer Coma"/>
 </a>
 <a href="https://github.com/Exmirai" title="UniqueUlysees">
   <img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/>
