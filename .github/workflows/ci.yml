@@ -7,11 +7,14 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm install
@@ -106,7 +109,7 @@ jobs:
           path: ./core/package.json
           unset: scripts,jest,devDependencies
 
-      - run: npm publish
+      - run: npm publish --access public --provenance
         name: 📦 @uiw/react-md-editor publish to NPM
         working-directory: core
         continue-on-error: true
