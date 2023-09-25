@@ -71,7 +71,13 @@ export function insertTextAtPosition(input: HTMLTextAreaElement | HTMLInputEleme
   }
 
   // Webkit + Edge
-  const isSuccess = document.execCommand && document.execCommand('insertText', false, text);
+  let isSuccess = false;
+  if (text !== '') {
+    isSuccess = document.execCommand && document.execCommand('insertText', false, text);
+  } else {
+    isSuccess = document.execCommand && document.execCommand('delete', false);
+  }
+
   if (!isSuccess) {
     const start = input.selectionStart!;
     const end = input.selectionEnd!;
