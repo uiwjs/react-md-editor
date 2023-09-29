@@ -563,7 +563,7 @@ export default function App() {
               });
               return <code style={{ fontSize: '150%' }} dangerouslySetInnerHTML={{ __html: html }} />;
             }
-            return <code className={String(className)}>{txt}</code>;
+            return <code className={String(className)}>{children}</code>;
           },
         },
       }}
