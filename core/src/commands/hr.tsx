@@ -1,11 +1,13 @@
 import React from 'react';
 import { ICommand, ExecuteState, TextAreaTextApi } from './';
+import { selectWord, executeCommand } from '../utils/markdownUtils';
 
 export const hr: ICommand = {
   name: 'hr',
   keyCommand: 'hr',
   shortcuts: 'ctrlcmd+h',
-  value: '----------',
+  prefix: '\n\n---\n',
+  suffix: '',
   buttonProps: { 'aria-label': 'Insert HR (ctrl + h)', title: 'Insert HR (ctrl + h)' },
   icon: (
     <svg width="12" height="12" viewBox="0 0 175 175">
@@ -17,6 +19,19 @@ export const hr: ICommand = {
     </svg>
   ),
   execute: (state: ExecuteState, api: TextAreaTextApi) => {
-    api.replaceSelection(`${state.selectedText}\n\n${state.command.value || ''}-\n\n`);
+    const newSelectionRange = selectWord({
+      text: state.text,
+      selection: state.selection,
+      prefix: state.command.prefix!,
+      suffix: state.command.suffix,
+    });
+    const state1 = api.setSelectionRange(newSelectionRange);
+    executeCommand({
+      api,
+      selectedText: state1.selectedText,
+      selection: state.selection,
+      prefix: state.command.prefix!,
+      suffix: state.command.suffix,
+    });
   },
 };

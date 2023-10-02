@@ -48,7 +48,9 @@ export interface ICommandBase<T> {
   shortcuts?: string;
   groupName?: string;
   icon?: React.ReactElement;
-  value?: T;
+  value?: string;
+  prefix?: string;
+  suffix?: string;
   position?: 'right';
   liProps?: React.LiHTMLAttributes<HTMLLIElement>;
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null;

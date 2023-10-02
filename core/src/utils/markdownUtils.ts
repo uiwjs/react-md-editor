@@ -1,16 +1,39 @@
 import { TextRange } from '../commands';
+import { TextAreaTextApi, ExecuteState } from '../commands';
 
 export interface TextSection {
   text: string;
   selection: TextRange;
 }
 
-export function selectWord({ text, selection }: TextSection): TextRange {
+export function selectWord({
+  text,
+  selection,
+  prefix,
+  suffix = prefix,
+}: {
+  text: string;
+  selection: TextRange;
+  prefix: string;
+  suffix?: string;
+}): TextRange {
+  let result = selection;
   if (text && text.length && selection.start === selection.end) {
-    // the user is pointing to a word
-    return getSurroundingWord(text, selection.start);
+    result = getSurroundingWord(text, selection.start);
   }
-  return selection;
+  if (result.start >= prefix.length && result.end <= text.length - suffix.length) {
+    const selectedTextContext = text.slice(result.start - prefix.length, result.end + suffix.length);
+    if (selectedTextContext.startsWith(prefix) && selectedTextContext.endsWith(suffix)) {
+      return { start: result.start - prefix.length, end: result.end + suffix.length };
+    }
+  }
+  return result;
+}
+
+export function selectLine({ text, selection }: TextSection): TextRange {
+  const start = text.slice(0, selection.start).lastIndexOf('\n') + 1;
+  const end = text.slice(selection.end).indexOf('\n') + selection.end;
+  return { start, end };
 }
 
 /**
@@ -99,4 +122,68 @@ export function getSurroundingWord(text: string, position: number): TextRange {
   }
 
   return { start, end };
+}
+
+export function executeCommand({
+  api,
+  selectedText,
+  selection,
+  prefix,
+  suffix = prefix,
+}: {
+  api: TextAreaTextApi;
+  selectedText: string;
+  selection: TextRange;
+  prefix: string;
+  suffix?: string;
+}) {
+  if (
+    selectedText.length >= prefix.length + suffix.length &&
+    selectedText.startsWith(prefix) &&
+    selectedText.endsWith(suffix)
+  ) {
+    api.replaceSelection(selectedText.slice(prefix.length, suffix.length ? -suffix.length : undefined));
+    api.setSelectionRange({ start: selection.start - prefix.length, end: selection.end - prefix.length });
+  } else {
+    api.replaceSelection(`${prefix}${selectedText}${suffix}`);
+    api.setSelectionRange({ start: selection.start + prefix.length, end: selection.end + prefix.length });
+  }
+}
+
+export type AlterLineFunction = (line: string, index: number) => string;
+
+/**
+ * Inserts insertionString before each line
+ */
+export function insertBeforeEachLine(
+  selectedText: string,
+  insertBefore: string | AlterLineFunction,
+): { modifiedText: string; insertionLength: number } {
+  const lines = selectedText.split(/\n/);
+
+  let insertionLength = 0;
+  const modifiedText = lines
+    .map((item, index) => {
+      if (typeof insertBefore === 'string') {
+        if (item.startsWith(insertBefore)) {
+          insertionLength -= insertBefore.length;
+          return item.slice(insertBefore.length);
+        }
+        insertionLength += insertBefore.length;
+        return insertBefore + item;
+      }
+      if (typeof insertBefore === 'function') {
+        if (item.startsWith(insertBefore(item, index))) {
+          insertionLength -= insertBefore(item, index).length;
+          return item.slice(insertBefore(item, index).length);
+        }
+        const insertionResult = insertBefore(item, index);
+        insertionLength += insertionResult.length;
+        return insertBefore(item, index) + item;
+      }
+      throw Error('insertion is expected to be either a string or a function');
+    })
+    .join('\n');
+
+  return { modifiedText, insertionLength };
 }

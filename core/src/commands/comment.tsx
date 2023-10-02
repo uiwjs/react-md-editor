@@ -1,25 +1,14 @@
 import React from 'react';
-import { ICommand, TextState, TextAreaTextApi } from './';
-import { selectWord } from '../utils/markdownUtils';
+import { ICommand, ExecuteState, TextAreaTextApi } from './';
+import { selectWord, executeCommand } from '../utils/markdownUtils';
 
 export const comment: ICommand = {
   name: 'comment',
   keyCommand: 'comment',
   shortcuts: 'ctrlcmd+/',
-  value: '<!-- -->',
+  prefix: '<!--',
+  suffix: '-->',
   buttonProps: { 'aria-label': 'Insert comment (ctrl + /)', title: 'Insert comment (ctrl + /)' },
-  execute: (state: TextState, api: TextAreaTextApi) => {
-    // Adjust the selection to encompass the whole word if the caret is inside one
-    const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
-    const state1 = api.setSelectionRange(newSelectionRange);
-    // Replaces the current selection with the bold mark up
-    const state2 = api.replaceSelection(`<!-- ${state1.selectedText} -->`);
-    // Adjust the selection to not contain the **
-    api.setSelectionRange({
-      start: state2.selection.end - 4 - state1.selectedText.length,
-      end: state2.selection.end - 4,
-    });
-  },
   icon: (
     <svg height="1em" width="1em" viewBox="0 0 25 25">
       <g fill="none" fillRule="evenodd">
@@ -41,4 +30,20 @@ export const comment: ICommand = {
       </g>
     </svg>
   ),
+  execute: (state: ExecuteState, api: TextAreaTextApi) => {
+    const newSelectionRange = selectWord({
+      text: state.text,
+      selection: state.selection,
+      prefix: state.command.prefix!,
+      suffix: state.command.suffix,
+    });
+    const state1 = api.setSelectionRange(newSelectionRange);
+    executeCommand({
+      api,
+      selectedText: state1.selectedText,
+      selection: state.selection,
+      prefix: state.command.prefix!,
+      suffix: state.command.suffix,
+    });
+  },
 };

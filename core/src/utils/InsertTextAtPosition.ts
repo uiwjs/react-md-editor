@@ -23,33 +23,6 @@ function canManipulateViaTextNodes(input: HTMLTextAreaElement | HTMLInputElement
 }
 
 /**
- * @param {string} val
- * @param {number} cursorIdx
- * @param {HTMLTextAreaElement|HTMLInputElement} input
- * @return {void}
- */
-export const insertAtLineStart = (
-  val: string,
-  cursorIdx: number,
-  input: HTMLTextAreaElement | HTMLInputElement,
-): void => {
-  const content = input.value;
-  let startIdx = 0;
-
-  while (cursorIdx--) {
-    let char = content[cursorIdx];
-    if (char === '\n') {
-      startIdx = cursorIdx + 1;
-      break;
-    }
-  }
-
-  input.focus();
-  input.setRangeText(val, startIdx, startIdx);
-  input.dispatchEvent(new Event('input', { bubbles: true }));
-};
-
-/**
  * @param {HTMLTextAreaElement|HTMLInputElement} input
  * @param {string} text
  * @returns {void}
