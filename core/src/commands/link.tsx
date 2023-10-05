@@ -41,8 +41,8 @@ export const link: ICommand = {
           api,
           selectedText: state1.selectedText,
           selection: state.selection,
-          prefix: '[title](url)',
-          suffix: '',
+          prefix: '[title',
+          suffix: '](url)',
         });
       } else {
         executeCommand({

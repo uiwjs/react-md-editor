@@ -1,6 +1,6 @@
 {
   "name": "@rargames/react-md-editor-enhanced",
-  "version": "3.23.12",
+  "version": "3.23.13",
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "homepage": "https://uiwjs.github.io/react-md-editor/",
   "author": "kenny wang <wowohoo@qq.com>, RARgames",

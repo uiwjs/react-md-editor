@@ -25,13 +25,29 @@ export const hr: ICommand = {
       prefix: state.command.prefix!,
       suffix: state.command.suffix,
     });
-    const state1 = api.setSelectionRange(newSelectionRange);
-    executeCommand({
-      api,
-      selectedText: state1.selectedText,
-      selection: state.selection,
-      prefix: state.command.prefix!,
-      suffix: state.command.suffix,
-    });
+    let state1 = api.setSelectionRange(newSelectionRange);
+    if (
+      state1.selectedText.length >= state.command.prefix!.length &&
+      state1.selectedText.startsWith(state.command.prefix!)
+    ) {
+      // Remove
+      executeCommand({
+        api,
+        selectedText: state1.selectedText,
+        selection: state.selection,
+        prefix: state.command.prefix!,
+        suffix: state.command.suffix,
+      });
+    } else {
+      // Add
+      state1 = api.setSelectionRange({ start: state.selection.start, end: state.selection.start });
+      executeCommand({
+        api,
+        selectedText: state1.selectedText,
+        selection: state.selection,
+        prefix: state.command.prefix!,
+        suffix: state.command.suffix,
+      });
+    }
   },
 };
