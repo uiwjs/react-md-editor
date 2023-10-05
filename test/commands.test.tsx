@@ -6,6 +6,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import MDEditor, { commands } from '../core/src';
+// TODO add tests for command remove prefix/suffix on 2nd click
 
 it('MDEditor commands bold', async () => {
   const MyComponent = () => {
@@ -152,7 +153,7 @@ it('MDEditor commands HR', async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('\n\n-----------\n\ntitle');
+  expect(inputNode).toHaveValue('\n\n---\ntitle');
 });
 
 it('MDEditor commands strikethrough text', async () => {
@@ -184,7 +185,7 @@ it('MDEditor commands strikethrough text', async () => {
 
 it('MDEditor commands link', async () => {
   const MyComponent = () => {
-    const [value, setValue] = React.useState('title');
+    const [value, setValue] = React.useState('page');
     return (
       <MDEditor
         value={value}
@@ -206,7 +207,61 @@ it('MDEditor commands link', async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('[title](URL Here)');
+  expect(inputNode).toHaveValue('[page](url)');
+});
+
+it("MDEditor commands link ===''", async () => {
+  const MyComponent = () => {
+    const [value, setValue] = React.useState('');
+    return (
+      <MDEditor
+        value={value}
+        textareaProps={{ title: 'test' }}
+        onChange={(value) => {
+          setValue(value || '');
+        }}
+      />
+    );
+  };
+  render(<MyComponent />);
+  const btn = screen.getByLabelText('Add a link (ctrl + l)');
+  btn.focus();
+  fireEvent(
+    btn,
+    new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    }),
+  );
+  const inputNode = screen.getByTitle('test');
+  expect(inputNode).toHaveValue('[title](url)');
+});
+
+it('MDEditor commands link link', async () => {
+  const MyComponent = () => {
+    const [value, setValue] = React.useState('https://example.com');
+    return (
+      <MDEditor
+        value={value}
+        textareaProps={{ title: 'test' }}
+        onChange={(value) => {
+          setValue(value || '');
+        }}
+      />
+    );
+  };
+  render(<MyComponent />);
+  const btn = screen.getByLabelText('Add a link (ctrl + l)');
+  btn.focus();
+  fireEvent(
+    btn,
+    new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    }),
+  );
+  const inputNode = screen.getByTitle('test');
+  expect(inputNode).toHaveValue('[](https://example.com)');
 });
 
 it('MDEditor commands image', async () => {
@@ -233,7 +288,34 @@ it('MDEditor commands image', async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('![image](title)');
+  expect(inputNode).toHaveValue('![title]()');
+});
+
+it('MDEditor commands image link', async () => {
+  const MyComponent = () => {
+    const [value, setValue] = React.useState('https://example.com/image.png');
+    return (
+      <MDEditor
+        value={value}
+        textareaProps={{ title: 'test' }}
+        onChange={(value) => {
+          setValue(value || '');
+        }}
+      />
+    );
+  };
+  render(<MyComponent />);
+  const btn = screen.getByLabelText('Add image (ctrl + k)');
+  btn.focus();
+  fireEvent(
+    btn,
+    new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    }),
+  );
+  const inputNode = screen.getByTitle('test');
+  expect(inputNode).toHaveValue('![image](https://example.com/image.png)');
 });
 
 it("MDEditor commands image === ''", async () => {
@@ -260,7 +342,7 @@ it("MDEditor commands image === ''", async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('![image](https://example.com/your-image.png)');
+  expect(inputNode).toHaveValue('![image](https://example.com/image.png)');
 });
 
 it('MDEditor commands Add unordered list', async () => {

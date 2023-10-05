@@ -36,13 +36,23 @@ export const link: ICommand = {
         suffix: ')',
       });
     } else {
-      executeCommand({
-        api,
-        selectedText: state1.selectedText,
-        selection: state.selection,
-        prefix: state.command.prefix!,
-        suffix: state.command.suffix,
-      });
+      if (state1.selectedText.length === 0) {
+        executeCommand({
+          api,
+          selectedText: state1.selectedText,
+          selection: state.selection,
+          prefix: '[title](url)',
+          suffix: '',
+        });
+      } else {
+        executeCommand({
+          api,
+          selectedText: state1.selectedText,
+          selection: state.selection,
+          prefix: state.command.prefix!,
+          suffix: state.command.suffix,
+        });
+      }
     }
   },
 };

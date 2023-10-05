@@ -36,13 +36,23 @@ export const image: ICommand = {
     } else {
       newSelectionRange = selectWord({ text: state.text, selection: state.selection, prefix: '![', suffix: ']()' });
       state1 = api.setSelectionRange(newSelectionRange);
-      executeCommand({
-        api,
-        selectedText: state1.selectedText,
-        selection: state.selection,
-        prefix: '![',
-        suffix: ']()',
-      });
+      if (state1.selectedText.length === 0) {
+        executeCommand({
+          api,
+          selectedText: state1.selectedText,
+          selection: state.selection,
+          prefix: '![image](https://example.com/image.png)',
+          suffix: '',
+        });
+      } else {
+        executeCommand({
+          api,
+          selectedText: state1.selectedText,
+          selection: state.selection,
+          prefix: '![',
+          suffix: ']()',
+        });
+      }
     }
   },
 };

@@ -6,8 +6,8 @@ export const comment: ICommand = {
   name: 'comment',
   keyCommand: 'comment',
   shortcuts: 'ctrlcmd+/',
-  prefix: '<!--',
-  suffix: '-->',
+  prefix: '<!-- ',
+  suffix: ' -->',
   buttonProps: { 'aria-label': 'Insert comment (ctrl + /)', title: 'Insert comment (ctrl + /)' },
   icon: (
     <svg height="1em" width="1em" viewBox="0 0 25 25">
