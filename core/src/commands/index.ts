@@ -22,6 +22,10 @@ import { title3 } from './title3';
 import { title4 } from './title4';
 import { title5 } from './title5';
 import { title6 } from './title6';
+import { table } from './table';
+import { mention } from './mention';
+import { issue } from './issue';
+import { help } from './help';
 
 export interface CommandOrchestrator {
   executeCommand(command: ICommand): void;
@@ -101,10 +105,15 @@ const getCommands: () => ICommand[] = () => [
   codeBlock,
   comment,
   image,
+  table,
   divider,
   unorderedListCommand,
   orderedListCommand,
   checkedListCommand,
+  divider,
+  mention,
+  issue,
+  help,
 ];
 
 const getExtraCommands: () => ICommand[] = () => [codeEdit, codeLive, codePreview, divider, fullscreen];
