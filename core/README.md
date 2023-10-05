@@ -839,6 +839,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/renovate-bot" title="Mend Renovate">
   <img src="https://avatars.githubusercontent.com/u/25180681?v=4" width="42;" alt="Mend Renovate"/>
 </a>
+<a href="https://github.com/RARgames" title="RAR">
+  <img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/>
+</a>
 <a href="https://github.com/stevemk14ebr" title="Stephen Eckels">
   <img src="https://avatars.githubusercontent.com/u/6619205?v=4" width="42;" alt="Stephen Eckels"/>
 </a>
@@ -854,8 +857,8 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/nuragic" title="Andrea Puddu">
   <img src="https://avatars.githubusercontent.com/u/1586378?v=4" width="42;" alt="Andrea Puddu"/>
 </a>
-<a href="https://github.com/bramus" title="Bramus!">
-  <img src="https://avatars.githubusercontent.com/u/213073?v=4" width="42;" alt="Bramus!"/>
+<a href="https://github.com/bramus" title="Bramus">
+  <img src="https://avatars.githubusercontent.com/u/213073?v=4" width="42;" alt="Bramus"/>
 </a>
 <a href="https://github.com/CarleneCannon-Conner" title="Carlene Cannon-Conner">
   <img src="https://avatars.githubusercontent.com/u/1942791?v=4" width="42;" alt="Carlene Cannon-Conner"/>
