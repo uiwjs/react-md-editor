@@ -41,7 +41,7 @@ export const image: ICommand = {
           api,
           selectedText: state1.selectedText,
           selection: state.selection,
-          prefix: '![image](https://example.com/image.png)',
+          prefix: '![image](url)',
           suffix: '',
         });
       } else {

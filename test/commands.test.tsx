@@ -342,7 +342,7 @@ it("MDEditor commands image === ''", async () => {
     }),
   );
   const inputNode = screen.getByTitle('test');
-  expect(inputNode).toHaveValue('![image](https://example.com/image.png)');
+  expect(inputNode).toHaveValue('![image](url)');
 });
 
 it('MDEditor commands Add unordered list', async () => {

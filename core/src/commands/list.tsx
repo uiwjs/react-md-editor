@@ -18,12 +18,31 @@ export const makeList = (state: ExecuteState, api: TextAreaTextApi, insertBefore
   const breaksAfterCount = getBreaksNeededForEmptyLineAfter(state1.text, state1.selection.end);
   const breaksAfter = Array(breaksAfterCount + 1).join('\n');
 
-  const modifiedText = insertBeforeEachLine(state1.selectedText, insertBefore);
-  api.replaceSelection(`${breaksBefore}${modifiedText.modifiedText}${breaksAfter}`);
+  const { modifiedText, insertionLength } = insertBeforeEachLine(state1.selectedText, insertBefore);
+  if (insertionLength < 0) {
+    // Remove
+    let selectionStart = state1.selection.start;
+    let selectionEnd = state1.selection.end;
+    if (state1.selection.start > 0 && state.text.slice(state1.selection.start - 1, state1.selection.start) === '\n') {
+      selectionStart -= 1;
+    }
+    if (
+      state1.selection.end < state.text.length - 1 &&
+      state.text.slice(state1.selection.end, state1.selection.end + 1) === '\n'
+    ) {
+      selectionEnd += 1;
+    }
 
-  const selectionStart = state1.selection.start + breaksBeforeCount;
-  const selectionEnd = selectionStart + modifiedText.modifiedText.length;
-  api.setSelectionRange({ start: selectionStart, end: selectionEnd });
+    api.setSelectionRange({ start: selectionStart, end: selectionEnd });
+    api.replaceSelection(`${modifiedText}`);
+    api.setSelectionRange({ start: selectionStart, end: selectionStart + modifiedText.length });
+  } else {
+    // Add
+    api.replaceSelection(`${breaksBefore}${modifiedText}${breaksAfter}`);
+    const selectionStart = state1.selection.start + breaksBeforeCount;
+    const selectionEnd = selectionStart + modifiedText.length;
+    api.setSelectionRange({ start: selectionStart, end: selectionEnd });
+  }
 };
 
 export const unorderedListCommand: ICommand = {
