@@ -1,5 +1,4 @@
 import React from 'react';
-import { selectLine } from '../utils/markdownUtils';
 import { titleExecute } from '../commands/title';
 import { ICommand, ExecuteState, TextAreaTextApi } from './';
 

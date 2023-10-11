@@ -1,5 +1,5 @@
 import { insertTextAtPosition } from '../../utils/InsertTextAtPosition';
-import { insertBeforeEachLine } from '../../utils/markdownUtils';
+import { insertBeforeEachLine, selectLine } from '../../utils/markdownUtils';
 import { TextAreaTextApi } from '../../commands';
 
 /**
@@ -9,6 +9,38 @@ import { TextAreaTextApi } from '../../commands';
 function stopPropagation(e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) {
   e.stopPropagation();
   e.preventDefault();
+}
+
+function handleLineMove(e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>, direction: number) {
+  stopPropagation(e);
+  const target = e.target as HTMLTextAreaElement;
+  const textArea = new TextAreaTextApi(target);
+  let selection = { start: target.selectionStart, end: target.selectionEnd };
+  selection = selectLine({ text: target.value, selection });
+  if ((direction < 0 && selection.start <= 0) || (direction > 0 && selection.end >= target.value.length)) {
+    return;
+  }
+
+  const blockText = target.value.slice(selection.start, selection.end);
+  if (direction < 0) {
+    const prevLineSelection = selectLine({
+      text: target.value,
+      selection: { start: selection.start - 1, end: selection.start - 1 },
+    });
+    const prevLineText = target.value.slice(prevLineSelection.start, prevLineSelection.end);
+    textArea.setSelectionRange({ start: prevLineSelection.start, end: selection.end });
+    insertTextAtPosition(target, `${blockText}\n${prevLineText}`);
+    textArea.setSelectionRange({ start: prevLineSelection.start, end: prevLineSelection.start + blockText.length });
+  } else {
+    const nextLineSelection = selectLine({
+      text: target.value,
+      selection: { start: selection.end + 1, end: selection.end + 1 },
+    });
+    const nextLineText = target.value.slice(nextLineSelection.start, nextLineSelection.end);
+    textArea.setSelectionRange({ start: selection.start, end: nextLineSelection.end });
+    insertTextAtPosition(target, `${nextLineText}\n${blockText}`);
+    textArea.setSelectionRange({ start: nextLineSelection.end - blockText.length, end: nextLineSelection.end });
+  }
 }
 
 export default function handleKeyDown(
@@ -93,5 +125,19 @@ export default function handleKeyDown(
       startStr = `\n${parseInt(currentLineStr) + 1}. `;
     }
     return insertTextAtPosition(target, startStr);
+  } else if (e.code && e.code.toLowerCase() === 'keyd' && e.ctrlKey) {
+    // Duplicate lines
+    stopPropagation(e);
+    let selection = { start: target.selectionStart, end: target.selectionEnd };
+    const savedSelection = selection;
+    selection = selectLine({ text: target.value, selection });
+    const textToDuplicate = target.value.slice(selection.start, selection.end);
+    textArea.setSelectionRange({ start: selection.end, end: selection.end });
+    insertTextAtPosition(target, `\n${textToDuplicate}`);
+    textArea.setSelectionRange({ start: savedSelection.start, end: savedSelection.end });
+  } else if (e.code && e.code.toLowerCase() === 'arrowup' && e.altKey) {
+    handleLineMove(e, -1);
+  } else if (e.code && e.code.toLowerCase() === 'arrowdown' && e.altKey) {
+    handleLineMove(e, 1);
   }
 }

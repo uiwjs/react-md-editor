@@ -32,7 +32,10 @@ export function selectWord({
 
 export function selectLine({ text, selection }: TextSection): TextRange {
   const start = text.slice(0, selection.start).lastIndexOf('\n') + 1;
-  const end = text.slice(selection.end).indexOf('\n') + selection.end;
+  let end = text.slice(selection.end).indexOf('\n') + selection.end;
+  if (end === selection.end - 1) {
+    end = text.length;
+  }
   return { start, end };
 }
 
