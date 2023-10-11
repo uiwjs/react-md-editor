@@ -1,6 +1,6 @@
 {
-  "name": "@rargames/react-md-editor-enhanced",
-  "version": "3.23.15",
+  "name": "@uiw/react-md-editor",
+  "version": "3.24.0",
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "homepage": "https://uiwjs.github.io/react-md-editor/",
   "author": "kenny wang <wowohoo@qq.com>, RARgames",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RARgames/react-md-editor-enhanced"
+    "url": "https://github.com/uiwjs/react-md-editor"
   },
   "publishConfig": {
     "access": "public"
