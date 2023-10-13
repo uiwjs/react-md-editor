@@ -23,7 +23,6 @@ import { title4 } from './title4';
 import { title5 } from './title5';
 import { title6 } from './title6';
 import { table } from './table';
-import { mention } from './mention';
 import { issue } from './issue';
 import { help } from './help';
 
@@ -111,7 +110,6 @@ const getCommands: () => ICommand[] = () => [
   orderedListCommand,
   checkedListCommand,
   divider,
-  mention,
   issue,
   help,
 ];
