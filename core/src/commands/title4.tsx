@@ -1,19 +1,16 @@
 import React from 'react';
-import { insertAtLineStart } from '../utils/InsertTextAtPosition';
-import { ICommand, TextState, TextAreaTextApi } from './';
+import { titleExecute } from '../commands/title';
+import { ICommand, ExecuteState, TextAreaTextApi } from './';
 
 export const title4: ICommand = {
   name: 'title4',
   keyCommand: 'title4',
   shortcuts: 'ctrlcmd+4',
-  value: 'title4',
+  prefix: '#### ',
+  suffix: '',
   buttonProps: { 'aria-label': 'Insert title4 (ctrl + 4)', title: 'Insert title4 (ctrl + 4)' },
   icon: <div style={{ fontSize: 14, textAlign: 'left' }}>Title 4</div>,
-  execute: (state: TextState, api: TextAreaTextApi) => {
-    if (state.selection.start === 0 || /\n$/.test(state.text)) {
-      api.replaceSelection('#### ');
-    } else {
-      insertAtLineStart('#### ', state.selection.start, api.textArea);
-    }
+  execute: (state: ExecuteState, api: TextAreaTextApi) => {
+    titleExecute({ state, api, prefix: state.command.prefix!, suffix: state.command.suffix });
   },
 };

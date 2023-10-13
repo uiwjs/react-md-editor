@@ -22,6 +22,9 @@ import { title3 } from './title3';
 import { title4 } from './title4';
 import { title5 } from './title5';
 import { title6 } from './title6';
+import { table } from './table';
+import { issue } from './issue';
+import { help } from './help';
 
 export interface CommandOrchestrator {
   executeCommand(command: ICommand): void;
@@ -48,7 +51,9 @@ export interface ICommandBase<T> {
   shortcuts?: string;
   groupName?: string;
   icon?: React.ReactElement;
-  value?: T;
+  value?: string;
+  prefix?: string;
+  suffix?: string;
   position?: 'right';
   liProps?: React.LiHTMLAttributes<HTMLLIElement>;
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | null;
@@ -99,10 +104,14 @@ const getCommands: () => ICommand[] = () => [
   codeBlock,
   comment,
   image,
+  table,
   divider,
   unorderedListCommand,
   orderedListCommand,
   checkedListCommand,
+  divider,
+  issue,
+  help,
 ];
 
 const getExtraCommands: () => ICommand[] = () => [codeEdit, codeLive, codePreview, divider, fullscreen];

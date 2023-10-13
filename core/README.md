@@ -46,6 +46,7 @@ A simple markdown editor with preview, implemented with React.js and TypeScript.
 - 😻 GitHub flavored markdown support.
 - 🌒 Support dark-mode/night-mode **@v3.11.0+**.
 - 💡 Support [next.js](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341), [Use examples](#support-nextjs) in [next.js](https://nextjs.org/).
+- Line/lines duplication (Ctrl+D) and movement (Alt+UpArrow/DownArrow) **@v3.24.0+**.
 
 ### Quick Start
 
@@ -836,6 +837,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/renovate-bot" title="Mend Renovate">
   <img src="https://avatars.githubusercontent.com/u/25180681?v=4" width="42;" alt="Mend Renovate"/>
 </a>
+<a href="https://github.com/RARgames" title="RAR">
+  <img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/>
+</a>
 <a href="https://github.com/stevemk14ebr" title="Stephen Eckels">
   <img src="https://avatars.githubusercontent.com/u/6619205?v=4" width="42;" alt="Stephen Eckels"/>
 </a>
@@ -851,8 +855,8 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/nuragic" title="Andrea Puddu">
   <img src="https://avatars.githubusercontent.com/u/1586378?v=4" width="42;" alt="Andrea Puddu"/>
 </a>
-<a href="https://github.com/bramus" title="Bramus!">
-  <img src="https://avatars.githubusercontent.com/u/213073?v=4" width="42;" alt="Bramus!"/>
+<a href="https://github.com/bramus" title="Bramus">
+  <img src="https://avatars.githubusercontent.com/u/213073?v=4" width="42;" alt="Bramus"/>
 </a>
 <a href="https://github.com/CarleneCannon-Conner" title="Carlene Cannon-Conner">
   <img src="https://avatars.githubusercontent.com/u/1942791?v=4" width="42;" alt="Carlene Cannon-Conner"/>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { ICommand, ExecuteState, TextAreaTextApi } from './';
-import { selectWord } from '../utils/markdownUtils';
+import { selectWord, executeCommand } from '../utils/markdownUtils';
 
 export const image: ICommand = {
   name: 'image',
   keyCommand: 'image',
   shortcuts: 'ctrlcmd+k',
-  value: '![image]({{text}})',
+  prefix: '![image](',
+  suffix: ')',
   buttonProps: { 'aria-label': 'Add image (ctrl + k)', title: 'Add image (ctrl + k)' },
   icon: (
     <svg width="13" height="13" viewBox="0 0 20 20">
@@ -17,19 +18,41 @@ export const image: ICommand = {
     </svg>
   ),
   execute: (state: ExecuteState, api: TextAreaTextApi) => {
-    // Select everything
-    const newSelectionRange = selectWord({ text: state.text, selection: state.selection });
-    const state1 = api.setSelectionRange(newSelectionRange);
-    // Replaces the current selection with the image
-    const imageTemplate = state1.selectedText || 'https://example.com/your-image.png';
-    const val = state.command.value || '';
-    api.replaceSelection(val.replace(/({{text}})/gi, imageTemplate));
-
-    const start = state1.selection.start + val.indexOf('{{text}}');
-    let end = state1.selection.start + val.indexOf('{{text}}') + (state1.selection.end - state1.selection.start);
-    if (!state1.selectedText) {
-      end = end + imageTemplate.length;
+    let newSelectionRange = selectWord({
+      text: state.text,
+      selection: state.selection,
+      prefix: state.command.prefix!,
+      suffix: state.command.suffix,
+    });
+    let state1 = api.setSelectionRange(newSelectionRange);
+    if (state1.selectedText.includes('http') || state1.selectedText.includes('www')) {
+      executeCommand({
+        api,
+        selectedText: state1.selectedText,
+        selection: state.selection,
+        prefix: state.command.prefix!,
+        suffix: state.command.suffix,
+      });
+    } else {
+      newSelectionRange = selectWord({ text: state.text, selection: state.selection, prefix: '![', suffix: ']()' });
+      state1 = api.setSelectionRange(newSelectionRange);
+      if (state1.selectedText.length === 0) {
+        executeCommand({
+          api,
+          selectedText: state1.selectedText,
+          selection: state.selection,
+          prefix: '![image',
+          suffix: '](url)',
+        });
+      } else {
+        executeCommand({
+          api,
+          selectedText: state1.selectedText,
+          selection: state.selection,
+          prefix: '![',
+          suffix: ']()',
+        });
+      }
     }
-    api.setSelectionRange({ start, end });
   },
 };
