@@ -837,9 +837,6 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/renovate-bot" title="Mend Renovate">
   <img src="https://avatars.githubusercontent.com/u/25180681?v=4" width="42;" alt="Mend Renovate"/>
 </a>
-<a href="https://github.com/RARgames" title="RAR">
-  <img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/>
-</a>
 <a href="https://github.com/stevemk14ebr" title="Stephen Eckels">
   <img src="https://avatars.githubusercontent.com/u/6619205?v=4" width="42;" alt="Stephen Eckels"/>
 </a>
@@ -884,6 +881,9 @@ As always, thanks to our amazing contributors!
 </a>
 <a href="https://github.com/phillipb" title="Phillip Burch">
   <img src="https://avatars.githubusercontent.com/u/1482089?v=4" width="42;" alt="Phillip Burch"/>
+</a>
+<a href="https://github.com/RARgames" title="RAR">
+  <img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/>
 </a>
 <a href="https://github.com/toresbe" title="Tore Sinding Bekkedal">
   <img src="https://avatars.githubusercontent.com/u/1761606?v=4" width="42;" alt="Tore Sinding Bekkedal"/>
