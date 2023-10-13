@@ -23,7 +23,6 @@ import { title4 } from './title4';
 import { title5 } from './title5';
 import { title6 } from './title6';
 import { table } from './table';
-import { issue } from './issue';
 import { help } from './help';
 
 export interface CommandOrchestrator {
@@ -110,7 +109,6 @@ const getCommands: () => ICommand[] = () => [
   orderedListCommand,
   checkedListCommand,
   divider,
-  issue,
   help,
 ];
 
