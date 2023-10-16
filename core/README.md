@@ -813,9 +813,26 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 
 ### Development
 
+1. Install dependencies
+
 ```bash
-npm run watch     # Listen create type and .tsx files.
-npm run start  # Preview code example.
+$ npm install       # Installation dependencies
+$ npm run build     # Compile all package
+```
+
+2. Development `@uiw/react-md-editor` package:
+
+```bash
+$ cd core
+# listen to the component compile and output the .js file
+# listen for compilation output type .d.ts file
+$ npm run watch # Monitor the compiled package `@uiw/react-md-editor`
+```
+
+3. Launch documentation site
+
+```bash
+npm run start
 ```
 
 ### Related
