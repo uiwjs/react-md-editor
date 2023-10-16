@@ -846,6 +846,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/alphacoma18" title="Alpha Romer Coma">
   <img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Romer Coma"/>
 </a>
+<a href="https://github.com/RARgames" title="RAR">
+  <img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/>
+</a>
 <a href="https://github.com/Exmirai" title="UniqueUlysees">
   <img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/>
 </a>
@@ -881,9 +884,6 @@ As always, thanks to our amazing contributors!
 </a>
 <a href="https://github.com/phillipb" title="Phillip Burch">
   <img src="https://avatars.githubusercontent.com/u/1482089?v=4" width="42;" alt="Phillip Burch"/>
-</a>
-<a href="https://github.com/RARgames" title="RAR">
-  <img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/>
 </a>
 <a href="https://github.com/toresbe" title="Tore Sinding Bekkedal">
   <img src="https://avatars.githubusercontent.com/u/1761606?v=4" width="42;" alt="Tore Sinding Bekkedal"/>
