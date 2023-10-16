@@ -23,6 +23,7 @@ import { title4 } from './title4';
 import { title5 } from './title5';
 import { title6 } from './title6';
 import { table } from './table';
+import { issue } from './issue';
 import { help } from './help';
 
 export interface CommandOrchestrator {
@@ -202,6 +203,9 @@ export {
   unorderedListCommand,
   orderedListCommand,
   checkedListCommand,
+  table,
+  issue,
+  help,
   codeEdit,
   codeLive,
   codePreview,

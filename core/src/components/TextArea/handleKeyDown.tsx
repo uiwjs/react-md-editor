@@ -115,10 +115,12 @@ export default function handleKeyDown(
       startStr = '\n* ';
     }
 
-    if (currentLineStr.startsWith('- [ ]')) {
+    if (
+      currentLineStr.startsWith('- [ ]') ||
+      currentLineStr.startsWith('- [X]') ||
+      currentLineStr.startsWith('- [x]')
+    ) {
       startStr = '\n- [ ] ';
-    } else if (currentLineStr.startsWith('- [X]') || currentLineStr.startsWith('- [x]')) {
-      startStr = '\n- [X] ';
     }
 
     if (/^\d+.\s/.test(currentLineStr)) {
