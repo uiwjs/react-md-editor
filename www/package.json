@@ -26,7 +26,7 @@
     "@uiw/react-md-editor": "3.24.1",
     "dom-to-image": "^2.6.0",
     "katex": "~0.16.0",
-    "mermaid": "~9.4.3",
+    "mermaid": "~10.6.0",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "rehype-sanitize": "~5.0.1"
