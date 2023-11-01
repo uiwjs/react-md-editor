@@ -41,6 +41,7 @@
   },
   "files": [
     "markdown-editor.css",
+    "nohighlight.d.ts",
     "lib",
     "dist",
     "esm",
