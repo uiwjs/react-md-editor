@@ -137,6 +137,34 @@ export default function App() {
 }
 ```
 
+### Remove Code Highlight
+
+The following example can help you _exclude code highlighting code_<!--rehype:style=color: #333;background-color: rgb(196 255 122 / 86%);--> from being included in the bundle. `@uiw/react-md-editor/nohighlight`<!--rehype:style=color: #e24444;--> component does not contain the ~~`rehype-prism-plus`~~ code highlighting package, ~~`highlightEnable`~~, ~~`showLineNumbers`~~ and ~~`highlight line`~~ functions will no longer work. ([#586](https://github.com/uiwjs/react-md-editor/issues/586))
+
+```jsx mdx:preview
+import React from "react";
+import MDEditor from '@uiw/react-md-editor/nohighlight';
+
+const code = `**Hello world!!!**
+\`\`\`js
+function demo() {}
+\`\`\`
+`
+
+export default function App() {
+  const [value, setValue] = React.useState(code);
+  return (
+    <div className="container">
+      <MDEditor
+        value={value}
+        onChange={setValue}
+      />
+      <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
+    </div>
+  );
+}
+```
+
 ### Custom Toolbars
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-m2n10?fontsize=14&hidenavigation=1&theme=dark)

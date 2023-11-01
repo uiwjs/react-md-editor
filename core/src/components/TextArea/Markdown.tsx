@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { rehype } from 'rehype';
 import rehypePrism from 'rehype-prism-plus';
-import { IProps } from '../../Editor';
+import { IProps } from '../../Types';
 import { EditorContext } from '../../Context';
 
 function html2Escape(sHtml: string) {
@@ -15,7 +15,7 @@ function html2Escape(sHtml: string) {
       // })
       .replace(
         /[<&"]/g,
-        (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' } as Record<string, string>)[c]),
+        (c: string) => (({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }) as Record<string, string>)[c],
       )
   );
 }

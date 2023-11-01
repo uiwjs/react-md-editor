@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useRef } from 'react';
-import { IProps } from '../../Editor';
+import { IProps } from '../../Types';
 import { EditorContext, PreviewType, ContextStore } from '../../Context';
 import { ICommand } from '../../commands';
 import Child from './Child';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ICommand, TextAreaCommandOrchestrator } from './commands';
-import { MDEditorProps } from './Editor';
+import { MDEditorProps } from './Types';
 
 export type PreviewType = 'live' | 'edit' | 'preview';
 

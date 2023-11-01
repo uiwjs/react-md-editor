@@ -6,6 +6,20 @@
   "author": "kenny wang <wowohoo@qq.com>",
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "exports": {
+    "./README.md": "./README.md",
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./esm/index.js",
+      "types": "./lib/index.d.ts",
+      "require": "./lib/index.js"
+    },
+    "./nohighlight": {
+      "import": "./esm/index.nohighlight.js",
+      "types": "./lib/index.nohighlight.d.ts",
+      "require": "./lib/index.nohighlight.js"
+    }
+  },
   "scripts": {
     "css:build": "compile-less -d src -o esm",
     "css:watch": "compile-less -d src -o esm --watch",

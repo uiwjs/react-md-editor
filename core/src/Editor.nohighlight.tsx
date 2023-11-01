@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
-import MarkdownPreview from '@uiw/react-markdown-preview';
-import TextArea from './components/TextArea';
+import MarkdownPreview from '@uiw/react-markdown-preview/nohighlight';
+import TextArea from './components/TextArea/index.nohighlight';
 import Toolbar from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, getExtraCommands, ICommand, TextState, TextAreaCommandOrchestrator } from './commands';
