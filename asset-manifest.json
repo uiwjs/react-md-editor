@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.df99bf00.css",
-    "main.js": "/static/js/main.0afe3c58.js",
+    "main.js": "/static/js/main.95c82eaf.js",
     "refractor-prismjs-vendor.js": "/static/js/refractor-prismjs-vendor.3bc41db2.js",
     "micromark-vendor.js": "/static/js/micromark-vendor.fe3d962e.js",
-    "babel-runtime-vendor.js": "/static/js/babel-runtime-vendor.ef475dcb.js",
+    "babel-runtime-vendor.js": "/static/js/babel-runtime-vendor.43760981.js",
     "parse5-vendor.js": "/static/js/parse5-vendor.5363c274.js",
-    "react-vendor.js": "/static/js/react-vendor.83888bb4.js",
+    "react-vendor.js": "/static/js/react-vendor.06730ae1.js",
     "katex-vendor.css": "/static/css/katex-vendor.d6517351.css",
     "katex-vendor.js": "/static/js/katex-vendor.5bad50ed.js",
     "mermaid-vendor.js": "/static/js/mermaid-vendor.12834eba.js",
@@ -21,9 +21,9 @@
     "static/media/KaTeX_Main-Regular.woff": "/static/media/KaTeX_Main-Regular.4f35fbcc9ee8614c2bcc.woff",
     "static/media/KaTeX_Main-Bold.woff": "/static/media/KaTeX_Main-Bold.0c3b8929d377c0e9b2f3.woff",
     "static/media/banner.svg": "/static/media/banner.74a5cb5d7390248577a30db2ba8c821b.svg",
+    "index.html": "/index.html",
     "static/media/KaTeX_AMS-Regular.woff2": "/static/media/KaTeX_AMS-Regular.73ea273a72f4aca30ca5.woff2",
     "static/media/KaTeX_Typewriter-Regular.ttf": "/static/media/KaTeX_Typewriter-Regular.c5c02d763c89380dcb4e.ttf",
-    "index.html": "/index.html",
     "static/media/KaTeX_Main-Regular.woff2": "/static/media/KaTeX_Main-Regular.f650f111a3b890d116f1.woff2",
     "static/media/KaTeX_Main-Bold.woff2": "/static/media/KaTeX_Main-Bold.39890742bc957b368704.woff2",
     "static/media/KaTeX_SansSerif-Bold.ttf": "/static/media/KaTeX_SansSerif-Bold.5b49f4993ae22d7975b4.ttf",
@@ -73,12 +73,12 @@
     "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "main.df99bf00.css.map": "/static/css/main.df99bf00.css.map",
-    "main.0afe3c58.js.map": "/static/js/main.0afe3c58.js.map",
+    "main.95c82eaf.js.map": "/static/js/main.95c82eaf.js.map",
     "refractor-prismjs-vendor.3bc41db2.js.map": "/static/js/refractor-prismjs-vendor.3bc41db2.js.map",
     "micromark-vendor.fe3d962e.js.map": "/static/js/micromark-vendor.fe3d962e.js.map",
-    "babel-runtime-vendor.ef475dcb.js.map": "/static/js/babel-runtime-vendor.ef475dcb.js.map",
+    "babel-runtime-vendor.43760981.js.map": "/static/js/babel-runtime-vendor.43760981.js.map",
     "parse5-vendor.5363c274.js.map": "/static/js/parse5-vendor.5363c274.js.map",
-    "react-vendor.83888bb4.js.map": "/static/js/react-vendor.83888bb4.js.map",
+    "react-vendor.06730ae1.js.map": "/static/js/react-vendor.06730ae1.js.map",
     "katex-vendor.d6517351.css.map": "/static/css/katex-vendor.d6517351.css.map",
     "katex-vendor.5bad50ed.js.map": "/static/js/katex-vendor.5bad50ed.js.map",
     "mermaid-vendor.12834eba.js.map": "/static/js/mermaid-vendor.12834eba.js.map"
@@ -86,13 +86,13 @@
   "entrypoints": [
     "static/js/refractor-prismjs-vendor.3bc41db2.js",
     "static/js/micromark-vendor.fe3d962e.js",
-    "static/js/babel-runtime-vendor.ef475dcb.js",
+    "static/js/babel-runtime-vendor.43760981.js",
     "static/js/parse5-vendor.5363c274.js",
-    "static/js/react-vendor.83888bb4.js",
+    "static/js/react-vendor.06730ae1.js",
     "static/css/katex-vendor.d6517351.css",
     "static/js/katex-vendor.5bad50ed.js",
     "static/js/mermaid-vendor.12834eba.js",
     "static/css/main.df99bf00.css",
-    "static/js/main.0afe3c58.js"
+    "static/js/main.95c82eaf.js"
   ]
 }
