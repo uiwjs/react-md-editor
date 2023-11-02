@@ -9,6 +9,7 @@
   "exports": {
     "./README.md": "./README.md",
     "./package.json": "./package.json",
+    "./markdown-editor.css": "./markdown-editor.css",
     ".": {
       "import": "./esm/index.js",
       "types": "./lib/index.d.ts",
