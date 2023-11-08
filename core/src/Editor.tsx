@@ -1,7 +1,7 @@
-import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
+import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, Fragment } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import TextArea from './components/TextArea';
-import Toolbar from './components/Toolbar';
+import { ToolbarVisibility } from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, getExtraCommands, ICommand, TextState, TextAreaCommandOrchestrator } from './commands';
 import { reducer, EditorContext, ContextStore } from './Context';
@@ -216,26 +216,31 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
         });
       }
     };
+    const contentView = /(live|preview)/.test(state.preview || '') && (
+      <Fragment>
+        <TextArea
+          className={`${prefixCls}-input`}
+          prefixCls={prefixCls}
+          autoFocus={autoFocus}
+          {...textareaProps}
+          onChange={changeHandle}
+          renderTextarea={components?.textarea || renderTextarea}
+          onScroll={(e) => handleScroll(e, 'text')}
+        />
+        {mdPreview}
+      </Fragment>
+    );
     return (
       <EditorContext.Provider value={{ ...state, dispatch }}>
         <div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}>
-          {!hideToolbar && !toolbarBottom && (
-            <Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} />
-          )}
-          <div className={`${prefixCls}-content`}>
-            {/(edit|live)/.test(state.preview || '') && (
-              <TextArea
-                className={`${prefixCls}-input`}
-                prefixCls={prefixCls}
-                autoFocus={autoFocus}
-                {...textareaProps}
-                onChange={changeHandle}
-                renderTextarea={components?.textarea || renderTextarea}
-                onScroll={(e) => handleScroll(e, 'text')}
-              />
-            )}
-            {/(live|preview)/.test(state.preview || '') && mdPreview}
-          </div>
+          <ToolbarVisibility
+            hideToolbar={hideToolbar}
+            toolbarBottom={toolbarBottom}
+            prefixCls={prefixCls}
+            overflow={overflow}
+            placement="top"
+          />
+          <div className={`${prefixCls}-content`}>{contentView}</div>
           {visibleDragbar && !state.fullscreen && (
             <DragBar
               prefixCls={prefixCls}
@@ -245,9 +250,13 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
               onChange={dragBarChange}
             />
           )}
-          {!hideToolbar && toolbarBottom && (
-            <Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} />
-          )}
+          <ToolbarVisibility
+            hideToolbar={hideToolbar}
+            toolbarBottom={toolbarBottom}
+            prefixCls={prefixCls}
+            overflow={overflow}
+            placement="bottom"
+          />
         </div>
       </EditorContext.Provider>
     );

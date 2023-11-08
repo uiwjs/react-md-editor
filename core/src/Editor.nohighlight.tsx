@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview/nohighlight';
 import TextArea from './components/TextArea/index.nohighlight';
-import Toolbar from './components/Toolbar';
+import { ToolbarVisibility } from './components/Toolbar';
 import DragBar from './components/DragBar';
 import { getCommands, getExtraCommands, ICommand, TextState, TextAreaCommandOrchestrator } from './commands';
 import { reducer, EditorContext, ContextStore } from './Context';
@@ -219,9 +219,13 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
     return (
       <EditorContext.Provider value={{ ...state, dispatch }}>
         <div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}>
-          {!hideToolbar && !toolbarBottom && (
-            <Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} />
-          )}
+          <ToolbarVisibility
+            hideToolbar={hideToolbar}
+            toolbarBottom={toolbarBottom}
+            prefixCls={prefixCls}
+            overflow={overflow}
+            placement="top"
+          />
           <div className={`${prefixCls}-content`}>
             {/(edit|live)/.test(state.preview || '') && (
               <TextArea
@@ -245,9 +249,13 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
               onChange={dragBarChange}
             />
           )}
-          {!hideToolbar && toolbarBottom && (
-            <Toolbar prefixCls={prefixCls} overflow={overflow} toolbarBottom={toolbarBottom} />
-          )}
+          <ToolbarVisibility
+            hideToolbar={hideToolbar}
+            toolbarBottom={toolbarBottom}
+            prefixCls={prefixCls}
+            overflow={overflow}
+            placement="bottom"
+          />
         </div>
       </EditorContext.Provider>
     );

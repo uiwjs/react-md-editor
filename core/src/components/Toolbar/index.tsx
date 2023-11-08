@@ -7,7 +7,6 @@ import './index.less';
 
 export interface IToolbarProps extends IProps {
   overflow?: boolean;
-  toolbarBottom?: boolean;
   onCommand?: (command: ICommand<string>, groupName?: string) => void;
   commands?: ICommand<string>[];
   isChild?: boolean;
@@ -125,13 +124,29 @@ export function ToolbarItems(props: IToolbarProps) {
 }
 
 export default function Toolbar(props: IToolbarProps = {}) {
-  const { prefixCls, toolbarBottom, isChild } = props;
+  const { prefixCls, isChild, className } = props;
   const { commands, extraCommands } = useContext(EditorContext);
-  const bottomClassName = toolbarBottom ? 'bottom' : '';
   return (
-    <div className={`${prefixCls}-toolbar ${bottomClassName}`}>
+    <div className={`${prefixCls}-toolbar ${className}`}>
       <ToolbarItems {...props} commands={props.commands || commands || []} />
       {!isChild && <ToolbarItems {...props} commands={extraCommands || []} />}
     </div>
   );
+}
+
+interface ToolbarVisibilityProps {
+  hideToolbar?: boolean;
+  toolbarBottom: boolean;
+  placement: 'bottom' | 'top';
+  overflow: boolean;
+  prefixCls: string;
+}
+
+export function ToolbarVisibility(props: ToolbarVisibilityProps) {
+  const { hideToolbar, toolbarBottom, placement, overflow, prefixCls } = props;
+  if (hideToolbar || (placement === 'bottom' && !toolbarBottom) || (placement === 'top' && toolbarBottom)) {
+    return null;
+  }
+  const cls = toolbarBottom ? 'bottom' : '';
+  return <Toolbar prefixCls={prefixCls} overflow={overflow} className={cls} />;
 }
