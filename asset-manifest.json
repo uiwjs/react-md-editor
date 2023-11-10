@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.9e7519a5.css",
-    "main.js": "/static/js/main.ad83969c.js",
+    "main.js": "/static/js/main.8156040a.js",
     "refractor-prismjs-vendor.js": "/static/js/refractor-prismjs-vendor.82260c44.js",
     "micromark-vendor.js": "/static/js/micromark-vendor.469bd0be.js",
     "parse5-vendor.js": "/static/js/parse5-vendor.f91b5dd8.js",
@@ -72,7 +72,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/index.html",
     "main.9e7519a5.css.map": "/static/css/main.9e7519a5.css.map",
-    "main.ad83969c.js.map": "/static/js/main.ad83969c.js.map",
+    "main.8156040a.js.map": "/static/js/main.8156040a.js.map",
     "refractor-prismjs-vendor.82260c44.js.map": "/static/js/refractor-prismjs-vendor.82260c44.js.map",
     "micromark-vendor.469bd0be.js.map": "/static/js/micromark-vendor.469bd0be.js.map",
     "parse5-vendor.f91b5dd8.js.map": "/static/js/parse5-vendor.f91b5dd8.js.map",
@@ -90,6 +90,6 @@
     "static/js/katex-vendor.edf32032.js",
     "static/js/mermaid-vendor.f2796e86.js",
     "static/css/main.9e7519a5.css",
-    "static/js/main.ad83969c.js"
+    "static/js/main.8156040a.js"
   ]
 }
