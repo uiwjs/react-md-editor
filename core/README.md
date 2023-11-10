@@ -517,7 +517,7 @@ export default function App() {
 
 ### Editor height adapts to text
 
-The initial height can be adjusted through `minHeight={100}`. Dragbar will automatically expire. You can hide the drag button through `visibleDragbar={true}`
+The initial height can be adjusted through `minHeight={100}`. Dragbar will automatically expire. You can hide the drag button through `visibleDragbar={false}`
 
 ```jsx mdx:preview
 import React from "react";
