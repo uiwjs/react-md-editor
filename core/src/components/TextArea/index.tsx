@@ -42,7 +42,8 @@ export type TextAreaRef = {
 
 export default function TextArea(props: ITextAreaProps) {
   const { prefixCls, className, onScroll, renderTextarea, ...otherProps } = props || {};
-  const { markdown, scrollTop, commands, highlightEnable, extraCommands, dispatch } = useContext(EditorContext);
+  const { markdown, scrollTop, commands, minHeight, highlightEnable, extraCommands, dispatch } =
+    useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   const warp = React.createRef<HTMLDivElement>();
@@ -71,7 +72,7 @@ export default function TextArea(props: ITextAreaProps) {
 
   return (
     <div ref={warp} className={`${prefixCls}-area ${className || ''}`} onScroll={onScroll}>
-      <div className={`${prefixCls}-text`}>
+      <div className={`${prefixCls}-text`} style={{ minHeight }}>
         {renderTextarea ? (
           React.cloneElement(
             renderTextarea(

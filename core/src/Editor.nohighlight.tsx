@@ -60,6 +60,7 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
       preview: previewType,
       components,
       height,
+      minHeight,
       highlightEnable,
       tabSize,
       defaultTabEnable,

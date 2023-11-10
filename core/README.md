@@ -515,6 +515,30 @@ export default function App() {
 }
 ```
 
+### Editor height adapts to text
+
+The initial height can be adjusted through `minHeight={100}`. Dragbar will automatically expire. You can hide the drag button through `visibleDragbar={true}`
+
+```jsx mdx:preview
+import React from "react";
+import MDEditor from '@uiw/react-md-editor';
+
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!**");
+  return (
+    <div className="container">
+      <MDEditor
+        value={value}
+        height="100%"
+        // minHeight={50}
+        visibleDragbar={false}
+        onChange={setValue}
+      />
+    </div>
+  );
+}
+```
+
 ### Preview Markdown
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-preview-markdown-vrucl?fontsize=14&hidenavigation=1&theme=dark)
