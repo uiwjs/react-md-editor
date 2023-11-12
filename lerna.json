@@ -1,4 +1,4 @@
 {
-  "version": "3.25.3",
+  "version": "3.25.4",
   "packages": ["core", "www", "example/**"]
 }
