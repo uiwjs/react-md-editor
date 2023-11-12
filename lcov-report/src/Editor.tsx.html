@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">66.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>68/102</span>
+                <span class='fraction'>67/101</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.73% </span>
+                <span class="strong">59.23% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>74/126</span>
+                <span class='fraction'>77/130</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.13% </span>
+                <span class="strong">67.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>62/91</span>
+                <span class='fraction'>61/90</span>
             </div>
         
             
@@ -336,8 +336,7 @@
 <a name='L271'></a><a href='#L271'>271</a>
 <a name='L272'></a><a href='#L272'>272</a>
 <a name='L273'></a><a href='#L273'>273</a>
-<a name='L274'></a><a href='#L274'>274</a>
-<a name='L275'></a><a href='#L275'>275</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L274'></a><a href='#L274'>274</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -565,18 +564,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">166x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -830,20 +828,6 @@ const InternalMDEditor = React.forwardRef&lt;RefMDEditor, MDEditorProps&gt;(
         });
       }
     };
-    const contentView = /(live|preview)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; (
-      &lt;Fragment&gt;
-        &lt;TextArea
-          className={`${prefixCls}-input`}
-          prefixCls={prefixCls}
-          autoFocus={autoFocus}
-          {...textareaProps}
-          onChange={changeHandle}
-          renderTextarea={components?.textarea || renderTextarea}
-          onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'text')}</span>
-        /&gt;
-        {mdPreview}
-      &lt;/Fragment&gt;
-    );
     return (
       &lt;EditorContext.Provider value={{ ...state, dispatch }}&gt;
         &lt;div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}&gt;
@@ -854,7 +838,20 @@ const InternalMDEditor = React.forwardRef&lt;RefMDEditor, MDEditorProps&gt;(
             overflow={overflow}
             placement="top"
           /&gt;
-          &lt;div className={`${prefixCls}-content`}&gt;{contentView}&lt;/div&gt;
+          &lt;div className={`${prefixCls}-content`}&gt;
+            {/(edit|live)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; (
+              &lt;TextArea
+                className={`${prefixCls}-input`}
+                prefixCls={prefixCls}
+                autoFocus={autoFocus}
+                {...textareaProps}
+                onChange={changeHandle}
+                renderTextarea={components?.textarea || renderTextarea}
+                onScroll={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleScroll(e, 'text')}</span>
+              /&gt;
+            )}
+            {/(live|preview)/.test(state.preview || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span> &amp;&amp; mdPreview}
+          &lt;/div&gt;
           {visibleDragbar &amp;&amp; !state.fullscreen &amp;&amp; (
             &lt;DragBar
               prefixCls={prefixCls}
@@ -892,7 +889,7 @@ export default Editor;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-10T04:27:08.503Z
+                at 2023-11-12T00:32:41.152Z
             </div>
         <script src="../prettify.js"></script>
         <script>
