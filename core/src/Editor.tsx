@@ -217,20 +217,6 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
         });
       }
     };
-    const contentView = /(live|preview)/.test(state.preview || '') && (
-      <Fragment>
-        <TextArea
-          className={`${prefixCls}-input`}
-          prefixCls={prefixCls}
-          autoFocus={autoFocus}
-          {...textareaProps}
-          onChange={changeHandle}
-          renderTextarea={components?.textarea || renderTextarea}
-          onScroll={(e) => handleScroll(e, 'text')}
-        />
-        {mdPreview}
-      </Fragment>
-    );
     return (
       <EditorContext.Provider value={{ ...state, dispatch }}>
         <div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}>
@@ -241,7 +227,20 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
             overflow={overflow}
             placement="top"
           />
-          <div className={`${prefixCls}-content`}>{contentView}</div>
+          <div className={`${prefixCls}-content`}>
+            {/(edit|live)/.test(state.preview || '') && (
+              <TextArea
+                className={`${prefixCls}-input`}
+                prefixCls={prefixCls}
+                autoFocus={autoFocus}
+                {...textareaProps}
+                onChange={changeHandle}
+                renderTextarea={components?.textarea || renderTextarea}
+                onScroll={(e) => handleScroll(e, 'text')}
+              />
+            )}
+            {/(live|preview)/.test(state.preview || '') && mdPreview}
+          </div>
           {visibleDragbar && !state.fullscreen && (
             <DragBar
               prefixCls={prefixCls}
