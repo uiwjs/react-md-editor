@@ -19,6 +19,11 @@
       "import": "./esm/index.nohighlight.js",
       "types": "./lib/index.nohighlight.d.ts",
       "require": "./lib/index.nohighlight.js"
+    },
+    "./commands": {
+      "import": "./esm/commands/index.js",
+      "types": "./lib/commands/index.d.ts",
+      "require": "./lib/commands/index.js"
     }
   },
   "scripts": {
