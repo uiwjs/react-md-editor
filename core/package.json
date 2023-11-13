@@ -48,6 +48,7 @@
   "files": [
     "markdown-editor.css",
     "nohighlight.d.ts",
+    "commands.d.ts",
     "lib",
     "dist",
     "esm",
