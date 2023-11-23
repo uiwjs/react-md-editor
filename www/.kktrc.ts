@@ -11,6 +11,11 @@ export default (conf: Configuration, env: 'production' | 'development', options:
       VERSION: JSON.stringify(pkg.version),
     }),
   );
+  conf.ignoreWarnings = [
+    {
+      module: /node_modules[\\/]parse5[\\/]/,
+    },
+  ];
   conf.module!.exprContextCritical = false;
   if (env === 'production') {
     conf.optimization = {
