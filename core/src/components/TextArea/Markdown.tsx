@@ -43,6 +43,8 @@ export default function Markdown(props: MarkdownProps) {
     try {
       mdStr = rehype()
         .data('settings', { fragment: true })
+        // https://github.com/uiwjs/react-md-editor/issues/593
+        // @ts-ignore
         .use(rehypePrism, { ignoreMissing: true })
         .processSync(mdStr)
         .toString();
