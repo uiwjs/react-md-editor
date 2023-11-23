@@ -34,7 +34,6 @@ const Example = (props = {} as { mdStr: string }) => {
         value={state.value}
         overflow={state.overflow}
         previewOptions={{
-          linkTarget: '_blank',
           rehypePlugins: [
             [
               rehypeSanitize,

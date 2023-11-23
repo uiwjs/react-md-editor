@@ -5,8 +5,8 @@
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "author": "kenny wang <wowohoo@qq.com>",
   "scripts": {
-    "build": "kkt build",
-    "start": "kkt start",
+    "build": "GENERATE_SOURCEMAP=false kkt build",
+    "start": "GENERATE_SOURCEMAP=false kkt start",
     "map": "source-map-explorer build/static/js/*.js --html build/website-result.html"
   },
   "license": "MIT",
@@ -26,7 +26,7 @@
     "@uiw/react-md-editor": "3.25.6",
     "dom-to-image": "^2.6.0",
     "katex": "~0.16.0",
-    "mermaid": "~9.4.3",
+    "mermaid": "~10.6.1",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "rehype-sanitize": "~6.0.0"
