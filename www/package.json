@@ -5,7 +5,7 @@
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "author": "kenny wang <wowohoo@qq.com>",
   "scripts": {
-    "build": "GENERATE_SOURCEMAP=false kkt build",
+    "build": "kkt build",
     "start": "GENERATE_SOURCEMAP=false kkt start",
     "map": "source-map-explorer build/static/js/*.js --html build/website-result.html"
   },
