@@ -597,18 +597,14 @@ export default function App() {
       onChange={(val) => setValue(val)}
       previewOptions={{
         components: {
-          code: ({ inline, children = [], className, ...props }) => {
-            const txt = children[0] || '';
-            if (inline) {
-              if (typeof txt === 'string' && /^\$\$(.*)\$\$/.test(txt)) {
-                const html = katex.renderToString(txt.replace(/^\$\$(.*)\$\$/, '$1'), {
-                  throwOnError: false,
-                });
-                return <code dangerouslySetInnerHTML={{ __html: html }} />;
-              }
-              return <code>{txt}</code>;
+          code: ({ children = [], className, ...props }) => {
+            if (typeof children === 'string' && /^\$\$(.*)\$\$/.test(children)) {
+              const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
+                throwOnError: false,
+              });
+              return <code dangerouslySetInnerHTML={{ __html: html }} style={{ background: 'transparent' }} />;
             }
-            const code = props.node && props.node.children ? getCodeString(props.node.children) : txt;
+            const code = props.node && props.node.children ? getCodeString(props.node.children) : children;
             if (
               typeof code === 'string' &&
               typeof className === 'string' &&
@@ -732,7 +728,6 @@ const Code = ({ inline, children = [], className, ...props }) => {
       mermaid
         .render(demoid.current, code)
         .then(({ svg, bindFunctions }) => {
-          console.log("svg:", svg);
           container.innerHTML = svg;
           if (bindFunctions) {
             bindFunctions(container);
