@@ -511,8 +511,8 @@ export default function App() {
 [![#425](https://img.shields.io/github/issues/detail/state/uiwjs/react-md-editor/425)](https://github.com/uiwjs/react-md-editor/issues/425#issuecomment-1209514536)
 
 ```css
-.w-md-editor-text-pre > code,
-.w-md-editor-text-input {
+body .w-md-editor-text-pre > code,
+body .w-md-editor-text-input {
   font-size: 23px !important;
   line-height: 24px !important;
 }
