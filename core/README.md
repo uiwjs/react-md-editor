@@ -964,6 +964,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/phillipb" title="Phillip Burch">
   <img src="https://avatars.githubusercontent.com/u/1482089?v=4" width="42;" alt="Phillip Burch"/>
 </a>
+<a href="https://github.com/psycho-baller" title="Rami Maalouf">
+  <img src="https://avatars.githubusercontent.com/u/81759594?v=4" width="42;" alt="Rami Maalouf"/>
+</a>
 <a href="https://github.com/toresbe" title="Tore Sinding Bekkedal">
   <img src="https://avatars.githubusercontent.com/u/1761606?v=4" width="42;" alt="Tore Sinding Bekkedal"/>
 </a>
