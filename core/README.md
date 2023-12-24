@@ -12,9 +12,6 @@
   <a href="https://www.npmjs.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="Downloads" src="https://img.shields.io/npm/dm/@uiw/react-md-editor.svg?style=flat">
   </a>
-  <a href="https://www.jsdelivr.com/package/npm/@uiw/react-md-editor" target="__blank">
-    <img alt="jsDelivr CDN" src="https://data.jsdelivr.com/v1/package/npm/@uiw/react-md-editor/badge?style=rounded" />
-  </a>
   <a href="https://bundlephobia.com/package/@uiw/react-md-editor" target="__blank">
     <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/@uiw/react-md-editor">
   </a>
@@ -986,7 +983,7 @@ As always, thanks to our amazing contributors!
   <img src="https://avatars.githubusercontent.com/u/8792016?v=4" width="42;" alt="wangjie"/>
 </a><!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->
 
-Made with [github-action-contributors](https://github.com/jaywcjlove/github-action-contributors).
+Made with [contributors](https://github.com/jaywcjlove/github-action-contributors).
 
 ### License
 
