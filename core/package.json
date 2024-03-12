@@ -25,6 +25,11 @@
       "import": "./esm/commands/index.js",
       "types": "./lib/commands/index.d.ts",
       "require": "./lib/commands/index.js"
+    },
+    "./commands-cn": {
+      "import": "./esm/commands/index.cn.js",
+      "types": "./lib/commands/index.cn.d.ts",
+      "require": "./lib/commands/index.cn.js"
     }
   },
   "scripts": {
@@ -50,6 +55,7 @@
     "markdown-editor.css",
     "nohighlight.d.ts",
     "commands.d.ts",
+    "commands-cn.d.ts",
     "lib",
     "dist",
     "esm",

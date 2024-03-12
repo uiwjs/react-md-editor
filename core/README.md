@@ -502,6 +502,27 @@ export default function App() {
 }
 ```
 
+Internationalization Example, You can refer to `commands-cn` for internationalization.
+
+```jsx mdx:preview
+import React, { useContext } from "react";
+import MDEditor, { commands } from "@uiw/react-md-editor";
+import { getCommands, getExtraCommands } from "@uiw/react-md-editor/commands-cn";
+
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!**");
+  return (
+    <MDEditor
+      value={value}
+      preview="edit"
+      commands={[...getCommands()]}
+      extraCommands={[...getExtraCommands()]}
+      onChange={(val) => setValue(val)}
+    />
+  );
+}
+```
+
 ### Editor Font Size
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-for-react-uiwjs-react-md-editor-issues-425-2epmgh?fontsize=14&hidenavigation=1&theme=dark)
