@@ -502,7 +502,7 @@ export default function App() {
 }
 ```
 
-Internationalization Example, You can refer to `commands-cn` for internationalization.
+Internationalization Example, You can refer to [`commands-cn`](https://github.com/uiwjs/react-md-editor/blob/b3743ed8302b544f03aed6ed82bdbdf39efb2204/core/src/commands/index.cn.ts#L5-L187) for internationalization.
 
 ```jsx mdx:preview
 import React, { useContext } from "react";

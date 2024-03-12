@@ -1,6 +1,6 @@
 {
   "name": "nextjs",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,7 +17,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@uiw/react-md-editor": "4.0.3",
+    "@uiw/react-md-editor": "4.0.4",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
