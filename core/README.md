@@ -165,6 +165,29 @@ export default function App() {
 }
 ```
 
+### Placeholder & maxLength
+
+"Below is an example that sets the `placeholder` for the editor and defines the maximum input character length as `10` characters."
+
+```jsx mdx:preview
+import React from "react";
+import MDEditor from '@uiw/react-md-editor';
+
+export default function App() {
+  const [value, setValue] = React.useState("");
+  return (
+      <MDEditor
+        value={value}
+        onChange={setValue}
+        textareaProps={{
+          placeholder: 'Please enter Markdown text',
+          maxLength: 10
+        }}
+      />
+  );
+}
+```
+
 ### Custom Toolbars
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-m2n10?fontsize=14&hidenavigation=1&theme=dark)
