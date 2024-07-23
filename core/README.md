@@ -583,6 +583,30 @@ export default function App() {
 }
 ```
 
+### Disallowed Elements
+
+```jsx mdx:preview
+import React from "react";
+import MDEditor from '@uiw/react-md-editor';
+
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!**  <style>body{display:none;}</style> ");
+  return (
+    <div className="container">
+      <MDEditor
+        value={value}
+        height="100%"
+        previewOptions={{
+          disallowedElements: ['style'],
+        }}
+        visibleDragbar={false}
+        onChange={setValue}
+      />
+    </div>
+  );
+}
+```
+
 ### Preview Markdown
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-preview-markdown-vrucl?fontsize=14&hidenavigation=1&theme=dark)
