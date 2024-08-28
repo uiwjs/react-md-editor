@@ -25,7 +25,7 @@
     "@kkt/ncc": "^1.0.14",
     "@types/react-test-renderer": "~18.0.0",
     "compile-less-cli": "~1.9.0",
-    "husky": "~8.0.0",
+    "husky": "~9.1.0",
     "kkt": "^7.4.9",
     "lerna": "^8.0.0",
     "lint-staged": "^15.1.0",
