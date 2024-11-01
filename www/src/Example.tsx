@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
+import rehypePrettyCode from 'rehype-pretty-code';
 import MDEditor, { MDEditorProps } from '@uiw/react-md-editor';
 import styled from 'styled-components';
 
@@ -51,6 +52,7 @@ const Example = (props = {} as { mdStr: string }) => {
                 },
               },
             ],
+            rehypePrettyCode,
           ],
         }}
         height={400}

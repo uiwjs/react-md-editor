@@ -90,3 +90,48 @@ it('MDEditor KeyboardEvent onHeightChange', async () => {
   expect(handleChange).lastReturnedWith(500);
   expect(handleChange).toHaveLength(3);
 });
+
+it('MDEditor supports asynchronous plugins', async () => {
+  const MyComponent = () => {
+    const [value, setValue] = React.useState('**Hello world!!!**');
+    return (
+      <MDEditor
+        value={value}
+        textareaProps={{
+          title: 'test',
+        }}
+        previewOptions={{
+          rehypePlugins: [
+            async () => {
+              return (tree) => {
+                // Example async plugin that adds a class to the first node
+                return new Promise((resolve) => {
+                  setTimeout(() => {
+                    if (tree.children && tree.children.length > 0) {
+                      tree.children[0].properties = {
+                        ...tree.children[0].properties,
+                        className: 'async-plugin',
+                      };
+                    }
+                    resolve(tree);
+                  }, 100);
+                });
+              };
+            },
+          ],
+        }}
+        onChange={(value) => {
+          setValue(value || '');
+        }}
+      />
+    );
+  };
+  render(<MyComponent />);
+  const inputNode = screen.getByTitle('test');
+  inputNode.focus();
+  fireEvent.change(inputNode, { target: { value: '# title' } });
+  inputNode.blur();
+  await new Promise((resolve) => setTimeout(resolve, 200)); // Wait for async plugin to complete
+  const previewNode = screen.getByText('title');
+  expect(previewNode).toHaveClass('async-plugin');
+});
