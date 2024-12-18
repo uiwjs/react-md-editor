@@ -15,8 +15,8 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "~18.2.0",
+    "@types/react-dom": "~18.2.0",
     "@uiw/react-md-editor": "4.0.4",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
