@@ -978,11 +978,11 @@ As always, thanks to our amazing contributors!
 <!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT--><a href="https://github.com/jaywcjlove" title="小弟调调"><img src="https://avatars.githubusercontent.com/u/1680273?v=4" width="42;" alt="小弟调调"/></a>
 <a href="https://github.com/renovate-bot" title="Mend Renovate"><img src="https://avatars.githubusercontent.com/u/25180681?v=4" width="42;" alt="Mend Renovate"/></a>
 <a href="https://github.com/stevemk14ebr" title="Stephen Eckels"><img src="https://avatars.githubusercontent.com/u/6619205?v=4" width="42;" alt="Stephen Eckels"/></a>
-<a href="https://github.com/avalero" title="Alberto Valero Gómez"><img src="https://avatars.githubusercontent.com/u/1442682?v=4" width="42;" alt="Alberto Valero Gómez"/></a>
-<a href="https://github.com/alphacoma18" title="Alpha Romer Coma"><img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Romer Coma"/></a>
+<a href="https://github.com/alpharomercoma" title="Alpha Romer Coma"><img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Romer Coma"/></a>
 <a href="https://github.com/RARgames" title="RAR"><img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/></a>
 <a href="https://github.com/Exmirai" title="UniqueUlysees"><img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/></a>
 <a href="https://github.com/nuragic" title="Andrea Puddu"><img src="https://avatars.githubusercontent.com/u/1586378?v=4" width="42;" alt="Andrea Puddu"/></a>
+<a href="https://github.com/AntonR31337" title="Anton"><img src="https://avatars.githubusercontent.com/u/88384647?v=4" width="42;" alt="Anton"/></a>
 <a href="https://github.com/bramus" title="Bramus"><img src="https://avatars.githubusercontent.com/u/213073?v=4" width="42;" alt="Bramus"/></a>
 <a href="https://github.com/CarleneCannon-Conner" title="Carlene Cannon-Conner"><img src="https://avatars.githubusercontent.com/u/1942791?v=4" width="42;" alt="Carlene Cannon-Conner"/></a>
 <a href="https://github.com/MercierCorentin" title="Corentin Mercier"><img src="https://avatars.githubusercontent.com/u/46066895?v=4" width="42;" alt="Corentin Mercier"/></a>
