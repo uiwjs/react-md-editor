@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties, JSX } from 'react';
 import type { MarkdownPreviewProps } from '@uiw/react-markdown-preview/nohighlight';
 import type { ITextAreaProps } from './components/TextArea/index.nohighlight';
 import type { ICommand, TextState } from './commands';

@@ -12,7 +12,7 @@ export interface IDragBarProps extends IProps {
 const DragBar: React.FC<IDragBarProps> = (props) => {
   const { prefixCls, onChange } = props || {};
   const $dom = useRef<HTMLDivElement>(null);
-  const dragRef = useRef<{ height: number; dragY: number }>();
+  const dragRef = useRef<{ height: number; dragY: number }>(undefined);
   const heightRef = useRef(props.height);
 
   useEffect(() => {

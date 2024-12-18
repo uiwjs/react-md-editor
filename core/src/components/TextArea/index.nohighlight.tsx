@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useContext } from 'react';
+import React, { useEffect, Fragment, useContext, JSX } from 'react';
 import { EditorContext, ContextStore, ExecuteCommandState } from '../../Context';
 import shortcuts from './shortcuts';
 import Textarea, { TextAreaProps } from './Textarea';
@@ -43,7 +43,7 @@ export default function TextArea(props: ITextAreaProps) {
   const { prefixCls, className, onScroll, renderTextarea, ...otherProps } = props || {};
   const { markdown, scrollTop, commands, extraCommands, dispatch } = useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
-  const executeRef = React.useRef<TextAreaCommandOrchestrator>();
+  const executeRef = React.useRef<TextAreaCommandOrchestrator>(undefined);
   const warp = React.createRef<HTMLDivElement>();
   useEffect(() => {
     const state: ContextStore = {};

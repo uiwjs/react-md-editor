@@ -136,7 +136,7 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
       [props.extraCommands],
     );
 
-    const textareaDomRef = useRef<HTMLDivElement>();
+    const textareaDomRef = useRef<HTMLDivElement>(undefined);
     const active = useRef<'text' | 'preview'>('preview');
     const initScroll = useRef(false);
 
