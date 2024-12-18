@@ -23,7 +23,7 @@ export default function Textarea(props: TextAreaProps) {
     ...otherStore
   } = useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
-  const executeRef = React.useRef<TextAreaCommandOrchestrator>(undefined);
+  const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   const statesRef = React.useRef<ExecuteCommandState>({ fullscreen, preview });
 
   useEffect(() => {

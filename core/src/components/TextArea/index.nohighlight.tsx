@@ -43,7 +43,7 @@ export default function TextArea(props: ITextAreaProps) {
   const { prefixCls, className, onScroll, renderTextarea, ...otherProps } = props || {};
   const { markdown, scrollTop, commands, extraCommands, dispatch } = useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
-  const executeRef = React.useRef<TextAreaCommandOrchestrator>(undefined);
+  const executeRef = React.useRef<TextAreaCommandOrchestrator>();
   const warp = React.createRef<HTMLDivElement>();
   useEffect(() => {
     const state: ContextStore = {};
