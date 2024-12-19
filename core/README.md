@@ -987,6 +987,7 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/alpharomercoma" title="Alpha Romer Coma"><img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Romer Coma"/></a>
 <a href="https://github.com/RARgames" title="RAR"><img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/></a>
 <a href="https://github.com/Exmirai" title="UniqueUlysees"><img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/></a>
+<a href="https://github.com/sandiiarov" title="Alex Sandiiarov"><img src="https://avatars.githubusercontent.com/u/15861257?v=4" width="42;" alt="Alex Sandiiarov"/></a>
 <a href="https://github.com/nuragic" title="Andrea Puddu"><img src="https://avatars.githubusercontent.com/u/1586378?v=4" width="42;" alt="Andrea Puddu"/></a>
 <a href="https://github.com/AntonR31337" title="Anton"><img src="https://avatars.githubusercontent.com/u/88384647?v=4" width="42;" alt="Anton"/></a>
 <a href="https://github.com/bramus" title="Bramus"><img src="https://avatars.githubusercontent.com/u/213073?v=4" width="42;" alt="Bramus"/></a>
