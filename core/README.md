@@ -54,6 +54,12 @@ A simple markdown editor with preview, implemented with React.js and TypeScript.
 npm i @uiw/react-md-editor
 ```
 
+or 
+
+```bash
+yarn add @uiw/react-md-editor
+```
+
 ### Using
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-for-react-izdd6?fontsize=14&hidenavigation=1&theme=dark)
