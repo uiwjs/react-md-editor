@@ -995,6 +995,7 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/dmitriyyan" title="Dmitrii Ianushkevich"><img src="https://avatars.githubusercontent.com/u/89025862?v=4" width="42;" alt="Dmitrii Ianushkevich"/></a>
 <a href="https://github.com/jnishiyama" title="James Finucane"><img src="https://avatars.githubusercontent.com/u/2048195?v=4" width="42;" alt="James Finucane"/></a>
 <a href="https://github.com/allforabit" title="Kevin Nolan"><img src="https://avatars.githubusercontent.com/u/537189?v=4" width="42;" alt="Kevin Nolan"/></a>
+<a href="https://github.com/liamstamper" title="Liam Stamper"><img src="https://avatars.githubusercontent.com/u/136619788?v=4" width="42;" alt="Liam Stamper"/></a>
 <a href="https://github.com/kseikyo" title="Lucas Sierota"><img src="https://avatars.githubusercontent.com/u/29212286?v=4" width="42;" alt="Lucas Sierota"/></a>
 <a href="https://github.com/michaelkramer" title="Michael Kramer"><img src="https://avatars.githubusercontent.com/u/6052223?v=4" width="42;" alt="Michael Kramer"/></a>
 <a href="https://github.com/peterj" title="Peter Jausovec"><img src="https://avatars.githubusercontent.com/u/11080940?v=4" width="42;" alt="Peter Jausovec"/></a>
