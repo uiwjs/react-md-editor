@@ -2,7 +2,7 @@ import React from 'react';
 import { ICommand, TextAreaCommandOrchestrator } from './commands';
 import { MDEditorProps } from './Types';
 
-export type PreviewType = 'live' | 'edit' | 'preview';
+export type PreviewType = 'live' | 'edit' | 'preview' | 'editablePreview';
 
 export interface ContextStore {
   components?: MDEditorProps['components'];
