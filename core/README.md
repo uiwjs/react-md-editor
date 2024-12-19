@@ -938,7 +938,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `overflow?: boolean=true`: Disable `fullscreen` setting body styles
 - `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.
 - `maxHeight?: number=1200`: Maximum drag height. The `visibleDragbar=true` value is valid.
-- `minHeights?: number=100`: Minimum drag height. The `visibleDragbar=true` value is valid.
+- `minHeight?: number=100`: Minimum drag height. The `visibleDragbar=true` value is valid.
 - `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.
 - `defaultTabEnable?: boolean=false`: If `false`, the `tab` key inserts a tab character into the textarea. If `true`, the `tab` key executes default behavior e.g. focus shifts to next element. 
 - `hideToolbar?: boolean=false`: Option to hide the tool bar.
