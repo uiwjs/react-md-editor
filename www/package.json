@@ -15,8 +15,8 @@
     "@kkt/raw-modules": "^7.4.9",
     "@kkt/scope-plugin-options": "^7.4.9",
     "@types/katex": "^0.16.0",
-    "@types/react": "~18.2.0",
-    "@types/react-dom": "~18.2.0",
+    "@types/react": "~18.3.0",
+    "@types/react-dom": "~18.3.0",
     "kkt": "^7.4.9",
     "markdown-react-code-preview-loader": "^2.1.4",
     "source-map-explorer": "~2.5.3"
@@ -27,8 +27,8 @@
     "dom-to-image": "^2.6.0",
     "katex": "~0.16.0",
     "mermaid": "~10.6.1",
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
+    "react": "~18.3.0",
+    "react-dom": "~18.3.0",
     "rehype-sanitize": "~6.0.0"
   },
   "eslintConfig": {
