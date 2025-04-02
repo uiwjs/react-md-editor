@@ -23,7 +23,7 @@
   "devDependencies": {
     "@kkt/less-modules": "^7.4.9",
     "@kkt/ncc": "^1.0.14",
-    "@types/react-test-renderer": "~18.0.0",
+    "@types/react-test-renderer": "~19.1.0",
     "@types/react": "~18.2.0",
     "@types/react-dom": "~18.2.0",
     "compile-less-cli": "~1.9.0",
