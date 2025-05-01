@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICommand, ExecuteState, TextAreaTextApi } from './';
+import { type ICommand, type ExecuteState, TextAreaTextApi } from './';
 import { selectWord, executeCommand } from '../utils/markdownUtils';
 
 export const image: ICommand = {

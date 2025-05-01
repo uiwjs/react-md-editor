@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { IProps } from '../../Types';
 import { EditorContext, ExecuteCommandState } from '../../Context';
-import { TextAreaCommandOrchestrator } from '../../commands';
+import { TextAreaCommandOrchestrator } from '../../commands/';
 import handleKeyDown from './handleKeyDown';
 import shortcuts from './shortcuts';
 import './index.less';

@@ -1,6 +1,6 @@
 import { insertTextAtPosition } from '../../utils/InsertTextAtPosition';
 import { insertBeforeEachLine, selectLine } from '../../utils/markdownUtils';
-import { TextAreaTextApi } from '../../commands';
+import { TextAreaTextApi } from '../../commands/';
 
 /**
  * - `13` - `Enter`

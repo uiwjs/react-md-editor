@@ -4,7 +4,7 @@ import shortcuts from './shortcuts';
 import Markdown from './Markdown';
 import Textarea, { TextAreaProps } from './Textarea';
 import { IProps } from '../../Types';
-import { TextAreaCommandOrchestrator, ICommand } from '../../commands';
+import { TextAreaCommandOrchestrator, ICommand } from '../../commands/';
 import './index.less';
 
 type RenderTextareaHandle = {

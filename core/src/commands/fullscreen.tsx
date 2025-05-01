@@ -1,6 +1,6 @@
 import React from 'react';
-import { ICommand, TextState, TextAreaTextApi } from './';
-import { ContextStore, ExecuteCommandState } from '../Context';
+import { type ICommand, TextState, type TextAreaTextApi } from './';
+import { type ContextStore, type ExecuteCommandState } from '../Context';
 
 export const fullscreen: ICommand = {
   name: 'fullscreen',

@@ -1,4 +1,4 @@
-import { ICommand, TextAreaCommandOrchestrator } from '../../commands';
+import { ICommand, TextAreaCommandOrchestrator } from '../../commands/';
 import { ContextStore, ExecuteCommandState } from '../../Context';
 
 function getCommands(data: ICommand[] = [], resulte: Record<string, ICommand> = {}): Record<string, ICommand> {

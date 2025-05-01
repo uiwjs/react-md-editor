@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICommand, ICommandChildCommands, ICommandChildHandle } from './';
+import { type ICommand, type ICommandChildCommands, type ICommandChildHandle } from './';
 
 export type GroupOptions = Omit<ICommand<string>, 'children'> & {
   children?: ICommandChildHandle['children'];

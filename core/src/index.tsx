@@ -1,9 +1,9 @@
 import MDEditor from './Editor';
-import * as commands from './commands';
+import * as commands from './commands/';
 import * as MarkdownUtil from './utils/markdownUtils';
 import './index.less';
 
-export * from './commands';
+export * from './commands/';
 export * from './commands/group';
 export * from './utils/markdownUtils';
 export * from './utils/InsertTextAtPosition';

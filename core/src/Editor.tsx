@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, Fragment } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import TextArea from './components/TextArea';
-import { ToolbarVisibility } from './components/Toolbar';
-import DragBar from './components/DragBar';
-import { getCommands, getExtraCommands, ICommand, TextState, TextAreaCommandOrchestrator } from './commands';
+import { ToolbarVisibility } from './components/Toolbar/';
+import TextArea from './components/TextArea/';
+import DragBar from './components/DragBar/';
+import { getCommands, getExtraCommands, ICommand, TextState, TextAreaCommandOrchestrator } from './commands/';
 import { reducer, EditorContext, ContextStore } from './Context';
 import type { MDEditorProps } from './Types';
 
