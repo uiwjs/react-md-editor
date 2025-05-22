@@ -38,6 +38,7 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
       maxHeight = 1200,
       minHeight = 100,
       autoFocus,
+      autoFocusEnd = false,
       tabSize = 2,
       defaultTabEnable = false,
       onChange,
@@ -117,6 +118,7 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useMemo(() => autoFocus !== state.autoFocus && dispatch({ autoFocus: autoFocus }), [autoFocus]);
+    useMemo(() => autoFocusEnd !== state.autoFocusEnd && dispatch({ autoFocusEnd: autoFocusEnd }), [autoFocusEnd]);
     useMemo(
       () => fullscreen !== state.fullscreen && dispatch({ fullscreen: fullscreen }),
       // eslint-disable-next-line react-hooks/exhaustive-deps

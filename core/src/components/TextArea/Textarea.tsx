@@ -19,6 +19,7 @@ export default function Textarea(props: TextAreaProps) {
     extraCommands,
     tabSize,
     defaultTabEnable,
+    autoFocusEnd,
     dispatch,
     ...otherStore
   } = useContext(EditorContext);
@@ -37,6 +38,19 @@ export default function Textarea(props: TextAreaProps) {
       dispatch({ textarea: textRef.current, commandOrchestrator });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (autoFocusEnd && textRef.current) {
+      textRef.current.focus();
+      const length = textRef.current.value.length;
+      textRef.current.setSelectionRange(length, length);
+      setTimeout(() => {
+        if (textRef.current) {
+          textRef.current.scrollTop = textRef.current.scrollHeight;
+        }
+      }, 0);
+    }
   }, []);
 
   const onKeyDown = (e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) => {

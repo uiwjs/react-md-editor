@@ -38,6 +38,10 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   autoFocus?: ITextAreaProps['autoFocus'];
   /**
+   * Can be used to make `Markdown Editor` focus on the end of text on initialization.
+   */
+  autoFocusEnd?: boolean;
+  /**
    * The height of the editor.
    * ⚠️ `Dragbar` is invalid when **`height`** parameter percentage.
    */
