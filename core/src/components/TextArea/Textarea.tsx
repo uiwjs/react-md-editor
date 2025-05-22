@@ -20,6 +20,7 @@ export default function Textarea(props: TextAreaProps) {
     tabSize,
     defaultTabEnable,
     autoFocusEnd,
+    textareaWarp,
     dispatch,
     ...otherStore
   } = useContext(EditorContext);
@@ -41,17 +42,20 @@ export default function Textarea(props: TextAreaProps) {
   }, []);
 
   useEffect(() => {
-    if (autoFocusEnd && textRef.current) {
+    if (autoFocusEnd && textRef.current && textareaWarp) {
       textRef.current.focus();
       const length = textRef.current.value.length;
       textRef.current.setSelectionRange(length, length);
       setTimeout(() => {
+        if (textareaWarp) {
+          textareaWarp.scrollTop = textareaWarp.scrollHeight;
+        }
         if (textRef.current) {
           textRef.current.scrollTop = textRef.current.scrollHeight;
         }
       }, 0);
     }
-  }, []);
+  }, [textareaWarp]);
 
   const onKeyDown = (e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>) => {
     handleKeyDown(e, tabSize, defaultTabEnable);

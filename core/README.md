@@ -613,6 +613,51 @@ export default function App() {
 }
 ```
 
+### Place the cursor at the end of the text
+
+```jsx mdx:preview
+import React from "react";
+import MDEditor from '@uiw/react-md-editor';
+
+const textSample = `# Welcome to the Markdown Editor!
+
+This is a sample of the **React Markdown Editor**.
+
+## ✨ Features
+- Real-time preview
+- Custom styling support
+- Code highlighting
+- Auto focus at the end of the text
+
+## 📦 Sample Code
+
+\`\`\`javascript
+function hello() {
+  console.log("Hello, world!");
+}
+\`\`\`
+
+## 🔗 Links
+
+Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.
+`;
+
+export default function App() {
+  const [value, setValue] = React.useState(textSample);
+  return (
+    <div className="container">
+      <MDEditor
+        autoFocus={true}
+        value={value}
+        autoFocusEnd={true}
+        visibleDragbar={false}
+        onChange={setValue}
+      />
+    </div>
+  );
+}
+```
+
 ### Preview Markdown
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-preview-markdown-vrucl?fontsize=14&hidenavigation=1&theme=dark)
@@ -924,6 +969,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `commandsFilter?: (command: ICommand, isExtra: boolean) => false | ICommand`: Filter or modify your commands.
 - `extraCommands?: ICommand[]`: Displayed on the right side of the toolbar.
 - `autoFocus?: true`: Can be used to make `Markdown Editor` focus itself on initialization.
+- `autoFocusEnd?: false`: Can be used to make `Markdown Editor` focus on the end of text on initialization.
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview/tree/0036dd51a25c00d5be6dc83aa978905c64750038?tab=readme-ov-file#options-props) settings.
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
 - ~~`renderTextarea?: (props, opts) => JSX.Element;`~~: `@deprecated` Please use ~~`renderTextarea`~~ -> `components`. Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)

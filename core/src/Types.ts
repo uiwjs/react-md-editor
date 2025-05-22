@@ -59,7 +59,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   visibleDragbar?: boolean;
   /**
-   * @deprecated use `visibleDragbar`
+   * @deprecated use {@link MDEditorProps.visibleDragbar}
    */
   visiableDragbar?: boolean;
   /**
@@ -92,7 +92,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   textareaProps?: ITextAreaProps;
   /**
    * Use div to replace TextArea or re-render TextArea
-   * @deprecated Please use ~~`renderTextarea`~~ -> `components`
+   * @deprecated Please use {@link components}
    */
   renderTextarea?: ITextAreaProps['renderTextarea'];
   /**
