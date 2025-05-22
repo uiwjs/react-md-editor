@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.a4ddd26b.css",
-    "main.js": "/static/js/main.93897695.js",
+    "main.js": "/static/js/main.0bfc213a.js",
     "static/js/82.c7c36e2d.chunk.js": "/static/js/82.c7c36e2d.chunk.js",
     "static/js/589.a007028e.chunk.js": "/static/js/589.a007028e.chunk.js",
     "static/js/387.59e31f08.chunk.js": "/static/js/387.59e31f08.chunk.js",
@@ -82,7 +82,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/index.html",
     "main.a4ddd26b.css.map": "/static/css/main.a4ddd26b.css.map",
-    "main.93897695.js.map": "/static/js/main.93897695.js.map",
+    "main.0bfc213a.js.map": "/static/js/main.0bfc213a.js.map",
     "82.c7c36e2d.chunk.js.map": "/static/js/82.c7c36e2d.chunk.js.map",
     "589.a007028e.chunk.js.map": "/static/js/589.a007028e.chunk.js.map",
     "387.59e31f08.chunk.js.map": "/static/js/387.59e31f08.chunk.js.map",
@@ -111,6 +111,6 @@
     "static/css/katex-vendor.f7f05752.css",
     "static/js/katex-vendor.ca6b9f48.js",
     "static/css/main.a4ddd26b.css",
-    "static/js/main.93897695.js"
+    "static/js/main.0bfc213a.js"
   ]
 }

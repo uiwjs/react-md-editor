@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.12% </span>
+                <span class="strong">73.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/32</span>
+                <span class='fraction'>25/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.33% </span>
+                <span class="strong">51.85% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/24</span>
+                <span class='fraction'>14/27</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.12% </span>
+                <span class="strong">73.52% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/32</span>
+                <span class='fraction'>25/34</span>
             </div>
         
             
@@ -152,7 +152,11 @@
 <a name='L87'></a><a href='#L87'>87</a>
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,6 +168,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">101x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,11 +200,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">101x</span>
-<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">68x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -263,6 +271,7 @@ export default function Textarea(props: TextAreaProps) {
     tabSize,
     defaultTabEnable,
     autoFocusEnd,
+    textareaWarp,
     dispatch,
     ...otherStore
   } = useContext(EditorContext);
@@ -284,17 +293,20 @@ export default function Textarea(props: TextAreaProps) {
   }, []);
 &nbsp;
   useEffect(() =&gt; {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (autoFocusEnd &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >textRef.current)</span> {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (autoFocusEnd &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >textRef.current </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >textareaWarp)</span> {
 <span class="cstat-no" title="statement not covered" >      textRef.current.focus();</span>
       const length = <span class="cstat-no" title="statement not covered" >textRef.current.value.length;</span>
 <span class="cstat-no" title="statement not covered" >      textRef.current.setSelectionRange(length, length);</span>
 <span class="cstat-no" title="statement not covered" >      setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (textareaWarp) {</span>
+<span class="cstat-no" title="statement not covered" >          textareaWarp.scrollTop = textareaWarp.scrollHeight;</span>
+        }
 <span class="cstat-no" title="statement not covered" >        if (textRef.current) {</span>
 <span class="cstat-no" title="statement not covered" >          textRef.current.scrollTop = textRef.current.scrollHeight;</span>
         }
       }, 0);
     }
-  }, []);
+  }, [textareaWarp]);
 &nbsp;
   const onKeyDown = (e: KeyboardEvent | React.KeyboardEvent&lt;HTMLTextAreaElement&gt;) =&gt; {
     handleKeyDown(e, tabSize, defaultTabEnable);
@@ -337,7 +349,7 @@ export default function Textarea(props: TextAreaProps) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-22T16:23:05.875Z
+                at 2025-05-22T16:46:26.616Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
