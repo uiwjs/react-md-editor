@@ -1,6 +1,6 @@
 {
   "name": "nextjs",
-  "version": "0.1.0",
+  "version": "4.0.7",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -9,16 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "next": "15.3.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "next": "15.3.1"
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
