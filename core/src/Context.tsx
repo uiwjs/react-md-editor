@@ -14,6 +14,7 @@ export interface ContextStore {
   fullscreen?: boolean;
   highlightEnable?: boolean;
   autoFocus?: boolean;
+  autoFocusEnd?: boolean;
   textarea?: HTMLTextAreaElement;
   commandOrchestrator?: TextAreaCommandOrchestrator;
   textareaWarp?: HTMLDivElement;
