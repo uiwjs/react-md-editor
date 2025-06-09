@@ -46,7 +46,7 @@ let fullscreen: ICommand = {
   ...fullscreenInit,
   buttonProps: { 'aria-label': '切换全屏(ctrl + 0)', title: '切换全屏(ctrl + 0)' },
 };
-let hr: ICommand = { ...hrInit, buttonProps: { 'aria-label': '插入HR (ctrl + h)', title: '插入HR (ctrl + h)' } };
+let hr: ICommand = { ...hrInit, buttonProps: { 'aria-label': '插入分割线 (ctrl + h)', title: '插入分割线 (ctrl + h)' } };
 let image: ICommand = {
   ...imageInit,
   buttonProps: { 'aria-label': '添加图像(ctrl + k)', title: '添加图像(ctrl + k)' },
@@ -91,8 +91,8 @@ let quote: ICommand = {
 let strikethrough: ICommand = {
   ...strikethroughInit,
   buttonProps: {
-    'aria-label': 'Add strikethrough text (ctrl + shift + x)',
-    title: 'Add strikethrough text (ctrl + shift + x)',
+    'aria-label': '添加删除线文本 (ctrl + shift + x)',
+    title: '添加删除线文本 (ctrl + shift + x)',
   },
 };
 let issue: ICommand = { ...issueInit, buttonProps: { 'aria-label': '添加 issue', title: '添加 issue' } };
