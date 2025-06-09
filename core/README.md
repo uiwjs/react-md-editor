@@ -1053,7 +1053,8 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/jmtes" title="juno tesoro"><img src="https://avatars.githubusercontent.com/u/38450133?v=4" width="42;" alt="juno tesoro"/></a>
 <a href="https://github.com/juspky" title="juspky"><img src="https://avatars.githubusercontent.com/u/11074890?v=4" width="42;" alt="juspky"/></a>
 <a href="https://github.com/ryicoh" title="ryicoh"><img src="https://avatars.githubusercontent.com/u/37844673?v=4" width="42;" alt="ryicoh"/></a>
-<a href="https://github.com/wj0990" title="wangjie"><img src="https://avatars.githubusercontent.com/u/8792016?v=4" width="42;" alt="wangjie"/></a><!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->
+<a href="https://github.com/wj0990" title="wangjie"><img src="https://avatars.githubusercontent.com/u/8792016?v=4" width="42;" alt="wangjie"/></a>
+<a href="https://github.com/xiaohuoni" title="聪小陈"><img src="https://avatars.githubusercontent.com/u/11746742?v=4" width="42;" alt="聪小陈"/></a><!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->
 
 Made with [contributors](https://github.com/jaywcjlove/github-action-contributors).
 
