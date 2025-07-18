@@ -14,13 +14,13 @@ declare module '@uiw/react-md-editor/commands' {
   import { codeEdit, codeLive, codePreview } from '@uiw/react-md-editor/esm/commands/preview';
   import { quote } from '@uiw/react-md-editor/esm/commands/quote';
   import { strikethrough } from '@uiw/react-md-editor/esm/commands/strikeThrough';
-  import { title } from '@uiw/react-md-editor/esm/commands/title';
-  import { title1 } from '@uiw/react-md-editor/esm/commands/title1';
-  import { title2 } from '@uiw/react-md-editor/esm/commands/title2';
-  import { title3 } from '@uiw/react-md-editor/esm/commands/title3';
-  import { title4 } from '@uiw/react-md-editor/esm/commands/title4';
-  import { title5 } from '@uiw/react-md-editor/esm/commands/title5';
-  import { title6 } from '@uiw/react-md-editor/esm/commands/title6';
+  import { title, heading } from '@uiw/react-md-editor/esm/commands/title';
+  import { title1, heading1 } from '@uiw/react-md-editor/esm/commands/title1';
+  import { title2, heading2 } from '@uiw/react-md-editor/esm/commands/title2';
+  import { title3, heading3 } from '@uiw/react-md-editor/esm/commands/title3';
+  import { title4, heading4 } from '@uiw/react-md-editor/esm/commands/title4';
+  import { title5, heading5 } from '@uiw/react-md-editor/esm/commands/title5';
+  import { title6, heading6 } from '@uiw/react-md-editor/esm/commands/title6';
   import { table } from '@uiw/react-md-editor/esm/commands/table';
   import { issue } from '@uiw/react-md-editor/esm/commands/issue';
   import { help } from '@uiw/react-md-editor/esm/commands/help';
@@ -117,6 +117,13 @@ declare module '@uiw/react-md-editor/commands' {
     title4,
     title5,
     title6,
+    heading,
+    heading1,
+    heading2,
+    heading3,
+    heading4,
+    heading5,
+    heading6,
     bold,
     codeBlock,
     comment,

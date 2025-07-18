@@ -15,13 +15,13 @@ import { checkedListCommand, orderedListCommand, unorderedListCommand } from './
 import { codeEdit, codeLive, codePreview } from './preview';
 import { quote } from './quote';
 import { strikethrough } from './strikeThrough';
-import { title } from './title';
-import { title1 } from './title1';
-import { title2 } from './title2';
-import { title3 } from './title3';
-import { title4 } from './title4';
-import { title5 } from './title5';
-import { title6 } from './title6';
+import { title, heading } from './title';
+import { title1, heading1 } from './title1';
+import { title2, heading2 } from './title2';
+import { title3, heading3 } from './title3';
+import { title4, heading4 } from './title4';
+import { title5, heading5 } from './title5';
+import { title6, heading6 } from './title6';
 import { table } from './table';
 import { issue } from './issue';
 import { help } from './help';
@@ -188,6 +188,13 @@ export {
   title4,
   title5,
   title6,
+  heading,
+  heading1,
+  heading2,
+  heading3,
+  heading4,
+  heading5,
+  heading6,
   bold,
   codeBlock,
   comment,

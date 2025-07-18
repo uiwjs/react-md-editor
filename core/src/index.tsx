@@ -3,6 +3,7 @@ import * as commands from './commands/';
 import * as MarkdownUtil from './utils/markdownUtils';
 import './index.less';
 
+export { headingExecute } from './commands/title';
 export * from './commands/';
 export * from './commands/group';
 export * from './utils/markdownUtils';

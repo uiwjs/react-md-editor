@@ -1,9 +1,9 @@
 import React from 'react';
 import { ICommand, ExecuteState, TextAreaTextApi } from './';
-import { title1 } from './title1';
+import { heading1 } from './title1';
 import { selectLine, executeCommand } from '../utils/markdownUtils';
 
-export function titleExecute({
+export function headingExecute({
   state,
   api,
   prefix,
@@ -19,8 +19,8 @@ export function titleExecute({
   executeCommand({ api, selectedText: state1.selectedText, selection: state.selection, prefix, suffix });
 }
 
-export const title: ICommand = {
-  ...title1,
+export const heading: ICommand = {
+  ...heading1,
   icon: (
     <svg width="12" height="12" viewBox="0 0 520 520">
       <path
@@ -30,3 +30,10 @@ export const title: ICommand = {
     </svg>
   ),
 };
+
+/**
+ * @deprecated Use `heading` instead.
+ * This command is now deprecated and will be removed in future versions.
+ * Use `title` for inserting headings.
+ */
+export const title: ICommand = heading;
