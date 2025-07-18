@@ -8,8 +8,8 @@ export const title6: ICommand = {
   shortcuts: 'ctrlcmd+6',
   prefix: '###### ',
   suffix: '',
-  buttonProps: { 'aria-label': 'Insert title6 (ctrl + 6)', title: 'Insert title6 (ctrl + 6)' },
-  icon: <div style={{ fontSize: 12, textAlign: 'left' }}>Title 6</div>,
+  buttonProps: { 'aria-label': 'Insert Heading 6 (ctrl + 6)', title: 'Insert Heading 6 (ctrl + 6)' },
+  icon: <div style={{ fontSize: 12, textAlign: 'left' }}>Heading 6</div>,
   execute: (state: ExecuteState, api: TextAreaTextApi) => {
     titleExecute({ state, api, prefix: state.command.prefix!, suffix: state.command.suffix });
   },
