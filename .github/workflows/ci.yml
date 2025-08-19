@@ -32,7 +32,7 @@ jobs:
         run: npm run build
 
       - working-directory: www
-        run: npm run map
+        run: npm run map:safe
 
       - name: Create Coverage Badges
         uses: jaywcjlove/coverage-badges-cli@main
