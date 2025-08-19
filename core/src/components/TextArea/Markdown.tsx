@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { rehype } from 'rehype';
 import rehypePrism from 'rehype-prism-plus';
-import { IProps } from '../../Types';
+import { type IProps } from '../../Types';
 import { EditorContext } from '../../Context';
 
 function html2Escape(sHtml: string) {

@@ -779,7 +779,7 @@ export default function App() {
 
 ```tsx mdx:preview
 import React, { useState } from "react";
-import MDEditor, { commands, ICommand, TextState, TextAreaTextApi } from "@uiw/react-md-editor";
+import MDEditor, { commands, type ICommand, TextState, TextAreaTextApi } from "@uiw/react-md-editor";
 import domToImage from "dom-to-image";
 
 const textToImage: ICommand = {

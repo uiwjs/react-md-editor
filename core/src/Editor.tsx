@@ -1,10 +1,10 @@
-import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle, Fragment } from 'react';
+import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { ToolbarVisibility } from './components/Toolbar/';
 import TextArea from './components/TextArea/';
 import DragBar from './components/DragBar/';
-import { getCommands, getExtraCommands, ICommand, TextState, TextAreaCommandOrchestrator } from './commands/';
-import { reducer, EditorContext, ContextStore } from './Context';
+import { getCommands, getExtraCommands, type ICommand, type TextState, TextAreaCommandOrchestrator } from './commands/';
+import { reducer, EditorContext, type ContextStore } from './Context';
 import type { MDEditorProps } from './Types';
 
 function setGroupPopFalse(data: Record<string, boolean> = {}) {

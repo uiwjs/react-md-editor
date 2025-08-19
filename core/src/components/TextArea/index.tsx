@@ -1,10 +1,11 @@
 import React, { useEffect, Fragment, useContext, JSX } from 'react';
-import { EditorContext, ContextStore, ExecuteCommandState } from '../../Context';
+import type * as CSS from 'csstype';
+import { EditorContext, type ContextStore, type ExecuteCommandState } from '../../Context';
 import shortcuts from './shortcuts';
 import Markdown from './Markdown';
-import Textarea, { TextAreaProps } from './Textarea';
-import { IProps } from '../../Types';
-import { TextAreaCommandOrchestrator, ICommand } from '../../commands/';
+import Textarea, { type TextAreaProps } from './Textarea';
+import { type IProps } from '../../Types';
+import { TextAreaCommandOrchestrator, type ICommand } from '../../commands/';
 import './index.less';
 
 type RenderTextareaHandle = {
@@ -68,7 +69,7 @@ export default function TextArea(props: ITextAreaProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const textStyle: React.CSSProperties = highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
+  const textStyle: CSS.Properties = highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
 
   return (
     <div ref={warp} className={`${prefixCls}-area ${className || ''}`} onScroll={onScroll}>
