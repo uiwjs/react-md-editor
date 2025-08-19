@@ -8,7 +8,7 @@
     "build": "kkt build",
     "start": "kkt start",
     "map": "source-map-explorer build/static/js/*.js --html build/website-result.html --no-border-checks",
-    "map:safe": "source-map-explorer build/static/js/main.*.js build/static/js/*-vendor.*.js --html build/website-result.html"
+    "map:safe": "source-map-explorer build/static/js/main.*.js build/static/js/*-vendor.*.js --html build/website-result.html --no-border-checks"
   },
   "license": "MIT",
   "devDependencies": {
