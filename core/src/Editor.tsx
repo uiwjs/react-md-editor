@@ -230,7 +230,7 @@ const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
             placement="top"
           />
           <div className={`${prefixCls}-content`}>
-            {/(edit|live)/.test(state.preview || '') && (
+            {/(edit|live|editablePreview)/.test(state.preview || '') && (
               <TextArea
                 className={`${prefixCls}-input`}
                 prefixCls={prefixCls}
