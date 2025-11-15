@@ -588,6 +588,27 @@ export default function App() {
 }
 ```
 
+Set to support editor only
+
+```jsx mdx:preview
+import React, { useContext } from "react";
+import MDEditor, { commands, EditorContext } from "@uiw/react-md-editor";
+
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!**");
+  return (
+    <div className="container">
+      <MDEditor
+        value={value}
+        preview="edit"
+        extraCommands={[commands.fullscreen]}
+        onChange={(val) => setValue(val)}
+      />
+    </div>
+  );
+}
+```
+
 ### Editor Font Size
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/markdown-editor-for-react-uiwjs-react-md-editor-issues-425-2epmgh?fontsize=14&hidenavigation=1&theme=dark)
