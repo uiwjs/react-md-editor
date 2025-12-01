@@ -120,6 +120,49 @@ export default function App() {
 }
 ```
 
+### Headless Mode
+
+The package exposes the necessary utilities to build a headless markdown editor with your own UI. This example creates a simple textarea that supports markdown keyboard shortcuts and correct handling of newlines.
+
+```jsx mdx:preview
+import React from "react";
+import { 
+  handleKeyDown, 
+  shortcuts, 
+  TextAreaCommandOrchestrator,
+  getCommands,
+} from '@uiw/react-md-editor';
+
+export default function App() {
+  const [value, setValue] = React.useState("**Hello world!!!**");
+  const textareaRef = React.useRef(null);
+  const orchestratorRef = React.useRef(null);
+  
+  React.useEffect(() => {
+    if (textareaRef.current) {
+      orchestratorRef.current = new TextAreaCommandOrchestrator(textareaRef.current);
+    }
+  }, []);
+
+  const onKeyDown = (e) => {
+    handleKeyDown(e, 2, false);
+    if (orchestratorRef.current) {
+      shortcuts(e, getCommands(), orchestratorRef.current);
+    }
+  };
+
+  return (
+    <textarea
+      ref={textareaRef}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onKeyDown={onKeyDown}
+      style={{ width: '100%', height: 200, padding: 10 }}
+    />
+  );
+}
+```
+
 ### Special Markdown syntax
 
 **Supports for CSS Style**

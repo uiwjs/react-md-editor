@@ -11,6 +11,8 @@ export * from './utils/InsertTextAtPosition';
 export * from './Editor';
 export * from './Context';
 export * from './Types';
+export { default as handleKeyDown } from './components/TextArea/handleKeyDown';
+export { default as shortcuts } from './components/TextArea/shortcuts';
 
 export { MarkdownUtil, commands };
 
