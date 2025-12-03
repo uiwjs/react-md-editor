@@ -1133,7 +1133,6 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/stevemk14ebr" title="Stephen Eckels"><img src="https://avatars.githubusercontent.com/u/6619205?v=4" width="42;" alt="Stephen Eckels"/></a>
 <a href="https://github.com/RARgames" title="RAR"><img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/></a>
 <a href="https://github.com/alpharomercoma" title="Alpha Romer Coma"><img src="https://avatars.githubusercontent.com/u/108984668?v=4" width="42;" alt="Alpha Romer Coma"/></a>
-<a href="https://github.com/Stopa" title="Stepan Bolotnikov"><img src="https://avatars.githubusercontent.com/u/408256?v=4" width="42;" alt="Stepan Bolotnikov"/></a>
 <a href="https://github.com/Exmirai" title="UniqueUlysees"><img src="https://avatars.githubusercontent.com/u/6436703?v=4" width="42;" alt="UniqueUlysees"/></a>
 <a href="https://github.com/sandiiarov" title="Alex Sandiiarov"><img src="https://avatars.githubusercontent.com/u/15861257?v=4" width="42;" alt="Alex Sandiiarov"/></a>
 <a href="https://github.com/nuragic" title="Andrea Puddu"><img src="https://avatars.githubusercontent.com/u/1586378?v=4" width="42;" alt="Andrea Puddu"/></a>
@@ -1150,6 +1149,7 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/peterj" title="Peter Jausovec"><img src="https://avatars.githubusercontent.com/u/11080940?v=4" width="42;" alt="Peter Jausovec"/></a>
 <a href="https://github.com/phillipb" title="Phillip Burch"><img src="https://avatars.githubusercontent.com/u/1482089?v=4" width="42;" alt="Phillip Burch"/></a>
 <a href="https://github.com/psycho-baller" title="Rami Maalouf"><img src="https://avatars.githubusercontent.com/u/81759594?v=4" width="42;" alt="Rami Maalouf"/></a>
+<a href="https://github.com/Stopa" title="Stepan Bolotnikov"><img src="https://avatars.githubusercontent.com/u/408256?v=4" width="42;" alt="Stepan Bolotnikov"/></a>
 <a href="https://github.com/toresbe" title="Tore Sinding Bekkedal"><img src="https://avatars.githubusercontent.com/u/1761606?v=4" width="42;" alt="Tore Sinding Bekkedal"/></a>
 <a href="https://github.com/valenfv" title="Valentin"><img src="https://avatars.githubusercontent.com/u/34139820?v=4" width="42;" alt="Valentin"/></a>
 <a href="https://github.com/jmtes" title="juno tesoro"><img src="https://avatars.githubusercontent.com/u/38450133?v=4" width="42;" alt="juno tesoro"/></a>
