@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-md-editor",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "description": "A markdown editor with preview, implemented with React.js and TypeScript.",
   "homepage": "https://uiwjs.github.io/react-md-editor/",
   "funding": "https://jaywcjlove.github.io/#/sponsor",
