@@ -10,6 +10,8 @@ declare module '@uiw/react-md-editor/nohighlight' {
   export * from '@uiw/react-md-editor/esm/Editor.nohighlight';
   export * from '@uiw/react-md-editor/esm/Context';
   export * from '@uiw/react-md-editor/esm/Types';
+  export { default as handleKeyDown } from '@uiw/react-md-editor/esm/components/TextArea/handleKeyDown';
+  export { default as shortcuts } from '@uiw/react-md-editor/esm/components/TextArea/shortcuts';
   export { MarkdownUtil, commands };
   export default MDEditor;
 }
