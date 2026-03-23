@@ -43,7 +43,7 @@ export type TextAreaRef = {
 
 export default function TextArea(props: ITextAreaProps) {
   const { prefixCls, className, onScroll, renderTextarea, ...otherProps } = props || {};
-  const { markdown, scrollTop, commands, minHeight, highlightEnable, extraCommands, dispatch } =
+  const { markdown, scrollTop, commands, minHeight, highlightEnable, extraCommands, dispatch, preview } =
     useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
@@ -104,7 +104,11 @@ export default function TextArea(props: ITextAreaProps) {
         ) : (
           <Fragment>
             {highlightEnable && <Markdown prefixCls={prefixCls} />}
-            <Textarea prefixCls={prefixCls} {...otherProps} style={textStyle} />
+            {preview === 'editablePreview' ? (
+              <Textarea prefixCls={prefixCls} {...otherProps} style={textStyle} />
+            ) : (
+              <Textarea prefixCls={prefixCls} {...otherProps} style={textStyle} readOnly />
+            )}
           </Fragment>
         )}
       </div>
