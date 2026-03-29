@@ -1163,7 +1163,8 @@ npm run start
 
 As always, thanks to our amazing contributors!
 
-<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT--><a href="https://github.com/jaywcjlove" title="小弟调调"><img src="https://avatars.githubusercontent.com/u/1680273?v=4" width="42;" alt="小弟调调"/></a>
+<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-->
+<a href="https://github.com/jaywcjlove" title="小弟调调"><img src="https://avatars.githubusercontent.com/u/1680273?v=4" width="42;" alt="小弟调调"/></a>
 <a href="https://github.com/renovate-bot" title="Mend Renovate"><img src="https://avatars.githubusercontent.com/u/25180681?v=4" width="42;" alt="Mend Renovate"/></a>
 <a href="https://github.com/stevemk14ebr" title="Stephen Eckels"><img src="https://avatars.githubusercontent.com/u/6619205?v=4" width="42;" alt="Stephen Eckels"/></a>
 <a href="https://github.com/RARgames" title="RAR"><img src="https://avatars.githubusercontent.com/u/13639766?v=4" width="42;" alt="RAR"/></a>
@@ -1191,7 +1192,9 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/juspky" title="juspky"><img src="https://avatars.githubusercontent.com/u/11074890?v=4" width="42;" alt="juspky"/></a>
 <a href="https://github.com/ryicoh" title="ryicoh"><img src="https://avatars.githubusercontent.com/u/37844673?v=4" width="42;" alt="ryicoh"/></a>
 <a href="https://github.com/wj0990" title="wangjie"><img src="https://avatars.githubusercontent.com/u/8792016?v=4" width="42;" alt="wangjie"/></a>
-<a href="https://github.com/xiaohuoni" title="聪小陈"><img src="https://avatars.githubusercontent.com/u/11746742?v=4" width="42;" alt="聪小陈"/></a><!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->
+<a href="https://github.com/xiaohuoni" title="聪小陈"><img src="https://avatars.githubusercontent.com/u/11746742?v=4" width="42;" alt="聪小陈"/></a>
+
+<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->
 
 Made with [contributors](https://github.com/jaywcjlove/github-action-contributors).
 
