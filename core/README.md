@@ -256,6 +256,36 @@ export default function App() {
 }
 ```
 
+### Common Code Highlight
+
+Use `@uiw/react-md-editor/common` to keep syntax highlighting while only including the `rehype-prism-plus/common` language subset. This is a middle ground between the default full-language build and `nohighlight`.
+
+```jsx mdx:preview
+import React from "react";
+import MDEditor from '@uiw/react-md-editor/common';
+
+const code = `**Hello world!!!**
+\`\`\`js
+function greet(name) {
+  console.log('hello', name);
+}
+\`\`\`
+`
+
+export default function App() {
+  const [value, setValue] = React.useState(code);
+  return (
+    <div className="container">
+      <MDEditor
+        value={value}
+        onChange={setValue}
+      />
+      <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
+    </div>
+  );
+}
+```
+
 ### Placeholder & maxLength
 
 "Below is an example that sets the `placeholder` for the editor and defines the maximum input character length as `10` characters."

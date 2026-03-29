@@ -8,6 +8,8 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import MDEditor from '../core/src';
+import MDEditorCommon from '../core/src/index.common';
+import MDEditorNoHighlight from '../core/src/index.nohighlight';
 
 // In your test setup file
 // @ts-ignore
@@ -89,4 +91,22 @@ it('MDEditor KeyboardEvent onHeightChange', async () => {
   render(<MyComponent />);
   expect(handleChange).lastReturnedWith(500);
   expect(handleChange).toHaveLength(3);
+});
+
+it('MDEditor common exposes Markdown preview component', () => {
+  expect(MDEditorCommon.Markdown).toBeDefined();
+});
+
+it('MDEditor common Markdown renders source content', () => {
+  const { container } = render(<MDEditorCommon.Markdown source={'```js\nconsole.log("hello")\n```'} />);
+  expect(container).toHaveTextContent('console.log("hello")');
+});
+
+it('MDEditor nohighlight exposes Markdown preview component', () => {
+  expect(MDEditorNoHighlight.Markdown).toBeDefined();
+});
+
+it('MDEditor nohighlight Markdown renders source content', () => {
+  const { container } = render(<MDEditorNoHighlight.Markdown source={'```js\nconsole.log("hello")\n```'} />);
+  expect(container).toHaveTextContent('console.log("hello")');
 });

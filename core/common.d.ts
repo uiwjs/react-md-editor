@@ -1,0 +1,17 @@
+declare module '@uiw/react-md-editor/common' {
+  import MDEditor from '@uiw/react-md-editor/esm/Editor.common';
+  import * as commands from '@uiw/react-md-editor/esm/commands';
+  import * as MarkdownUtil from '@uiw/react-md-editor/esm/utils/markdownUtils';
+  export { headingExecute } from '@uiw/react-md-editor/esm/commands/title';
+  export * from '@uiw/react-md-editor/esm/commands';
+  export * from '@uiw/react-md-editor/esm/commands/group';
+  export * from '@uiw/react-md-editor/esm/utils/markdownUtils';
+  export * from '@uiw/react-md-editor/esm/utils/InsertTextAtPosition';
+  export * from '@uiw/react-md-editor/esm/Editor.common';
+  export * from '@uiw/react-md-editor/esm/Context';
+  export * from '@uiw/react-md-editor/esm/Types';
+  export { default as handleKeyDown } from '@uiw/react-md-editor/esm/components/TextArea/handleKeyDown';
+  export { default as shortcuts } from '@uiw/react-md-editor/esm/components/TextArea/shortcuts';
+  export { MarkdownUtil, commands };
+  export default MDEditor;
+}

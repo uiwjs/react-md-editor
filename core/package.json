@@ -16,6 +16,11 @@
       "types": "./lib/index.d.ts",
       "require": "./lib/index.js"
     },
+    "./common": {
+      "import": "./esm/index.common.js",
+      "types": "./lib/index.common.d.ts",
+      "require": "./lib/index.common.js"
+    },
     "./nohighlight": {
       "import": "./esm/index.nohighlight.js",
       "types": "./lib/index.nohighlight.d.ts",
@@ -53,6 +58,7 @@
   },
   "files": [
     "markdown-editor.css",
+    "common.d.ts",
     "nohighlight.d.ts",
     "commands.d.ts",
     "commands-cn.d.ts",
@@ -68,7 +74,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@uiw/react-markdown-preview": "^5.0.6",
+    "@uiw/react-markdown-preview": "^5.2.0",
     "rehype": "~13.0.0",
     "rehype-prism-plus": "~2.0.0"
   },
