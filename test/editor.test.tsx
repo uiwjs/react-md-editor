@@ -11,6 +11,12 @@ import MDEditor from '../core/src';
 import MDEditorCommon from '../core/src/index.common';
 import MDEditorNoHighlight from '../core/src/index.nohighlight';
 
+const modeEditors = [
+  ['default', MDEditor],
+  ['common', MDEditorCommon],
+  ['nohighlight', MDEditorNoHighlight],
+] as const;
+
 // In your test setup file
 // @ts-ignore
 // globalThis.IS_REACT_ACT_ENVIRONMENT = true;
@@ -93,20 +99,32 @@ it('MDEditor KeyboardEvent onHeightChange', async () => {
   expect(handleChange).toHaveLength(3);
 });
 
-it('MDEditor common exposes Markdown preview component', () => {
-  expect(MDEditorCommon.Markdown).toBeDefined();
-});
+describe.each(modeEditors)('MDEditor %s mode', (modeName, EditorComponent) => {
+  it('exposes Markdown preview component', () => {
+    expect(EditorComponent.Markdown).toBeDefined();
+  });
 
-it('MDEditor common Markdown renders source content', () => {
-  const { container } = render(<MDEditorCommon.Markdown source={'```js\nconsole.log("hello")\n```'} />);
-  expect(container).toHaveTextContent('console.log("hello")');
-});
+  it('renders editor textarea', () => {
+    render(<EditorComponent value="**Hello world!!!**" textareaProps={{ title: `${modeName}-textarea` }} />);
+    expect(screen.getByTitle(`${modeName}-textarea`)).toBeInTheDocument();
+  });
 
-it('MDEditor nohighlight exposes Markdown preview component', () => {
-  expect(MDEditorNoHighlight.Markdown).toBeDefined();
-});
+  it('calls onChange when textarea value changes', () => {
+    const handleChange = jest.fn();
+    render(
+      <EditorComponent
+        value="**Hello world!!!**"
+        textareaProps={{ title: `${modeName}-change-textarea` }}
+        onChange={handleChange}
+      />,
+    );
+    fireEvent.change(screen.getByTitle(`${modeName}-change-textarea`), { target: { value: '# title' } });
+    expect(handleChange).toHaveBeenCalled();
+    expect(handleChange.mock.calls.at(-1)?.[0]).toBe('# title');
+  });
 
-it('MDEditor nohighlight Markdown renders source content', () => {
-  const { container } = render(<MDEditorNoHighlight.Markdown source={'```js\nconsole.log("hello")\n```'} />);
-  expect(container).toHaveTextContent('console.log("hello")');
+  it('Markdown renders source content', () => {
+    const { container } = render(<EditorComponent.Markdown source={'```js\nconsole.log("hello")\n```'} />);
+    expect(container).toHaveTextContent('console.log("hello")');
+  });
 });
