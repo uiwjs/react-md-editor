@@ -51,6 +51,7 @@ jobs:
       - name: Modify core/README.md
         uses: jaywcjlove/github-action-modify-file-content@main
         with:
+          trim_whitespace: false
           path: core/README.md
           openDelimiter: '<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-->'
           closeDelimiter: '<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->'
