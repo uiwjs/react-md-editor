@@ -1,9 +1,46 @@
 import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
+import rehypeSanitize from 'rehype-sanitize';
 import { ToolbarVisibility } from './components/Toolbar/';
 import DragBar from './components/DragBar/';
 import { getCommands, getExtraCommands, type ICommand, type TextState, TextAreaCommandOrchestrator } from './commands/';
 import { reducer, EditorContext, type ContextStore } from './Context';
 import type { MDEditorProps } from './Types';
+
+type RehypePlugin = any;
+type RehypePluginTuple = [RehypePlugin, any];
+type RehypePluginItem = RehypePlugin | RehypePluginTuple;
+
+function containsRehypeSanitize(plugins: RehypePluginItem[]): boolean {
+  return plugins.some((plugin) => {
+    if (Array.isArray(plugin)) {
+      return plugin[0] === rehypeSanitize;
+    }
+    return plugin === rehypeSanitize;
+  });
+}
+
+function mergePreviewOptionsWithSanitize(
+  previewOptions: MDEditorProps['previewOptions'],
+): MDEditorProps['previewOptions'] {
+  if (!previewOptions) {
+    return { rehypePlugins: [rehypeSanitize] };
+  }
+
+  const { rehypePlugins, ...restOptions } = previewOptions;
+
+  if (rehypePlugins === undefined) {
+    return { ...restOptions, rehypePlugins: [rehypeSanitize] };
+  }
+
+  if (Array.isArray(rehypePlugins)) {
+    if (containsRehypeSanitize(rehypePlugins)) {
+      return previewOptions;
+    }
+    return { ...restOptions, rehypePlugins: [rehypeSanitize, ...rehypePlugins] };
+  }
+
+  return { ...restOptions, rehypePlugins: [rehypeSanitize, rehypePlugins] };
+}
 
 function setGroupPopFalse(data: Record<string, boolean> = {}) {
   Object.keys(data).forEach((keyname) => {
@@ -190,15 +227,17 @@ export function createMDEditor<
         }
       };
 
-      const previewClassName = `${prefixCls}-preview ${previewOptions.className || ''}`;
+      const mergedPreviewOptions = useMemo(() => mergePreviewOptionsWithSanitize(previewOptions), [previewOptions]);
+
+      const previewClassName = `${prefixCls}-preview ${mergedPreviewOptions.className || ''}`;
       const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => handleScroll(e, 'preview');
       let mdPreview = useMemo(
         () => (
           <div ref={previewRef} className={previewClassName}>
-            <PreviewComponent {...previewOptions} onScroll={handlePreviewScroll} source={state.markdown || ''} />
+            <PreviewComponent {...mergedPreviewOptions} onScroll={handlePreviewScroll} source={state.markdown || ''} />
           </div>
         ),
-        [previewClassName, previewOptions, state.markdown],
+        [previewClassName, mergedPreviewOptions, state.markdown],
       );
       const preview = components?.preview && components?.preview(state.markdown || '', state, dispatch);
       if (preview && React.isValidElement(preview)) {
