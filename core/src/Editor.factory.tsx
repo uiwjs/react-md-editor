@@ -10,6 +10,17 @@ type RehypePlugin = any;
 type RehypePluginTuple = [RehypePlugin, any];
 type RehypePluginItem = RehypePlugin | RehypePluginTuple;
 
+/**
+ * 安全检查函数：检查插件数组中是否已包含 rehype-sanitize
+ * 用于避免重复添加 sanitize 插件
+ *
+ * 安全责任边界：
+ * - 此函数仅用于检测，不修改任何插件配置
+ * - 检测逻辑支持两种插件形式：直接函数引用 或 [函数, 配置] 元组
+ *
+ * @param plugins - rehype 插件数组
+ * @returns 是否包含 rehypeSanitize 插件
+ */
 function containsRehypeSanitize(plugins: RehypePluginItem[]): boolean {
   return plugins.some((plugin) => {
     if (Array.isArray(plugin)) {
@@ -19,26 +30,58 @@ function containsRehypeSanitize(plugins: RehypePluginItem[]): boolean {
   });
 }
 
+/**
+ * 【核心安全函数】合并 previewOptions 并确保 XSS 保护
+ *
+ * ⚠️ 安全责任边界声明 ⚠️
+ *
+ * 1. 默认行为（安全）：
+ *    - 当用户未提供 previewOptions 或未配置 rehypePlugins 时
+ *    - 自动注入默认 rehype-sanitize 插件提供 XSS 保护
+ *    - 使用 rehype-sanitize 的默认 schema（GitHub Flavored Markdown 安全策略）
+ *
+ * 2. 用户自定义 previewOptions 合并规则：
+ *    - 规则 A：如果用户已在 rehypePlugins 中显式配置了 rehype-sanitize
+ *      → 尊重用户配置，不重复添加，用户自行负责 sanitize 策略
+ *    - 规则 B：如果用户配置了其他 rehypePlugins 但未包含 sanitize
+ *      → 将默认 rehype-sanitize 添加到插件数组最前面
+ *      → 确保 sanitize 在其他插件处理之前执行
+ *    - 规则 C：用户通过 previewOptions 传入的其他选项（如 className）保持不变
+ *
+ * 3. 安全例外（需用户自行负责）：
+ *    - 使用 components.preview 自定义预览组件时，此函数完全不生效
+ *    - 自定义预览组件接收原始 markdown 源码，用户需自行处理 XSS 风险
+ *    - MDEditor.Markdown 静态组件不使用此函数，无默认 XSS 保护
+ *
+ * @param previewOptions - 用户传入的预览配置选项
+ * @returns 合并后的安全配置选项
+ */
 function mergePreviewOptionsWithSanitize(
   previewOptions: MDEditorProps['previewOptions'],
 ): MDEditorProps['previewOptions'] {
+  // 情况 1：用户完全未提供 previewOptions → 使用默认安全配置
   if (!previewOptions) {
     return { rehypePlugins: [rehypeSanitize] };
   }
 
   const { rehypePlugins, ...restOptions } = previewOptions;
 
+  // 情况 2：用户提供了 previewOptions 但未配置 rehypePlugins → 添加默认 sanitize
   if (rehypePlugins === undefined) {
     return { ...restOptions, rehypePlugins: [rehypeSanitize] };
   }
 
+  // 情况 3：用户配置了 rehypePlugins 数组
   if (Array.isArray(rehypePlugins)) {
+    // 情况 3a：用户已包含 rehype-sanitize → 尊重用户配置，不重复添加
     if (containsRehypeSanitize(rehypePlugins)) {
       return previewOptions;
     }
+    // 情况 3b：用户未包含 sanitize → 添加到最前面确保优先执行
     return { ...restOptions, rehypePlugins: [rehypeSanitize, ...rehypePlugins] };
   }
 
+  // 情况 4：用户配置了单个 rehype 插件 → 在其前面添加默认 sanitize
   return { ...restOptions, rehypePlugins: [rehypeSanitize, rehypePlugins] };
 }
 
@@ -227,10 +270,25 @@ export function createMDEditor<
         }
       };
 
+      /**
+       * ⚠️ 安全边界：合并后的 previewOptions 已包含默认 XSS 保护
+       *
+       * 此 mergedPreviewOptions 用于默认的 PreviewComponent（@uiw/react-markdown-preview）。
+       * 只要用户不使用自定义 preview 组件，XSS 保护就会自动生效。
+       *
+       * 详细合并规则见 mergePreviewOptionsWithSanitize 函数注释。
+       */
       const mergedPreviewOptions = useMemo(() => mergePreviewOptionsWithSanitize(previewOptions), [previewOptions]);
 
       const previewClassName = `${prefixCls}-preview ${mergedPreviewOptions.className || ''}`;
       const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => handleScroll(e, 'preview');
+
+      /**
+       * 默认预览渲染路径（安全）：
+       * - 使用 @uiw/react-markdown-preview 组件
+       * - 传入 mergedPreviewOptions，其中包含 rehype-sanitize 提供 XSS 保护
+       * - markdown 源码经过 sanitize 处理后再渲染
+       */
       let mdPreview = useMemo(
         () => (
           <div ref={previewRef} className={previewClassName}>
@@ -239,8 +297,46 @@ export function createMDEditor<
         ),
         [previewClassName, mergedPreviewOptions, state.markdown],
       );
+
+      /**
+       * ⚠️ 安全风险边界：自定义 preview 组件
+       *
+       * 当用户通过 components.preview 提供自定义预览组件时：
+       *
+       * 1. 安全责任完全转移给用户
+       *    - mergedPreviewOptions 中的 rehype-sanitize 不会被应用
+       *    - 自定义组件接收的是原始 markdown 源码（state.markdown）
+       *    - 原始源码可能包含 <script>、javascript: 等危险内容
+       *
+       * 2. 用户必须自行处理 XSS 风险
+       *    - 建议在自定义组件中使用 rehype-sanitize 或 DOMPurify
+       *    - 或者使用 dangerouslySetInnerHTML 时确保内容已被净化
+       *
+       * 3. 此设计允许高级用户完全控制渲染流程
+       *    - 例如：需要支持自定义 HTML 标签、嵌入特殊组件等场景
+       *    - 但代价是用户必须承担安全责任
+       *
+       * 示例（安全的自定义 preview）：
+       * ```tsx
+       * import rehypeSanitize from 'rehype-sanitize';
+       * import ReactMarkdown from 'react-markdown';
+       *
+       * <MDEditor
+       *   components={{
+       *     preview: (source) => (
+       *       <ReactMarkdown
+       *         rehypePlugins={[rehypeSanitize]}
+       *         children={source}
+       *       />
+       *     )
+       *   }}
+       * />
+       * ```
+       */
       const preview = components?.preview && components?.preview(state.markdown || '', state, dispatch);
       if (preview && React.isValidElement(preview)) {
+        // 使用用户自定义的 preview 替换默认的安全预览
+        // ⚠️ 此时 mergedPreviewOptions 中的 sanitize 配置完全不生效
         mdPreview = (
           <div className={previewClassName} ref={previewRef} onScroll={handlePreviewScroll}>
             {preview}
@@ -314,10 +410,57 @@ export function createMDEditor<
   );
 
   type EditorComponent = typeof InternalMDEditor & {
+    /**
+     * ⚠️ 安全风险边界：MDEditor.Markdown 静态组件
+     *
+     * 此组件是 @uiw/react-markdown-preview 的直接引用，用途是：
+     * - 允许用户在编辑器外部单独渲染 markdown 内容
+     * - 提供更轻量的渲染选项，不包含编辑器 UI
+     *
+     * ⚠️ 重要安全声明：
+     * 1. MDEditor.Markdown **没有默认 XSS 保护**
+     *    - 与 MDEditor 主组件不同，它不会自动注入 rehype-sanitize
+     *    - 这是设计决策：保持底层组件的灵活性，让用户自行决定安全策略
+     *
+     * 2. 安全责任完全在用户
+     *    - 如果渲染的内容来自用户输入或不可信来源，必须手动配置 XSS 保护
+     *    - 建议显式传入 rehypePlugins 包含 rehype-sanitize
+     *
+     * 3. 与 MDEditor 主组件的区别
+     *    - MDEditor: 默认安全（自动 sanitize），使用 components.preview 时需注意
+     *    - MDEditor.Markdown: 默认不安全，需用户主动配置安全策略
+     *
+     * 安全使用示例：
+     * ```tsx
+     * // 不安全用法 ❌
+     * <MDEditor.Markdown source={userInput} />
+     *
+     * // 安全用法 ✅
+     * import rehypeSanitize from 'rehype-sanitize';
+     * <MDEditor.Markdown
+     *   source={userInput}
+     *   rehypePlugins={[rehypeSanitize]}
+     * />
+     * ```
+     */
     Markdown: TMarkdownPreview;
   };
 
   const Editor = InternalMDEditor as EditorComponent;
+
+  /**
+   * 将 MarkdownPreview 组件直接赋值给 Editor.Markdown
+   *
+   * 安全设计考量：
+   * - 这是一个"透传"赋值，不添加任何额外的安全层
+   * - @uiw/react-markdown-preview 本身不包含默认 XSS 保护
+   * - 用户必须通过 rehypePlugins 自行配置安全策略
+   *
+   * 为什么这样设计？
+   * 1. 灵活性：允许高级用户完全控制渲染流程（例如信任的内部内容）
+   * 2. 一致性：与 @uiw/react-markdown-preview 的行为保持一致
+   * 3. 明确性：让安全责任边界清晰可见
+   */
   Editor.Markdown = MarkdownPreview;
   Editor.displayName = 'MDEditor';
 
