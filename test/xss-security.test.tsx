@@ -200,10 +200,11 @@ describe('XSS Security Regression Tests', () => {
     describe('Custom rehype plugins', () => {
       it('should merge default sanitize with user rehype plugins', () => {
         const mockRehypePlugin = jest.fn(() => (tree: any) => tree);
+        const xssContent = '<script>alert(1)</script> Safe text';
 
         render(
           <MDEditor
-            value="# Test"
+            value={xssContent}
             preview="preview"
             textareaProps={{ title: 'merge-plugins' }}
             previewOptions={{
@@ -212,16 +213,20 @@ describe('XSS Security Regression Tests', () => {
           />,
         );
 
-        expect(screen.getByTitle('merge-plugins')).toBeInTheDocument();
+        const scripts = document.querySelectorAll('script');
+        expect(scripts.length).toBe(0);
+        expect(document.body).toHaveTextContent('Safe text');
+        expect(mockRehypePlugin).toHaveBeenCalled();
       });
 
       it('should allow multiple rehype plugins including sanitize', () => {
         const mockPlugin1 = jest.fn(() => (tree: any) => tree);
         const mockPlugin2 = jest.fn(() => (tree: any) => tree);
+        const xssContent = '<script>alert(1)</script> <b>Safe</b>';
 
         render(
           <MDEditor
-            value="# Test"
+            value={xssContent}
             preview="preview"
             textareaProps={{ title: 'multiple-plugins' }}
             previewOptions={{
@@ -234,7 +239,30 @@ describe('XSS Security Regression Tests', () => {
           />,
         );
 
-        expect(screen.getByTitle('multiple-plugins')).toBeInTheDocument();
+        const scripts = document.querySelectorAll('script');
+        expect(scripts.length).toBe(0);
+        expect(document.body).toHaveTextContent('Safe');
+        expect(mockPlugin1).toHaveBeenCalled();
+        expect(mockPlugin2).toHaveBeenCalled();
+      });
+
+      it('should not duplicate sanitize when user already includes it', () => {
+        const xssContent = '<script>alert(1)</script> Safe';
+
+        const { container } = render(
+          <MDEditor
+            value={xssContent}
+            preview="preview"
+            textareaProps={{ title: 'no-duplicate' }}
+            previewOptions={{
+              rehypePlugins: [[rehypeSanitize]],
+            }}
+          />,
+        );
+
+        const scripts = container.querySelectorAll('script');
+        expect(scripts.length).toBe(0);
+        expect(container).toHaveTextContent('Safe');
       });
     });
 
@@ -283,13 +311,16 @@ describe('XSS Security Regression Tests', () => {
         expect(capturedSource).toBe(testMarkdown);
       });
 
-      it('should not apply default sanitize when using custom preview component', () => {
-        const xssContent = '<script>alert("xss")</script>';
-        const mockPreview = jest.fn((source: string) => (
-          <div data-testid="custom-preview" dangerouslySetInnerHTML={{ __html: source }} />
-        ));
+      it('should not apply default sanitize when using custom preview component - SECURITY RISK', () => {
+        const xssContent = '<script class="xss-test">alert("xss")</script>';
+        let capturedSource: string | undefined;
 
-        const { container, getByTestId } = render(
+        const mockPreview = jest.fn((source: string) => {
+          capturedSource = source;
+          return <div data-testid="custom-preview">{source}</div>;
+        });
+
+        render(
           <MDEditor
             value={xssContent}
             preview="preview"
@@ -300,8 +331,9 @@ describe('XSS Security Regression Tests', () => {
           />,
         );
 
-        expect(getByTestId('custom-preview')).toBeInTheDocument();
-        expect(mockPreview).toHaveBeenCalledWith(xssContent, expect.anything(), expect.anything());
+        expect(mockPreview).toHaveBeenCalled();
+        expect(capturedSource).toBe(xssContent);
+        expect(capturedSource).toContain('<script');
       });
     });
 
@@ -326,18 +358,15 @@ describe('XSS Security Regression Tests', () => {
   });
 
   describe('MDEditor.Markdown Static Component', () => {
-    it('requires manual rehype-sanitize configuration for XSS protection', () => {
-      const xssContent = '<script>alert("xss")</script>';
+    it('does NOT have default XSS protection - IMPORTANT SECURITY NOTE', () => {
+      const xssContent = '<script class="xss-test">alert("xss")</script>';
 
       const { container } = render(
         <MDEditor.Markdown source={xssContent} />,
       );
 
-      const scripts = container.querySelectorAll('script');
-      if (scripts.length > 0) {
-        console.warn('Note: MDEditor.Markdown static component does not have default XSS protection. ' +
-          'Users must manually configure rehype-sanitize when using this component directly.');
-      }
+      const scripts = container.querySelectorAll('script.xss-test');
+      expect(scripts.length).toBeGreaterThan(0);
     });
 
     it('should respect rehype-sanitize when explicitly configured', () => {
@@ -386,18 +415,21 @@ describe('XSS Security Regression Tests', () => {
   });
 
   describe('Edge Cases', () => {
-    it('should handle empty previewOptions gracefully', () => {
+    it('should handle empty previewOptions gracefully AND apply default sanitize', () => {
+      const xssContent = '<script>alert(1)</script> <h1>Title</h1>';
       const { container } = render(
         <MDEditor
-          value="# Test"
+          value={xssContent}
           preview="preview"
           textareaProps={{ title: 'empty-options' }}
           previewOptions={{}}
         />,
       );
 
-      expect(screen.getByTitle('empty-options')).toBeInTheDocument();
+      const scripts = container.querySelectorAll('script');
+      expect(scripts.length).toBe(0);
       expect(container.querySelector('h1')).toBeInTheDocument();
+      expect(container.querySelector('h1')).toHaveTextContent('Title');
     });
 
     it('should handle markdown without HTML', () => {
