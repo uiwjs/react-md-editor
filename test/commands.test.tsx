@@ -62,6 +62,64 @@ it('MDEditor commands italic', async () => {
   expect(inputNode).toHaveValue('*title*');
 });
 
+it('MDEditor commands bold then italic keeps bold markers', async () => {
+  const MyComponent = () => {
+    const [value, setValue] = React.useState('title');
+    return (
+      <MDEditor
+        value={value}
+        textareaProps={{ title: 'test' }}
+        onChange={(value) => {
+          setValue(value || '');
+        }}
+      />
+    );
+  };
+  render(<MyComponent />);
+  fireEvent(
+    screen.getByTitle('Add bold text (ctrl + b)'),
+    new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    }),
+  );
+  expect(screen.getByTitle('test')).toHaveValue('**title**');
+  fireEvent(
+    screen.getByTitle('Add italic text (ctrl + i)'),
+    new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    }),
+  );
+  expect(screen.getByTitle('test')).toHaveValue('***title***');
+});
+
+it('MDEditor commands italic inside a bold highlight keeps bold markers', async () => {
+  const MyComponent = () => {
+    const [value, setValue] = React.useState('**title**');
+    return (
+      <MDEditor
+        value={value}
+        textareaProps={{ title: 'test' }}
+        onChange={(value) => {
+          setValue(value || '');
+        }}
+      />
+    );
+  };
+  render(<MyComponent />);
+  const inputNode = screen.getByTitle<HTMLTextAreaElement>('test');
+  inputNode.setSelectionRange(2, 7);
+  fireEvent(
+    screen.getByTitle('Add italic text (ctrl + i)'),
+    new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    }),
+  );
+  expect(inputNode).toHaveValue('***title***');
+});
+
 it('MDEditor commands code', async () => {
   const handleChange = jest.fn((value) => value);
   render(<MDEditor value={`He llo \nWold!`} textareaProps={{ title: 'test' }} onChange={handleChange} />);

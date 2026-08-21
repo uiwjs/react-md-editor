@@ -5,6 +5,39 @@ export interface TextSection {
   selection: TextRange;
 }
 
+// `*` is a prefix of `**`, so `**text**` is bold-only and `***text***` is bold+italic.
+function isItalicInsideBoldOnly(text: string, start: number, end: number): boolean {
+  const insideBold =
+    start >= 2 && end + 2 <= text.length && text.slice(start - 2, start) === '**' && text.slice(end, end + 2) === '**';
+  if (!insideBold) {
+    return false;
+  }
+  const insideBoldItalic =
+    start >= 3 &&
+    end + 3 <= text.length &&
+    text.slice(start - 3, start) === '***' &&
+    text.slice(end, end + 3) === '***';
+  return !insideBoldItalic;
+}
+
+function isAlreadyWrapped(selectedText: string, prefix: string, suffix: string): boolean {
+  if (
+    selectedText.length < prefix.length + suffix.length ||
+    !selectedText.startsWith(prefix) ||
+    !selectedText.endsWith(suffix)
+  ) {
+    return false;
+  }
+  if (prefix === '*' && suffix === '*') {
+    const isBold = selectedText.startsWith('**') && selectedText.endsWith('**');
+    const isBoldItalic = selectedText.startsWith('***') && selectedText.endsWith('***');
+    if (isBold && !isBoldItalic) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export function selectWord({
   text,
   selection,
@@ -23,6 +56,9 @@ export function selectWord({
   if (result.start >= prefix.length && result.end <= text.length - suffix.length) {
     const selectedTextContext = text.slice(result.start - prefix.length, result.end + suffix.length);
     if (selectedTextContext.startsWith(prefix) && selectedTextContext.endsWith(suffix)) {
+      if (prefix === '*' && suffix === '*' && isItalicInsideBoldOnly(text, result.start, result.end)) {
+        return result;
+      }
       return { start: result.start - prefix.length, end: result.end + suffix.length };
     }
   }
@@ -139,11 +175,7 @@ export function executeCommand({
   prefix: string;
   suffix?: string;
 }) {
-  if (
-    selectedText.length >= prefix.length + suffix.length &&
-    selectedText.startsWith(prefix) &&
-    selectedText.endsWith(suffix)
-  ) {
+  if (isAlreadyWrapped(selectedText, prefix, suffix)) {
     api.replaceSelection(selectedText.slice(prefix.length, suffix.length ? -suffix.length : undefined));
     api.setSelectionRange({ start: selection.start - prefix.length, end: selection.end - prefix.length });
   } else {
