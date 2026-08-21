@@ -102,7 +102,7 @@ export default function handleKeyDown(
   } else if (
     e.keyCode === 13 &&
     e.code.toLowerCase() === 'enter' &&
-    (/^(-|\*)\s/.test(currentLineStr) || /^\d+.\s/.test(currentLineStr)) &&
+    (/^(-|\*)\s/.test(currentLineStr) || /^\d+\.\s/.test(currentLineStr)) &&
     !e.shiftKey
   ) {
     /**
@@ -123,7 +123,7 @@ export default function handleKeyDown(
       startStr = '\n- [ ] ';
     }
 
-    if (/^\d+.\s/.test(currentLineStr)) {
+    if (/^\d+\.\s/.test(currentLineStr)) {
       startStr = `\n${parseInt(currentLineStr) + 1}. `;
     }
     return insertTextAtPosition(target, startStr);
