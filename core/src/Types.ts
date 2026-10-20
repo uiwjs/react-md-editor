@@ -83,7 +83,46 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   minHeight?: number;
   /**
-   * This is reset [react-markdown](https://github.com/rexxars/react-markdown) settings.
+   * 配置 markdown 预览的选项，底层传递给 @uiw/react-markdown-preview
+   *
+   * ⚠️ 安全责任边界：
+   *
+   * 1. 默认安全行为：
+   *    - 当未配置 rehypePlugins 时，会自动注入 rehype-sanitize 提供 XSS 保护
+   *    - 使用 rehype-sanitize 的默认 schema（GitHub Flavored Markdown 安全策略）
+   *
+   * 2. 自定义 rehypePlugins 时的合并规则：
+   *    - 规则 A：如果用户已显式配置 rehype-sanitize
+   *      → 尊重用户配置，不重复添加，用户自行负责 sanitize 策略
+   *    - 规则 B：如果用户配置了其他 rehype 插件但未包含 sanitize
+   *      → 将默认 rehype-sanitize 添加到插件数组最前面
+   *      → 确保 sanitize 在其他插件处理之前执行
+   *
+   * 3. 与 MDEditor.Markdown 的区别：
+   *    - MDEditor 的 previewOptions 有自动 sanitize 注入机制
+   *    - MDEditor.Markdown 静态组件没有此机制，需用户手动配置
+   *
+   * 4. 安全例外：
+   *    - 使用 components.preview 自定义预览组件时，这些选项完全不生效
+   *    - 自定义预览组件需自行处理 XSS 风险
+   *
+   * @example
+   * // 使用自定义 sanitize schema（允许 span 标签的 className 属性）
+   * import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
+   *
+   * <MDEditor
+   *   previewOptions={{
+   *     rehypePlugins: [
+   *       [rehypeSanitize, {
+   *         ...defaultSchema,
+   *         attributes: {
+   *           ...defaultSchema.attributes,
+   *           span: [...(defaultSchema.attributes?.span || []), ['className']]
+   *         }
+   *       }]
+   *     ]
+   *   }}
+   * />
    */
   previewOptions?: Omit<MarkdownPreviewProps, 'source'>;
   /**
@@ -96,7 +135,11 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    */
   renderTextarea?: ITextAreaProps['renderTextarea'];
   /**
-   * re-render element
+   * 自定义渲染组件的配置
+   *
+   * ⚠️ 安全责任边界：
+   * - 使用自定义组件时，安全责任从库转移到用户
+   * - 特别是 components.preview，会绕过默认的 XSS 保护机制
    */
   components?: {
     /** Use div to replace TextArea or re-render TextArea */
@@ -106,7 +149,58 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
      * _`toolbar`_ < _`command[].render`_
      */
     toolbar?: ICommand['render'];
-    /** Custom markdown preview */
+    /**
+     * ⚠️ 安全风险边界：自定义 markdown 预览组件
+     *
+     * 当使用此选项时，以下安全机制将**完全失效**：
+     * 1. previewOptions 中的 rehype-sanitize 自动注入
+     * 2. 默认的 @uiw/react-markdown-preview 安全渲染流程
+     *
+     * 安全责任完全转移：
+     * - 此函数接收的 source 是**原始 markdown 源码**
+     * - 原始源码可能包含 <script>、javascript:、onerror 等危险内容
+     * - 用户必须自行处理 XSS 风险
+     *
+     * 函数参数说明：
+     * @param source - 原始 markdown 源码（未经任何处理）
+     * @param state - 编辑器当前状态（ContextStore）
+     * @param dispatch - 状态更新函数
+     * @returns 自定义渲染的 React 元素
+     *
+     * ⚠️ 不安全的示例 ❌：
+     * ```tsx
+     * // 直接使用 dangerouslySetInnerHTML，没有任何 sanitize
+     * <MDEditor
+     *   components={{
+     *     preview: (source) => (
+     *       <div dangerouslySetInnerHTML={{ __html: markdownToHtml(source) }} />
+     *     )
+     *   }}
+     * />
+     * ```
+     *
+     * ✅ 安全的示例：
+     * ```tsx
+     * import rehypeSanitize from 'rehype-sanitize';
+     * import ReactMarkdown from 'react-markdown';
+     *
+     * <MDEditor
+     *   components={{
+     *     preview: (source) => (
+     *       <ReactMarkdown
+     *         rehypePlugins={[rehypeSanitize]}
+     *         children={source}
+     *       />
+     *     )
+     *   }}
+     * />
+     * ```
+     *
+     * 何时使用自定义 preview？
+     * - 需要完全控制渲染流程（例如：嵌入自定义 React 组件）
+     * - 需要支持默认 rehype-sanitize schema 不允许的 HTML 标签
+     * - 渲染的内容完全受信任（例如：内部系统、静态内容）
+     */
     preview?: (source: string, state: ContextStore, dispath: React.Dispatch<ContextStore>) => JSX.Element;
   };
   /** Theme configuration */
