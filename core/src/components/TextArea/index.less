@@ -1,11 +1,14 @@
-@md-editor:~ "w-md-editor";
+@md-editor: ~'w-md-editor';
 
 .@{md-editor} {
   &-area {
+    display: flex;
+    flex-direction: column;
     overflow: auto;
     border-radius: 5px;
   }
   &-text {
+    flex: 1 0 auto;
     min-height: 100%;
     position: relative;
     text-align: left;
