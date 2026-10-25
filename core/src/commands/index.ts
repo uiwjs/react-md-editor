@@ -11,7 +11,7 @@ import { hr } from './hr';
 import { image } from './image';
 import { italic } from './italic';
 import { link } from './link';
-import { checkedListCommand, orderedListCommand, unorderedListCommand } from './list';
+import { checkedListCommand, makeList, orderedListCommand, unorderedListCommand } from './list';
 import { codeEdit, codeLive, codePreview } from './preview';
 import { quote } from './quote';
 import { strikethrough } from './strikeThrough';
@@ -210,6 +210,7 @@ export {
   unorderedListCommand,
   orderedListCommand,
   checkedListCommand,
+  makeList,
   table,
   issue,
   help,
