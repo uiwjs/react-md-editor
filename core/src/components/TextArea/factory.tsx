@@ -87,7 +87,6 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
                   ...otherProps,
                   value: markdown,
                   autoComplete: 'off',
-                  autoCorrect: 'off',
                   spellCheck: 'false',
                   autoCapitalize: 'off',
                   className: `${prefixCls}-text-input`,

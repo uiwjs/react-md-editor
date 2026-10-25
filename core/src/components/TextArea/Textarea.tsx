@@ -77,7 +77,6 @@ export default function Textarea(props: TextAreaProps) {
   return (
     <textarea
       autoComplete="off"
-      autoCorrect="off"
       autoCapitalize="off"
       spellCheck={false}
       {...other}
