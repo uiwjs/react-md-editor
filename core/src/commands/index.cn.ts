@@ -12,6 +12,7 @@ import { italic as italicInit } from './italic';
 import { link as linkInit } from './link';
 import {
   checkedListCommand as checkedListCommandInit,
+  makeList,
   orderedListCommand as orderedListCommandInit,
   unorderedListCommand as unorderedListCommandInit,
 } from './list';
@@ -177,6 +178,7 @@ export {
   unorderedListCommand,
   orderedListCommand,
   checkedListCommand,
+  makeList,
   table,
   issue,
   help,

@@ -2,14 +2,23 @@ import React from 'react';
 import { type ICommand, type ExecuteState, TextAreaTextApi } from './';
 import {
   selectWord,
+  selectLine,
   getBreaksNeededForEmptyLineBefore,
   getBreaksNeededForEmptyLineAfter,
   insertBeforeEachLine,
   AlterLineFunction,
 } from '../utils/markdownUtils';
 
-export const makeList = (state: ExecuteState, api: TextAreaTextApi, insertBefore: string | AlterLineFunction) => {
-  const newSelectionRange = selectWord({ text: state.text, selection: state.selection, prefix: state.command.prefix! });
+export const makeList = (
+  state: ExecuteState,
+  api: TextAreaTextApi,
+  insertBefore: string | AlterLineFunction,
+  selectionStrategy: 'word' | 'line' = 'word',
+) => {
+  const newSelectionRange =
+    selectionStrategy === 'line'
+      ? selectLine({ text: state.text, selection: state.selection })
+      : selectWord({ text: state.text, selection: state.selection, prefix: state.command.prefix! });
   const state1 = api.setSelectionRange(newSelectionRange);
 
   const breaksBeforeCount = getBreaksNeededForEmptyLineBefore(state1.text, state1.selection.start);

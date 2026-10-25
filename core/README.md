@@ -330,6 +330,21 @@ export default function App() {
 
 ### Custom Toolbars
 
+List commands select a word by default. Custom commands can pass 'line' to makeList to select the entire line instead
+
+```tsx
+import MDEditor, { commands } from '@uiw/react-md-editor';
+
+const lineListCommand = {
+  ...commands.unorderedListCommand,
+  execute: (state, api) => commands.makeList(state, api, '- ', 'line'),
+};
+
+// <MDEditor commands={[lineListCommand]} />
+
+```
+
+
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/react-md-editor-custom-toolbars-m2n10?fontsize=14&hidenavigation=1&theme=dark)
 
 ```jsx mdx:preview
