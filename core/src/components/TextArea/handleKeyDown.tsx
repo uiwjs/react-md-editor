@@ -109,6 +109,16 @@ export default function handleKeyDown(
      * `13` - `Enter`
      */
     stopPropagation(e);
+    const atEndOfLine = target.selectionEnd === target.value.length || target.value[target.selectionEnd] === '\n';
+    const emptyListItem =
+      /^(?:[-*]|\d+\.)\s+$/.test(currentLineStr) || /^- \[[ xX]\]\s*$/.test(currentLineStr);
+    if (target.selectionStart === target.selectionEnd && atEndOfLine && emptyListItem) {
+      textArea.setSelectionRange({
+        start: target.selectionStart - currentLineStr.length,
+        end: target.selectionEnd,
+      });
+      return insertTextAtPosition(target, '');
+    }
     let startStr = '\n- ';
 
     if (currentLineStr.startsWith('*')) {
