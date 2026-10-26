@@ -76,13 +76,10 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
 
     const textStyle: CSS.Properties =
       MarkdownComponent && highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
-    const inputProps = {
-      ...otherProps,
-      'aria-label':
-        otherProps['aria-label'] || otherProps['aria-labelledby'] || otherProps.id || otherProps.title
-          ? otherProps['aria-label']
-          : 'Markdown editor',
-    };
+    const inputProps = { ...otherProps };
+    if (!inputProps['aria-label'] && !inputProps['aria-labelledby'] && !inputProps.id && !inputProps.title) {
+      inputProps['aria-label'] = 'Markdown editor';
+    }
 
     return (
       <div ref={warp} className={`${prefixCls}-area ${className || ''}`} onScroll={onScroll}>
