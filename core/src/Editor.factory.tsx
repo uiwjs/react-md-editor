@@ -44,6 +44,18 @@ export function createMDEditor<
         overflow = true,
         previewOptions = {},
         textareaProps,
+        id,
+        name,
+        required,
+        disabled,
+        readOnly,
+        placeholder,
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        'aria-describedby': ariaDescribedBy,
+        'aria-invalid': ariaInvalid,
+        'aria-required': ariaRequired,
+        'aria-errormessage': ariaErrorMessage,
         maxHeight = 1200,
         minHeight = 100,
         autoFocus,
@@ -244,6 +256,18 @@ export function createMDEditor<
                   className={`${prefixCls}-input`}
                   prefixCls={prefixCls}
                   autoFocus={autoFocus}
+                  id={id}
+                  name={name}
+                  required={required}
+                  disabled={disabled}
+                  readOnly={readOnly}
+                  placeholder={placeholder}
+                  aria-label={ariaLabel}
+                  aria-labelledby={ariaLabelledBy}
+                  aria-describedby={ariaDescribedBy}
+                  aria-invalid={ariaInvalid}
+                  aria-required={ariaRequired}
+                  aria-errormessage={ariaErrorMessage}
                   {...textareaProps}
                   onChange={changeHandle}
                   renderTextarea={components?.textarea || renderTextarea}
