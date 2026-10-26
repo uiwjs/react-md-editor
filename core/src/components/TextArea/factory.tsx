@@ -76,6 +76,13 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
 
     const textStyle: CSS.Properties =
       MarkdownComponent && highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
+    const inputProps = {
+      ...otherProps,
+      'aria-label':
+        otherProps['aria-label'] || otherProps['aria-labelledby'] || otherProps.id || otherProps.title
+          ? otherProps['aria-label']
+          : 'Markdown editor',
+    };
 
     return (
       <div ref={warp} className={`${prefixCls}-area ${className || ''}`} onScroll={onScroll}>
@@ -84,7 +91,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
             React.cloneElement(
               renderTextarea(
                 {
-                  ...otherProps,
+                  ...inputProps,
                   value: markdown,
                   autoComplete: 'off',
                   spellCheck: 'false',
@@ -109,7 +116,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
           ) : (
             <Fragment>
               {MarkdownComponent && highlightEnable && <MarkdownComponent prefixCls={prefixCls} />}
-              <Textarea prefixCls={prefixCls} {...otherProps} style={textStyle} />
+              <Textarea prefixCls={prefixCls} {...inputProps} style={textStyle} />
             </Fragment>
           )}
         </div>
