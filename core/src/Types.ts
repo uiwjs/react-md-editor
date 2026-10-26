@@ -26,6 +26,7 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   required?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['required'];
   disabled?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['disabled'];
   readOnly?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['readOnly'];
+  placeholder?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['placeholder'];
   /**
    * Event handler for the `onChange` event.
    */
