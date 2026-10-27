@@ -21,6 +21,12 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * The Markdown value.
    */
   value?: string;
+  /** Native textarea form attributes. */
+  name?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['name'];
+  required?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['required'];
+  disabled?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['disabled'];
+  readOnly?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['readOnly'];
+  placeholder?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['placeholder'];
   /**
    * Event handler for the `onChange` event.
    */

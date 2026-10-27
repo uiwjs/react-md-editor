@@ -25,8 +25,7 @@ export type RenderTextareaHandle = {
 };
 
 export interface ITextAreaProps
-  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onScroll'>,
-    IProps {
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onScroll'>, IProps {
   value?: string;
   onScroll?: (e: React.UIEvent<HTMLDivElement>) => void;
   renderTextarea?: (
@@ -76,6 +75,10 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
 
     const textStyle: CSS.Properties =
       MarkdownComponent && highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
+    const inputProps = { ...otherProps };
+    if (!inputProps['aria-label'] && !inputProps['aria-labelledby'] && !inputProps.id && !inputProps.title) {
+      inputProps['aria-label'] = 'Markdown editor';
+    }
 
     return (
       <div ref={warp} className={`${prefixCls}-area ${className || ''}`} onScroll={onScroll}>
@@ -84,7 +87,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
             React.cloneElement(
               renderTextarea(
                 {
-                  ...otherProps,
+                  ...inputProps,
                   value: markdown,
                   autoComplete: 'off',
                   spellCheck: 'false',
@@ -109,7 +112,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
           ) : (
             <Fragment>
               {MarkdownComponent && highlightEnable && <MarkdownComponent prefixCls={prefixCls} />}
-              <Textarea prefixCls={prefixCls} {...otherProps} style={textStyle} />
+              <Textarea prefixCls={prefixCls} {...inputProps} style={textStyle} />
             </Fragment>
           )}
         </div>
