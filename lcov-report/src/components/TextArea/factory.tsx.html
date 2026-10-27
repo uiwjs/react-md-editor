@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.36% </span>
+                <span class="strong">88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/22</span>
+                <span class='fraction'>22/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.41% </span>
+                <span class="strong">77.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>21/29</span>
+                <span class='fraction'>27/35</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.36% </span>
+                <span class="strong">88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/22</span>
+                <span class='fraction'>22/25</span>
             </div>
         
             
@@ -182,7 +182,10 @@
 <a name='L117'></a><a href='#L117'>117</a>
 <a name='L118'></a><a href='#L118'>118</a>
 <a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -226,31 +229,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">222x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">177x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">87x</span>
+<span class="cline-any cline-yes">87x</span>
+<span class="cline-any cline-yes">87x</span>
+<span class="cline-any cline-yes">87x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">177x</span>
-<span class="cline-any cline-yes">177x</span>
-<span class="cline-any cline-yes">177x</span>
-<span class="cline-any cline-yes">177x</span>
-<span class="cline-any cline-yes">177x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-yes">66x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">87x</span>
+<span class="cline-any cline-yes">87x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">177x</span>
-<span class="cline-any cline-yes">66x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">87x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -259,9 +261,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">177x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">222x</span>
+<span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">177x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">222x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -328,8 +334,7 @@ export type RenderTextareaHandle = {
 };
 &nbsp;
 export interface ITextAreaProps
-  extends Omit&lt;React.TextareaHTMLAttributes&lt;HTMLTextAreaElement&gt;, 'value' | 'onScroll'&gt;,
-    IProps {
+  extends Omit&lt;React.TextareaHTMLAttributes&lt;HTMLTextAreaElement&gt;, 'value' | 'onScroll'&gt;, IProps {
   value?: string;
   onScroll?: (e: React.UIEvent&lt;HTMLDivElement&gt;) =&gt; void;
   renderTextarea?: (
@@ -379,6 +384,10 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
 &nbsp;
     const textStyle: CSS.Properties =
       MarkdownComponent &amp;&amp; highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
+    const inputProps = { ...otherProps };
+    if (!inputProps['aria-label'] &amp;&amp; !inputProps['aria-labelledby'] &amp;&amp; !inputProps.id &amp;&amp; !inputProps.title) {
+      inputProps['aria-label'] = 'Markdown editor';
+    }
 &nbsp;
     return (
       &lt;div ref={warp} className={`${prefixCls}-area ${className || <span class="branch-1 cbranch-no" title="branch not covered" >''}</span>`} onScroll={onScroll}&gt;
@@ -387,7 +396,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
 <span class="branch-0 cbranch-no" title="branch not covered" >            React.cloneElement(</span>
               renderTextarea(
                 {
-                  ...otherProps,
+                  ...inputProps,
                   value: markdown,
                   autoComplete: 'off',
                   spellCheck: 'false',
@@ -412,7 +421,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
           ) : (
             &lt;Fragment&gt;
               {MarkdownComponent &amp;&amp; highlightEnable &amp;&amp; &lt;MarkdownComponent prefixCls={prefixCls} /&gt;}
-              &lt;Textarea prefixCls={prefixCls} {...otherProps} style={textStyle} /&gt;
+              &lt;Textarea prefixCls={prefixCls} {...inputProps} style={textStyle} /&gt;
             &lt;/Fragment&gt;
           )}
         &lt;/div&gt;
@@ -427,7 +436,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-10-27T00:00:06.256Z
+                at 2026-10-27T00:26:35.768Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
