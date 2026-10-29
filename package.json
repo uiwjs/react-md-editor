@@ -13,7 +13,8 @@
     "version": "lerna version --exact --force-publish --no-push --no-git-tag-version",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "remove": "npm run clean && lerna exec \"rm -rf package-lock.json\" --scope react-code-preview-layout --scope website",
-    "clean": "lerna clean --yes"
+    "clean": "lerna clean --yes",
+    "test:consumers": "node --test test/package-exports.test.mjs && node test/package-consumers.mjs"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,8 @@
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "react-test-renderer": "~18.2.0",
-    "tsbb": "^4.5.1"
+    "tsbb": "^4.5.1",
+    "vite": "^7.3.1"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
