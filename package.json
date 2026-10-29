@@ -55,6 +55,10 @@
     "collectCoverageFrom": [
       "<rootDir>/core/src/**/*.{ts,tsx}"
     ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/test/fixtures/"
+    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]

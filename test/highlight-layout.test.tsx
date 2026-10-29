@@ -10,6 +10,26 @@ import MDEditorCommon from '../core/src/index.common';
 
 const lessStyles = readFileSync(join(__dirname, '../core/src/components/TextArea/index.less'), 'utf8');
 
+// jsdom 20 applies the last matching rule and ignores specificity, so
+// getComputedStyle cannot show that this rule beats DaisyUI's `.list` / `.table`.
+function blockAfter(source: string, header: string) {
+  const start = source.indexOf(header);
+  const open = start < 0 ? -1 : source.indexOf('{', start + header.length);
+  if (open < 0) return undefined;
+  let depth = 0;
+  for (let index = open; index < source.length; index += 1) {
+    if (source[index] === '{') depth += 1;
+    else if (source[index] === '}') {
+      depth -= 1;
+      if (depth === 0) return source.slice(open + 1, index);
+    }
+  }
+  return undefined;
+}
+
+const textPreStyles = blockAfter(lessStyles, '.@{md-editor}-text-pre');
+const tokenDeclarations = textPreStyles?.match(/\.token\.list,\s*\.token\.table\s*\{([^}]+)\}/)?.[1];
+
 describe.each([
   ['default', MDEditor],
   ['common', MDEditorCommon],
@@ -19,27 +39,12 @@ describe.each([
     ['bullet lists', '* one\n- two', 'list'],
     ['tables', '| a | b |\n| --- | --- |\n| 1 | 2 |', 'table'],
   ])('keeps %s inline when component styles collide', (_name, markdown, tokenType) => {
-    const declarations = lessStyles.match(/\.token\.list,\s*\.token\.table\s*\{([^}]+)\}/)?.[1];
-    expect(declarations).toBeDefined();
-    expect(declarations).toContain('font-size: inherit;');
+    // `.w-md-editor-text-pre .token.list` (0,3,0) beats DaisyUI's `.list` / `.table` (0,1,0).
+    expect(lessStyles).toContain("@md-editor: ~'w-md-editor';");
+    expect(tokenDeclarations).toContain('display: inline;');
+    expect(tokenDeclarations).toContain('font-size: inherit;');
 
-    // DaisyUI uses these same class names for layout components
-    const style = document.createElement('style');
-    style.textContent =
-      '.w-md-editor-text-pre .token.list, .w-md-editor-text-pre .token.table {' +
-      declarations +
-      '}\n.list { display: flex; font-size: 24px; }\n.table { display: table; font-size: 24px; }';
-    document.head.appendChild(style);
-
-    try {
-      const { container } = render(<Editor value={markdown} preview="edit" />);
-      const tokens = container.querySelectorAll('.w-md-editor-text-pre .token.' + tokenType);
-      expect(tokens.length).toBeGreaterThan(0);
-      tokens.forEach((token) => {
-        expect(window.getComputedStyle(token).display).toBe('inline');
-      });
-    } finally {
-      style.remove();
-    }
+    const { container } = render(<Editor value={markdown} preview="edit" />);
+    expect(container.querySelectorAll('.w-md-editor-text-pre .token.' + tokenType).length).toBeGreaterThan(0);
   });
 });
