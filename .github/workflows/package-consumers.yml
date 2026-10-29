@@ -1,5 +1,14 @@
 name: Package consumers
 on:
+  push:
+    paths:
+      - 'core/package.json'
+      - 'core/scripts/**'
+      - 'test/package-exports.test.mjs'
+      - 'test/package-consumers.mjs'
+      - 'test/fixtures/package-consumers/**'
+      - 'package.json'
+      - '.github/workflows/package-consumers.yml'
   pull_request:
     paths:
       - 'core/package.json'
