@@ -1,0 +1,34 @@
+name: Package consumers
+on:
+  push:
+    paths:
+      - 'core/package.json'
+      - 'core/scripts/**'
+      - 'test/package-exports.test.mjs'
+      - 'test/package-consumers.mjs'
+      - 'test/fixtures/package-consumers/**'
+      - 'package.json'
+      - '.github/workflows/package-consumers.yml'
+  pull_request:
+    paths:
+      - 'core/package.json'
+      - 'core/scripts/**'
+      - 'test/package-exports.test.mjs'
+      - 'test/package-consumers.mjs'
+      - 'test/fixtures/package-consumers/**'
+      - 'package.json'
+      - '.github/workflows/package-consumers.yml'
+  workflow_dispatch:
+
+jobs:
+  consumers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: oven-sh/setup-bun@v2
+      - run: npm install
+      - run: npm run build
+      - run: npm run test:consumers

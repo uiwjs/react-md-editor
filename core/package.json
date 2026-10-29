@@ -12,29 +12,34 @@
     "./package.json": "./package.json",
     "./markdown-editor.css": "./markdown-editor.css",
     ".": {
-      "import": "./esm/index.js",
       "types": "./lib/index.d.ts",
-      "require": "./lib/index.js"
+      "import": "./esm/index.js",
+      "require": "./lib/index.js",
+      "default": "./esm/index.js"
     },
     "./common": {
-      "import": "./esm/index.common.js",
       "types": "./lib/index.common.d.ts",
-      "require": "./lib/index.common.js"
+      "import": "./esm/index.common.js",
+      "require": "./lib/index.common.js",
+      "default": "./esm/index.common.js"
     },
     "./nohighlight": {
-      "import": "./esm/index.nohighlight.js",
       "types": "./lib/index.nohighlight.d.ts",
-      "require": "./lib/index.nohighlight.js"
+      "import": "./esm/index.nohighlight.js",
+      "require": "./lib/index.nohighlight.js",
+      "default": "./esm/index.nohighlight.js"
     },
     "./commands": {
-      "import": "./esm/commands/index.js",
       "types": "./lib/commands/index.d.ts",
-      "require": "./lib/commands/index.js"
+      "import": "./esm/commands/index.js",
+      "require": "./lib/commands/index.js",
+      "default": "./esm/commands/index.js"
     },
     "./commands-cn": {
-      "import": "./esm/commands/index.cn.js",
       "types": "./lib/commands/index.cn.d.ts",
-      "require": "./lib/commands/index.cn.js"
+      "import": "./esm/commands/index.cn.js",
+      "require": "./lib/commands/index.cn.js",
+      "default": "./esm/commands/index.cn.js"
     }
   },
   "scripts": {
@@ -45,7 +50,7 @@
     "bundle:watch": "ncc watch src/index.tsx --target web --filename mdeditor",
     "bundle:min": "ncc build src/index.tsx --target web --filename mdeditor --minify",
     "watch": "tsbb watch src/*.tsx --use-babel & npm run css:watch",
-    "build": "tsbb build src/*.tsx --use-babel && npm run css:build && npm run css:build:dist",
+    "build": "tsbb build src/*.tsx --use-babel && npm run css:build && npm run css:build:dist && node scripts/mark-esm.cjs",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage --bail"
   },
@@ -91,5 +96,6 @@
     "uiw",
     "uiwjs",
     "code"
-  ]
+  ],
+  "types": "lib/index.d.ts"
 }
