@@ -84,6 +84,12 @@
     }
   }
 }
+// The highlighted text is painted behind the textarea
+// An opaque textarea background would cover it
+.@{md-editor}-text-highlighted .@{md-editor}-text-input {
+  background-color: transparent !important;
+}
+
 /**
  * Hack to apply on some CSS on IE10 and IE11
  */
