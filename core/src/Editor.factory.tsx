@@ -232,13 +232,15 @@ export function createMDEditor<
           initScroll.current = true;
         }
         if (textareaDom && previewDom) {
-          const scale =
-            (textareaDom.scrollHeight - textareaDom.offsetHeight) / (previewDom.scrollHeight - previewDom.offsetHeight);
-          if (e.target === textareaDom && active.current === 'text') {
-            previewDom.scrollTop = textareaDom.scrollTop / scale;
-          }
-          if (e.target === previewDom && active.current === 'preview') {
-            textareaDom.scrollTop = previewDom.scrollTop * scale;
+          const inputRange = Math.max(0, textareaDom.scrollHeight - textareaDom.offsetHeight);
+          const previewRange = Math.max(0, previewDom.scrollHeight - previewDom.offsetHeight);
+          if (inputRange > 0 && previewRange > 0) {
+            if (e.target === textareaDom && active.current === 'text') {
+              previewDom.scrollTop = (textareaDom.scrollTop / inputRange) * previewRange;
+            }
+            if (e.target === previewDom && active.current === 'preview') {
+              textareaDom.scrollTop = (previewDom.scrollTop / previewRange) * inputRange;
+            }
           }
           let scrollTop = 0;
           if (active.current === 'text') {
@@ -256,13 +258,8 @@ export function createMDEditor<
       const previewMarkdown = useDeferredValue(usePreviewSource(state.markdown || '', previewRenderMs));
       let mdPreview = useMemo(
         () => (
-          <div ref={previewRef} className={previewClassName}>
-            <TimedPreview
-              {...previewOptions}
-              renderMsRef={previewRenderMs}
-              onScroll={handlePreviewScroll}
-              source={previewMarkdown}
-            />
+          <div ref={previewRef} className={previewClassName} onScroll={handlePreviewScroll}>
+            <TimedPreview {...previewOptions} renderMsRef={previewRenderMs} source={previewMarkdown} />
           </div>
         ),
         [previewClassName, previewOptions, previewMarkdown],
