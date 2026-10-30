@@ -1,0 +1,427 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/components/TextArea/splitBlocks.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/TextArea</a> splitBlocks.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">98.66% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>74/75</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">95.06% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>77/81</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>3/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">98.61% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>71/72</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">1574x</span>
+<span class="cline-any cline-yes">1574x</span>
+<span class="cline-any cline-yes">1574x</span>
+<span class="cline-any cline-yes">185x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1574x</span>
+<span class="cline-any cline-yes">185x</span>
+<span class="cline-any cline-yes">184x</span>
+<span class="cline-any cline-yes">184x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">185x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1574x</span>
+<span class="cline-any cline-yes">1574x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1574x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1559x</span>
+<span class="cline-any cline-yes">856x</span>
+<span class="cline-any cline-yes">856x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">703x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">661x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-yes">120x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">661x</span>
+<span class="cline-any cline-yes">661x</span>
+<span class="cline-any cline-yes">1790122x</span>
+<span class="cline-any cline-yes">1790122x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1790097x</span>
+<span class="cline-any cline-yes">14337x</span>
+<span class="cline-any cline-yes">10345x</span>
+<span class="cline-any cline-yes">3992x</span>
+<span class="cline-any cline-yes">422x</span>
+<span class="cline-any cline-yes">3570x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3569x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3568x</span>
+<span class="cline-any cline-yes">266x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14337x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1775760x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1775760x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1775483x</span>
+<span class="cline-any cline-yes">87x</span>
+<span class="cline-any cline-yes">1775396x</span>
+<span class="cline-any cline-yes">87x</span>
+<span class="cline-any cline-yes">87x</span>
+<span class="cline-any cline-yes">1775309x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const FENCE_OPEN = /^```/;
+const FENCE_CLOSE = /^```\r?\n?$/;
+const BLANK_LINE = /^[ \t]*\r?\n?$/;
+const FRONT_MATTER_FENCE = /^---\r?\n?$/;
+&nbsp;
+/**
+ * Splits markdown into blocks that Prism's markdown grammar highlights the same way
+ * on their own as it does in the full document, so unchanged blocks can be cached.
+ * Joining the returned blocks always yields the original string.
+ *
+ * A block ends where a run of blank lines starts, so each block keeps its leading blank
+ * lines (indented code needs them). No split happens inside a ``` fence, front matter or
+ * multiline markup or link references, or right before a `---` line, which Prism
+ * would read as front matter. Whitespace-only lines stay in their block because
+ * Prism's inline emphasis can span them.
+ * Fences follow Prism's rule, not CommonMark's, so the split matches what Prism sees.
+ */
+export function splitBlocks(markdown: string): string[] {
+  const lines: string[] = markdown.match(/[^\n]*\n|[^\n]+$/g) || [];
+  const blocks: string[] = [];
+  let current = '';
+  let pendingSplit = -1;
+  let inFence = false;
+  let inFrontMatter = /^(?:\s*[\r\n])?---(?:\r?\n|$)/.test(markdown);
+  let frontMatterStarted = false;
+  const syntax = { end: '', quote: '', brackets: 0, subset: 0 };
+  let previousIsBlank = true;
+&nbsp;
+  lines.forEach((line) =&gt; {
+    const isBlank = BLANK_LINE.test(line);
+    const canSplit = !inFence &amp;&amp; !inFrontMatter &amp;&amp; !syntax.end &amp;&amp; !syntax.brackets;
+    if (/^\r?\n$/.test(line) &amp;&amp; !previousIsBlank &amp;&amp; canSplit) {
+      pendingSplit = current.length;
+    }
+    if (!isBlank &amp;&amp; pendingSplit &gt; 0) {
+      if (!FRONT_MATTER_FENCE.test(line)) {
+        blocks.push(current.slice(0, pendingSplit));
+        current = current.slice(pendingSplit);
+      }
+      pendingSplit = -1;
+    }
+    current += line;
+    previousIsBlank = isBlank;
+&nbsp;
+    if (inFrontMatter) {
+      if (FRONT_MATTER_FENCE.test(line)) {
+        inFrontMatter = !frontMatterStarted;
+        frontMatterStarted = true;
+      }
+      return;
+    }
+    if (inFence) {
+      inFence = !FENCE_CLOSE.test(line);
+      return;
+    }
+    if (!syntax.end &amp;&amp; FENCE_OPEN.test(line)) {
+      inFence = true;
+      return;
+    }
+    updateSyntax(line, syntax);
+  });
+  if (current) {
+    blocks.push(current);
+  }
+  return blocks;
+}
+&nbsp;
+// Keep potential multiline Prism tokens together. Unclosed syntax conservatively
+// keeps the rest of the document in one block until the user closes it.
+function updateSyntax(line: string, state: { end: string; quote: string; brackets: number; subset: number }) {
+  let reference = false;
+  for (let i = 0; i &lt; line.length; i++) {
+    const char = line[i];
+    if (state.end &amp;&amp; state.end !== '&gt;') {
+      const end = line.indexOf(state.end, i);
+      if (end === -1) return;
+      i = end + state.end.length - 1;
+      state.end = '';
+      continue;
+    }
+    if (state.end === '&gt;') {
+      if (state.quote) {
+        if (char === state.quote) state.quote = '';
+      } else if (char === '"' || char === "'") {
+        state.quote = char;
+      } else if (char === '[') {
+        state.subset++;
+      } else if (char === ']' &amp;&amp; state.subset) {
+        state.subset--;
+      } else if (char === '&gt;' &amp;&amp; !state.subset) {
+        state.end = '';
+      }
+      continue;
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (char === '\\') {
+<span class="cstat-no" title="statement not covered" >      i++;</span>
+    } else if (char === '&lt;' &amp;&amp; /[a-z!?/]/i.test(line[i + 1] || <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>) {
+      state.end = line.startsWith('&lt;!--', i)
+        ? '--&gt;'
+        : line.startsWith('&lt;![CDATA[', i)
+          ? ']]&gt;'
+          : line.startsWith('&lt;?', i)
+            ? <span class="branch-0 cbranch-no" title="branch not covered" >'?&gt;'</span>
+            : '&gt;';
+    } else if (char === '[') {
+      state.brackets++;
+    } else if (char === ']') {
+      state.brackets = Math.max(0, state.brackets - 1);
+      reference = line[i + 1] === ':';
+    } else if (reference &amp;&amp; (char === '"' || char === "'" || char === '(')) {
+      state.end = char === '(' ? <span class="branch-0 cbranch-no" title="branch not covered" >')' </span>: char;
+    }
+  }
+}
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-10-30T00:15:50.144Z
+            </div>
+        <script src="../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
+    </body>
+</html>
+    
