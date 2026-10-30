@@ -11,4 +11,7 @@ const entries = [MDEditor, CommonEditor, NoHighlightEditor, commands.bold, comma
 if (entries.some((entry) => !entry)) {
   throw new Error('Editor entrypoint missing');
 }
-createRoot(document.getElementById('root')).render(React.createElement(MDEditor, { value: '# test' }));
+const root = document.getElementById('root');
+if (root) {
+  createRoot(root).render(React.createElement(MDEditor, { value: '# test' }));
+}
