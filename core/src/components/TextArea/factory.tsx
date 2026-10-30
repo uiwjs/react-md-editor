@@ -73,6 +73,7 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const hasHighlightedOverlay = Boolean(MarkdownComponent && highlightEnable && !renderTextarea);
     const textStyle: CSS.Properties =
       MarkdownComponent && highlightEnable ? {} : { WebkitTextFillColor: 'initial', overflow: 'auto' };
     const inputProps = { ...otherProps };
@@ -82,7 +83,10 @@ export function createTextArea(options?: { Markdown?: MarkdownComponent; useMinH
 
     return (
       <div ref={warp} className={`${prefixCls}-area ${className || ''}`} onScroll={onScroll}>
-        <div className={`${prefixCls}-text`} style={useMinHeight ? { minHeight } : undefined}>
+        <div
+          className={`${prefixCls}-text${hasHighlightedOverlay ? ` ${prefixCls}-text-highlighted` : ''}`}
+          style={useMinHeight ? { minHeight } : undefined}
+        >
           {renderTextarea ? (
             React.cloneElement(
               renderTextarea(
