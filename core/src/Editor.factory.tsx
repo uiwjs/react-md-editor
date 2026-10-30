@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
+import React, { useEffect, useLayoutEffect, useReducer, useMemo, useRef, useImperativeHandle } from 'react';
 import { ToolbarVisibility } from './components/Toolbar/';
 import DragBar from './components/DragBar/';
 import { getCommands, getExtraCommands, type ICommand, type TextState, TextAreaCommandOrchestrator } from './commands/';
@@ -10,6 +10,45 @@ function setGroupPopFalse(data: Record<string, boolean> = {}) {
     data[keyname] = false;
   });
   return data;
+}
+
+const DEFAULT_PREVIEW_OPTIONS: NonNullable<MDEditorProps['previewOptions']> = {};
+
+/**
+ * Lets the preview render after the textarea on React 18+, so typing in a large
+ * document stays responsive. Older React versions render it right away, as before.
+ */
+const useDeferredValue: <T>(value: T) => T = (React as any).useDeferredValue || ((value) => value);
+
+const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
+
+const SLOW_PREVIEW_MS = 50;
+const MAX_PREVIEW_DELAY_MS = 500;
+
+/**
+ * Keeps the preview in step with every keystroke while it renders fast. Once a preview
+ * render takes longer than SLOW_PREVIEW_MS, it waits for a pause in typing as long as
+ * that render (at most MAX_PREVIEW_DELAY_MS) before updating.
+ * https://github.com/uiwjs/react-md-editor/issues/620
+ */
+function usePreviewSource(markdown: string, previewRenderMs: React.MutableRefObject<number>) {
+  const [, rerender] = useReducer((count: number) => count + 1, 0);
+  const shownRef = useRef(markdown);
+  if (previewRenderMs.current < SLOW_PREVIEW_MS) {
+    shownRef.current = markdown;
+  }
+  useEffect(() => {
+    if (shownRef.current === markdown) {
+      return;
+    }
+    const delay = Math.min(previewRenderMs.current, MAX_PREVIEW_DELAY_MS);
+    const timer = setTimeout(() => {
+      shownRef.current = markdown;
+      rerender();
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [markdown, previewRenderMs]);
+  return shownRef.current;
 }
 
 export interface RefMDEditor extends ContextStore {}
@@ -24,6 +63,15 @@ export function createMDEditor<
   const { MarkdownPreview, TextArea } = options;
   const PreviewComponent = MarkdownPreview as React.ComponentType<any>;
   const TextAreaComponent = TextArea as React.ComponentType<any>;
+
+  function TimedPreview(props: { renderMsRef: React.MutableRefObject<number>; [key: string]: any }) {
+    const { renderMsRef, ...previewProps } = props;
+    const renderStart = performance.now();
+    useIsomorphicLayoutEffect(() => {
+      renderMsRef.current = performance.now() - renderStart;
+    });
+    return <PreviewComponent {...previewProps} />;
+  }
 
   const InternalMDEditor = React.forwardRef<RefMDEditor, MDEditorProps>(
     (props: MDEditorProps, ref: React.ForwardedRef<RefMDEditor>) => {
@@ -42,7 +90,7 @@ export function createMDEditor<
         preview: previewType = 'live',
         fullscreen = false,
         overflow = true,
-        previewOptions = {},
+        previewOptions = DEFAULT_PREVIEW_OPTIONS,
         textareaProps,
         id,
         name,
@@ -204,13 +252,20 @@ export function createMDEditor<
 
       const previewClassName = `${prefixCls}-preview ${previewOptions.className || ''}`;
       const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => handleScroll(e, 'preview');
+      const previewRenderMs = useRef(0);
+      const previewMarkdown = useDeferredValue(usePreviewSource(state.markdown || '', previewRenderMs));
       let mdPreview = useMemo(
         () => (
           <div ref={previewRef} className={previewClassName}>
-            <PreviewComponent {...previewOptions} onScroll={handlePreviewScroll} source={state.markdown || ''} />
+            <TimedPreview
+              {...previewOptions}
+              renderMsRef={previewRenderMs}
+              onScroll={handlePreviewScroll}
+              source={previewMarkdown}
+            />
           </div>
         ),
-        [previewClassName, previewOptions, state.markdown],
+        [previewClassName, previewOptions, previewMarkdown],
       );
       const preview = components?.preview && components?.preview(state.markdown || '', state, dispatch);
       if (preview && React.isValidElement(preview)) {
