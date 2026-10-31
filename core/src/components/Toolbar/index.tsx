@@ -100,6 +100,7 @@ export function ToolbarItems(props: IToolbarProps) {
                   disabled,
                   'data-name': item.name,
                   ...item.buttonProps,
+                  'aria-pressed': item.keyCommand === 'fullscreen' ? !!fullscreen : undefined,
                   onClick: (evn: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                     evn.stopPropagation();
                     handleClick(item, item.groupName);

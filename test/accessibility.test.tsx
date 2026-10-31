@@ -130,4 +130,20 @@ describe.each(editors)('%s editor accessibility', (_mode, Editor) => {
     render(<Editor value="" textareaProps={{ renderTextarea }} />);
     expect(screen.getByRole('textbox', { name: 'Markdown editor' })).toBeInTheDocument();
   });
+
+  it('hides the fullscreen icon and announces the toggle state', () => {
+    render(<Editor value="hello" />);
+    const button = screen.getByRole('button', { name: 'Toggle fullscreen (ctrl + 0)' });
+    const icon = button.querySelector('svg');
+
+    expect(icon).toHaveAttribute('aria-hidden', 'true');
+    expect(icon).toHaveAttribute('focusable', 'false');
+    expect(button).toHaveAttribute('aria-pressed', 'false');
+
+    fireEvent.click(button);
+    expect(button).toHaveAttribute('aria-pressed', 'true');
+
+    fireEvent.click(button);
+    expect(button).toHaveAttribute('aria-pressed', 'false');
+  });
 });
