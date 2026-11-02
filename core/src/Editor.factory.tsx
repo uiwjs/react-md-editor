@@ -256,10 +256,13 @@ export function createMDEditor<
       const handlePreviewScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => handleScroll(e, 'preview');
       const previewRenderMs = useRef(0);
       const previewMarkdown = useDeferredValue(usePreviewSource(state.markdown || '', previewRenderMs));
+      // Embedded HTML can replace React-owned nodes. Remount that preview on edits
+      // so React does not try to reconcile DOM that a third-party script changed.
+      const previewKey = /<\/?[a-z][\w:-]*(?:\s|\/?>)/i.test(previewMarkdown) ? previewMarkdown : undefined;
       let mdPreview = useMemo(
         () => (
           <div ref={previewRef} className={previewClassName} onScroll={handlePreviewScroll}>
-            <TimedPreview {...previewOptions} renderMsRef={previewRenderMs} source={previewMarkdown} />
+            <TimedPreview key={previewKey} {...previewOptions} renderMsRef={previewRenderMs} source={previewMarkdown} />
           </div>
         ),
         [previewClassName, previewOptions, previewMarkdown],
