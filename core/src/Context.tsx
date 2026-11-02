@@ -12,6 +12,7 @@ export interface ContextStore {
   preview?: PreviewType;
   height?: React.CSSProperties['height'];
   fullscreen?: boolean;
+  disabled?: boolean;
   highlightEnable?: boolean;
   autoFocus?: boolean;
   autoFocusEnd?: boolean;

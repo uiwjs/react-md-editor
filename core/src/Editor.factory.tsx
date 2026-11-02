@@ -293,7 +293,7 @@ export function createMDEditor<
         }
       };
       return (
-        <EditorContext.Provider value={{ ...state, dispatch }}>
+        <EditorContext.Provider value={{ ...state, disabled, dispatch }}>
           <div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}>
             <ToolbarVisibility
               hideToolbar={hideToolbar}
@@ -328,7 +328,7 @@ export function createMDEditor<
               )}
               {/(live|preview)/.test(state.preview || '') && mdPreview}
             </div>
-            {visibleDragbar && !state.fullscreen && (
+            {visibleDragbar && !state.fullscreen && !disabled && (
               <DragBar
                 prefixCls={prefixCls}
                 height={state.height as number}
