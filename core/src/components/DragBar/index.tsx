@@ -60,7 +60,8 @@ const DragBar: React.FC<IDragBarProps> = (props) => {
     return () => {
       if (document) {
         $dom.current?.removeEventListener('touchstart', handleMouseDown);
-        document.removeEventListener('mousemove', handleMouseMove);
+        $dom.current?.removeEventListener('mousedown', handleMouseDown);
+        handleMouseUp();
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

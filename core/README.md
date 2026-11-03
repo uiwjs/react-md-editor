@@ -1141,6 +1141,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `autoFocus?: true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `autoFocusEnd?: false`: Can be used to make `Markdown Editor` focus on the end of text on initialization.
 - `previewOptions?: ReactMarkdown.ReactMarkdownProps`: This is reset [@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview/tree/0036dd51a25c00d5be6dc83aa978905c64750038?tab=readme-ov-file#options-props) settings.
+- `disabled?: boolean=false`: Disable the textarea, toolbar commands, fullscreen toggle and resize handle together. Reactively updating this prop re-enables those controls.
 - `textareaProps?: TextareaHTMLAttributes`: Set the `textarea` related props.
 - ~~`renderTextarea?: (props, opts) => JSX.Element;`~~: `@deprecated` Please use ~~`renderTextarea`~~ -> `components`. Use div to replace TextArea or re-render TextArea. [#193](https://github.com/uiwjs/react-md-editor/issues/193)
 - `components`: re-render textarea/toolbar element. [#419](https://github.com/uiwjs/react-md-editor/issues/419)

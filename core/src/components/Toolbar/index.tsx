@@ -14,11 +14,12 @@ export interface IToolbarProps extends IProps {
 
 export function ToolbarItems(props: IToolbarProps) {
   const { prefixCls, overflow } = props;
-  const { fullscreen, preview, barPopup = {}, components, commandOrchestrator, dispatch } = useContext(EditorContext);
+  const { fullscreen, preview, disabled: editorDisabled, barPopup = {}, components, commandOrchestrator, dispatch } =
+    useContext(EditorContext);
   const originalOverflow = useRef('');
 
   function handleClick(command: ICommand<string>, name?: string) {
-    if (!dispatch) return;
+    if (!dispatch || editorDisabled) return;
     const state: ContextStore = { barPopup: { ...barPopup } };
     if (command.keyCommand === 'preview') {
       state.preview = command.value as PreviewType;
@@ -81,7 +82,7 @@ export function ToolbarItems(props: IToolbarProps) {
                 dispatch,
               })
             : undefined;
-        const disabled = barPopup && preview && preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand);
+        const disabled = !!editorDisabled || !!(barPopup && preview === 'preview' && !/(preview|fullscreen)/.test(item.keyCommand));
         const render = components?.toolbar || item.render;
         const com = (
           render && typeof render === 'function' ? render(item, !!disabled, handleClick, idx) : null
