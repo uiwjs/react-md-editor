@@ -1064,48 +1064,37 @@ export default function App() {
 
 ### Support Nextjs
 
-Use examples in [nextjs](https://nextjs.org/). [`#52`](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341) [`#224`](https://github.com/uiwjs/react-md-editor/issues/224#issuecomment-901112079)
+For Next.js App Router, see the working [Next.js example](https://github.com/uiwjs/react-md-editor/tree/master/example/nextjs) ([#682](https://github.com/uiwjs/react-md-editor/issues/682))
 
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/nextjs-example-react-md-editor-https-github-com-uiwjs-react-md-editor-issues-516-1z56px?fontsize=14&hidenavigation=1&theme=dark)
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/embed/nextjs-example-react-md-editor-qjhn7?fontsize=14&hidenavigation=1&theme=dark) [![Open in StackBlitz](https://img.shields.io/badge/Open%20In-StackBlitz-green)](https://stackblitz.com/edit/nextjs-react-md-editor?embed=1&file=pages/index.js&hideExplorer=1&hideNavigation=1&theme=dark)
-[![#52](https://img.shields.io/github/issues/detail/state/uiwjs/react-md-editor/52)](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341)
-[![#224](https://img.shields.io/github/issues/detail/state/uiwjs/react-md-editor/224)](https://github.com/uiwjs/react-md-editor/issues/224#issuecomment-901112079)
+Install both packages so their published styles can be imported directly:
 
 ```bash
-npm install next-remove-imports
-npm install @uiw/react-md-editor@v3.6.0
+npm install @uiw/react-md-editor @uiw/react-markdown-preview
 ```
 
-```js
-// next.config.js
-const removeImports = require('next-remove-imports')();
-module.exports = removeImports({});
+Load global styles from `app/layout.tsx`:
+
+```tsx
+import '@uiw/react-md-editor/markdown-editor.css';
+import '@uiw/react-markdown-preview/markdown.css';
 ```
 
-```jsx
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
-import dynamic from "next/dynamic";
-import { useState } from "react";
+In a client component, load the editor without server-side rendering:
 
-import * as commands from "@uiw/react-md-editor/commands"
+```tsx
+'use client';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 
-const MDEditor = dynamic(
-  () => import("@uiw/react-md-editor"),
-  { ssr: false }
-);
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
 
-function HomePage() {
-  const [value, setValue] = useState("**Hello world!!!**");
-  return (
-    <div>
-      <MDEditor value={value} onChange={setValue} />
-    </div>
-  );
+export default function Page() {
+  const [value, setValue] = useState(['```js', 'const answer = 42;', '```'].join('\n'));
+  return <MDEditor value={value} onChange={setValue} />;
 }
-
-export default HomePage;
 ```
+
+If highlighting is missing with older Turbopack versions, try `next dev` without `--turbopack`
 
 ### Support dark-mode/night-mode
 

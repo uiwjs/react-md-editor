@@ -29,3 +29,5 @@ jobs:
       - run: npm run build
       - run: npm run coverage
       - run: npm run test:consumers
+      - run: npm run build --workspace nextjs
+      - run: npm run test:nextjs

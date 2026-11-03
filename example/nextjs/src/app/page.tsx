@@ -6,8 +6,17 @@ import type { ContextStore } from '@uiw/react-md-editor';
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
 type OnChange = (value?: string, event?: React.ChangeEvent<HTMLTextAreaElement>, state?: ContextStore) => void;
 
+const initialMarkdown = [
+  '# Syntax highlighting',
+  '',
+  '```js',
+  'const answer = 42;',
+  'console.log(answer);',
+  '```',
+].join('\n');
+
 export default function Home() {
-  const [value, setValue] = React.useState('**Hello world!!!**');
+  const [value, setValue] = React.useState(initialMarkdown);
 
   const onChange = React.useCallback<OnChange>((val) => {
     setValue(val || '');
