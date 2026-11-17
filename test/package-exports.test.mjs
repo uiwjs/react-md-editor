@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
+import { existsSync, readdirSync, statSync } from 'node:fs';
 import { readFile, realpath } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, extname, join, resolve } from 'node:path';
 import { test } from 'node:test';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -38,6 +39,37 @@ for (const [subpath, specifier] of Object.entries(entrypoints)) {
     assert.equal(pathToFileURL(esm).protocol, 'file:');
   });
 }
+
+const knownExtensions = new Set(['.js', '.mjs', '.cjs', '.json', '.css', '.less']);
+const relativeSpecifier = /(?:\bfrom\s+|import\s*\(\s*|import\s+)(['"])(\.[^'"]+)\1/g;
+
+function walkJs(directory, files = []) {
+  for (const entry of readdirSync(directory)) {
+    const full = join(directory, entry);
+    if (statSync(full).isDirectory()) {
+      walkJs(full, files);
+    } else if (entry.endsWith('.js')) {
+      files.push(full);
+    }
+  }
+  return files;
+}
+
+test('ESM relative imports include the extension webpack requires', async () => {
+  const missing = [];
+  for (const file of walkJs(join(core, 'esm'))) {
+    const code = await readFile(file, 'utf8');
+    for (const match of code.matchAll(relativeSpecifier)) {
+      const specifier = match[2];
+      const extension = extname(specifier);
+      const target = resolve(dirname(file), specifier);
+      if (!knownExtensions.has(extension) || !existsSync(target)) {
+        missing.push(`${file.slice(core.length + 1)}: ${specifier}`);
+      }
+    }
+  }
+  assert.deepEqual(missing, []);
+});
 
 test('published tarball contains the ESM marker and all public entrypoints', async () => {
   const { execFileSync } = await import('node:child_process');
