@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MDEditor from '../core/src';
 import MDEditorCommon from '../core/src/index.common';
@@ -41,7 +41,9 @@ describe.each(editors)('%s editor with third-party embeds', (_name, Editor) => {
     expect(wrapper.scrollTop).toBe(32);
   });
 
-  it('handles a blockquote moved outside the React preview', () => {
+  it('handles a blockquote moved outside the React preview', async () => {
+    let now = 0;
+    const clock = jest.spyOn(performance, 'now').mockImplementation(() => (now += 60));
     const { container, rerender } = render(
       <Editor value={withEmbed} previewOptions={previewOptions} visibleDragbar={false} />,
     );
@@ -55,8 +57,14 @@ describe.each(editors)('%s editor with third-party embeds', (_name, Editor) => {
       expect(() =>
         rerender(<Editor value="Ordinary text" previewOptions={previewOptions} visibleDragbar={false} />),
       ).not.toThrow();
-      expect(container.querySelector('.w-md-editor-preview')).toHaveTextContent('Ordinary text');
+      // The embed render is slow, so the next preview waits. The moved blockquote
+      // leaves the current preview empty until that update arrives.
+      expect(container.querySelector('.w-md-editor-preview')).not.toHaveTextContent('Ordinary text');
+      await waitFor(() => {
+        expect(container.querySelector('.w-md-editor-preview')).toHaveTextContent('Ordinary text');
+      });
     } finally {
+      clock.mockRestore();
       externalContainer.remove();
     }
   });
