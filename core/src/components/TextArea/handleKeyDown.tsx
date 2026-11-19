@@ -64,9 +64,14 @@ export default function handleKeyDown(
       const _star = target.value.substring(0, target.selectionStart).split('\n');
       const _end = target.value.substring(0, target.selectionEnd).split('\n');
       const modifiedTextLine: string[] = [];
+      // Offset of the first line that changes. `indexOf(modifiedText)` would find
+      // an earlier copy of the same text and replace everything after it.
+      let modifiedTextStart = 0;
       _end.forEach((item, idx) => {
         if (item !== _star[idx]) {
           modifiedTextLine.push(item);
+        } else {
+          modifiedTextStart += item.length + 1;
         }
       });
       const modifiedText = modifiedTextLine.join('\n');
@@ -74,7 +79,7 @@ export default function handleKeyDown(
       const newStarNum = target.value.substring(0, target.selectionStart).length;
 
       textArea.setSelectionRange({
-        start: target.value.indexOf(modifiedText),
+        start: modifiedTextStart,
         end: target.selectionEnd,
       });
 

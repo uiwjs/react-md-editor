@@ -67,3 +67,48 @@ it('keeps list continuation when the caret is before content', () => {
 it('does not end empty list items on Shift+Enter', () => {
   expect(pressEnter('- ', { shiftKey: true }).value).toBe('- ');
 });
+
+function pressTab(value: string, selectionStart: number, selectionEnd: number, shiftKey = false) {
+  const textarea = document.createElement('textarea');
+  textarea.value = value;
+  textarea.selectionStart = selectionStart;
+  textarea.selectionEnd = selectionEnd;
+  document.body.appendChild(textarea);
+  textarea.addEventListener('keydown', (e) => handleKeyDown(e));
+  textarea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', code: 'Tab', bubbles: true, cancelable: true, shiftKey }));
+  return textarea;
+}
+
+it('indents the selected line when an identical line comes before it', () => {
+  const value = '- [ ] milk\n- [ ] eggs\n- [ ] milk';
+  const start = value.lastIndexOf('milk');
+  expect(pressTab(value, start, start + 4).value).toBe('- [ ] milk\n- [ ] eggs\n    - [ ] milk');
+});
+
+it('indents the selected line when its text also appears earlier in another line', () => {
+  const value = 'function f() {\n  if (a) {\n    b();\n  }\n}';
+  expect(pressTab(value, value.length - 1, value.length).value).toBe(
+    'function f() {\n  if (a) {\n    b();\n  }\n    }',
+  );
+});
+
+it('outdents the selected line when an identical line comes before it', () => {
+  const value = '    - a\n    - a';
+  expect(pressTab(value, value.length - 1, value.length, true).value).toBe('    - a\n- a');
+});
+
+it('indents a selected line that appears only once', () => {
+  const value = '- [ ] bread\n- [ ] eggs\n- [ ] milk';
+  const start = value.lastIndexOf('milk');
+  expect(pressTab(value, start, start + 4).value).toBe('- [ ] bread\n- [ ] eggs\n    - [ ] milk');
+});
+
+it('indents every line of a multi-line selection', () => {
+  const value = 'intro\n- a\n- b';
+  expect(pressTab(value, value.indexOf('- a'), value.length).value).toBe('intro\n    - a\n    - b');
+});
+
+it('keeps the line where the selection starts at its end', () => {
+  const value = '- a\n- b';
+  expect(pressTab(value, 3, value.length).value).toBe('- a\n    - b');
+});
