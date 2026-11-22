@@ -1142,7 +1142,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
 - `fullscreen?: boolean=false`: Full screen display editor.
 - `overflow?: boolean=true`: Disable `fullscreen` setting body styles
-- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Full screen display editor.
+- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`.
 - `maxHeight?: number=1200`: Maximum drag height. The `visibleDragbar=true` value is valid.
 - `minHeight?: number=100`: Minimum drag height. The `visibleDragbar=true` value is valid.
 - `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.
