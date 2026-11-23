@@ -1213,6 +1213,7 @@ As always, thanks to our amazing contributors!
 <a href="https://github.com/peterj" title="Peter Jausovec"><img src="https://avatars.githubusercontent.com/u/11080940?v=4" width="42;" alt="Peter Jausovec"/></a>
 <a href="https://github.com/phillipb" title="Phillip Burch"><img src="https://avatars.githubusercontent.com/u/1482089?v=4" width="42;" alt="Phillip Burch"/></a>
 <a href="https://github.com/rami-maalouf" title="Rami Maalouf"><img src="https://avatars.githubusercontent.com/u/81759594?v=4" width="42;" alt="Rami Maalouf"/></a>
+<a href="https://github.com/TariQMah" title="Tariq Mahmood "><img src="https://avatars.githubusercontent.com/u/21140774?v=4" width="42;" alt="Tariq Mahmood "/></a>
 <a href="https://github.com/toresbe" title="Tore Sinding Bekkedal"><img src="https://avatars.githubusercontent.com/u/1761606?v=4" width="42;" alt="Tore Sinding Bekkedal"/></a>
 <a href="https://github.com/valenfv" title="Valentin"><img src="https://avatars.githubusercontent.com/u/34139820?v=4" width="42;" alt="Valentin"/></a>
 <a href="https://github.com/jmtes" title="juno tesoro"><img src="https://avatars.githubusercontent.com/u/38450133?v=4" width="42;" alt="juno tesoro"/></a>
