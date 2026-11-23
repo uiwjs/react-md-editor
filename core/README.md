@@ -1125,7 +1125,7 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `onHeightChange?: ((value?: CSSProperties['height'], oldValue?: CSSProperties['height'], state?: ContextStore)`: editor height change listener.
 - `onStatistics?: (data: Statistics) => void;` Some data on the statistics editor.
 - `commands?: ICommand[]`: An array of [`ICommand`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L39-L57), which, each one, contain a [`commands`](https://github.com/uiwjs/react-md-editor/blob/d02543050c9abd8f7c72ae02b6421ac2e6ae421a/src/commands/index.ts#L155-L180) property. If no commands are specified, the default will be used. Commands are explained in more details below.
-- `commandsFilter?: (command: ICommand, isExtra: boolean) => false | ICommand`: Filter or modify your commands.
+- `commandsFilter?: (command: ICommand, isExtra: boolean) => false | ICommand`: Filter or modify your commands. Return `false` for a command to hide it, e.g. `commandsFilter={(command) => (command.keyCommand === 'fullscreen' ? false : command)}` hides the fullscreen button.
 - `extraCommands?: ICommand[]`: Displayed on the right side of the toolbar.
 - `autoFocus?: true`: Can be used to make `Markdown Editor` focus itself on initialization.
 - `autoFocusEnd?: false`: Can be used to make `Markdown Editor` focus on the end of text on initialization.
@@ -1140,9 +1140,9 @@ Inherit custom color variables by adding [`.wmde-markdown-var`](https://github.c
 - `height?: number=200`: The height of the editor. ️⚠️ `Dragbar` is invalid when **`height`** parameter percentage.
 - `visibleDragbar?: boolean=true`: Show drag and drop tool. Set the height of the editor.
 - `highlightEnable?: boolean=true`: Disable editing area code highlighting. The value is `false`, which increases the editing speed.
-- `fullscreen?: boolean=false`: Show markdown preview.
+- `fullscreen?: boolean=false`: Full screen display editor.
 - `overflow?: boolean=true`: Disable `fullscreen` setting body styles
-- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`, Show markdown preview.
+- `preview?: 'live' | 'edit' | 'preview'`: Default value `live`.
 - `maxHeight?: number=1200`: Maximum drag height. The `visibleDragbar=true` value is valid.
 - `minHeight?: number=100`: Minimum drag height. The `visibleDragbar=true` value is valid.
 - `tabSize?: number=2`: The number of characters to insert when pressing tab key. Default `2` spaces.
