@@ -30,7 +30,7 @@ export interface ContextStore {
   [key: string]: any;
 }
 
-export type ExecuteCommandState = Pick<ContextStore, 'fullscreen' | 'preview' | 'highlightEnable'>;
+export type ExecuteCommandState = Pick<ContextStore, 'fullscreen' | 'preview' | 'highlightEnable' | 'container'>;
 
 export function reducer(state: ContextStore, action: ContextStore) {
   return { ...state, ...action };

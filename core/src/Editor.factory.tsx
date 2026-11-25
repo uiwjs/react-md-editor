@@ -2,6 +2,8 @@ import React, { useEffect, useLayoutEffect, useReducer, useMemo, useRef, useImpe
 import { ToolbarVisibility } from './components/Toolbar/';
 import DragBar from './components/DragBar/';
 import { getCommands, getExtraCommands, type ICommand, type TextState, TextAreaCommandOrchestrator } from './commands/';
+import { codeEdit, codeLive } from './commands/preview';
+import { getShortcut } from './components/TextArea/shortcuts';
 import { reducer, EditorContext, type ContextStore } from './Context';
 import type { MDEditorProps } from './Types';
 
@@ -144,6 +146,7 @@ export function createMDEditor<
       const container = useRef<HTMLDivElement>(null);
       const previewRef = useRef<HTMLDivElement>(null);
       const enableScrollRef = useRef(enableScroll);
+      const restoreTextareaFocus = useRef(false);
 
       useImperativeHandle(ref, () => ({ ...state, container: container.current, dispatch }));
       useMemo(() => (enableScrollRef.current = enableScroll), [enableScroll]);
@@ -206,6 +209,36 @@ export function createMDEditor<
         () => extraCommands !== state.extraCommands && dispatch({ extraCommands: extraCmds }),
         [props.extraCommands],
       );
+
+      useIsomorphicLayoutEffect(() => {
+        const root = container.current;
+        const textarea = state.textarea;
+        if (
+          state.preview !== 'preview' &&
+          restoreTextareaFocus.current &&
+          root &&
+          textarea &&
+          root.contains(textarea)
+        ) {
+          restoreTextareaFocus.current = false;
+          if (root.ownerDocument.activeElement === root) textarea.focus();
+        }
+      }, [state.preview, state.textarea]);
+
+      const handlePreviewKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        other.onKeyDown?.(event);
+        if (event.defaultPrevented || disabled || state.preview !== 'preview' || event.target !== event.currentTarget) {
+          return;
+        }
+        const execute = getShortcut(event, [...(state.commands || []), ...(state.extraCommands || [])])?.command
+          .execute;
+        if (execute !== codeEdit.execute && execute !== codeLive.execute) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        restoreTextareaFocus.current = true;
+        dispatch({ preview: execute === codeEdit.execute ? 'edit' : 'live' });
+      };
 
       const textareaDomRef = useRef<HTMLDivElement>();
       const active = useRef<'text' | 'preview'>('preview');
@@ -297,7 +330,15 @@ export function createMDEditor<
       };
       return (
         <EditorContext.Provider value={{ ...state, disabled, dispatch }}>
-          <div ref={container} className={cls} {...other} onClick={containerClick} style={containerStyle}>
+          <div
+            ref={container}
+            className={cls}
+            tabIndex={state.preview === 'preview' && !disabled ? 0 : -1}
+            {...other}
+            onClick={containerClick}
+            onKeyDown={handlePreviewKeyDown}
+            style={containerStyle}
+          >
             <ToolbarVisibility
               hideToolbar={hideToolbar}
               toolbarBottom={toolbarBottom}
