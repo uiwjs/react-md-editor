@@ -33,27 +33,23 @@ it('MDEditor', () => {
   }
 });
 
-it('MDEditor onChange', async () => {
+it('accepts a React state setter as onChange', () => {
   const MyComponent = () => {
     const [value, setValue] = React.useState('**Hello world!!!**');
     return (
-      <MDEditor
-        value={value}
-        textareaProps={{
-          title: 'test',
-        }}
-        onChange={(value) => {
-          expect(value).toEqual('# title');
-          setValue(value || '');
-        }}
-      />
+      <>
+        <MDEditor value={value} textareaProps={{ title: 'test' }} onChange={setValue} />
+        <output data-testid="markdown-value">{value}</output>
+      </>
     );
   };
   render(<MyComponent />);
-  const inputNode = screen.getByTitle('test');
-  inputNode.focus();
-  fireEvent.change(inputNode, { target: { value: '# title' } });
-  inputNode.blur();
+  const textarea = screen.getByTitle('test');
+  const markdown = screen.getByTestId('markdown-value');
+  fireEvent.change(textarea, { target: { value: '# title' } });
+  expect(markdown.textContent).toBe('# title');
+  fireEvent.change(textarea, { target: { value: '' } });
+  expect(markdown.textContent).toBe('');
 });
 
 it('MDEditor KeyboardEvent onChange', async () => {
@@ -118,9 +114,11 @@ describe.each(modeEditors)('MDEditor %s mode', (modeName, EditorComponent) => {
         onChange={handleChange}
       />,
     );
-    fireEvent.change(screen.getByTitle(`${modeName}-change-textarea`), { target: { value: '# title' } });
-    expect(handleChange).toHaveBeenCalled();
+    const textarea = screen.getByTitle(`${modeName}-change-textarea`);
+    fireEvent.change(textarea, { target: { value: '# title' } });
     expect(handleChange.mock.calls.at(-1)?.[0]).toBe('# title');
+    fireEvent.change(textarea, { target: { value: '' } });
+    expect(handleChange.mock.calls.at(-1)?.[0]).toBe('');
   });
 
   it('Markdown renders source content', () => {
