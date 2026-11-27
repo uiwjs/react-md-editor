@@ -28,9 +28,9 @@ export interface MDEditorProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   readOnly?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['readOnly'];
   placeholder?: React.TextareaHTMLAttributes<HTMLTextAreaElement>['placeholder'];
   /**
-   * Event handler for the `onChange` event.
+   * Called with the current Markdown value, including an empty string when cleared.
    */
-  onChange?: (value?: string, event?: React.ChangeEvent<HTMLTextAreaElement>, state?: ContextStore) => void;
+  onChange?: (value: string, event?: React.ChangeEvent<HTMLTextAreaElement>, state?: ContextStore) => void;
   /**
    * editor height change listener
    */
