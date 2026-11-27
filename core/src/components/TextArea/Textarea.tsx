@@ -20,17 +20,18 @@ export default function Textarea(props: TextAreaProps) {
     tabSize,
     defaultTabEnable,
     autoFocusEnd,
+    container,
     textareaWarp,
     dispatch,
     ...otherStore
   } = useContext(EditorContext);
   const textRef = React.useRef<HTMLTextAreaElement>(null);
   const executeRef = React.useRef<TextAreaCommandOrchestrator>();
-  const statesRef = React.useRef<ExecuteCommandState>({ fullscreen, preview });
+  const statesRef = React.useRef<ExecuteCommandState>({ fullscreen, preview, container });
 
   useEffect(() => {
-    statesRef.current = { fullscreen, preview, highlightEnable };
-  }, [fullscreen, preview, highlightEnable]);
+    statesRef.current = { fullscreen, preview, highlightEnable, container };
+  }, [fullscreen, preview, highlightEnable, container]);
 
   useEffect(() => {
     if (textRef.current && dispatch) {

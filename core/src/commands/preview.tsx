@@ -27,9 +27,12 @@ export const codePreview: ICommand = {
     executeCommandState?: ExecuteCommandState,
     shortcuts?: string[],
   ) => {
-    api.textArea.focus();
     if (shortcuts && dispatch && executeCommandState) {
+      // The textarea is removed in preview mode, so keep focus inside the editor.
+      (executeCommandState.container || api.textArea).focus();
       dispatch({ preview: 'preview' });
+    } else {
+      api.textArea.focus();
     }
   },
 };

@@ -12,12 +12,9 @@ function getCommands(data: ICommand[] = [], resulte: Record<string, ICommand> = 
   return resulte;
 }
 
-export default function shortcutsHandle(
-  e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>,
+export function getShortcut(
+  e: Pick<KeyboardEvent, 'altKey' | 'shiftKey' | 'metaKey' | 'ctrlKey' | 'key'>,
   commands: ICommand[] = [],
-  commandOrchestrator?: TextAreaCommandOrchestrator,
-  dispatch?: React.Dispatch<ContextStore>,
-  state?: ExecuteCommandState,
 ) {
   const data = getCommands(commands || []);
   const shortcuts: string[] = [];
@@ -57,10 +54,20 @@ export default function shortcutsHandle(
       command = data[item];
     }
   });
-  if (command && commandOrchestrator) {
+  return command ? { command, shortcuts } : undefined;
+}
+
+export default function shortcutsHandle(
+  e: KeyboardEvent | React.KeyboardEvent<HTMLTextAreaElement>,
+  commands: ICommand[] = [],
+  commandOrchestrator?: TextAreaCommandOrchestrator,
+  dispatch?: React.Dispatch<ContextStore>,
+  state?: ExecuteCommandState,
+) {
+  const shortcut = getShortcut(e, commands);
+  if (shortcut && commandOrchestrator) {
     e.stopPropagation();
     e.preventDefault();
-    commandOrchestrator.executeCommand(command, dispatch, state, shortcuts);
-    return;
+    commandOrchestrator.executeCommand(shortcut.command, dispatch, state, shortcut.shortcuts);
   }
 }
